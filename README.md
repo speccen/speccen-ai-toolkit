@@ -50,6 +50,16 @@ run and the baseline (`trend.md`), with a scoreboard of all runs in `.speccen/au
 | `03-scorecard-review/` | Scorecard & Review | AGGREGATE, TREND & REVIEW — compute signals, compare runs, hold the gate |
 | `04-synthesis/` | Synthesis | SYNTHESIS — write the audience documents |
 
+### Implementation documentation and review
+
+Two standalone skills, independent of the six phases and of each other (they predate the speccen
+bundle and work from `ANALYSIS` documents and project conventions rather than a bundle):
+
+| Folder | Skill | Purpose |
+|---|---|---|
+| `implementation/implementation-documentation/` | Implementation Documentation | Two-phase gated technical documentation of an implementation |
+| `implementation/implementation-review/` | Implementation Review | Review an implementation against `ANALYSIS` documents, conventions and security standards; optional GitHub Issues |
+
 The interview skill is inspired by [grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)
 by Matt Pocock (MIT).
 
