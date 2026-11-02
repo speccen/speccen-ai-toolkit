@@ -20,6 +20,7 @@
     "adr"
   ],
   "skills": [
-    "./skills/"
+    "./skills/sdd/",
+    "./skills/audit/"
   ]
 }

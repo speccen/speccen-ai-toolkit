@@ -2,9 +2,9 @@
 
 This document maps how speccen is put together — the major parts,
 how they fit, and where to look for detail. It is deliberately high-level: it points into the
-skill files (`skills/*/SKILL.md`) and the design spec rather than restating them. For *how to
+skill files (`skills/*/*/SKILL.md`) and the design spec rather than restating them. For *how to
 run* the workflow, see `README.md`; for the authoritative *rules*, see
-`skills/00-governing-workflow/SKILL.md`.
+`skills/sdd/00-governing-workflow/SKILL.md`.
 
 ---
 
@@ -40,7 +40,7 @@ both.
 
 ## The skills — the workflow
 
-Nine skills under `skills/`. One governs; six are the core sequential phases; two are optional
+Nine skills under `skills/sdd/` (the audit's five live in `skills/audit/`). One governs; six are the core sequential phases; two are optional
 passes that run only on request after the core completes.
 
 ```
@@ -241,7 +241,7 @@ much as the nodes, and interlinking is captured richly during the workflow (the 
 deferred; the captured graph is not). `timeline.md` is the first, simplest rendering of the
 feature nodes.
 
-Full design rationale: the durable-store section of `skills/00-governing-workflow/SKILL.md`.
+Full design rationale: the durable-store section of `skills/sdd/00-governing-workflow/SKILL.md`.
 
 ---
 
@@ -284,12 +284,12 @@ scoreboard of all runs. One `.speccen/` belongs to one codebase, so there is one
 | To understand… | Read |
 |---|---|
 | How to install and run speccen | `README.md` |
-| The authoritative rules and all conventions | `skills/00-governing-workflow/SKILL.md` |
-| A specific phase's behaviour | that phase's `skills/NN-*/SKILL.md` |
+| The authoritative rules and all conventions | `skills/sdd/00-governing-workflow/SKILL.md` |
+| A specific phase's behaviour | that phase's `skills/sdd/NN-*/SKILL.md` |
 | The bundle model and its rationale | `README.md` → "The analysis bundle" |
 | How to set the workflow mode, per bundle or per phase | `README.md` → "Configuration" |
 | How autonomous mode works | governing skill → "Autonomous Execution" |
 | How extensions add project rules to a phase | governing skill → "Extensions" |
 | How subagents and per-phase models work | governing skill → "Subagent Execution" |
 | The durable store's full design | governing skill → "Durable Store" |
-| Reconciling the store after concurrent team merges | `skills/reconcile/SKILL.md` |
+| Reconciling the store after concurrent team merges | `skills/sdd/reconcile/SKILL.md` |

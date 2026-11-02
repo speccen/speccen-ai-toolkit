@@ -28,5 +28,5 @@ the point**.
 **Do not imitate its prose voice.** This example was built outside the workflow and is **not**
 written in Simplified Technical English (STE); it uses rhetorical questions and narrative
 framing that STE forbids. Everything the workflow itself produces follows STE (see the
-STE-style rules in `skills/00-governing-workflow/SKILL.md`). The example is the bar for
+STE-style rules in `skills/sdd/00-governing-workflow/SKILL.md`). The example is the bar for
 *layout and depth*, not for *sentences*.

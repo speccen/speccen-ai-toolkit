@@ -94,16 +94,16 @@ The extension makes it easy to browse, install, and manage skills without comman
 
 ### Local installation
 
-Copy the `skills/` folder to your project or user skills directory, and the `agents/` folder for
+Copy the skill folders (grouped under `skills/sdd/` and `skills/audit/` — copy them flat, so each skill folder sits directly in the skills directory) to your project or user skills directory, and the `agents/` folder for
 subagent support:
 
 ```bash
 # Project-level (shared via version control)
-cp -r skills/ .claude/skills/
+mkdir -p .claude/skills && cp -r skills/sdd/* skills/audit/* .claude/skills/
 cp -r agents/ .claude/agents/
 
 # User-level (available in all your Claude Code sessions)
-cp -r skills/ ~/.claude/skills/
+mkdir -p ~/.claude/skills && cp -r skills/sdd/* skills/audit/* ~/.claude/skills/
 cp -r agents/ ~/.claude/agents/
 ```
 
@@ -143,7 +143,7 @@ Governing Workflow skill, which is the single source of truth.
 On any host, or without the command, start by loading the skill directly:
 
 ```
-Read skills/00-governing-workflow/SKILL.md and follow its Session Start Protocol.
+Read skills/sdd/00-governing-workflow/SKILL.md and follow its Session Start Protocol.
 ```
 
 Either way, the Governing Workflow skill handles everything from there — new session or
