@@ -30,7 +30,17 @@ A fast pass, not a deep analysis. Determine and record in `recon.md`:
 - Repository size; large vendored or generated areas to **skip** during scoring
 - Anything that will cap confidence (huge monorepo, no runtime access, generated code)
 
-Keep it to a paragraph or two. Its only job is to let each dimension pass search efficiently
+**Confirm what you detected** — these are facts you found, not questions to open. One
+`AskUserQuestion` call, three questions (the detected value is the first option, `(Recommended)`):
+1. header `Type` — the detected software type (`service` / `library` / `CLI` / `frontend` /
+   `monorepo`), then the two next-likeliest types
+2. header `Skip` — `Skip <detected vendored/generated areas> (Recommended)`, `Skip nothing`;
+   "Select Other to name more areas to skip"
+3. header `Evidence` — `Static only, code and config (Recommended)`, `Runtime evidence available`
+   — "Select Other to say what (logs, metrics, a running system)"; static-only caps the
+   confidence of runtime-dependent dimensions (performance, observability)
+
+Record the confirmed answers in `recon.md`. Keep the rest to a paragraph or two. Its only job is to let each dimension pass search efficiently
 and calibrate to the software type.
 
 ### Step 2b — System Profile

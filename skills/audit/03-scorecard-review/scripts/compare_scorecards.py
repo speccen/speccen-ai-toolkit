@@ -26,11 +26,14 @@ PLUGIN_JSON = SKILLS_ROOT.parent.parent / ".claude-plugin" / "plugin.json"
 BURDEN = {"Low": 0, "Medium": 1, "Moderate": 1, "High": 2}
 
 
-def rubric_hash() -> str:
-    """Hash of everything that decides a score: the rubrics, the scorer and its weights."""
+def rubric_hash(run: pathlib.Path) -> str:
+    """Hash of everything that decides a score: the rubrics, the scorer, its default weights and
+    the run's own weights.json override, if any."""
     h = hashlib.sha256()
     files = sorted((SKILLS_ROOT / "02-dimension-analysis" / "references").glob("*.md"))
     files.append(SKILLS_ROOT / "03-scorecard-review" / "scripts" / "build_scorecard.py")
+    if (run / "weights.json").exists():
+        files.append(run / "weights.json")
     for f in files:
         h.update(f.name.encode())
         h.update(f.read_bytes())
@@ -55,7 +58,7 @@ def stamp(run: pathlib.Path, app: str):
         "app": app or git("rev-parse", "--show-toplevel").rsplit("/", 1)[-1],
         "commit": git("rev-parse", "HEAD"),
         "toolkit_version": version,
-        "rubric_hash": rubric_hash(),
+        "rubric_hash": rubric_hash(run),
     }
     (run / "run.json").write_text(json.dumps(data, indent=2) + "\n")
     print(f"Wrote {run / 'run.json'}")
@@ -235,6 +238,10 @@ def main():
     runs = load_all(run.parent)
     if not any(r["id"] == run.name for r in runs):
         sys.exit(f"{run.name} needs run.json (stamp) and summary.json (build_scorecard.py) first")
+    # the weights override may have been added after the stamp: refresh this run's hash
+    cur = next(r for r in runs if r["id"] == run.name)
+    cur["meta"]["rubric_hash"] = rubric_hash(run)
+    (run / "run.json").write_text(json.dumps(cur["meta"], indent=2) + "\n")
     write_trend(run, runs)
     write_history(run.parent, runs)
 
