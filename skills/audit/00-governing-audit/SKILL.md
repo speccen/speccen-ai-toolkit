@@ -92,6 +92,19 @@ anchors the TCO narrative.
 | AGGREGATE & REVIEW | `skills/audit/03-scorecard-review/SKILL.md` | **Architect gives explicit go-signal** |
 | SYNTHESIS | `skills/audit/04-synthesis/SKILL.md` | three audience docs written; bundle COMPLETE |
 
+## Asking the Architect
+
+- A **multiple-choice** question uses the **`AskUserQuestion` tool**, not prose and not a table.
+  The tool's constraints, the empty-answer guard and the prose fallback for hosts without it are
+  those of `skills/sdd/00-governing-workflow/SKILL.md` → "Structured questions": 1–4 questions per
+  call, 2–4 options each, never add an "Other" option, headers ≤ 12 characters. On an empty answer,
+  or without the tool, fall back to one short plain-text question per field — never proceed on an
+  assumed selection.
+- A **series of dependent decisions** (the score corrections at the review gate) uses the
+  **`interview` skill** (`skills/sdd/interview/SKILL.md`, "Outside a bundle"), with a proposed
+  answer per question.
+- A **fact** you can find is never asked for — detect it, and offer it as the recommended option.
+
 ## Session Start Protocol
 
 ### Step 1 — Resolve application name and folder
@@ -102,10 +115,14 @@ Every audit run has a **fixed home**: `.speccen/audits/<id>/` — `{{AUDIT_FOLDE
 Architect never names a path. The `<id>` follows the one id format used in `.speccen/`
 (`<prefix>.<name_snake_case>`, see the speccen governing workflow):
 - **No run exists yet in `.speccen/audits/`** → this is the baseline: `<id>` is
-  `YYYY-MM-DD.baseline` (today's date).
-- **Otherwise** → a new run is `YYYY-MM-DD.<name_snake_case>` (a same-day/same-name collision
-  appends `-2`, `-3`); to resume, list the runs in `.speccen/audits/` and let the Architect
-  pick. If `.speccen/audits/` has runs but no `*.baseline`, stop and ask before continuing.
+  `YYYY-MM-DD.baseline` (today's date). Nothing is asked.
+- **Otherwise** → one `AskUserQuestion` call, header `Run`: `New run`, plus `Resume <id>` for each
+  of the (up to 2) most recent runs that are not `COMPLETE`. For a new run, a second question,
+  header `Name`: `I'll type it` — "Select Other and type the run name"; the id is
+  `YYYY-MM-DD.<name_snake_case>` (a same-day/same-name collision appends `-2`, `-3`). Never
+  propose invented names.
+- **Runs exist but no `*.baseline`** → stop and ask, one `AskUserQuestion` call, header
+  `Baseline`: `Create the baseline now (Recommended)`, `Continue without a baseline`, `Cancel`.
 
 ### Step 2 — New vs resume
 Check whether `{{AUDIT_FOLDER}}/STATE.md` exists.
@@ -119,9 +136,11 @@ Check whether `{{AUDIT_FOLDER}}/STATE.md` exists.
 After SCORING and AGGREGATE, `STATE.md` reads `Stage: AWAITING ARCHITECT REVIEW`. **Stop.**
 Present the scorecard and dimension summaries and wait. The Architect may correct any level —
 treat a correction like an authoritative constraint: update that dimension's `result.json` and
-`detail.md`, re-run the scorer, regenerate `index.md`. Only an explicit go-signal ("generate
-the documents", "proceed to synthesis") releases SYNTHESIS. If asked to skip the review, flag
-it and proceed only on explicit confirmation.
+`detail.md`, re-run the scorer, regenerate `index.md`. Only an explicit go-signal releases
+SYNTHESIS — the `Proceed to synthesis` answer of the gate question (scorecard-review, Step 4), or
+the same in words ("generate the documents", "proceed to synthesis"). If asked to skip the
+review, flag it and confirm with one `AskUserQuestion` call, header `Skip review`: `Keep the
+review (Recommended)`, `Skip it — I accept unreviewed scores`; proceed only on the second.
 
 ## Bundle state protocol
 

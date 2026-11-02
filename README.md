@@ -65,8 +65,8 @@ one), with the same id format as everywhere else in `.speccen/`.
 
 | Folder | Skill | Purpose | Output |
 |---|---|---|---|
-| `code-documentation/` | Code Documentation | Two-phase gated technical documentation of an implementation | `.speccen/documentation/<id>/` — `<NAME>_DOCUMENTATION.html` (authored source) + `.md` (working state and reduced projection) |
-| `code-review/` | Code Review | Review an implementation against `ANALYSIS` documents, conventions and security standards; optional GitHub Issues | `.speccen/reviews/<id>/` — `<NAME>_REVIEW_<timestamp>.md` |
+| `code-documentation/` | Code Documentation | Two-phase gated technical documentation of an implementation | `.speccen/documentation/<id>/` — `<name_snake_case>_documentation.html` (authored source) + `.md` (working state and reduced projection) |
+| `code-review/` | Code Review | Review an implementation against `ANALYSIS` documents, conventions and security standards; optional GitHub Issues | `.speccen/reviews/<id>/` — `<name_snake_case>_review_<timestamp>.md` |
 
 > Claude Code also has a built-in `/code-review`; this plugin's is `speccen:code-review`.
 

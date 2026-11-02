@@ -34,6 +34,23 @@ basis, and what depended on what. That record is a **decision tree a reviewer ca
 - **The review** after an `autonomous` run — see **The review round**.
 - **On request:** whenever the Architect asks to be interviewed.
 
+## Outside a bundle (audit and code skills)
+
+The audit skills (`skills/audit/`) and the code skills (`skills/code/`) have no phases and no
+`autonomous` mode. They use this skill for a series of dependent decisions, with these
+adaptations; everything else (frontier, round format, answers that are not a choice, closing
+question) applies unchanged:
+- **`gated` only.** The Architect answers; the delegate never does, so there is no
+  `delegated-decisions.md`, no stop round and no review round.
+- **Numbering** uses the calling skill instead of a phase: `code-documentation/3`,
+  `audit-gate/2`. The numbers run on across rounds.
+- **Recording.** The Architect's answers are logged verbatim in the calling skill's own log
+  (`code-documentation`: the Prompt Log; audit: `log.md`). The `## Interview` table goes in the
+  calling skill's working file (`code-documentation`: its `.md`; audit: `trend-notes.md` or
+  `log.md`, as the calling skill says). The answer cell says `Architect: "<their words>"`,
+  `later — parked` or `don't know yet`.
+- **Closing question:** "Is this our shared understanding? — yes / not yet".
+
 ## The decision tree and the frontier
 
 List the open decisions as a **tree**: each decision, and the decisions that depend on its answer.

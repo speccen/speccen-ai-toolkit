@@ -28,7 +28,21 @@ This skill performs **state-based review** — it reviews the current codebase s
 
 At the start of every review session:
 
-1. Ask the user for the **feature or refactoring name** (same as used in ANALYSIS document, if present)
+0. A **multiple-choice** question uses the **`AskUserQuestion` tool**, not prose and not a table.
+   The tool's constraints, the empty-answer guard and the prose fallback for hosts without it
+   are those of `skills/sdd/00-governing-workflow/SKILL.md` → "Structured questions": 1–4
+   questions per call, 2–4 options each, never add an "Other" option, headers ≤ 12 characters.
+   On an empty answer, or without the tool, fall back to one short plain-text question per
+   field — never proceed on an assumed selection. A fact you can find is never asked for —
+   look it up, or offer it as an option.
+1. Resolve the **feature or refactoring name** (same as used in ANALYSIS document, if present)
+   and the **review scope** with one `AskUserQuestion` call, two questions:
+   - header `Name` — `Use name from arguments` (only if given), `Review <name>` for each (up to
+     2) feature name found in `.speccen/reviews/`, `.speccen/bundles/` or an `*_analysis.md`,
+     and `I'll type it` — "Select Other and type the exact name". Never propose invented names.
+   - header `Scope` — `This branch vs the base branch (Recommended)` (name the detected base),
+     `Uncommitted changes`, `Whole working directory`; "Select Other to name files/folders or a
+     base commit SHA"
 2. Resolve the **working folder** where the Review Report is stored — never ask for it. All
    output lives under `.speccen/`, in `.speccen/reviews/<id>/`, with `<id>` in the `.speccen` id
    format `<prefix>.<name_snake_case>` (e.g. `2026-11-02.building_information_processor`). If a
@@ -38,11 +52,12 @@ At the start of every review session:
 3. Set:
    - `{{FEATURE_NAME}}` = the name provided (use as-is, no normalisation)
    - `{{FOLDER_NAME}}` = the folder resolved in step 2
-   - `{{FEATURE_NAME_UPPERCASE}}` = feature name converted to SCREAMING_SNAKE_CASE
-   - Review Report path = `{{FOLDER_NAME}}/{{FEATURE_NAME_UPPERCASE}}_REVIEW_{{ISO_TIMESTAMP}}.md`
+   - `{{FEATURE_NAME_SNAKE}}` = feature name converted to `lower_snake_case` (the `<name_snake_case>` of the id)
+   - Review Report path = `{{FOLDER_NAME}}/{{FEATURE_NAME_SNAKE}}_review_{{ISO_TIMESTAMP}}.md`
      where `{{ISO_TIMESTAMP}}` is the current date and time in ISO 8601 format: `YYYYMMDD_HHMMSS`
-   - Example: "Building Information Processor" → `BUILDING_INFORMATION_PROCESSOR_REVIEW_20260218_143022.md`
-4. Look for an ANALYSIS document: first `{{FOLDER_NAME}}/{{FEATURE_NAME_UPPERCASE}}_ANALYSIS.md`,
+   - Example: "Building Information Processor" → `building_information_processor_review_20260218_143022.md`
+4. Look for an ANALYSIS document: first `{{FOLDER_NAME}}/{{FEATURE_NAME_SNAKE}}_analysis.md`
+   (match case-insensitively — older documents use uppercase names),
    then the matching speccen bundle under `.speccen/bundles/`, then a path the user names
    - If present, use it as the review blueprint
    - If absent, review against project conventions only
@@ -82,24 +97,25 @@ After the Review Report is saved, ask the user if they want to create GitHub Iss
 
 ### Step 1 — Ask if the user wants to create issues
 
-```
-The Review Report has been saved. Would you like to create GitHub Issues for the findings?
-→ Yes / No
-```
+Ask with one `AskUserQuestion` call: header `Issues`, question "The Review Report has been saved.
+Create GitHub Issues for the findings?", options `No`, `Yes — create GitHub Issues`.
 
 If **No**, skip the rest of this protocol and summarize the review session.
 
 ### Step 2 — Collect required information
 
-Ask the following questions **in a single message**:
+One `AskUserQuestion` call, three questions:
 
-```
-1. What is the GitHub repository? (format: owner/repo)
-2. Which findings should become issues? (pre-select all Must Fix and Should Fix items found)
+1. header `Repository` — the repo detected from `git remote get-url origin`, as `owner/repo
+   (Recommended)`; "Select Other to type a different `owner/repo`". If no remote is found, ask in
+   plain text.
+2. header `Findings` — `All Must Fix and Should Fix (Recommended)`, `Must Fix only`, `Should Fix
+   only`, `Pick individually` — with the counts of each. On `Pick individually`, list the
+   eligible findings as a numbered list in chat and take the numbers as the answer.
    - Must Fix items → will be created as Bug issues
    - Should Fix items → will be created as Task issues
-3. Would you like to add a common label to all issues? (optional, e.g. "tech-debt", "review-finding")
-```
+3. header `Label` — `review-finding only (Recommended)`, `tech-debt`; "Select Other to add another
+   common label to all issues"
 
 ### Step 3 — Map findings to issue types
 
@@ -126,7 +142,7 @@ Example: `[CRITICAL] Missing null check in UserService.GetById`
 
 **Severity:** {{SEVERITY}}
 **File:** {{FILE_PATH}}:{{LINE}}
-**Review Report:** {{FOLDER_NAME}}/{{FEATURE_NAME_UPPERCASE}}_REVIEW_{{ISO_TIMESTAMP}}.md
+**Review Report:** {{FOLDER_NAME}}/{{FEATURE_NAME_SNAKE}}_review_{{ISO_TIMESTAMP}}.md
 
 ## Description
 
@@ -141,7 +157,7 @@ Example: `[CRITICAL] Missing null check in UserService.GetById`
 {{RECOMMENDATION}}
 
 ---
-*Generated by Code Review Skill from review report `{{FEATURE_NAME_UPPERCASE}}_REVIEW_{{ISO_TIMESTAMP}}.md`*
+*Generated by Code Review Skill from review report `{{FEATURE_NAME_SNAKE}}_review_{{ISO_TIMESTAMP}}.md`*
 ```
 
 ### Step 5 — Present confirmation summary
@@ -157,10 +173,10 @@ I'm ready to create N GitHub Issues in {{GITHUB_REPO}}:
 
 Labels: bug / task + review-finding{{, USER_LABEL}}
 
-Shall I create these now? → Yes / No
 ```
 
-Wait for explicit confirmation before proceeding. Do not execute any commands until the user confirms.
+Then ask with one `AskUserQuestion` call: header `Create`, options `Create now`, `Edit the
+list`, `Cancel`. Wait for the answer. Do not execute any commands until the user picks `Create now`.
 
 ### Step 6 — Execute gh CLI commands
 
@@ -215,7 +231,7 @@ After each successful creation, report the issue URL returned by `gh`. When all 
 - Only include findings the user confirmed in Step 2
 - Never execute `gh` commands without the explicit confirmation in Step 5
 - If no Must Fix or Should Fix findings exist, inform the user and skip this protocol
-- If the user has not specified a repository, ask before proceeding
+- If no repository can be detected or was given, ask before proceeding
 - Do not generate issue content for MEDIUM, LOW, or INFO findings
 - If `gh` execution fails for any individual issue, report the error and continue with the remaining issues
 
@@ -235,8 +251,8 @@ After each successful creation, report the issue URL returned by `gh`. When all 
 
 ### User-Specified
 - Path to ANALYSIS document if not in standard location
-- Base commit SHA for comparison
-- Specific files/folders to review (or review entire working directory)
+- Base commit SHA for comparison (set through "Other" on the `Scope` question)
+- Specific files/folders to review, or a different base (set through "Other" on the `Scope` question)
 
 ---
 
@@ -314,19 +330,19 @@ The skill evaluates the current codebase against these criteria:
 ## Review Report Format
 
 The skill produces a structured **Review Report** saved as:
-`{{FOLDER_NAME}}/{{FEATURE_NAME_UPPERCASE}}_REVIEW_{{ISO_TIMESTAMP}}.md`
+`{{FOLDER_NAME}}/{{FEATURE_NAME_SNAKE}}_review_{{ISO_TIMESTAMP}}.md`
 
-Example: `BUILDING_INFORMATION_PROCESSOR_REVIEW_20260218_143022.md`
+Example: `building_information_processor_review_20260218_143022.md`
 
 This naming convention:
 - Matches the ANALYSIS document convention (if present)
-- Uses SCREAMING_SNAKE_CASE for feature name
+- Uses `lower_snake_case` for the feature name, like the ids in `.speccen/`
 - Includes ISO 8601 timestamp for multiple reviews of the same feature
 - Makes Review Reports easy to locate together under `.speccen/reviews/`
 
 ### Report Structure
 
-Filename: `{{FEATURE_NAME_UPPERCASE}}_REVIEW_{{ISO_TIMESTAMP}}.md`
+Filename: `{{FEATURE_NAME_SNAKE}}_review_{{ISO_TIMESTAMP}}.md`
 
 ```markdown
 # [FEATURE_NAME] Implementation Review 
