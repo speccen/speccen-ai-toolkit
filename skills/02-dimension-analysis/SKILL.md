@@ -36,6 +36,10 @@ three files.
 
 ## Scoring rules
 
+- **Score blind.** Do not read earlier runs in `.speccen/audits/` while scoring — a previous
+  level anchors the new one. The comparison with earlier runs happens afterwards, in the
+  scorecard-review stage.
+
 - **Evidence first.** Every level cites concrete artifacts. A score with no evidence is invalid.
 - **Absence is a finding, with a caveat.** Missing artifacts after a genuine search are
   evidence of a low level — but set `confidence: low` when you could not search exhaustively.

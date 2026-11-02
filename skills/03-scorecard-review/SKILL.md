@@ -23,6 +23,23 @@ the legacy cluster — architecture / performance / dependency-health / code-qua
 can pass the gate yet carry High pressure — safe to run today, but a growing brake. Use the
 script's numbers verbatim; never hand-edit `scorecard.md`.
 
+## Step 1b — Compare with earlier runs
+
+Run the trend script:
+```bash
+python skills/03-scorecard-review/scripts/compare_scorecards.py compare {{AUDIT_FOLDER}}
+```
+It writes `trend.md` (movement vs the previous run and vs the baseline; for the baseline run
+itself, a "baseline established" note) and regenerates `.speccen/audits/history.md` and
+`history.json`. Both are machine-owned; never hand-edit them. Heed any "not like-for-like" warning
+(the rubrics changed between runs).
+
+Then read the earlier runs' `detail.md` files and write `{{AUDIT_FOLDER}}/trend-notes.md`
+(`type: TrendNotes`): for every dimension whose level moved, cite the changed evidence (a file,
+a commit) that explains it — a move with no changed evidence is flagged as possible scoring
+noise and re-checked — and list new, resolved and persisting findings per dimension. Skip this
+for the baseline run.
+
 ## Step 2 — Regenerate the index
 
 Rebuild `index.md` from frontmatter, grouped by type (Bundle Control · Scorecard · Dimensions
@@ -31,14 +48,14 @@ lowest-level-first · Audience Documents · ADRs), per bundle-conventions.
 ## Step 3 — Open the review gate
 
 Set `STATE.md` Stage to `AWAITING ARCHITECT REVIEW`, `Awaiting: architect review of scores`.
-Present the scorecard and the dimension summaries to the Architect. **Stop here.**
+Present the scorecard, the trend (`trend.md`, `trend-notes.md`) and the dimension summaries to the Architect. **Stop here.**
 
 ## Step 4 — Apply corrections (loop)
 
 If the Architect corrects a level, treat it as authoritative:
 1. Update that dimension's `result.json` and `detail.md` to reflect the corrected level and
    the reason.
-2. Re-run the scorer (Step 1) and regenerate `index.md` (Step 2).
+2. Re-run the scorer and the trend script (Steps 1 and 1b) and regenerate `index.md` (Step 2).
 3. Log the correction verbatim in `log.md`.
 Stay at the gate until the Architect gives an explicit go-signal.
 

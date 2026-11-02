@@ -18,6 +18,10 @@ Create the skeleton in `{{AUDIT_FOLDER}}` per bundle-conventions:
 - `index.md` (`type: Index`, regenerable — will fill as files appear)
 - `recon.md` (`type: Recon`)
 - empty `dimensions/`, `docs/`, `adrs/`
+- `run.json` — the run stamp that makes runs comparable over time. Write it with:
+  ```bash
+  python skills/03-scorecard-review/scripts/compare_scorecards.py stamp {{AUDIT_FOLDER}} --app "{{APP_NAME}}"
+  ```
 
 ### Step 2 — Orient
 A fast pass, not a deep analysis. Determine and record in `recon.md`:

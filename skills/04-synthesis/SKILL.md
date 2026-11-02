@@ -36,6 +36,12 @@ The four symptoms in plain terms (slow / insecure / hard to maintain / outdated 
 what the debt costs today, what "future-proof" unlocks, and explicit boundaries (this is an
 assessment, not a delivery plan).
 
+## Trend (technical and executive docs)
+Unless this is the baseline run, `doc-technical.md` and `doc-executive.md` each carry a short
+**Movement** section built from `trend.md` and `trend-notes.md`: what improved, what got worse
+and where, since the previous run and since the baseline. State the movement and the evidenced
+cause only — no invented explanation.
+
 ## Step 4 — Close
 Regenerate `index.md`. Set `STATE.md` Stage to `COMPLETE`. Report the bundle location and the
 three headline signals to the Architect.
