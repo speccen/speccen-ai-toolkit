@@ -34,6 +34,22 @@ passes. A Software Architect decides; the AI assists (Claude Code CLI or Copilot
 | `reconcile/` | Store Reconciliation | *not a phase — repo-level store op, run on main after a merge* |
 | `interview/` | Interview | *not a phase — works through open decisions in rounds of numbered questions, each with a proposed answer; you answer in `gated` mode, the delegate records its own answers in `autonomous` mode* |
 
+### Application maturity audit
+
+A second, independent workflow (not part of the six phases): `/speccen:audit` scores a
+codebase's production maturity across eleven dimensions, stops at an Architect review gate, then
+writes executive, business and technical seeds. Runs live in `.speccen/audits/<id>/`; the first
+run of a codebase is `YYYY-MM-DD.baseline`, and every later run is compared with the previous
+run and the baseline (`trend.md`), with a scoreboard of all runs in `.speccen/audits/history.md`.
+
+| Folder | Skill | Stage |
+|---|---|---|
+| `00-governing-audit/` | Governing Audit (`app-maturity-audit`) | All stages — orchestrator |
+| `01-recon/` | Recon | RECON — scaffold the run, orient on the codebase |
+| `02-dimension-analysis/` | Dimension Analysis | SCORING — score each dimension against its rubric |
+| `03-scorecard-review/` | Scorecard & Review | AGGREGATE, TREND & REVIEW — compute signals, compare runs, hold the gate |
+| `04-synthesis/` | Synthesis | SYNTHESIS — write the audience documents |
+
 The interview skill is inspired by [grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)
 by Matt Pocock (MIT).
 

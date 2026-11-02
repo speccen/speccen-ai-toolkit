@@ -267,6 +267,18 @@ across many disposable feature runs.
 
 ---
 
+## The maturity audit — a second workflow on the same store
+
+Five more skills (`00-governing-audit` … `04-synthesis`, started with `/speccen:audit`) audit a
+codebase's production maturity rather than build a feature. Their output is not a bundle but an
+**audit run** at `.speccen/audits/<id>/`, and unlike bundles, runs are kept: they are the time
+series. The first run of a codebase is `<date>.baseline`. Each run is stamped (`run.json`:
+commit, toolkit version, rubric hash), scored blind, and compared by `compare_scorecards.py`
+with the previous run and the baseline (`trend.md`); `.speccen/audits/history.md` is the
+scoreboard of all runs. One `.speccen/` belongs to one codebase, so there is one series.
+
+---
+
 ## Reading guide
 
 | To understand… | Read |
