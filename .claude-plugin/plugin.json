@@ -22,6 +22,6 @@
   "skills": [
     "./skills/sdd/",
     "./skills/audit/",
-    "./skills/implementation/"
+    "./skills/code/"
   ]
 }

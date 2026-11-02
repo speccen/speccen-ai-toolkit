@@ -1,9 +1,9 @@
 ---
-name: implementation-documentation
+name: code-documentation
 description: Generate comprehensive technical documentation using a two-phase gated workflow with state tracking and prompt logging. Phase 01 - Documentation Planning. Phase 02 - Documentation Generation. Architect reviews at each gate. Commits to git at phase transitions.
 ---
 
-# Implementation Documentation Skill
+# Code Documentation Skill
 
 AI-powered technical documentation generation following a **two-phase gated workflow** with workflow state tracking, prompt logging, and automatic git commits at phase transitions.
 
