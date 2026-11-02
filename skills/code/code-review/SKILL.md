@@ -29,15 +29,21 @@ This skill performs **state-based review** — it reviews the current codebase s
 At the start of every review session:
 
 1. Ask the user for the **feature or refactoring name** (same as used in ANALYSIS document, if present)
-2. Ask for the **working folder** where the Review Report should be stored
+2. Resolve the **working folder** where the Review Report is stored — never ask for it. All
+   output lives under `.speccen/`, in `.speccen/reviews/<id>/`, with `<id>` in the `.speccen` id
+   format `<prefix>.<name_snake_case>` (e.g. `2026-11-02.building_information_processor`). If a
+   folder `.speccen/reviews/*.<name_snake_case>` already exists, reuse it (repeat reviews of the
+   same feature accumulate there, told apart by the timestamp); otherwise create it with today's
+   date as the prefix.
 3. Set:
    - `{{FEATURE_NAME}}` = the name provided (use as-is, no normalisation)
-   - `{{FOLDER_NAME}}` = the folder provided
+   - `{{FOLDER_NAME}}` = the folder resolved in step 2
    - `{{FEATURE_NAME_UPPERCASE}}` = feature name converted to SCREAMING_SNAKE_CASE
    - Review Report path = `{{FOLDER_NAME}}/{{FEATURE_NAME_UPPERCASE}}_REVIEW_{{ISO_TIMESTAMP}}.md`
      where `{{ISO_TIMESTAMP}}` is the current date and time in ISO 8601 format: `YYYYMMDD_HHMMSS`
    - Example: "Building Information Processor" → `BUILDING_INFORMATION_PROCESSOR_REVIEW_20260218_143022.md`
-4. Check if an ANALYSIS document exists at `{{FOLDER_NAME}}/{{FEATURE_NAME_UPPERCASE}}_ANALYSIS.md`
+4. Look for an ANALYSIS document: first `{{FOLDER_NAME}}/{{FEATURE_NAME_UPPERCASE}}_ANALYSIS.md`,
+   then the matching speccen bundle under `.speccen/bundles/`, then a path the user names
    - If present, use it as the review blueprint
    - If absent, review against project conventions only
 
@@ -251,14 +257,14 @@ Then it will:
 # Review current working directory
 /code-review
 
-# The skill will ask for feature name and folder
+# The skill will ask for the feature name; the output folder is always .speccen/reviews/<id>/
 ```
 
 ### Integrated with Analysis-Gated Workflow
 
 When invoked from Phase 06 of the workflow, the skill automatically uses:
 - Feature name from the ANALYSIS document
-- Same folder as the ANALYSIS document
+- The review folder `.speccen/reviews/<id>/` (always under `.speccen/`)
 - Existing ANALYSIS document as the review blueprint
 
 ---
@@ -316,7 +322,7 @@ This naming convention:
 - Matches the ANALYSIS document convention (if present)
 - Uses SCREAMING_SNAKE_CASE for feature name
 - Includes ISO 8601 timestamp for multiple reviews of the same feature
-- Makes Review Reports easy to locate alongside ANALYSIS documents
+- Makes Review Reports easy to locate together under `.speccen/reviews/`
 
 ### Report Structure
 

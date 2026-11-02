@@ -32,9 +32,15 @@ You are a member of the development team, supporting the Software Architect in c
 ## Session Start Protocol
 
 1. Ask for **feature or component name**
-2. Ask for **working folder**
-3. Set paths:
-   - `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.md`
+2. Resolve the **working folder** — never ask for it. All output lives under `.speccen/`, in
+   `.speccen/documentation/<id>/` (`{{FOLDER_NAME}}`), with `<id>` in the `.speccen` id format
+   `<prefix>.<name_snake_case>` (e.g. `2026-11-02.building_information_processor`). If a folder
+   `.speccen/documentation/*.<name_snake_case>` already exists, reuse it (this is a resume);
+   otherwise create it with today's date as the prefix.
+3. Set paths (inside `{{FOLDER_NAME}}`):
+   - `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.html` — the authored source and the deliverable
+   - `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.md` — the working file during planning (Workflow
+     State, Prompt Log, scope), and after generation also the reduced Markdown projection of the HTML
    - Example: "Building Information Processor" → `BUILDING_INFORMATION_PROCESSOR_DOCUMENTATION.md`
 4. **Check if DOCUMENTATION.md already exists:**
    - If **YES**: Read the existing file for:
@@ -223,7 +229,18 @@ Only proceed when Architect signals:
 
 ### Step 2 — Generate DOCUMENTATION Document
 
-Create complete document following approved plan.
+Author `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.html` — the deliverable — following the approved
+plan. Follow the **Output** rules of `skills/sdd/08-reference/SKILL.md` (one authored source, one
+reduced projection; a single self-contained designed page, styles and diagrams inline; open the
+page and confirm every diagram renders), and study `examples/pump-safety-rules-refactor.html` for
+the form. The document structure below (sections, Service Contracts, Component API, Deviations)
+is unchanged; it is the content of the HTML.
+
+Then extract the reduced Markdown projection into `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.md`,
+below the Workflow State and Prompt Log: headings, prose, tables and links, with diagrams as the
+markup and ASCII forms. It is a projection, never re-authored — state at its top that it is the
+reduced view and the `.html` is the full, authoritative document. On a change request, revise the
+HTML first, then re-extract the Markdown.
 
 Populate only sections identified in approved plan.
 
@@ -241,7 +258,8 @@ Start the document with a summary of the most critical information discovered du
 
 ---
 
-**For all diagrams, generate BOTH formats:**
+**For all diagrams**, render them in the HTML (SVG or Mermaid, per `08-reference`) and, in the
+Markdown projection, give BOTH formats:
 1. PlantUML/Mermaid markup (for rendering in tools that support it)
 2. ASCII art representation (for plain text viewing)
 
@@ -253,7 +271,7 @@ Present both formats for each diagram so the Architect can choose which to keep.
 
 ### Step 3 — Present Completed Documentation
 
-> "Documentation Generation Phase complete. The DOCUMENTATION document is ready at [path]. Please review and provide feedback or approve."
+> "Documentation Generation Phase complete. The DOCUMENTATION document is ready at [path to the .html] (with its reduced .md projection). Please review and provide feedback or approve."
 
 **STOP.** Wait for feedback or approval.
 
