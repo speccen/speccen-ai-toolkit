@@ -54,10 +54,10 @@ You are a member of the development team, supporting the Software Architect in c
    `.speccen/documentation/*.<name_snake_case>` already exists, reuse it (this is a resume);
    otherwise create it with today's date as the prefix.
 3. Set paths (inside `{{FOLDER_NAME}}`):
-   - `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.html` — the authored source and the deliverable
-   - `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.md` — the working file during planning (Workflow
+   - `{{FEATURE_NAME_SNAKE}}_documentation.html` — the authored source and the deliverable
+   - `{{FEATURE_NAME_SNAKE}}_documentation.md` — the working file during planning (Workflow
      State, Prompt Log, scope), and after generation also the reduced Markdown projection of the HTML
-   - Example: "Building Information Processor" → `BUILDING_INFORMATION_PROCESSOR_DOCUMENTATION.md`
+   - Example: "Building Information Processor" → `building_information_processor_documentation.md`
 4. **Check if DOCUMENTATION.md already exists:**
    - If **YES**: Read the existing file for:
      - Workflow State (current phase)
@@ -143,7 +143,7 @@ If `.claude/` and `.github/` exist:
 - Read all `.md` files for coding standards, architecture patterns, documentation style
 - Document what was found
 
-If in the target folder other `.md/` files exist than `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.md`:
+If in the target folder other `.md/` files exist than `{{FEATURE_NAME_SNAKE}}_documentation.md`:
 - Read all these `.md` files for implementation details, architectural decisions, coding patterns, conventions, consequences, etc.
 - Document what was found in these files that is relevant to the implementation and documentation of this feature/component and for the target audience.
 - Write in a tone and language suitable for the target audience.
@@ -234,14 +234,14 @@ Only proceed when the Architect picks `Proceed to generation` in the Planning ga
 
 ### Step 2 — Generate DOCUMENTATION Document
 
-Author `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.html` — the deliverable — following the approved
+Author `{{FEATURE_NAME_SNAKE}}_documentation.html` — the deliverable — following the approved
 plan. Follow the **Output** rules of `skills/sdd/08-reference/SKILL.md` (one authored source, one
 reduced projection; a single self-contained designed page, styles and diagrams inline; open the
 page and confirm every diagram renders), and study `examples/pump-safety-rules-refactor.html` for
 the form. The document structure below (sections, Service Contracts, Component API, Deviations)
 is unchanged; it is the content of the HTML.
 
-Then extract the reduced Markdown projection into `{{FEATURE_NAME_UPPERCASE}}_DOCUMENTATION.md`,
+Then extract the reduced Markdown projection into `{{FEATURE_NAME_SNAKE}}_documentation.md`,
 below the Workflow State and Prompt Log: headings, prose, tables and links, with diagrams as the
 markup and ASCII forms. It is a projection, never re-authored — state at its top that it is the
 reduced view and the `.html` is the full, authoritative document. On a change request, revise the
@@ -249,7 +249,7 @@ HTML first, then re-extract the Markdown.
 
 Populate only sections identified in approved plan.
 
-Use SCREAMING_SNAKE_CASE naming convention.
+Use the `lower_snake_case` naming convention.
 
 Start the document with a summary of the most critical information discovered during documentation generation, such as:
 - Critical design decisions
