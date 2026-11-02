@@ -20,6 +20,12 @@ passes. A Software Architect decides; the AI assists (Claude Code CLI or Copilot
 
 ## Skills
 
+The skills are grouped by workflow: the spec-driven development (SDD) skills in `skills/sdd/`,
+the maturity audit in `skills/audit/`, the code documentation and review skills in `skills/code/`.
+All their output lives under `.speccen/`.
+
+### Spec-driven development (`skills/sdd/`)
+
 | Folder | Skill | Phase |
 |---|---|---|
 | `00-governing-workflow/` | Governing Workflow | All phases — orchestrator |
@@ -34,7 +40,7 @@ passes. A Software Architect decides; the AI assists (Claude Code CLI or Copilot
 | `reconcile/` | Store Reconciliation | *not a phase — repo-level store op, run on main after a merge* |
 | `interview/` | Interview | *not a phase — works through open decisions in rounds of numbered questions, each with a proposed answer; you answer in `gated` mode, the delegate records its own answers in `autonomous` mode* |
 
-### Application maturity audit
+### Application maturity audit (`skills/audit/`)
 
 A second, independent workflow (not part of the six phases): `/speccen:audit` scores a
 codebase's production maturity across eleven dimensions, stops at an Architect review gate, then
@@ -50,15 +56,19 @@ run and the baseline (`trend.md`), with a scoreboard of all runs in `.speccen/au
 | `03-scorecard-review/` | Scorecard & Review | AGGREGATE, TREND & REVIEW — compute signals, compare runs, hold the gate |
 | `04-synthesis/` | Synthesis | SYNTHESIS — write the audience documents |
 
-### Code documentation and review
+### Code documentation and review (`skills/code/`)
 
-Two standalone skills, independent of the six phases and of each other (they predate the speccen
-bundle and work from `ANALYSIS` documents and project conventions rather than a bundle):
+Two skills, independent of the six phases and of each other. They predate the speccen bundle and
+work from the code, project conventions and — for the review — `ANALYSIS` documents, rather than
+a bundle. Their output lives under `.speccen/`, in a folder speccen derives (they never ask for
+one), with the same id format as everywhere else in `.speccen/`.
 
-| Folder | Skill | Purpose |
-|---|---|---|
-| `code/code-documentation/` | Code Documentation | Two-phase gated technical documentation of an implementation |
-| `code/code-review/` | Code Review | Review an implementation against `ANALYSIS` documents, conventions and security standards; optional GitHub Issues |
+| Folder | Skill | Purpose | Output |
+|---|---|---|---|
+| `code-documentation/` | Code Documentation | Two-phase gated technical documentation of an implementation | `.speccen/documentation/<id>/` — `<NAME>_DOCUMENTATION.html` (authored source) + `.md` (working state and reduced projection) |
+| `code-review/` | Code Review | Review an implementation against `ANALYSIS` documents, conventions and security standards; optional GitHub Issues | `.speccen/reviews/<id>/` — `<NAME>_REVIEW_<timestamp>.md` |
+
+> Claude Code also has a built-in `/code-review`; this plugin's is `speccen:code-review`.
 
 The interview skill is inspired by [grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)
 by Matt Pocock (MIT).
@@ -104,16 +114,16 @@ The extension makes it easy to browse, install, and manage skills without comman
 
 ### Local installation
 
-Copy the skill folders (grouped under `skills/sdd/` and `skills/audit/` — copy them flat, so each skill folder sits directly in the skills directory) to your project or user skills directory, and the `agents/` folder for
+Copy the skill folders (grouped under `skills/sdd/`, `skills/audit/` and `skills/code/` — copy them flat, so each skill folder sits directly in the skills directory) to your project or user skills directory, and the `agents/` folder for
 subagent support:
 
 ```bash
 # Project-level (shared via version control)
-mkdir -p .claude/skills && cp -r skills/sdd/* skills/audit/* .claude/skills/
+mkdir -p .claude/skills && cp -r skills/sdd/* skills/audit/* skills/code/* .claude/skills/
 cp -r agents/ .claude/agents/
 
 # User-level (available in all your Claude Code sessions)
-mkdir -p ~/.claude/skills && cp -r skills/sdd/* skills/audit/* ~/.claude/skills/
+mkdir -p ~/.claude/skills && cp -r skills/sdd/* skills/audit/* skills/code/* ~/.claude/skills/
 cp -r agents/ ~/.claude/agents/
 ```
 
@@ -579,6 +589,9 @@ store at the repo root:
 ├── lessons/       # DURABLE · experiential knowledge ("X bit us")
 ├── notes/         # DURABLE · hiccup-resolutions + small informal decisions
 ├── features/      # DURABLE · feature/refactoring nodes — the time axis
+├── audits/        # KEPT · maturity audit runs (<date>.baseline first) + history.md scoreboard
+├── documentation/ # KEPT · code-documentation output, one folder per feature
+├── reviews/       # KEPT · code-review reports, one folder per feature
 └── bundles/       # DISPOSABLE · one folder per workflow run, perishes after merge
     └── <id>/      # a bundle (STATE.md, log.md, speccen-config.yaml, phase-NN-.../, adrs/)
 ```

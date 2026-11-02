@@ -29,7 +29,7 @@ speccen has three artifacts that work together, each with a different lifespan:
 
 | Piece | What it is | Lifespan |
 |---|---|---|
-| **The skills** | The workflow itself — nine skill files that govern each phase | The tool |
+| **The skills** | The workflow itself — nine skill files that govern each phase (plus the audit and code skills below) | The tool |
 | **The bundle** | Per-feature working space, produced as the workflow runs | Disposable after merge |
 | **The durable store** | Project-level memory of decisions and lessons | Permanent, outlives the bundle |
 
@@ -40,7 +40,7 @@ both.
 
 ## The skills — the workflow
 
-Nine skills under `skills/sdd/` (the audit's five live in `skills/audit/`). One governs; six are the core sequential phases; two are optional
+Nine skills under `skills/sdd/`. One governs; six are the core sequential phases; two are optional
 passes that run only on request after the core completes.
 
 ```
@@ -201,6 +201,9 @@ graduate into a permanent, repo-native store at the repo root:
 ├── lessons/       DURABLE · experiential knowledge ("X bit us")
 ├── notes/         DURABLE · hiccup-resolutions + small informal decisions (low-ceremony)
 ├── features/      DURABLE · feature/refactoring nodes — the time axis
+├── audits/        KEPT · maturity audit runs, oldest = <date>.baseline, + history.md
+├── documentation/ KEPT · code-documentation output (html + md), one folder per feature
+├── reviews/       KEPT · code-review reports, one folder per feature
 └── bundles/       DISPOSABLE · one folder per workflow run (perishes after merge)
 ```
 
@@ -269,13 +272,26 @@ across many disposable feature runs.
 
 ## The maturity audit — a second workflow on the same store
 
-Five more skills (`00-governing-audit` … `04-synthesis`, started with `/speccen:audit`) audit a
+Five more skills under `skills/audit/` (`00-governing-audit` … `04-synthesis`, started with `/speccen:audit`) audit a
 codebase's production maturity rather than build a feature. Their output is not a bundle but an
 **audit run** at `.speccen/audits/<id>/`, and unlike bundles, runs are kept: they are the time
 series. The first run of a codebase is `<date>.baseline`. Each run is stamped (`run.json`:
 commit, toolkit version, rubric hash), scored blind, and compared by `compare_scorecards.py`
 with the previous run and the baseline (`trend.md`); `.speccen/audits/history.md` is the
 scoreboard of all runs. One `.speccen/` belongs to one codebase, so there is one series.
+
+---
+
+## The code skills — documentation and review
+
+Two standalone skills under `skills/code/`, outside the phase chain and independent of each
+other: `code-documentation` (two-phase gated technical documentation of an implementation) and
+`code-review` (review against `ANALYSIS` documents, conventions and security standards; optional
+GitHub Issues). They predate the bundle, so they keep their own small workflow, but their output
+follows the same rules as everything else: a fixed home under `.speccen/` that speccen derives
+(`documentation/<id>/`, `reviews/<id>/`), never a folder the user names. `code-documentation`
+follows the html + md pattern of the specification and reference phases (an authored `.html`
+deliverable with a reduced `.md` projection); `code-review` stays Markdown only.
 
 ---
 
@@ -293,3 +309,5 @@ scoreboard of all runs. One `.speccen/` belongs to one codebase, so there is one
 | How subagents and per-phase models work | governing skill → "Subagent Execution" |
 | The durable store's full design | governing skill → "Durable Store" |
 | Reconciling the store after concurrent team merges | `skills/sdd/reconcile/SKILL.md` |
+| The maturity audit and its trend over time | `skills/audit/00-governing-audit/SKILL.md` |
+| Code documentation and review | `skills/code/code-documentation/SKILL.md`, `skills/code/code-review/SKILL.md` |
