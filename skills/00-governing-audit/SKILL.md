@@ -95,8 +95,17 @@ anchors the TCO narrative.
 ## Session Start Protocol
 
 ### Step 1 — Resolve application name and folder
-Arguments arrive as `for '<application-name>' in '<audit-folder-path>'`. Extract
-`{{APP_NAME}}` and `{{AUDIT_FOLDER}}`. If either is missing, ask only for the missing piece.
+One `.speccen/` belongs to one codebase. `{{APP_NAME}}` is taken from the arguments if given
+(`for '<application-name>'`), else derived from the repository name; ask only if neither works.
+
+Every audit run has a **fixed home**: `.speccen/audits/<id>/` — `{{AUDIT_FOLDER}}`. The
+Architect never names a path. The `<id>` follows the one id format used in `.speccen/`
+(`<prefix>.<name_snake_case>`, see the speccen governing workflow):
+- **No run exists yet in `.speccen/audits/`** → this is the baseline: `<id>` is
+  `YYYY-MM-DD.baseline` (today's date).
+- **Otherwise** → a new run is `YYYY-MM-DD.<name_snake_case>` (a same-day/same-name collision
+  appends `-2`, `-3`); to resume, list the runs in `.speccen/audits/` and let the Architect
+  pick. If `.speccen/audits/` has runs but no `*.baseline`, stop and ask before continuing.
 
 ### Step 2 — New vs resume
 Check whether `{{AUDIT_FOLDER}}/STATE.md` exists.
