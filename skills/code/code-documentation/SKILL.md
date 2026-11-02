@@ -29,9 +29,25 @@ You are a member of the development team, supporting the Software Architect in c
 
 ---
 
+## Asking the Architect
+
+- A **multiple-choice** question uses the **`AskUserQuestion` tool**, not prose and not a table.
+  The tool's constraints, the empty-answer guard and the prose fallback for hosts without it are
+  those of `skills/sdd/00-governing-workflow/SKILL.md` → "Structured questions": 1–4 questions
+  per call, 2–4 options each, never add an "Other" option, headers ≤ 12 characters. On an empty
+  answer, or without the tool, fall back to one short plain-text question per field — never
+  proceed on an assumed selection.
+- A **series of dependent open decisions** uses the **`interview` skill**
+  (`skills/sdd/interview/SKILL.md`, "Outside a bundle"), with a proposed answer per question.
+- A **fact** you can find (a name, a path, a project) is never asked for — look it up, or offer
+  it as an option.
+
 ## Session Start Protocol
 
-1. Ask for **feature or component name**
+1. Resolve the **feature or component name** with one `AskUserQuestion` call: header `Name`,
+   options: `Use name from arguments` (only if given), `Resume <name>` for each of the (up to 2)
+   most recent folders in `.speccen/documentation/`, and `I'll type it` — "Select Other and type
+   the exact name". Never propose invented names.
 2. Resolve the **working folder** — never ask for it. All output lives under `.speccen/`, in
    `.speccen/documentation/<id>/` (`{{FOLDER_NAME}}`), with `<id>` in the `.speccen` id format
    `<prefix>.<name_snake_case>` (e.g. `2026-11-02.building_information_processor`). If a folder
@@ -96,42 +112,31 @@ Create the file with this initial structure:
 
 ### Step 2 — Ask for Scope and Boundaries
 
-**CRITICAL: Do not scan any files or folders until scope is defined.**
+**CRITICAL: Do not read any file content until scope is defined.** A structure-only listing —
+solution, project and namespace *names*, never file content — is allowed, so the scope questions
+can offer real options instead of asking for names you could find.
 
-Ask the user:
+**2a — The closed choices: one `AskUserQuestion` call, four questions:**
+1. header `Audience` — multi-select: `Developers`, `Architects`, `Operators`, `End users`
+2. header `Diagrams` — `Mermaid (Recommended)`, `PlantUML`, `Both` — "ASCII art is generated for ALL
+   diagrams regardless of markup format"; if `Both`, ask in 2b which diagram types use which
+3. header `Conventions` — `Read .claude/ and .github/ (Recommended)`, `Skip`
+4. header `Contracts` — `Identify Service Contracts vs Component APIs (Recommended)`, `Skip`
 
-**Feature/Component Description:**
-- What does this feature/component do?
-- Why does it exist?
+**2b — The open decisions: one `interview` round** (format: numbered questions, each with a
+proposed answer; `skills/sdd/interview/SKILL.md`, "Outside a bundle"). Reference `code-documentation/<n>`:
+- What does the feature/component do, and why does it exist? *(proposed: from an existing
+  ANALYSIS document or the feature's branch name, if one is found — else "don't know yet")*
+- Which solution(s), project(s) and namespace(s)? *(proposed: from the structure-only listing)*
+- What is **included** and what is **excluded**?
+- Which context sources: existing ANALYSIS documents, specific source files? *(proposed: the ones
+  found in `.speccen/bundles/` or beside the code)*
 
-**Scope and Boundaries:**
-- Solution name(s)
-- Project name(s)
-- Namespace(s)
-- What should be **INCLUDED**?
-- What should be **EXCLUDED**?
-
-**Target Audience:**
-- Developers, architects, operators, end users?
-
-**Diagram Format Preference:**
-- PlantUML, Mermaid, or both?
-- If both: which diagram types should use which format?
-- Note: ASCII art will be generated for ALL diagrams regardless of markup format
-
-**Context Sources:**
-- Existing ANALYSIS documents to reference?
-- Specific source code files to read?
-- Should I read project conventions (.claude/, .github/)?
-- Should I analyze the codebase to identify Service Contracts vs Component APIs?
-
-**Log this prompt in Prompt Log table as a new numbered row.**
-
-**Wait for all responses before proceeding to Step 3.**
+**Log both in the Prompt Log table as new numbered rows.** Wait for all answers before Step 3.
 
 ### Step 3 — Read Project Conventions and Analyze Codebase (if requested)
 
-**Only proceed if user confirmed to read project conventions or analyze codebase.**
+**Only proceed if the Architect chose to read project conventions (`Conventions`) or to analyze the codebase (`Contracts`) in Step 2a.**
 
 **If project conventions requested:**
 If `.claude/` and `.github/` exist:
@@ -193,7 +198,8 @@ Present to Architect:
 
 > "Documentation Planning Phase complete. Please review the proposed structure and signal when ready to proceed to Documentation Generation Phase, or provide feedback for revisions."
 
-**STOP.** Do not proceed without explicit Architect signal.
+**STOP.** Do not proceed without an explicit Architect signal — ask with one `AskUserQuestion`
+call: header `Plan`, options `Proceed to generation`, `Revise the plan`.
 
 ### Step 5 — Handle Feedback or Complete Phase
 
@@ -222,10 +228,9 @@ Present to Architect:
 
 ### Step 1 — Confirm Readiness
 
-Only proceed when Architect signals:
-- "Proceed to documentation generation"
-- "Generate the documentation"
-- "Start writing"
+Only proceed when the Architect picks `Proceed to generation` in the Planning gate question
+(Planning Step 4) — or states the same in words ("proceed to documentation generation",
+"generate the documentation", "start writing").
 
 ### Step 2 — Generate DOCUMENTATION Document
 
@@ -273,7 +278,8 @@ Present both formats for each diagram so the Architect can choose which to keep.
 
 > "Documentation Generation Phase complete. The DOCUMENTATION document is ready at [path to the .html] (with its reduced .md projection). Please review and provide feedback or approve."
 
-**STOP.** Wait for feedback or approval.
+**STOP.** Ask with one `AskUserQuestion` call: header `Document`, options `Approve`, `Request
+changes`. Wait for the answer.
 
 ### Step 4 — Iterate or Complete
 
