@@ -7,7 +7,7 @@ argument-hint: "['<application-name>' — optional; derived from the repository 
 Start the application maturity audit.
 
 Load the governing audit skill, `app-maturity-audit`
-(`skills/00-governing-audit/SKILL.md` in this plugin), and follow its **Session Start
+(`skills/audit/00-governing-audit/SKILL.md` in this plugin), and follow its **Session Start
 Protocol** from Step 1 — resolve the run under `.speccen/audits/`, then proceed under the
 governing skill's orchestration. The first run of a codebase is the baseline
 (`YYYY-MM-DD.baseline`); later runs are compared against it and the previous run.
