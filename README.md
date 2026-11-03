@@ -237,10 +237,16 @@ answer). Every phase and every key is written out; `inherit` means "use the leve
 #   gated       stop at the end of the phase and wait for the Architect's go
 #   autonomous  the Architect's delegate decides, and advances once the gate test passes
 mode: gated
+# What the delegate does with a material decision the recorded intent leaves open (autonomous only):
+#   ask      stop and wait for the Architect (default)
+#   proceed  take its own proposed answer, record it as unconfirmed, and put it to the review round
+# Hard stops (new dependency, conflicting ADRs, irreversible action, failed gate or tests) always halt.
+stops: ask
 lock: false                  # true: no bundle file and no local file can change anything
 
 # Per phase. "inherit" means: use the mode above, or the session's model.
 #   mode        inherit · gated · autonomous
+#   stops       inherit · ask · proceed — autonomous only: see the top-level stops
 #   model       inherit · economy · balanced · premium — the tier for the phase's subagent work
 #   prototypes  0 or more — autonomous only: prototypes the delegate may build (Phase 03)
 #   lock        true: no bundle file and no local file can change this phase
@@ -340,8 +346,9 @@ phases:
 ```
 
 ```yaml
-# Fully autonomous, with prototypes for open choices
+# Fully autonomous: no halt on open material choices, prototypes for the rest
 mode: autonomous
+stops: proceed
 phases:
   compliance-review:
     prototypes: 2
