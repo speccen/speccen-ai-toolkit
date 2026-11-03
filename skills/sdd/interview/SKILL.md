@@ -134,7 +134,8 @@ Every round follows the same five steps — no step is skipped and no step is me
 
 ## Stop rounds (`autonomous`)
 
-When the delegate meets material questions that the decision basis does not decide:
+When the delegate meets material questions that the decision basis does not decide, and the
+phase's effective `stops` is `ask` (with `proceed`, see below):
 
 - **Collect them.** Carry on only with work that does not depend on them. Put them to the
   Architect together, as one round — at the latest when nothing independent is left, or at the
@@ -144,13 +145,18 @@ When the delegate meets material questions that the decision basis does not deci
   but the phase's gate test cannot pass while a parked question of that phase is unanswered. A
   question that blocks stays a stop. In Phase 01, "later" makes a working hypothesis instead.
 
+**With `stops: proceed`** there is no stop round for these questions. The delegate answers each
+with its proposed answer, as a delegated decision marked `MATERIAL — unconfirmed` (governing
+skill → Proceeding on a proposal), and the review round puts it to the Architect. Questions that
+meet a hard stop (conflicting basis, new dependency, irreversible action) still go in a stop round.
+
 ## The review round (after an `autonomous` run)
 
 When an `autonomous` run ends, or whenever the Architect asks to review it, put one interview to
 the Architect:
 
 - **One question per delegated decision** (`DD-<n>`): `adopt`, `override` or `later`, with your
-  proposed answer.
+  proposed answer. Put the `MATERIAL — unconfirmed` decisions first.
 - **One question per pending graduation candidate**: `promote`, `keep local` or `later`, with
   your proposed answer and its evidence.
 

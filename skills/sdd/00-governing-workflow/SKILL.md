@@ -678,6 +678,8 @@ durable store's graph: the store index, the timeline and reconcile leave it alon
 |---|---|---|
 | `mode` | `gated` · `autonomous` | The default mode at that level |
 | `phases.<phase>.mode` | `inherit` · `gated` · `autonomous` | The mode for one phase. `inherit` means no value at this level |
+| `stops` | `ask` · `proceed` | `autonomous` only; the default at that level. `ask`: a material decision the basis leaves open is a stop. `proceed`: the delegate takes its own proposed answer and records it for review (Autonomous Execution → Stop conditions) |
+| `phases.<phase>.stops` | `inherit` · `ask` · `proceed` | `autonomous` only; the stop policy for one phase. `inherit` means no value at this level |
 | `phases.<phase>.model` | `inherit` · `economy` · `balanced` · `premium` | The **tier** for that phase's subagent work (Subagent Execution). `inherit` means the session's model |
 | `models.<tier>` | a model name for this host | Maps a tier to a model — the team default in the project file, a person's budget or host in their local file |
 | `phases.compliance-review.prototypes` | `0` or more | `autonomous` only: how many prototypes the delegate may build for one material choice before it stops (Phase 03, Step 5a) |
@@ -689,6 +691,7 @@ Which phases take which key:
   `implementation`. A phase's `mode` governs every point inside that phase where the Architect
   decides, including the gate at its end (for `implementation`, the accept). Close-out has no
   exit gate and no `mode` key: it runs under the bundle's effective `mode`.
+- `stops`: the same five phases as `mode`. It has no effect in a `gated` phase.
 - `model`: `code-analysis`, `compliance-review`, `close-out`, `retrospective`, `reference` — the
   phases with subagent units.
 - `lock`: any of these eight.
@@ -719,10 +722,16 @@ Later versions add keys under the same structure. Unknown keys are ignored.
 #   gated       stop at the end of the phase and wait for the Architect's go
 #   autonomous  the Architect's delegate decides, and advances once the gate test passes
 mode: gated
+# What the delegate does with a material decision the recorded intent leaves open (autonomous only):
+#   ask      stop and wait for the Architect (default)
+#   proceed  take its own proposed answer, record it as unconfirmed, and put it to the review round
+# Hard stops (new dependency, conflicting ADRs, irreversible action, failed gate or tests) always halt.
+stops: ask
 lock: false                  # true: no bundle file and no local file can change anything
 
 # Per phase. "inherit" means: use the mode above, or the session's model.
 #   mode        inherit · gated · autonomous
+#   stops       inherit · ask · proceed — autonomous only: see the top-level stops
 #   model       inherit · economy · balanced · premium — the tier for the phase's subagent work
 #   prototypes  0 or more — autonomous only: prototypes the delegate may build (Phase 03)
 #   lock        true: no bundle file and no local file can change this phase
@@ -795,6 +804,7 @@ mode: gated                  # chosen at session start
 # phases:
 #   specification:
 #     mode: gated
+#     stops: proceed
 #   compliance-review:
 #     prototypes: 2
 ```
@@ -818,8 +828,8 @@ For each phase, the **most specific setting wins**:
 2. then the top-level `mode`, in the same order;
 3. then `gated`.
 
-`inherit` counts as no value. The other per-phase keys (`model`, `prototypes`) resolve the same
-way at phase level, then fall back to their defaults (`inherit`, `0`).
+`inherit` counts as no value. The other per-phase keys (`stops`, `model`, `prototypes`) resolve the same
+way at phase level, then fall back to their defaults (`ask`, `inherit`, `0`).
 
 **Locks.**
 - A lock in the **project** file binds every file below it: for a locked phase — or for
@@ -1080,7 +1090,8 @@ decision that the basis does not determine is a stop.
 
 Stop — do not continue, do not guess — when:
 
-1. the basis leaves more than one reasonable answer to a **material** decision;
+1. the basis leaves more than one reasonable answer to a **material** decision — unless the
+   phase's effective `stops` is `proceed` (see **Proceeding on a proposal**);
 2. the basis conflicts with itself: ADR against ADR, or an ADR against the brief;
 3. a new dependency is needed;
 4. a deviation goes beyond implementation detail — it would change an acceptance scenario, a
@@ -1114,6 +1125,21 @@ put them to the Architect together. Then wait. The Architect's answers are logge
 of the phase — the run carries on, but that phase's gate test cannot pass while it is open. The
 mode stays `autonomous` — a stop does not change it. Never continue on an assumed answer.
 
+### Proceeding on a proposal
+
+`stops` (see Configuration) decides what condition 1 does. With `ask` — the default — it is a
+stop. With `proceed`, you do not halt on a material decision the basis leaves open:
+
+- Take your own **proposed answer** (the one you would have put in the stop round) and carry on.
+  Choose the answer the basis supports best; where it supports none, the most reversible one.
+- Record it as a delegated decision with `Materiality` → `MATERIAL — unconfirmed`, so it is
+  visible in the review round, and in the phase `summary.md` under its open items.
+- Condition 1 is the **only** stop `proceed` removes. Conditions 2 to 8 stay hard stops: they
+  mean the basis is broken, or the action is not yours to take.
+- The Architect's answers in the review round are logged verbatim and become basis for later
+  phases. An `OVERRIDDEN` decision re-enters Phase 03 through the ADR Protocol, as for any
+  delegated decision.
+
 ### Delegated decisions record
 
 `delegated-decisions.md` is an append-only bundle file, created at the first recorded decision (a
@@ -1142,6 +1168,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Decision** | [what was decided under delegation (autonomous)] |
 | **Basis** | [ADR ids, log.md entries, convention names, frozen-artifact anchors] |
 | **Alternatives** | [the options not taken] |
+| **Materiality** | [`not material` · `MATERIAL — unconfirmed` (taken under `stops: proceed`)] |
 | **Status** | DELEGATED |
 ```
 
