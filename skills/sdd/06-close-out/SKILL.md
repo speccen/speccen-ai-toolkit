@@ -283,8 +283,9 @@ exists at close-out. Copy both into the feature folder
 optional pass runs. When both exist, they cross-link: intent ↔ outcome.) If no specification
 was produced, omit the edge.
 
-**Regenerate** the store's `index.md` (grouped by kind: Decisions / Lessons / Notes /
-Features) **and** `timeline.md` (the feature nodes, oldest-first) from node frontmatter.
+**Regenerate** the store's `index.md` (grouped by kind, in the fixed order Timeline / Features /
+Decisions / Lessons learned / Notes — governing skill → Navigation) **and** `timeline.md` (the
+feature nodes, oldest-first) from node frontmatter.
 
 If `.speccen/` does not yet exist and anything graduates, create it (the
 `decisions/` `lessons/` `notes/` `features/` folders + `index.md` + `timeline.md`) first.
