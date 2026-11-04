@@ -1787,9 +1787,14 @@ sorts chronologically by plain text. Filenames stay date-only; the precise insta
 - **Root `index.md`** — the single, **complete** map of the store, regenerable. An index lists
   **everything in the store** — a reader opens it and finds every artifact and where it is,
   with nothing omitted. That means: the other top-level projection (`timeline.md`), the entry
-  nodes grouped by kind (Decisions / Lessons / Notes / Features — one line each: title, status,
-  link), and any reconciliation records. If an artifact exists at the store root, the index
-  lists it. No per-kind index files.
+  nodes grouped by kind (one line each: title, status, link), and any reconciliation records.
+  If an artifact exists at the store root, the index lists it. No per-kind index files.
+- **Section order is fixed: Timeline → Features → Decisions → Lessons learned → Notes →
+  Reconciliation records.** The order follows how a developer digs into the history: first the
+  overview of what happened when, then the features themselves, then the deliberate decisions
+  behind them, then what was learned along the way, then the small informal residue, and last
+  the store's own maintenance log. Each section goes one level deeper, so a reader stops as soon
+  as they have what they need.
 - **`timeline.md`** — a second regenerable projection: the feature nodes, oldest-first (see
   Graph model), listed in `index.md` like everything else.
 - **Nav bar** — every entry carries `[Index]` under its H1.
@@ -1810,20 +1815,20 @@ type: Index
 
 # <Project> — Durable Store
 
-## Projections
+## Timeline
 - [Timeline](./timeline.md) — features & refactorings, oldest-first
+
+## Features
+- [<title>](./features/<id>/node.md) — <status>
 
 ## Decisions
 - [<title>](./decisions/<id>.md) — <status>
 
-## Lessons
+## Lessons learned
 - [<title>](./lessons/<id>.md) — <status>
 
 ## Notes
 - [<title>](./notes/<id>.md) — <status>
-
-## Features
-- [<title>](./features/<id>/node.md) — <status>
 
 ## Reconciliation records        (only if any exist)
 - [Reconciliation <UTC>](./reconciliation-<UTC>.md)

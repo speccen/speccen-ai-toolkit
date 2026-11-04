@@ -54,9 +54,10 @@ every judgment call to a human** (below).
 
 These are deterministic repairs against the graph model — the AI makes them directly:
 
-1. **Regenerate the derived projections.** Rebuild `index.md` (grouped by kind: Decisions /
-   Lessons / Notes / Features) and `timeline.md` (feature nodes, oldest-first) from the
-   current node frontmatter. These are projections, never hand-merged — a merge conflict or
+1. **Regenerate the derived projections.** Rebuild `index.md` (grouped by kind, in the fixed
+   order Timeline / Features / Decisions / Lessons learned / Notes — governing skill →
+   Navigation) and `timeline.md` (feature nodes, oldest-first) from the current node
+   frontmatter. These are projections, never hand-merged — a merge conflict or
    staleness in them is resolved by regeneration, not by hand.
 2. **Repair missing inverse edges.** Where one side of a bidirectional edge survived the merge
    and the other was lost, restore the missing side:
