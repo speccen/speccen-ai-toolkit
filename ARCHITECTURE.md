@@ -138,8 +138,10 @@ Small YAML files at two levels set how the workflow runs: the **project** defaul
 `.speccen/speccen-config.yaml`, and each **bundle**'s overrides in its own
 `speccen-config.yaml`. At each level a personal `speccen-config.local.yaml`, never committed, lets
 one person differ without changing what the team committed. They are **inputs from the
-Architect**, not documents: no frontmatter, no navigation bar, and the AI only reads them. The
-project file is configuration, not a store entry.
+Architect**, not documents: no frontmatter, no navigation bar, and the AI only reads them — except
+that at each session start it adds to the project file any key a newer template introduced, with
+the value that means what its absence meant, and bumps its `version`. The project file is
+configuration, not a store entry.
 
 - **Two modes.** `gated` — every phase ends at an Architect gate; the default. `autonomous` — the
   Architect's delegate takes the Architect's decisions and advances once each phase's gate test

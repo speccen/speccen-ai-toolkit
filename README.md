@@ -188,6 +188,12 @@ The project file is created with the first bundle, the bundle file with each bun
 files do not exist until you ask for them, and `.speccen/.gitignore` keeps them out of git. All of
 them are plain YAML with no frontmatter, and you edit them by hand.
 
+The project file always lists every setting speccen offers. At the start of every session speccen
+checks it against the current template — its `version` and every key — and adds whatever a newer
+speccen introduced, with the value that keeps today's behaviour (`inherit`, `ask`, `0`, `false`),
+and tells you which keys it added. It never changes a value you set, your comments or your order,
+and it never fills in a bundle file or a personal file.
+
 ### Modes
 
 - **`gated`** — the default. Every phase ends with a stop; nothing advances without your go.
@@ -233,6 +239,8 @@ answer). Every phase and every key is written out; `inherit` means "use the leve
 # speccen project configuration — committed. The defaults for every bundle in this repository.
 # A bundle overrides them in its own speccen-config.yaml; a person in speccen-config.local.yaml.
 
+version: 1                   # the template version — speccen adds new keys at session start
+
 # How the workflow leaves a phase:
 #   gated       stop at the end of the phase and wait for the Architect's go
 #   autonomous  the Architect's delegate decides, and advances once the gate test passes
@@ -255,21 +263,26 @@ lock: false                  # true: no bundle file and no local file can change
 phases:
   feature-analysis:          # 01 — discovery interview
     mode: inherit
+    stops: inherit
     lock: false
   code-analysis:             # 02 — evidence reading runs as a subagent
     mode: inherit
+    stops: inherit
     model: economy
     lock: false
   compliance-review:         # 03 — ADR interview; optional prototypes run as subagents
     mode: inherit
+    stops: inherit
     model: balanced
     prototypes: 0
     lock: false
   specification:             # 04 — the plan and the intent freeze
     mode: inherit
+    stops: inherit
     lock: false
   implementation:            # 05 — the code and the accept
     mode: inherit
+    stops: inherit
     lock: false
   close-out:                 # 06 — the audience documents run as subagents
     model: balanced
