@@ -406,6 +406,18 @@ decision.
 
 Every session — new or resumed — begins with the same sequence:
 
+### Step 0 — Bring the project configuration up to date
+
+Before any question is asked — the Mode question in Step 1 reads this file — check
+`.speccen/speccen-config.yaml` against the current template (see **Configuration** → **Upgrading
+the project file**):
+
+- If the file does not exist, do nothing here: Step 3 creates it from the template.
+- If its `version` is the current one and it holds every key of the template, do nothing.
+- Otherwise upgrade it as that section describes, and tell the Architect in one line which keys
+  were added (e.g. "project config upgraded to version 1: added `version`,
+  `phases.specification.stops`"). The upgrade never changes an effective setting.
+
 ### Step 1 — Resolve the bundle (structured question set)
 
 Bundles have a **fixed home** — every bundle lives under `.speccen/bundles/`,
@@ -676,6 +688,7 @@ durable store's graph: the store index, the timeline and reconcile leave it alon
 
 | Key | Values | Meaning |
 |---|---|---|
+| `version` | a whole number | **Project file only.** The template version the file follows; the current version is `1`. A file without it predates versioning. See **Upgrading the project file** |
 | `mode` | `gated` · `autonomous` | The default mode at that level |
 | `phases.<phase>.mode` | `inherit` · `gated` · `autonomous` | The mode for one phase. `inherit` means no value at this level |
 | `stops` | `ask` · `proceed` | `autonomous` only; the default at that level. `ask`: a material decision the basis leaves open is a stop. `proceed`: the delegate takes its own proposed answer and records it for review (Autonomous Execution → Stop conditions) |
@@ -712,11 +725,14 @@ Later versions add keys under the same structure. Unknown keys are ignored.
 ### Templates
 
 `.speccen/speccen-config.yaml` — written once, when a bundle is created and the project has none
-(`mode` from the Mode answer; `gated` shown):
+(`mode` from the Mode answer; `gated` shown), and brought up to date at every session start (see
+**Upgrading the project file**):
 
 ```yaml
 # speccen project configuration — committed. The defaults for every bundle in this repository.
 # A bundle overrides them in its own speccen-config.yaml; a person in speccen-config.local.yaml.
+
+version: 1                   # the template version — speccen adds new keys at session start
 
 # How the workflow leaves a phase:
 #   gated       stop at the end of the phase and wait for the Architect's go
@@ -740,21 +756,26 @@ lock: false                  # true: no bundle file and no local file can change
 phases:
   feature-analysis:          # 01 — discovery interview
     mode: inherit
+    stops: inherit
     lock: false
   code-analysis:             # 02 — evidence reading runs as a subagent
     mode: inherit
+    stops: inherit
     model: economy
     lock: false
   compliance-review:         # 03 — ADR interview; optional prototypes run as subagents
     mode: inherit
+    stops: inherit
     model: balanced
     prototypes: 0
     lock: false
   specification:             # 04 — the plan and the intent freeze
     mode: inherit
+    stops: inherit
     lock: false
   implementation:            # 05 — the code and the accept
     mode: inherit
+    stops: inherit
     lock: false
   close-out:                 # 06 — the audience documents run as subagents
     model: balanced
@@ -820,6 +841,74 @@ mode: autonomous
 The bundle's own `.gitignore` holds the same single line, so the bundle stays safe if it is ever
 copied out of `.speccen/`.
 
+### Upgrading the project file
+
+The project file is the one place a team sees every setting speccen offers, so it must keep up
+with the template as speccen gains keys. At every session start (Step 0) the AI compares it with
+the template above, key by key — every top-level key, every phase entry, every key a phase takes,
+every tier under `models`. The file is current when its `version` matches the template's and no
+key is missing. If it is not current:
+
+- **Add every missing key**, at the position the template gives it, with the template's comment
+  lines for that key — including its line in a shared comment block, such as the per-phase legend
+  above `phases:`. Inserting such a line is adding, not changing a comment.
+- **An added key keeps the effective setting unchanged**: it gets the value that means what its
+  absence meant — `mode: gated`, `stops: ask` and `lock: false` at the top; `inherit` for a phase's
+  `mode`, `stops` and `model`; `0` for `prototypes`; `false` for a phase's `lock`; and the built-in
+  fallback for a tier under `models`. So a phase's `model` is added as `inherit`, not as the
+  template's tier — choosing a tier is the Architect's change to make.
+- **Set `version`** to the template's version (add it if missing).
+- **Never change anything already there**: not a value (even an invalid one — the fail-safe
+  handles it), not a comment, not the order, not a key the template does not know.
+- **A newer file is left alone.** A `version` higher than the template's was written by a later
+  speccen: change nothing, and say once "the project config is from a newer speccen version".
+- **A file that cannot be read** as the YAML subset is not upgraded: it already makes the bundle
+  `gated` until it is fixed (see the fail-safe).
+- **Only the project file.** The bundle file holds only what differs, and the local files only
+  what a person set — neither is ever filled in.
+
+**Example.** A project file written before `stops` and `version` existed — `mode: autonomous`, no
+`stops` anywhere — gets these lines, marked `+`, and nothing else:
+
+```yaml
+# A bundle overrides them in its own speccen-config.yaml; a person in speccen-config.local.yaml.
+
++version: 1                   # the template version — speccen adds new keys at session start
+
+# How the workflow leaves a phase:
+#   ...
+mode: autonomous                                           # kept as it was
++# What the delegate does with a material decision the recorded intent leaves open (autonomous only):
++#   ask      stop and wait for the Architect (default)
++#   proceed  take its own proposed answer, record it as unconfirmed, and put it to the review round
++# Hard stops (new dependency, conflicting ADRs, irreversible action, failed gate or tests) always halt.
++stops: ask
+lock: false
+
+# Per phase. "inherit" means: use the mode above, or the session's model.
+#   mode        inherit · gated · autonomous
++#   stops       inherit · ask · proceed — autonomous only: see the top-level stops
+#   model       ...
+phases:
+  feature-analysis:
+    mode: inherit
++    stops: inherit
+    lock: false
+  # ... and `stops: inherit` after `mode` in code-analysis, compliance-review, specification
+  # and implementation; close-out, retrospective, reference and models are unchanged
+```
+
+`stops: ask` is the value absence meant, so the delegate behaves exactly as before; switching to
+`proceed` stays the Architect's edit. The Step 0 line reads: "project config upgraded to version 1:
+added `version`, `stops`, `stops` on 5 phases".
+
+The upgrade is a change to a committed file: it is announced in one line (Step 0), recorded in the
+bundle's `log.md` at the session's first entry, and committed with the next phase-transition
+commit.
+
+When the template gains a key, its `version` goes up by one, and the key, its comment and the
+value that means its absence are added above.
+
 ### Effective settings
 
 For each phase, the **most specific setting wins**:
@@ -864,9 +953,10 @@ flow style or multiple documents. The AI reads the files as text; no parser is n
 - **Who writes.**
   - The project file — once, when a bundle is created and `.speccen/speccen-config.yaml` does not
     exist, together with `.speccen/.gitignore` (or its line, if that file exists without it).
+    Then again at each session start, only to add missing keys (**Upgrading the project file**).
   - The bundle file — once, at bundle creation, from the Mode answer.
   - After that, both change only by the Architect's hand, or by the AI when the Architect asks for
-    that exact change in this conversation.
+    that exact change in this conversation — apart from the upgrade above.
   - A local file — never on the AI's own initiative; only when the Architect asks, and then only
     after the `.gitignore` check under **Git** below.
 - **Chat is not configuration.** A remark like "just run through it" does not change the mode.
@@ -2011,7 +2101,9 @@ These rules apply across all phases and all skills:
    responses appended to existing ones), plus — once, at bundle creation —
    `speccen-config.yaml`, the bundle's `.gitignore` and the empty `files/.gitkeep` — and, if they
    do not exist yet, `.speccen/speccen-config.yaml` and `.speccen/.gitignore` (and a `.gitignore`
-   line again, if it is missing when the Architect asks for a local config file); and, in `autonomous` mode only,
+   line again, if it is missing when the Architect asks for a local config file); at session start,
+   the missing keys and `version` of `.speccen/speccen-config.yaml` (Upgrading the project file);
+   and, in `autonomous` mode only,
    `delegated-decisions.md`. `index.md` may be regenerated at any time.
    Phase 05 is the only phase that modifies the codebase; Phases 01–04 and the optional
    passes 07–08 are read-only with respect to code — they write only bundle files. The one
