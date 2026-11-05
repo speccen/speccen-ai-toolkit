@@ -64,6 +64,16 @@ type: Index
 | [phase](./phase-05-implementation/phase.md) | Phase | COMPLETE | Plan executed in seven files — template v2 and model on 04/05, the search unit, the gate-test self-check and delta re-check, pointers, restated copies; T-1 – T-19 pass |
 | [summary](./phase-05-implementation/summary.md) | Summary | COMPLETE | Plan implemented in seven files, uncommitted for the Architect; T-1 – T-19 pass; no deviations |
 
+### Phase 06 — Close-out
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-06-close-out/phase.md) | Phase | COMPLETE | Three audience seeds, feature node and graduated specification written; graduation proposal pending the Architect |
+| [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | Searches run on the phase tier and the gate test checks itself first; seven skill files changed, uncommitted for the Architect |
+| [doc-executive](./phase-06-close-out/doc-executive.md) | Doc (executive) | COMPLETE | The main session now sends simple search questions to a worker on a cheaper model tier |
+| [doc-business](./phase-06-close-out/doc-business.md) | Doc (business) | COMPLETE | The Architect sets a model tier for search questions in each phase from Code Analysis to Implementation |
+| [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | Seven files changed — template version 2, model on 04 and 05, the search unit, the gate-test self-check and delta re-check, pointers and restated copies |
+
 ## Files
 
 | File |
