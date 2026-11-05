@@ -149,3 +149,63 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 **2026-11-05 18:12 UTC — DD-9 withdrawn.** Stop-round answer 01/10, Architect: "yes" (log 18:10).
 01/9 was asked while its prerequisite 01/5 was "later"; it is held back and recorded as open item
 O-2 for Phase 03, not decided. DD-9 stays in this file for the record.
+
+<a id="dd-10"></a>
+## DD-10 — Kind confirmed: refactoring
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-05 19:15 UTC |
+| **Question** | Confirm the kind of request (provisional since 01/1). |
+| **Interview question** | `03/1` |
+| **Decision** | Decided under delegation (autonomous): refactoring, confirmed. The change restructures how existing work is assigned to models and verified; no capability is added for the end user of the plugin. |
+| **Basis** | Session-start Work kind answer "refactoring" (log.md, 17:03); DD-1. |
+| **Alternatives** | feature |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-11"></a>
+## DD-11 — Brief §2–§3 (Changes A and B) is the design basis
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-05 19:15 UTC |
+| **Question** | Are the brief's Changes A and B the intended design, with only the §7 questions open? |
+| **Interview question** | `03/2` |
+| **Decision** | Decided under delegation (autonomous): yes — A1–A6 and B1–B2 are the Architect's stated design; §7 and the questions found in Phase 02 are the open decisions. |
+| **Basis** | Brief §2–§4, written by the Architect ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)); §7 names only three decisions "for the Architect". |
+| **Alternatives** | treat A and B as options to decide one by one |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-12"></a>
+## DD-12 — Restated sites S-1 – S-6 are in scope
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-05 19:15 UTC |
+| **Question** | Are the six restated sites found in Phase 02 in scope? |
+| **Interview question** | `03/3` |
+| **Decision** | Decided under delegation (autonomous): yes — S-1 – S-6 change in the same commit as their source; the v1 upgrade example lines are left to Phase 04. |
+| **Basis** | Project convention confirmed in Phase 02 ([Coding Patterns & Style](./phase-02-code-analysis/phase.md#code-analysis): restated copies updated in the same commit, e.g. `47ce36a`, `999c03e`); [restated sites](./phase-02-code-analysis/phase.md#restated-sites). |
+| **Alternatives** | keep the brief's Target list only |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-13"></a>
+## DD-13 — 7/2: Phase 03 code searches run on Phase 03's tier
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-05 19:18 UTC |
+| **Question** | 7/2 — Do Phase 03 code searches run on the phase's tier (`balanced`), not forced to `economy`? |
+| **Interview question** | `03/9` |
+| **Decision** | Decided under delegation (autonomous): yes — with one shared tier per phase, Phase 03 searches take Phase 03's `model` (`balanced` in the template). |
+| **Basis** | ADR [2026-11-05.code_search_tier](./adrs/2026-11-05.code_search_tier.md#decision) (03/4); brief §7 7/2 "Follows from 7/1" ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)). |
+| **Alternatives** | force `economy` for Phase 03 searches (would need a separate key, which 03/4 rules out) |
+| **Materiality** | not material |
+| **Status** | DELEGATED |

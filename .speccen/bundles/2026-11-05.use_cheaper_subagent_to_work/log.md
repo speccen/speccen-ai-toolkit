@@ -6,6 +6,21 @@ type: Log
 
 ## 2026-11-05
 
+- **19:26 — COMPLIANCE & REVIEW → SPECIFICATION** — delegate gate check passed after stops 1–3 answered by the Architect ([summary](./phase-03-compliance-review/summary.md#delegate-gate-check)) · mode: autonomous (bundle config)
+- **19:26 — COMPLIANCE & REVIEW** — go ahead
+- **19:26 — COMPLIANCE & REVIEW** — STOP 3 (autonomous, stop condition 5): verifier run 2 confirmed rows 4 and 14; row 15 not confirmed (03/11 depended on 03/10 in the same round). Record defects 1–4 from run 2 corrected. Stop round 3: 03/13 → [summary](./phase-03-compliance-review/summary.md#stop-3)
+- **19:23 — COMPLIANCE & REVIEW subagent** — gate-check verifier, run 2 (rows 4, 14, 15 only, per 03/12 and the stop-2 lean) · model: session (rule: the verifier always runs on the session model)
+- **19:23 — COMPLIANCE & REVIEW** — ADR Decision rows corrected per 03/11: proposal quoted from log.md (19:21 record), marked "accepted by the Architect in interview question 03/N", no other words
+- **19:23 — COMPLIANCE & REVIEW** — yes
+- **19:22 — COMPLIANCE & REVIEW** — STOP 2 (autonomous, stop condition 5): stop round 2, 03/10 – 03/12 → [summary](./phase-03-compliance-review/summary.md#stop-2)
+- **19:21 — COMPLIANCE & REVIEW** — gate check fix attempt (one allowed): verifier run 1 confirmed 15 of 17 rows; rows 4 and 14 not confirmed. Fixed: appended compliance corrections (row 4); dependency notes on 03/6, 03/7; 03/2 wording; round 2 label; DD-10 – DD-13 times; summary status and stop record. Row 14 needs a change to DECIDED ADRs → stop 2
+- **19:21 — COMPLIANCE & REVIEW** — record of the stop round as put to the Architect at 19:15 (proposals the Architect's "yes" at 19:17 accepted): 03/4 "Code searches share the phase's `model` tier, with no separate search key?" → proposed yes · 03/5 "Bring the new keys to existing projects by raising the template to `version: 2`, missing keys added as `inherit`?" → proposed yes · 03/6 "a code-search unit runs on `speccen-worker`, launched with the phase tier's model (not a host built-in agent)?" → proposed yes · 03/7 "widen the unit to "a search" (find and quote evidence for one question), in the code for Phases 02–05 and in the bundle and store for any phase that interviews, so the interview's lookup becomes a listed unit?" → proposed yes (option a) · 03/8 "add a fifth B1 check: "every round holds only the frontier, and every question one decision"?" → proposed yes
+- **19:18 — COMPLIANCE & REVIEW subagent** — gate-check verifier · model: session (rule: the verifier always runs on the session model)
+- **19:18 — COMPLIANCE & REVIEW** — iteration 2: five ADRs transcribed as DECIDED (Scribing a stated decision; Architect "yes" to 03/4 – 03/8 and the closing question), compliance responses appended; 03/9 (7/2) delegate yes (DD-13); Definition of Ready satisfied
+- **19:17 — COMPLIANCE & REVIEW** — yes
+- **19:15 — COMPLIANCE & REVIEW** — STOP (autonomous, stop condition 1): stop round 03/4 – 03/8 put to the Architect with five placeholder ADRs → [summary](./phase-03-compliance-review/summary.md#stop)
+- **19:15 — COMPLIANCE & REVIEW** — iteration 1: no ADRs at entry; delegate answers 03/1 (DD-10), 03/2 (DD-11), 03/3 (DD-12); placeholder ADRs created: code_search_tier, template_version_2, code_search_agent, bundle_store_lookup_unit, self_check_interview_structure; 7/2 held back on 03/4
+- **19:15 — COMPLIANCE & REVIEW** — phase started by the autonomous transition (no Architect prompt)
 - **19:13 — CODE ANALYSIS → COMPLIANCE & REVIEW** — delegate gate check passed ([summary](./phase-02-code-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config)
 - **19:13 — CODE ANALYSIS** — verifier run 2: 19 of 19 rows confirmed; five non-gating defects corrected
 - **19:16 — CODE ANALYSIS subagent** — gate-check verifier, run 2 · model: session (rule: the verifier always runs on the session model)
