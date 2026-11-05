@@ -57,6 +57,13 @@ type: Index
 | [specification](./phase-04-specification/specification.html) | Specification | COMPLETE | Intent specification — search work on the phase tier, a five-point self-check and a delta re-check for the gate verifier |
 | [specification (reduced)](./phase-04-specification/specification.md) | Specification | COMPLETE | Reduced projection of specification.html — search work on the phase tier, a five-point self-check and a delta re-check |
 
+### Phase 05 — Implementation
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-05-implementation/phase.md) | Phase | COMPLETE | Plan executed in seven files — template v2 and model on 04/05, the search unit, the gate-test self-check and delta re-check, pointers, restated copies; T-1 – T-19 pass |
+| [summary](./phase-05-implementation/summary.md) | Summary | COMPLETE | Plan implemented in seven files, uncommitted for the Architect; T-1 – T-19 pass; no deviations |
+
 ## Files
 
 | File |
