@@ -6,6 +6,13 @@ type: Log
 
 ## 2026-11-05
 
+- **19:13 — CODE ANALYSIS → COMPLIANCE & REVIEW** — delegate gate check passed ([summary](./phase-02-code-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config)
+- **19:13 — CODE ANALYSIS** — verifier run 2: 19 of 19 rows confirmed; five non-gating defects corrected
+- **19:16 — CODE ANALYSIS subagent** — gate-check verifier, run 2 · model: session (rule: the verifier always runs on the session model)
+- **19:15 — CODE ANALYSIS** — gate check fix attempt (one allowed): verifier run 1 confirmed 17 of 18 rows; row 4 (Path 1 diagram) not confirmed. Path 1 redrawn; site S-5 (fail-safe `:940–941`) added; restated sites enumerated S-1 – S-6; P02-3 and O-5 settled; reference and wording defects corrected; row added for parked questions
+- **19:08 — CODE ANALYSIS subagent** — gate-check verifier · model: session (rule: the verifier always runs on the session model)
+- **19:07 — CODE ANALYSIS** — analysis written; evolution-gap doc not generated (no indicator fires); self-check corrected 13 line references before the verifier
+- **19:04 — CODE ANALYSIS** — phase started by the autonomous transition (no Architect prompt); code searches run inline on the session model (no code-search unit exists in 26.1103.1)
 - **19:03 — FEATURE ANALYSIS → CODE ANALYSIS** — delegate gate check passed after stops 1 and 2 answered by the Architect ([summary](./phase-01-feature-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config)
 - **19:03 — FEATURE ANALYSIS** — yes
 - **18:22 — FEATURE ANALYSIS** — STOP 2 (autonomous, stop condition 5): verifier run 3 confirmed 8 of 9 re-checked rows; row "one clear decision" not confirmed (01/11 bundled four fixes). Stop round 2: 01/14 → [summary](./phase-01-feature-analysis/summary.md#stop-2)
