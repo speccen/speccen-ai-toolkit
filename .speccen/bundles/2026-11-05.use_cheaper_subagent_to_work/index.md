@@ -46,6 +46,17 @@ type: Index
 | [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | Five ADRs decided by the Architect and complied with; 7/2 follows; Definition of Ready satisfied |
 | [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Five ADRs decided by the Architect and complied with; 7/2 follows from 7/1; Definition of Ready satisfied |
 
+### Phase 04 — Specification
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-04-specification/phase.md) | Phase | COMPLETE | Six-phase plan — config keys and template v2, the search unit, the gate-test self-check and delta re-check, phase pointers, restated copies, text verification |
+| [summary](./phase-04-specification/summary.md) | Summary | COMPLETE | Six-phase plan over seven files; 16 requirements with scenarios, 19 text checks; gate passed after stops 04/4 – 04/7 |
+| [doc-executive](./phase-04-specification/doc-executive.md) | Doc (executive) | COMPLETE | The main session sends simple search questions to a worker on a cheaper model tier |
+| [doc-business](./phase-04-specification/doc-business.md) | Doc (business) | COMPLETE | The main session corrects common errors in the bundle files before it starts the verifier |
+| [specification](./phase-04-specification/specification.html) | Specification | COMPLETE | Intent specification — search work on the phase tier, a five-point self-check and a delta re-check for the gate verifier |
+| [specification (reduced)](./phase-04-specification/specification.md) | Specification | COMPLETE | Reduced projection of specification.html — search work on the phase tier, a five-point self-check and a delta re-check |
+
 ## Files
 
 | File |

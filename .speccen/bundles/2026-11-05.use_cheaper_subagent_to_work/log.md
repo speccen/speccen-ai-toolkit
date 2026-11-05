@@ -6,6 +6,25 @@ type: Log
 
 ## 2026-11-05
 
+- **21:24 — TRANSITION** — SPECIFICATION PHASE → IMPLEMENTATION PHASE (autonomous; gate passed, all 24 rows confirmed)
+- **21:24 — SPECIFICATION** — verifier run 6 confirmed row 12 (only style preferences left). Gate passed
+- **21:22 — SPECIFICATION subagent** — gate-check verifier, run 6 (row 12 only, per 04/7) · model: session (rule: the verifier always runs on the session model)
+- **21:22 — SPECIFICATION** — Architect answers stop round 04/7: yes. Prompt (verbatim): "yes"
+- **20:27 — SPECIFICATION** — STOP (autonomous, condition 5): verifier run 5 — row 12 not confirmed (two-idea frontmatter descriptions; "use" noun and verb; second sense of "evidence"). Corrected; stop round 04/7 → [summary](./phase-04-specification/summary.md#stop)
+- **20:26 — SPECIFICATION subagent** — gate-check verifier, run 5 (row 12 only, per 04/6) · model: session (rule: the verifier always runs on the session model)
+- **20:26 — SPECIFICATION** — Architect answers stop round 04/6: yes. Prompt (verbatim): "yes"
+- **20:25 — SPECIFICATION** — STOP (autonomous, condition 5): verifier run 4 — row 12 not confirmed (gate checker named three ways; one 26-word step; minor term variants). Both seeds rewritten with one term per actor; stop round 04/6 → [summary](./phase-04-specification/summary.md#stop)
+- **20:24 — SPECIFICATION subagent** — gate-check verifier, run 4 (row 12 only, per 04/5) · model: session (rule: the verifier always runs on the session model)
+- **20:24 — SPECIFICATION** — Architect answers stop round 04/5: yes. Prompt (verbatim): "proceed"
+- **20:23 — SPECIFICATION** — STOP (autonomous, condition 5): verifier run 3 confirmed row 15; row 12 not confirmed (frontmatter actor; re-checked-rows naming; search sender). Wording corrected; stop round 04/5 → [summary](./phase-04-specification/summary.md#stop)
+- **20:22 — SPECIFICATION subagent** — gate-check verifier, run 3 (rows 12 and 15 only, per 04/4) · model: session (rule: the verifier always runs on the session model)
+- **20:22 — SPECIFICATION** — Architect answers stop round 04/4: yes. Prompt (verbatim): "go ahead"
+- **19:43 — SPECIFICATION** — STOP (autonomous, condition 5): verifier run 2 confirmed 22 of 24 rows; rows 12 and 15 not confirmed. Wording corrected with the smaller run-2 findings; stop round 04/4 → [summary](./phase-04-specification/summary.md#stop)
+- **19:41 — SPECIFICATION subagent** — gate-check verifier, run 2 · model: session (rule: the verifier always runs on the session model)
+- **19:40 — SPECIFICATION** — gate check fix attempt (one allowed): verifier run 1 confirmed 20 of 24 rows; rows 6, 12, 15, 21 not confirmed. Fixed: check scope, seed STE, spec "Why" column and rejected alternative, R-15/R-16 and T-16 – T-19, T-1 widened; delegate answer 04/3 reopens 04/1 (DD-16, supersedes DD-14)
+- **19:31 — SPECIFICATION subagent** — gate-check verifier · model: session (rule: the verifier always runs on the session model)
+- **19:31 — SPECIFICATION** — plan, Test Plan, intent seeds and specification written; delegate answers 04/1 (DD-14), 04/2 (DD-15); self-check: 2 fixes (R-14/T-15 for A6; unsourced pointer sentence removed); diagrams render-checked in headless Chrome
+- **19:27 — SPECIFICATION** — phase started by the autonomous transition (no Architect prompt)
 - **19:26 — COMPLIANCE & REVIEW → SPECIFICATION** — delegate gate check passed after stops 1–3 answered by the Architect ([summary](./phase-03-compliance-review/summary.md#delegate-gate-check)) · mode: autonomous (bundle config)
 - **19:26 — COMPLIANCE & REVIEW** — go ahead
 - **19:26 — COMPLIANCE & REVIEW** — STOP 3 (autonomous, stop condition 5): verifier run 2 confirmed rows 4 and 14; row 15 not confirmed (03/11 depended on 03/10 in the same round). Record defects 1–4 from run 2 corrected. Stop round 3: 03/13 → [summary](./phase-03-compliance-review/summary.md#stop-3)

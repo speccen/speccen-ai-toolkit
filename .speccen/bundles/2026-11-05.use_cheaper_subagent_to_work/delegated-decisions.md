@@ -209,3 +209,52 @@ O-2 for Phase 03, not decided. DD-9 stays in this file for the record.
 | **Alternatives** | force `economy` for Phase 03 searches (would need a separate key, which 03/4 rules out) |
 | **Materiality** | not material |
 | **Status** | DELEGATED |
+
+<a id="dd-14"></a>
+## DD-14 — The v1 upgrade example stays as written
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-05 19:28 UTC |
+| **Question** | Rewrite the v1 upgrade example (governing `:418`, `:876`, `:902`) for v2? |
+| **Interview question** | `04/1` |
+| **Decision** | Decided under delegation (autonomous): no — it stays as the worked example of the v1 upgrade. |
+| **Basis** | The example describes the v1 upgrade and stays true; ADR [template_version_2](./adrs/2026-11-05.template_version_2.md#decision) compliance names it a Phase 04 choice. |
+| **Alternatives** | rewrite the example for v2 |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-15"></a>
+## DD-15 — Skill-text change left uncommitted for the Architect
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-05 19:28 UTC |
+| **Question** | Who commits the skill-text change? |
+| **Interview question** | `04/2` |
+| **Decision** | Decided under delegation (autonomous): leave it uncommitted in the working tree; only bundle files are committed at the phase transitions. |
+| **Basis** | Phase Transition Protocol step 6 ("commit the changed bundle files — only those"); Invariant 6. |
+| **Alternatives** | commit the skill change in Phase 05 |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-16"></a>
+## DD-16 — The v1 upgrade example is marked as v1, with one v2 sentence (supersedes DD-14)
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-05 19:37 UTC |
+| **Question** | After the change, the v1 example says a pre-versioning file gets its lines "and nothing else", which a v2 upgrade makes untrue. Mark it as the v1 upgrade and add one sentence for v2? |
+| **Interview question** | `04/3` |
+| **Decision** | Decided under delegation (autonomous): yes — the intro says "when it is upgraded to version 1"; one sentence after the example names what version 2 adds. Supersedes [DD-14](#dd-14). |
+| **Basis** | Gate verifier run 1 (Phase 04); governing `:909–910` ("When the template gains a key, its `version` goes up by one, and the key, its comment and the value that means its absence are added above"). |
+| **Alternatives** | leave the example unchanged (DD-14); rewrite the example for v2 |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+---
+
+**2026-11-05 19:43 UTC — DD-14 superseded by [DD-16](#dd-16)** (interview 04/3). DD-14's basis ("stays true") does not hold after the v2 change. DD-14 stays in this file for the record.
