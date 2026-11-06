@@ -6,6 +6,8 @@ type: Log
 
 ## 2026-11-06
 
+- **07:40 — BUNDLE** — closed by the Architect; kept in place until the branch merges into main, then removed with `git rm` (46 store links point into it)
+- **07:40 — BUNDLE** — close the bundle, commit the config change
 - **07:30 — REFERENCE** — reference copied into the store (`features/2026-11-05.use_cheaper_subagent_to_work/`); `reference` edge set; specification ↔ reference cross-linked; timeline regenerated; phase complete
 - **07:30 — REFERENCE** — accept ref
 - **06:22 — REFERENCE** — reference.html and reference.md written by the worker; main session verified SVGs and phone width (CSS fix); presented for review
