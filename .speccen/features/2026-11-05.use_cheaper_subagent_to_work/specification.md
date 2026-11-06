@@ -7,7 +7,7 @@ description: Reduced projection of specification.html — search work on the pha
 
 # Use cheaper subagent to work — Specification (reduced)
 
-[Index](../../bundles/2026-11-05.use_cheaper_subagent_to_work/index.md) · [Full specification](./specification.html) · [Plan](../../bundles/2026-11-05.use_cheaper_subagent_to_work/phase-04-specification/phase.md#implementation-plan)
+[Index](../../bundles/2026-11-05.use_cheaper_subagent_to_work/index.md) · [Full specification](./specification.html) · [Reference](./reference.html) (what was actually built) · [Plan](../../bundles/2026-11-05.use_cheaper_subagent_to_work/phase-04-specification/phase.md#implementation-plan)
 
 ---
 

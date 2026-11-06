@@ -5,11 +5,12 @@ work-kind: refactoring
 status: active
 evidence: confirmed
 created: 2026-11-05T21:30Z
-updated: 2026-11-06T06:06Z
+updated: 2026-11-06T07:30Z
 date: 2026-11-05T21:30Z
 touches: [governing-workflow, subagent-execution, configuration, gate-test]
 produced: [2026-11-05.code_search_tier, 2026-11-05.code_search_agent, 2026-11-05.bundle_store_lookup_unit, 2026-11-05.self_check_interview_structure, 2026-11-05.ste_term_list_before_writing, 2026-11-05.readme_restates_config_template]
 specification: ./specification.html
+reference: ./reference.html
 ---
 
 # Use cheaper subagent to work
@@ -28,4 +29,5 @@ specification: ./specification.html
 | Related | |
 | --- | --- |
 | **Specification** | [specification.html](./specification.html) — intent |
+| **Reference** | [reference.html](./reference.html) — outcome |
 | **Produced** | [2026-11-05.code_search_tier](../../decisions/2026-11-05.code_search_tier.md), [2026-11-05.code_search_agent](../../decisions/2026-11-05.code_search_agent.md), [2026-11-05.bundle_store_lookup_unit](../../decisions/2026-11-05.bundle_store_lookup_unit.md), [2026-11-05.self_check_interview_structure](../../decisions/2026-11-05.self_check_interview_structure.md), [2026-11-05.ste_term_list_before_writing](../../lessons/2026-11-05.ste_term_list_before_writing.md), [2026-11-05.readme_restates_config_template](../../lessons/2026-11-05.readme_restates_config_template.md) — decisions & lessons from this feature |

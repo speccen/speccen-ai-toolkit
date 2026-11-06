@@ -6,6 +6,12 @@ type: Log
 
 ## 2026-11-06
 
+- **07:30 — REFERENCE** — reference copied into the store (`features/2026-11-05.use_cheaper_subagent_to_work/`); `reference` edge set; specification ↔ reference cross-linked; timeline regenerated; phase complete
+- **07:30 — REFERENCE** — accept ref
+- **06:22 — REFERENCE** — reference.html and reference.md written by the worker; main session verified SVGs and phone width (CSS fix); presented for review
+- **06:14 — REFERENCE subagent** — gathering and authoring (Steps 3–7) · model: balanced → sonnet (project config)
+- **06:14 — REFERENCE** — scope answers: "Changed rules (Recommended)"; content: "Why + alternatives, Config reference, Limits + follow-ups, C4 + runtime (Recommended)"; source: "Bundle + code (Recommended)"
+- **06:06 — REFERENCE** — "proceed to reference"
 - **06:06 — RETROSPECTIVE** — review round applied: R/13 rule added; six entries graduated (G-5 local); DD statuses set; final commit of implementation, bundle and store
 - **06:05 — RETROSPECTIVE** — "proceed" (read as: proposed answers accepted for R/1 – R/10, R/12, R/13)
 - **06:01 — RETROSPECTIVE** — fixes applied for MEDIUM 1 and 2 (worker fitted for a search; data-not-instructions rule); check script kept in `files/`; T-1 – T-19, F-1, F-2 pass

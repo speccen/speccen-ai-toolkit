@@ -82,6 +82,15 @@ type: Index
 | [retrospective](./phase-07-retrospective/retrospective.md) | Retrospective | COMPLETE | Plan delivered exactly and all checks hold, but the worker the search unit runs on is not fitted for a report-only search, and the delta re-check does not cover runs after a stop |
 | [summary](./phase-07-retrospective/summary.md) | Summary | COMPLETE | Changes requested (proposed) — plan delivered exactly, but the search worker's body and the post-stop re-check need a few more lines |
 
+### Phase 08 — Reference
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-08-reference/phase.md) | Phase | COMPLETE | Working notes for the optional technical reference of the search unit and the gate-test changes |
+| [reference](./phase-08-reference/reference.html) | Reference | COMPLETE | Technical reference for the search unit, the gate-test self-check and delta re-check, and config template version 2 — what changed in seven files, how it runs, and why |
+| [reference (reduced)](./phase-08-reference/reference.md) | Reference | COMPLETE | Reduced projection of reference.html |
+| [summary](./phase-08-reference/summary.md) | Summary | COMPLETE | Reference approved — the search unit, the gate-test changes and config template version 2 |
+
 ## Files
 
 | File |
