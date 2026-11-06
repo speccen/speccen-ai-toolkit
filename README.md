@@ -239,7 +239,7 @@ answer). Every phase and every key is written out; `inherit` means "use the leve
 # speccen project configuration — committed. The defaults for every bundle in this repository.
 # A bundle overrides them in its own speccen-config.yaml; a person in speccen-config.local.yaml.
 
-version: 1                   # the template version — speccen adds new keys at session start
+version: 2                   # the template version — speccen adds new keys at session start
 
 # How the workflow leaves a phase:
 #   gated       stop at the end of the phase and wait for the Architect's go
@@ -279,10 +279,12 @@ phases:
   specification:             # 04 — the plan and the intent freeze
     mode: inherit
     stops: inherit
+    model: economy           # searches
     lock: false
   implementation:            # 05 — the code and the accept
     mode: inherit
     stops: inherit
+    model: economy           # searches
     lock: false
   close-out:                 # 06 — the audience documents run as subagents
     model: balanced
@@ -322,6 +324,9 @@ models:
   balanced: "<your host's mid-size model>"
   premium: "<your host's large model>"
 ```
+
+Searches (finding and quoting evidence for one question) run on the phase's tier, in Phases 02
+to 05 for code and in any phase for the bundle and store.
 
 Gates, ADRs, the delegate's decisions and the gate-test verifier always run on your session's
 model, whatever the tiers say. Subagents need host support: Claude Code loads the plugin's

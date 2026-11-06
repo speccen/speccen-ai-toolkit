@@ -1,0 +1,57 @@
+# speccen project configuration — committed. The defaults for every bundle in this repository.
+# A bundle overrides them in its own speccen-config.yaml; a person in speccen-config.local.yaml.
+
+# How the workflow leaves a phase:
+#   gated       stop at the end of the phase and wait for the Architect's go
+#   autonomous  the Architect's delegate decides, and advances once the gate test passes
+mode: autonomous
+# What the delegate does with a material decision the recorded intent leaves open (autonomous only):
+#   ask      stop and wait for the Architect (default)
+#   proceed  take its own proposed answer, record it as unconfirmed, and put it to the review round
+# Hard stops (new dependency, conflicting ADRs, irreversible action, failed gate or tests) always halt.
+stops: proceed
+lock: false                  # true: no bundle file and no local file can change anything
+
+# Per phase. "inherit" means: use the mode above, or the session's model.
+#   mode        inherit · gated · autonomous
+#   stops       inherit · ask · proceed — autonomous only: see the top-level stops
+#   model       inherit · economy · balanced · premium — the tier for the phase's subagent work
+#   prototypes  0 or more — autonomous only: prototypes the delegate may build (Phase 03)
+#   lock        true: no bundle file and no local file can change this phase
+# Tiers say what the work needs. Each person maps them to models in their local file.
+# Decision seats and the gate-test verifier always run on the session's model.
+phases:
+  feature-analysis:          # 01 — discovery interview
+    mode: inherit
+    lock: false
+  code-analysis:             # 02 — evidence reading runs as a subagent
+    mode: inherit
+    model: economy
+    lock: false
+  compliance-review:         # 03 — ADR interview; optional prototypes run as subagents
+    mode: inherit
+    model: balanced
+    prototypes: 0
+    lock: false
+  specification:             # 04 — the plan and the intent freeze
+    mode: inherit
+    lock: false
+  implementation:            # 05 — the code and the accept
+    mode: inherit
+    lock: false
+  close-out:                 # 06 — the audience documents run as subagents
+    model: balanced
+    lock: false
+  retrospective:             # 07 — optional; the review runs as a subagent
+    model: premium
+    lock: false
+  reference:                 # 08 — optional; gathering and authoring run as a subagent
+    model: balanced
+    lock: false
+
+# Tier-to-model mapping — the team default, set for Claude Code.
+# A person's local file overrides it, per tier, for their own budget or host.
+models:
+  economy: haiku
+  balanced: sonnet
+  premium: opus

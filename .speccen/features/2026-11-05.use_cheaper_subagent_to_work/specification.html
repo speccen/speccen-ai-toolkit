@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheaper Subagent Specification</title>
+<!--
+type: Specification
+phase: "04 — Specification"
+status: COMPLETE
+description: Intent specification — search work on the phase tier, a five-point self-check and a delta re-check for the gate verifier
+-->
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#5f5e58;--line:#d9d6cc;--card:#ffffff;--accent:#2f5d8a;--new:#e6f2e6;--newline:#3f8a4a;--chg:#fff3d6;--chgline:#b7861e;--code:#f2f0ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161615;--fg:#ecebe6;--muted:#a8a69d;--line:#3a3935;--card:#1f1f1d;--accent:#8db6e0;--new:#1d2e1f;--newline:#6fbf7a;--chg:#33290f;--chgline:#d9a940;--code:#262624}}
+:root[data-theme="dark"]{--bg:#161615;--fg:#ecebe6;--muted:#a8a69d;--line:#3a3935;--card:#1f1f1d;--accent:#8db6e0;--new:#1d2e1f;--newline:#6fbf7a;--chg:#33290f;--chgline:#d9a940;--code:#262624}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .3em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.4em 0 .4em}
+p,li{max-width:72ch}
+.lede{color:var(--muted);font-size:1.05rem}
+.nav{font-size:.9rem;margin:.4em 0 1em}
+.nav a{color:var(--accent)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px;padding:0;list-style:none}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:.85rem}
+.toc{font-size:.9rem;columns:2;column-gap:24px;padding-left:18px}
+@media (max-width:600px){.toc{columns:1}}
+a{color:var(--accent)}
+code{background:var(--code);padding:1px 4px;border-radius:3px;font-size:.88em}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:.6em 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--card)}
+tr.new td{background:var(--new)}
+tr.chg td{background:var(--chg)}
+.legend{font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-block;padding:0 6px;border-radius:3px;margin-right:6px}
+.req{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:10px 14px;margin:10px 0}
+.req h3{margin:.1em 0 .3em}
+.req ul{margin:.3em 0;padding-left:20px}
+figure{margin:1em 0;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
+svg text{fill:var(--fg);font:13px system-ui,sans-serif}
+svg .box{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+svg .boxnew{fill:var(--new);stroke:var(--newline);stroke-width:1.5}
+svg .boxchg{fill:var(--chg);stroke:var(--chgline);stroke-width:1.5}
+svg .arrow{stroke:var(--muted);stroke-width:1.5;fill:none;marker-end:url(#ah)}
+svg .arrownew{stroke:var(--newline);stroke-width:2;fill:none;marker-end:url(#ahn)}
+svg .small{font-size:11px;fill:var(--muted)}
+details{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+.verdict{font-weight:600}
+</style>
+</head>
+<body>
+<main>
+
+<p class="nav"><a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/index.md">Index</a> · <a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/phase-04-specification/phase.md">Plan (phase.md)</a> · <a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/phase-04-specification/summary.md">Summary</a> · <a href="./reference.html">Reference</a> (what was actually built)</p>
+
+<h1>Search work on the cheap tier, fewer verifier runs</h1>
+<p class="lede">speccen sends search work to the model tier of each phase. The main session keeps every decision. The gate test fixes common record errors before the verifier runs, and a second verifier run checks only the affected rows.</p>
+<ul class="facts">
+<li>Intent specification — before code</li>
+<li>Kind: refactoring</li>
+<li>Plugin 26.1104.2 at <code>b59e7ab</code></li>
+<li>7 files to change, 0 new</li>
+<li>5 ADRs · 16 requirements · 19 checks</li>
+<li>Mode: autonomous</li>
+</ul>
+
+<ol class="toc">
+<li><a href="#what">What is being built</a></li>
+<li><a href="#context">Where it lives (L1)</a></li>
+<li><a href="#parts">The parts that change (L2)</a></li>
+<li><a href="#flow">How a search runs (L3)</a></li>
+<li><a href="#gate">How the gate test runs (L3)</a></li>
+<li><a href="#decisions">Decisions and constraints</a></li>
+<li><a href="#requirements">Requirements and acceptance scenarios</a></li>
+<li><a href="#plan">How it will be built</a></li>
+<li><a href="#tests">How it will be checked</a></li>
+<li><a href="#limits">Not included</a></li>
+</ol>
+
+<h2 id="what">What is being built</h2>
+<p>speccen already has model tiers. A phase sets <code>phases.&lt;phase&gt;.model</code> to <code>economy</code>, <code>balanced</code> or <code>premium</code>. In the evidence bundle, 13 subagents ran, and all 13 ran on the session model.</p>
+<p>Two causes exist. First, searching is not a listed unit, so no tier applies to it. Second, the gate verifier runs too often, and its second run checks every row again.</p>
+<p>This change does two things:</p>
+<ul>
+<li><strong>Change A — search becomes a unit.</strong> A search finds and quotes evidence for one question. It runs on <code>speccen-worker</code> on the phase tier. It returns findings only.</li>
+<li><strong>Change B — fewer verifier runs.</strong> The main session runs five self-checks before the verifier. A second verifier run checks only failed rows and rows whose evidence file changed.</li>
+</ul>
+<p>Source: the Architect's brief (<a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/files/gh-22-use-cheaper-subagent.md">issue #22</a>) and the <a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/phase-01-feature-analysis/phase.md#feature-description">Phase 01 analysis</a>.</p>
+
+<h3>Terms</h3>
+<div class="tablewrap"><table>
+<tr><th>Term</th><th>Meaning here</th></tr>
+<tr><td>search</td><td>A unit that finds and quotes evidence for one stated question. Read-only. It takes no decision.</td></tr>
+<tr><td>tier</td><td><code>economy</code>, <code>balanced</code>, <code>premium</code> or <code>inherit</code>. A person's mapping turns a tier into a model.</td></tr>
+<tr><td>session model</td><td>The model of the main session. The verifier and every decision seat run on it.</td></tr>
+<tr><td>self-check</td><td>Five checks that the main session runs before it starts the verifier.</td></tr>
+<tr><td>delta re-check</td><td>A second verifier run that checks only failed rows and rows whose evidence file changed.</td></tr>
+</table></div>
+
+<h2 id="context">Where it lives (L1)</h2>
+<p>All rules live in one governing skill. Phase skills point to it with one line. The worker agent runs units.</p>
+<figure>
+<svg viewBox="0 0 760 230" width="100%" role="img" aria-label="Context: phase skills point to the governing skill; the main session launches speccen-worker for units on a tier">
+<defs>
+<marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a887f"/></marker>
+<marker id="ahn" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#3f8a4a"/></marker>
+</defs>
+<rect class="box" x="10" y="20" width="200" height="60" rx="6"/>
+<text x="110" y="46" text-anchor="middle">Phase skills 01–08</text>
+<text x="110" y="64" text-anchor="middle" class="small">02, 05, interview: + pointer</text>
+<rect class="boxchg" x="280" y="20" width="220" height="60" rx="6"/>
+<text x="390" y="46" text-anchor="middle">Governing skill</text>
+<text x="390" y="64" text-anchor="middle" class="small">keys · template · units · gate test</text>
+<rect class="box" x="560" y="20" width="190" height="60" rx="6"/>
+<text x="655" y="46" text-anchor="middle">Project config</text>
+<text x="655" y="64" text-anchor="middle" class="small">version 2 · model on 04/05</text>
+<rect class="box" x="280" y="140" width="220" height="60" rx="6"/>
+<text x="390" y="166" text-anchor="middle">Main session</text>
+<text x="390" y="184" text-anchor="middle" class="small">session model · all decisions</text>
+<rect class="boxnew" x="560" y="140" width="190" height="60" rx="6"/>
+<text x="655" y="166" text-anchor="middle">speccen-worker</text>
+<text x="655" y="184" text-anchor="middle" class="small">search on the phase tier</text>
+<path class="arrow" d="M210,50 L278,50"/>
+<path class="arrow" d="M558,50 L502,50"/>
+<path class="arrow" d="M390,80 L390,138"/>
+<path class="arrownew" d="M500,170 L558,170"/>
+<text x="529" y="160" text-anchor="middle" class="small">tier</text>
+</svg>
+<figcaption>Green: new behaviour. Amber: changed text. The verifier is not shown; it stays on the session model.</figcaption>
+</figure>
+
+<h2 id="parts">The parts that change (L2)</h2>
+<p class="legend"><span style="background:var(--chg)">changed</span> All seven files change. No file is created or deleted.</p>
+<div class="tablewrap"><table>
+<tr><th>File</th><th>What changes</th><th>Change</th></tr>
+<tr class="chg"><td><code>skills/sdd/00-governing-workflow/SKILL.md</code></td><td>Keys list and fail-safe accept <code>model</code> on 04/05; template <code>version: 2</code>; Units row for a search; new section <em>Search</em>; gate-test self-check and delta re-check</td><td>A1–A4, B1–B2</td></tr>
+<tr class="chg"><td><code>skills/sdd/02-code-analysis/SKILL.md</code></td><td>Pointer line in Step 2 and Step 3</td><td>A5</td></tr>
+<tr class="chg"><td><code>skills/sdd/05-implementation/SKILL.md</code></td><td>Pointer line in Step 3</td><td>A5</td></tr>
+<tr class="chg"><td><code>skills/sdd/interview/SKILL.md</code></td><td>Lookup rule points to the search unit</td><td>A5</td></tr>
+<tr class="chg"><td><code>README.md</code></td><td>Template copy stays identical; Model tiers names searches</td><td>sync</td></tr>
+<tr class="chg"><td><code>ARCHITECTURE.md</code></td><td>Units list names the search; the verifier is on the session model</td><td>sync</td></tr>
+<tr class="chg"><td><code>agents/speccen-worker.md</code></td><td>Description names a search</td><td>sync</td></tr>
+</table></div>
+<p>Current state: <a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/phase-02-code-analysis/phase.md#code-analysis">Phase 02 analysis</a> and its <a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/phase-02-code-analysis/phase.md#restated-sites">restated sites S-1 to S-6</a>.</p>
+
+<h2 id="flow">How a search runs (L3)</h2>
+<ol>
+<li>A phase step needs evidence for one question.</li>
+<li>The main session writes a work order: the question, the breadth, the start place, and <code>Outputs: none — report only</code>.</li>
+<li>The main session resolves the tier from the phase's <code>model</code>. With no <code>model</code> key, the search runs on the session model.</li>
+<li>The main session launches <code>speccen-worker</code> with that model. If the host cannot launch it, the search runs inline and the session says so once.</li>
+<li>The worker returns findings: <code>path:line</code>, a short verbatim quote, and what it did not find. It writes no file.</li>
+<li>The main session opens each finding again before it cites the finding.</li>
+</ol>
+<details><summary>Target-state ASCII flow (from the plan)</summary>
+<p>The full diagram is in <a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/phase-04-specification/phase.md#implementation-plan">phase.md → Target-State Execution Flow, Path 1</a>.</p>
+</details>
+
+<h2 id="gate">How the gate test runs (L3)</h2>
+<figure>
+<svg viewBox="0 0 760 300" width="100%" role="img" aria-label="Gate test: criteria, self-check, verifier run 1, fix, delta run 2, stop or transition">
+<rect class="box" x="10" y="20" width="160" height="56" rx="6"/>
+<text x="90" y="44" text-anchor="middle">Criteria with</text>
+<text x="90" y="62" text-anchor="middle">evidence</text>
+<rect class="boxnew" x="200" y="20" width="170" height="56" rx="6"/>
+<text x="285" y="44" text-anchor="middle">Self-check (5)</text>
+<text x="285" y="62" text-anchor="middle" class="small">"Self-check: done — N fixes"</text>
+<rect class="box" x="400" y="20" width="160" height="56" rx="6"/>
+<text x="480" y="44" text-anchor="middle">Verifier run 1</text>
+<text x="480" y="62" text-anchor="middle" class="small">every row · session model</text>
+<rect class="box" x="590" y="20" width="160" height="56" rx="6"/>
+<text x="670" y="52" text-anchor="middle">Transition</text>
+<rect class="box" x="400" y="130" width="160" height="56" rx="6"/>
+<text x="480" y="154" text-anchor="middle">Fix once</text>
+<rect class="boxnew" x="400" y="230" width="160" height="56" rx="6"/>
+<text x="480" y="254" text-anchor="middle">Verifier run 2</text>
+<text x="480" y="272" text-anchor="middle" class="small">failed + changed-file rows</text>
+<rect class="box" x="200" y="230" width="140" height="56" rx="6"/>
+<text x="270" y="262" text-anchor="middle">Stop</text>
+<path class="arrow" d="M170,48 L198,48"/>
+<path class="arrownew" d="M370,48 L398,48"/>
+<path class="arrow" d="M560,48 L588,48"/>
+<text x="574" y="40" text-anchor="middle" class="small">pass</text>
+<path class="arrow" d="M480,76 L480,128"/>
+<text x="492" y="106" class="small">fail</text>
+<path class="arrownew" d="M480,186 L480,228"/>
+<path class="arrow" d="M560,258 L670,258 L670,78"/>
+<text x="680" y="200" class="small">pass</text>
+<path class="arrow" d="M400,258 L342,258"/>
+<text x="371" y="250" text-anchor="middle" class="small">fail</text>
+</svg>
+<figcaption>Green: new steps. Rows that run 2 does not check keep <code>confirmed (run 1)</code>.</figcaption>
+</figure>
+<p>The five self-checks are:</p>
+<ol>
+<li><strong>Quotes</strong> — every quote of the Architect matches <code>log.md</code> word for word.</li>
+<li><strong>References</strong> — every <code>path:line</code> and anchor still points at what the row says.</li>
+<li><strong>Latest answer</strong> — no record is behind the newest Architect statement in <code>log.md</code>.</li>
+<li><strong>Index</strong> — <code>index.md</code> lists every file the phase wrote.</li>
+<li><strong>Interview structure</strong> — every round holds only the frontier, and every question holds one decision.</li>
+</ol>
+
+<h2 id="decisions">Decisions and constraints</h2>
+<p>The Architect decided five ADRs in Phase 03. Each row shows the option not taken.</p>
+<div class="tablewrap"><table>
+<tr><th>ADR</th><th>Decision</th><th>Rejected alternative</th><th>Why the decision holds</th></tr>
+<tr><td><a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/adrs/2026-11-05.code_search_tier.md">code_search_tier</a></td><td>Searches use the phase's <code>model</code> tier. No search key.</td><td>A separate search key per phase</td><td>One key per phase keeps the config simple. A key can come later without a break.</td></tr>
+<tr><td><a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/adrs/2026-11-05.template_version_2.md">template_version_2</a></td><td>Template <code>version: 2</code>. Missing keys come in as <code>inherit</code>.</td><td>Keep version 1</td><td>The existing upgrade rule adds the keys and changes no setting.</td></tr>
+<tr><td><a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/adrs/2026-11-05.code_search_agent.md">code_search_agent</a></td><td>A search runs on <code>speccen-worker</code> with the tier's model.</td><td>A host built-in search agent</td><td>The worker takes the model at launch and forbids decisions. The repository says nothing about built-in agents' models.</td></tr>
+<tr><td><a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/adrs/2026-11-05.bundle_store_lookup_unit.md">bundle_store_lookup_unit</a></td><td>One unit, "a search": code in Phases 02–05, bundle and store in any phase.</td><td>A separate Units row for the lookup</td><td>The interview already names a worker lookup that no row lists. One unit closes that gap.</td></tr>
+<tr><td><a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/adrs/2026-11-05.self_check_interview_structure.md">self_check_interview_structure</a></td><td>A fifth self-check for interview structure.</td><td>Four checks only</td><td>This bundle failed three gate checks on that kind of defect (Phase 01 runs 1–3, Phase 01 summary).</td></tr>
+</table></div>
+<p>Constraints that do not change: the verifier and decision seats stay on the session model; there is no global default subagent model; only the main session writes state and commits.</p>
+<p>Delegated decisions for this bundle are in <a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/delegated-decisions.md">delegated-decisions.md</a> (DD-1 to DD-16).</p>
+
+<h2 id="requirements">Requirements and acceptance scenarios</h2>
+
+<div class="req"><h3>R-1 — Search is a listed unit</h3>
+<p>The governing skill SHALL list a search as a subagent unit: code in Phases 02–05, bundle and store in any phase.</p>
+<ul><li>WHEN a phase needs evidence for one question</li><li>THEN the Units table names a search unit for that phase and source.</li></ul></div>
+
+<div class="req"><h3>R-2 — Findings only</h3>
+<p>A search SHALL return findings only — <code>path:line</code>, verbatim quote, what was not found — and SHALL write no file.</p>
+<ul><li>WHEN a search unit returns</li><li>THEN its report has no conclusion, and no file was written.</li></ul></div>
+
+<div class="req"><h3>R-3 — Re-open before citing</h3>
+<p>The main session SHALL open every finding again before it cites the finding, and SHALL never cite a search report alone.</p>
+<ul><li>WHEN a finding is cited in a phase file</li><li>THEN the citation points at the code, not at the report.</li></ul></div>
+
+<div class="req"><h3>R-4 — Worker and tier</h3>
+<p>A search SHALL run on <code>speccen-worker</code> with the phase's <code>model</code> tier. With no <code>model</code> key, it SHALL run on the session model.</p>
+<ul><li>WHEN Phase 02 searches with <code>model: economy</code></li><li>THEN the worker starts with the economy model.</li></ul>
+<ul><li>WHEN Phase 01 searches the store</li><li>THEN the search runs on the session model.</li></ul></div>
+
+<div class="req"><h3>R-5 — Inline fallback</h3>
+<p>A search that is not launched as the unit SHALL run inline.</p>
+<ul><li>WHEN the host cannot launch the worker</li><li>THEN the search runs inline on the session model, and the session says so once.</li></ul></div>
+
+<div class="req"><h3>R-6 — <code>model</code> on 04 and 05</h3>
+<p><code>model</code> SHALL be a valid key on <code>specification</code> and <code>implementation</code>.</p>
+<ul><li>WHEN a project file sets <code>phases.implementation.model: economy</code></li><li>THEN the workflow uses it.</li></ul>
+<ul><li>WHEN a project file sets <code>phases.feature-analysis.model</code></li><li>THEN the workflow ignores it and says so once.</li></ul></div>
+
+<div class="req"><h3>R-7 — Template version 2</h3>
+<p>The template SHALL be <code>version: 2</code>, with <code>model: economy</code> on <code>specification</code> and <code>implementation</code>.</p>
+<ul><li>WHEN a new project file is written</li><li>THEN it has <code>version: 2</code> and both keys.</li></ul></div>
+
+<div class="req"><h3>R-8 — Upgrade keeps behaviour</h3>
+<p>The upgrade of an existing project file SHALL keep its effective settings.</p>
+<ul><li>WHEN a version-1 file is upgraded</li><li>THEN it gets <code>model: inherit</code> on 04 and 05 and <code>version: 2</code>, and no setting changes.</li></ul></div>
+
+<div class="req"><h3>R-9 — Pointers</h3>
+<p>Phase skills 02, 05 and <code>interview</code> SHALL point to the search unit.</p>
+<ul><li>WHEN a reader is at 02 Steps 2 and 3, 05 Step 3 or the interview lookup rule</li><li>THEN one line points to Subagent Execution → Search.</li></ul></div>
+
+<div class="req"><h3>R-10 — Self-check</h3>
+<p>The gate test SHALL run the five self-checks before the verifier and record them.</p>
+<ul><li>WHEN a phase gate test starts</li><li>THEN the summary shows <code>Self-check: done — N fixes</code> above the gate table.</li></ul></div>
+
+<div class="req"><h3>R-11 — Delta re-check</h3>
+<p>A second verifier run SHALL check only failed rows and rows whose evidence file changed. The workflow SHALL stop if a re-checked row still fails.</p>
+<ul><li>WHEN run 1 fails one row and the fix edits one file</li><li>THEN run 2 checks that row and the rows that cite that file; other rows show <code>confirmed (run 1)</code>.</li></ul>
+<ul><li>WHEN a re-checked row still fails</li><li>THEN the workflow stops (a stop).</li></ul></div>
+
+<div class="req"><h3>R-12 — Verifier stays on the session model</h3>
+<p>The verifier and every decision seat SHALL stay on the session model.</p>
+<ul><li>WHEN any tier mapping is set</li><li>THEN the verifier still runs on the session model.</li></ul></div>
+
+<div class="req"><h3>R-13 — Copies match</h3>
+<p>Restated copies SHALL match their source.</p>
+<ul><li>WHEN the change lands</li><li>THEN the README template equals the governing template, and ARCHITECTURE, README tiers and the worker description name the search.</li></ul></div>
+
+<div class="req"><h3>R-14 — Logged like any unit</h3>
+<p>Each launched search SHALL be logged with the existing subagent line, with the tier and the model.</p>
+<ul><li>WHEN a search unit is launched</li><li>THEN <code>log.md</code> gets <code>- **HH:MM — [PHASE] subagent** — search: &lt;question&gt; · model: &lt;tier&gt; → &lt;model&gt; (&lt;source&gt;)</code>, and the log format stays the same.</li></ul></div>
+
+<div class="req"><h3>R-15 — Work order and parallel searches</h3>
+<p>A search work order SHALL state the question, the breadth (<code>quick</code> · <code>medium</code> · <code>thorough</code>) and the start place if known. Independent searches MAY run in parallel.</p>
+<ul><li>WHEN two searches answer independent questions</li><li>THEN both may run at once, each with its own work order.</li></ul></div>
+
+<div class="req"><h3>R-16 — No host-wide default</h3>
+<p>The change SHALL NOT add a host-wide default subagent model.</p>
+<ul><li>WHEN the change lands</li><li>THEN the only model settings are <code>phases.&lt;phase&gt;.model</code> and <code>models.&lt;tier&gt;</code>.</li></ul></div>
+
+<h2 id="plan">How it will be built</h2>
+<div class="tablewrap"><table>
+<tr><th>Phase</th><th>What it delivers</th><th>Why (from the plan)</th></tr>
+<tr><td>1 Configuration</td><td>Keys list, fail-safe, template v2 with <code>model</code> on 04/05; v1 example marked</td><td>The keys must accept <code>model</code> on 04/05 before any text gives those phases subagent work. Otherwise the fail-safe ignores it.</td></tr>
+<tr><td>2 Search unit</td><td>Units row, the inline rule, section <em>Search</em></td><td>Change A: searching becomes a listed unit on the phase tier, so the rule and the practice agree.</td></tr>
+<tr><td>3 Gate test</td><td>Five self-checks, delta re-check</td><td>Change B: fewer and smaller verifier runs, with a fifth check for the failure this bundle met three times.</td></tr>
+<tr><td>4 Pointers</td><td>Lines in 02, 05 and <code>interview</code></td><td>Phase skills point into the governing skill with one line. The search unit needs that line where searches happen.</td></tr>
+<tr><td>5 Restated copies</td><td>README, ARCHITECTURE, worker description</td><td>Copies change in the same commit as their source, or they contradict the skill.</td></tr>
+<tr><td>6 Verification</td><td>Checks T-1 to T-19 recorded</td><td>The skills have no test runner. The checks are the evidence.</td></tr>
+</table></div>
+<p>Full checklist: <a href="../../bundles/2026-11-05.use_cheaper_subagent_to_work/phase-04-specification/phase.md#implementation-plan">phase.md → Implementation Plan</a>.</p>
+
+<h2 id="tests">How it will be checked</h2>
+<p>The repository has no test framework. Unit and integration tests: none, because the change is prose and YAML in markdown. Nineteen text checks run after the edits. Each check comes from a requirement, not from the edited text.</p>
+<details><summary>Check list T-1 to T-19</summary>
+<div class="tablewrap"><table>
+<tr><th>Id</th><th>Check</th><th>Requirement</th></tr>
+<tr><td>T-1</td><td>Template has <code>version: 2</code> and <code>model: economy</code> on 04 and 05; the Keys row says version 2</td><td>R-7</td></tr>
+<tr><td>T-2</td><td><code>model</code> phase list has seven phases</td><td>R-6</td></tr>
+<tr><td>T-3</td><td>Fail-safe names only <code>feature-analysis</code> for <code>model</code></td><td>R-6</td></tr>
+<tr><td>T-4</td><td>Units row and inline rule present; old line gone</td><td>R-1, R-5</td></tr>
+<tr><td>T-5</td><td>Section <em>Search</em> states every rule</td><td>R-1 to R-4</td></tr>
+<tr><td>T-6</td><td>Verifier statements unchanged</td><td>R-12</td></tr>
+<tr><td>T-7</td><td>Self-check with five checks and the record line</td><td>R-10</td></tr>
+<tr><td>T-8</td><td>Delta re-check text and <code>confirmed (run 1)</code></td><td>R-11</td></tr>
+<tr><td>T-9</td><td>Stop on a failed re-checked row</td><td>R-11</td></tr>
+<tr><td>T-10</td><td>Pointers in 02, 05 and <code>interview</code></td><td>R-1, R-9</td></tr>
+<tr><td>T-11</td><td>README template equals governing template</td><td>R-13</td></tr>
+<tr><td>T-12</td><td>ARCHITECTURE names the search; verifier not on a tier</td><td>R-12, R-13</td></tr>
+<tr><td>T-13</td><td>Worker description names a search</td><td>R-13</td></tr>
+<tr><td>T-14</td><td>Upgrade rule bullets unchanged</td><td>R-8</td></tr>
+<tr><td>T-15</td><td>Search log line uses the existing format</td><td>R-14</td></tr>
+<tr><td>T-16</td><td>Section <em>Search</em> states breadth and parallel runs</td><td>R-15</td></tr>
+<tr><td>T-17</td><td>README Model tiers names searches</td><td>R-13</td></tr>
+<tr><td>T-18</td><td>No new host-wide model setting</td><td>R-16</td></tr>
+<tr><td>T-19</td><td>v1 example marked as v1; v2 sentence present</td><td>R-8</td></tr>
+</table></div>
+</details>
+
+<h2 id="limits">Not included</h2>
+<ul>
+<li>No separate search key. A later change can add one.</li>
+<li>No change to the verifier's model.</li>
+<li>No default subagent model for the whole host.</li>
+<li>The v1 upgrade example is not rewritten. It is marked as the v1 upgrade, and one sentence names what v2 adds.</li>
+<li>The cost measurement on a next bundle is a follow-up for the Architect.</li>
+</ul>
+
+</main>
+</body>
+</html>

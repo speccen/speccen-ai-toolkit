@@ -174,6 +174,9 @@ For each checklist item:
 3. Tick it in the Implementation Plan: `- [x]`
 4. Proceed immediately to the next item
 
+*A question that comes up during a checklist item may run as a search unit (governing skill →
+Subagent Execution → Search). The analysis itself stays in the main session.*
+
 At the end of each phase, report progress to the Architect and continue to the
 next phase without waiting for acknowledgement, unless a gate condition above is met.
 
