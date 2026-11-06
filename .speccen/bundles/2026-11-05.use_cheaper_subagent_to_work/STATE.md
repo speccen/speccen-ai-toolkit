@@ -6,8 +6,8 @@ type: State
 
 | Field | Value |
 |---|---|
-| Current Phase | CLOSE-OUT PHASE |
-| Current Phase Folder | phase-06-close-out |
+| Current Phase | RETROSPECTIVE PHASE |
+| Current Phase Folder | phase-07-retrospective |
 | Phase Status | COMPLETE |
 | Last Updated | 2026-11-05 |
-| Pending Architect Action | Review the delegated decisions and decide the graduation proposal; decide whether to commit the seven skill files (C-1) |
+| Pending Architect Action | Read the Retrospective Report. Address findings as you see fit. Also pending: review round R/1 – R/10 and the graduation proposal |

@@ -74,6 +74,14 @@ type: Index
 | [doc-business](./phase-06-close-out/doc-business.md) | Doc (business) | COMPLETE | The Architect sets a model tier for search questions in each phase from Code Analysis to Implementation |
 | [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | Seven files changed — template version 2, model on 04 and 05, the search unit, the gate-test self-check and delta re-check, pointers and restated copies |
 
+### Phase 07 — Retrospective
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-07-retrospective/phase.md) | Phase | COMPLETE | Working notes for the optional review of the implementation and the delegate's decisions |
+| [retrospective](./phase-07-retrospective/retrospective.md) | Retrospective | COMPLETE | Plan delivered exactly and all checks hold, but the worker the search unit runs on is not fitted for a report-only search, and the delta re-check does not cover runs after a stop |
+| [summary](./phase-07-retrospective/summary.md) | Summary | COMPLETE | Changes requested (proposed) — plan delivered exactly, but the search worker's body and the post-stop re-check need a few more lines |
+
 ## Files
 
 | File |
