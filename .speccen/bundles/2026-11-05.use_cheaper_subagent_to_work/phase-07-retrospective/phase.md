@@ -40,6 +40,17 @@ F-2 (data-not-instructions in the worker and in Search) PASS. Still seven files 
 `.speccen`; uncommitted. Not changed: MEDIUM 3 (re-check after a stop — a rule change for the
 Architect), the read-only toolset (ADR `code_search_agent` follow-up), and the LOW findings.
 
+## Review round answers (2026-11-06, "proceed")
+
+| # | Answer | Effect |
+|---|---|---|
+| R/1 | yes | the seven skill files are committed with the bundle and store (`feat:` commit, close-out Step 10 message) |
+| R/2 – R/8 | as proposed | six entries graduated; G-5 kept local; feature node `produced` and store index/timeline updated |
+| R/9 | confirm | DD-1 – DD-16 ADOPTED; DD-9 WITHDRAWN; DD-14 SUPERSEDED by DD-16 |
+| R/10 | adopt | DD-13 ADOPTED |
+| R/12 | no | no GitHub issues |
+| R/13 | yes | governing Gate test gains: "After a stop, the Architect's answer sets which rows the next verifier run re-checks; rows it does not re-check keep their last `confirmed (run N)`. A verifier that fails a row lists every rule breach it finds in that row at once." T-1 – T-19 still pass |
+
 <a id="outcome"></a>
 ## Outcome
 

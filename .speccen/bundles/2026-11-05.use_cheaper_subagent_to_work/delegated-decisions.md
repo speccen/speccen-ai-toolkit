@@ -22,7 +22,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Session-start Work kind answer "refactoring" ([log.md](./log.md), 17:03). |
 | **Alternatives** | feature |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-2"></a>
 ## DD-2 — Target: the plugin source in this repository at 26.1104.2
@@ -37,7 +37,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief Target row: "speccen plugin `26.1104.2`" ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)). |
 | **Alternatives** | the installed plugin cache (26.1103.1) |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-3"></a>
 ## DD-3 — The `interview` skill is in scope
@@ -52,7 +52,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §2 A5, third bullet ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)). |
 | **Alternatives** | leave `interview` unchanged |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-4"></a>
 ## DD-4 — The §1 evidence counts are taken as stated
@@ -67,7 +67,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §1 ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)). |
 | **Alternatives** | ask the Architect for the evidence bundle |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-5"></a>
 ## DD-5 — Done when: the §6 measurement is a follow-up (hypothesis)
@@ -82,7 +82,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §6 "Run the next bundle with this change" — brief ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)); Phase 01 Step 2a: acceptance settles in Phase 04. |
 | **Alternatives** | include the §6 measurement in acceptance |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-6"></a>
 ## DD-6 — 7/1 deferred to Phase 03
@@ -97,7 +97,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §7 lists 7/1 as a decision "for the Architect" — brief ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)); ADR decisions belong to Phase 03. |
 | **Alternatives** | answer 7/1 now |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-7"></a>
 ## DD-7 — Search-agent choice deferred to Phase 03
@@ -112,7 +112,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §2 A2 "The worker returns **findings only**" and the §1 table row "Explore code searches (Phase 02)" (count 4) — brief ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)). |
 | **Alternatives** | decide `speccen-worker` now |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-8"></a>
 ## DD-8 — 7/3 deferred to Phase 03
@@ -127,7 +127,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §7 lists 7/3 as a decision "for the Architect" — brief ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)); the `version` facts are P02-2. |
 | **Alternatives** | answer 7/3 now |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-9"></a>
 ## DD-9 — 7/2 deferred to Phase 03
@@ -142,7 +142,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §7 7/2 "Follows from 7/1" — brief ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)). |
 | **Alternatives** | answer 7/2 now |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | WITHDRAWN — confirmed by the Architect, review round R/9 (2026-11-06) |
 
 ---
 
@@ -163,7 +163,7 @@ O-2 for Phase 03, not decided. DD-9 stays in this file for the record.
 | **Basis** | Session-start Work kind answer "refactoring" (log.md, 17:03); DD-1. |
 | **Alternatives** | feature |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-11"></a>
 ## DD-11 — Brief §2–§3 (Changes A and B) is the design basis
@@ -178,7 +178,7 @@ O-2 for Phase 03, not decided. DD-9 stays in this file for the record.
 | **Basis** | Brief §2–§4, written by the Architect ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)); §7 names only three decisions "for the Architect". |
 | **Alternatives** | treat A and B as options to decide one by one |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-12"></a>
 ## DD-12 — Restated sites S-1 – S-6 are in scope
@@ -193,7 +193,7 @@ O-2 for Phase 03, not decided. DD-9 stays in this file for the record.
 | **Basis** | Project convention confirmed in Phase 02 ([Coding Patterns & Style](./phase-02-code-analysis/phase.md#code-analysis): restated copies updated in the same commit, e.g. `47ce36a`, `999c03e`); [restated sites](./phase-02-code-analysis/phase.md#restated-sites). |
 | **Alternatives** | keep the brief's Target list only |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-13"></a>
 ## DD-13 — 7/2: Phase 03 code searches run on Phase 03's tier
@@ -208,7 +208,7 @@ O-2 for Phase 03, not decided. DD-9 stays in this file for the record.
 | **Basis** | ADR [2026-11-05.code_search_tier](./adrs/2026-11-05.code_search_tier.md#decision) (03/4); brief §7 7/2 "Follows from 7/1" ([files/gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md)). |
 | **Alternatives** | force `economy` for Phase 03 searches (would need a separate key, which 03/4 rules out) |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/10 (2026-11-06) |
 
 <a id="dd-14"></a>
 ## DD-14 — The v1 upgrade example stays as written
@@ -223,7 +223,7 @@ O-2 for Phase 03, not decided. DD-9 stays in this file for the record.
 | **Basis** | The example describes the v1 upgrade and stays true; ADR [template_version_2](./adrs/2026-11-05.template_version_2.md#decision) compliance names it a Phase 04 choice. |
 | **Alternatives** | rewrite the example for v2 |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | SUPERSEDED by DD-16 — confirmed by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-15"></a>
 ## DD-15 — Skill-text change left uncommitted for the Architect
@@ -238,7 +238,7 @@ O-2 for Phase 03, not decided. DD-9 stays in this file for the record.
 | **Basis** | Phase Transition Protocol step 6 ("commit the changed bundle files — only those"); Invariant 6. |
 | **Alternatives** | commit the skill change in Phase 05 |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 <a id="dd-16"></a>
 ## DD-16 — The v1 upgrade example is marked as v1, with one v2 sentence (supersedes DD-14)
@@ -253,7 +253,7 @@ O-2 for Phase 03, not decided. DD-9 stays in this file for the record.
 | **Basis** | Gate verifier run 1 (Phase 04); governing `:909–910` ("When the template gains a key, its `version` goes up by one, and the key, its comment and the value that means its absence are added above"). |
 | **Alternatives** | leave the example unchanged (DD-14); rewrite the example for v2 |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — by the Architect, review round R/9 (2026-11-06) |
 
 ---
 

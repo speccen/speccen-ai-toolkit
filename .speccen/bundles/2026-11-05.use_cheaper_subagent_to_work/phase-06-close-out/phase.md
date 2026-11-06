@@ -48,7 +48,7 @@ All Implementation Plan items are ticked; none skipped →
 <a id="graduation-proposal"></a>
 ## Graduation Proposal
 
-Pending the Architect (autonomous: path 2 is not decided by the delegate). Default is *keep local*.
+Decided by the Architect in the review round on 2026-11-06 ("proceed": proposed answers accepted, R/2 – R/8). Promoted: G-1 – G-4, G-6, G-7 → `.speccen/decisions/` and `.speccen/lessons/`; G-5 kept local. G-2's Why is taken from the ADR context, not from the retrospective's wording.
 
 | # | Candidate | Kind | Proposed | Evidence |
 |---|---|---|---|---|

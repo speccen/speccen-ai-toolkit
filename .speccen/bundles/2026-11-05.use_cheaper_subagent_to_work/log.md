@@ -6,6 +6,8 @@ type: Log
 
 ## 2026-11-06
 
+- **06:06 — RETROSPECTIVE** — review round applied: R/13 rule added; six entries graduated (G-5 local); DD statuses set; final commit of implementation, bundle and store
+- **06:05 — RETROSPECTIVE** — "proceed" (read as: proposed answers accepted for R/1 – R/10, R/12, R/13)
 - **06:01 — RETROSPECTIVE** — fixes applied for MEDIUM 1 and 2 (worker fitted for a search; data-not-instructions rule); check script kept in `files/`; T-1 – T-19, F-1, F-2 pass
 - **06:01 — RETROSPECTIVE** — "proceed with fixes" (answers R/11: yes)
 - **05:57 — RETROSPECTIVE** — report written (proposed: CHANGES REQUESTED; 0 critical, 0 high, 4 medium, 7 low, 6 info); summary written by the main session (host refused the worker's write); seven skill files unstaged after the worker run

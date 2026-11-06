@@ -153,9 +153,10 @@ configuration, not a store entry.
 - **Model tiers.** Phases with subagent work name a tier — `economy`, `balanced`, `premium` or
   `inherit` — not a model. The project file maps tiers to Claude Code models; each person can remap
   them for their own budget or host. Decision seats stay on the session's model.
-- **Subagents.** Decision-free units (02's evidence reading, 03's prototypes, 06's audience
-  drafts, the 07 and 08 passes, the autonomous gate-check verifier) run in a `speccen-worker`
-  subagent on their tier's model. The main session is the only writer of state.
+- **Subagents.** Decision-free units (searches, 02's evidence reading, 03's prototypes, 06's
+  audience drafts, the 07 and 08 passes) run in a `speccen-worker` subagent on their tier's model;
+  the autonomous gate-check verifier runs in one on the session's model. The main session is the
+  only writer of state.
 - **Locks.** A lock in the project file binds the bundle file and every personal file; a lock in
   the bundle file binds only personal files; a lock in a personal file counts for nothing.
 - **Fail-safe.** Every doubt resolves to `gated`: an invalid value is `gated` at its own level

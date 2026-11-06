@@ -61,10 +61,10 @@ question, the questions it depends on.
 **Facts are yours; decisions are the Architect's.** Never ask the Architect for something you can
 find out.
 - A fact in the bundle or the durable store (an ADR, a standing decision, an earlier feature):
-  look it up — inline, or as a read-only `speccen-worker` unit (governing skill → Subagent
-  Execution).
+  look it up — inline, or as a search unit (governing skill → Subagent Execution → Search).
 - A fact in the code: Phase 01 does not read code, so mark the question "for Phase 02" and leave
-  it out of the interview. Phases 03 and 04 may look it up in the code.
+  it out of the interview. Phases 03 and 04 may look it up in the code — inline, or as a search
+  unit.
 - A lookup in progress holds back only the questions that need its result. Put the other
   questions forward meanwhile.
 
