@@ -9,7 +9,7 @@ mode: autonomous
 #   ask      stop and wait for the Architect (default)
 #   proceed  take its own proposed answer, record it as unconfirmed, and put it to the review round
 # Hard stops (new dependency, conflicting ADRs, irreversible action, failed gate or tests) always halt.
-stops: ask
+stops: proceed
 lock: false                  # true: no bundle file and no local file can change anything
 
 # Per phase. "inherit" means: use the mode above, or the session's model.
