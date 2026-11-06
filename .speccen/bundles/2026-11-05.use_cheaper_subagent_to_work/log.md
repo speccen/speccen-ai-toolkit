@@ -6,6 +6,8 @@ type: Log
 
 ## 2026-11-06
 
+- **06:01 — RETROSPECTIVE** — fixes applied for MEDIUM 1 and 2 (worker fitted for a search; data-not-instructions rule); check script kept in `files/`; T-1 – T-19, F-1, F-2 pass
+- **06:01 — RETROSPECTIVE** — "proceed with fixes" (answers R/11: yes)
 - **05:57 — RETROSPECTIVE** — report written (proposed: CHANGES REQUESTED; 0 critical, 0 high, 4 medium, 7 low, 6 info); summary written by the main session (host refused the worker's write); seven skill files unstaged after the worker run
 - **05:48 — RETROSPECTIVE subagent** — the review and its report (Steps 2–5) · model: premium → opus (project config)
 - **05:47 — RETROSPECTIVE** — "proceed to retro" (review round R/1 – R/9 not answered; stays pending)

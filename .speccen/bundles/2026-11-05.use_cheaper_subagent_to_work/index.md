@@ -87,3 +87,4 @@ type: Index
 | File |
 |---|
 | [gh-22-use-cheaper-subagent.md](./files/gh-22-use-cheaper-subagent.md) |
+| [phase-05-text-checks.py](./files/phase-05-text-checks.py) |
