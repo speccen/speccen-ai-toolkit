@@ -284,8 +284,9 @@ optional pass runs. When both exist, they cross-link: intent ↔ outcome.) If no
 was produced, omit the edge.
 
 **Regenerate** the store's `index.md` (grouped by kind, in the fixed order Timeline / Features /
-Decisions / Lessons learned / Notes — governing skill → Navigation) **and** `timeline.md` (the
-feature nodes, oldest-first) from node frontmatter.
+Decisions / Lessons learned / Notes / Documentation / Reconciliation records — governing skill →
+Navigation; keep the Documentation and Reconciliation sections that already exist) **and**
+`timeline.md` (the feature nodes, oldest-first) from node frontmatter.
 
 If `.speccen/` does not yet exist and anything graduates, create it (the
 `decisions/` `lessons/` `notes/` `features/` folders + `index.md` + `timeline.md`) first.
@@ -454,7 +455,7 @@ Close-out Phase is complete when:
 - [ ] Before/after results are present in `doc-technical.md` (or explicitly pending measurement)
 - [ ] `{{SUMMARY_FILE}}` is written and links to all three audience documents
 - [ ] Durable-store graduation resolved: overrides graduated automatically (both cross-links written); project-wide candidates proposed to and decided by the Architect — or explicitly nothing to graduate (in `autonomous` mode: written as a pending Graduation Proposal)
-- [ ] Feature node written (lightweight spine: `work-kind`, `date`, `touches`, `produced`; `produced-by` inverse on each graduated entry), unless the bundle was reverted; store `index.md` and `timeline.md` regenerated
+- [ ] Feature node written (lightweight spine: `work-kind`, `date`, `touches`, `produced`; `produced-by` inverse on each graduated entry), unless the bundle was reverted; store `index.md` (every section, Documentation and Reconciliation records included) and `timeline.md` regenerated
 - [ ] The Phase 04 specification is graduated into the feature folder and the node's `specification` edge is set
 - [ ] The final commit holds only this run's files (the `doc-technical.md` lists, the bundle, the graduated store entries), and any files left out are reported
 - [ ] `index.md` lists every bundle file this phase wrote, with its current `status` and `description`
