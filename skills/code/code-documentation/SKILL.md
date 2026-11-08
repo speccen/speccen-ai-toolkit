@@ -274,6 +274,15 @@ Present both formats for each diagram so the Architect can choose which to keep.
 - Phase Status remains: `IN PROGRESS`
 - Last Updated: current timestamp
 
+**Update the store index.** Once the `.html` and its `.md` projection are written — and again after
+every revision, because the title can change — upsert this folder's line in the `## Documentation`
+section of `.speccen/index.md`, in the form the governing skill defines (governing skill →
+Navigation). Touch that section only: create it, in its fixed place between Notes and
+Reconciliation records, if it is missing; replace this folder's line if it exists; otherwise
+insert it sorted by `<id>`. Never regenerate the rest of the index. If `.speccen/index.md` does
+not exist, skip this step and do not create the store — Phase 06 close-out or reconcile lists the
+folder when the store is first created.
+
 ### Step 3 — Present Completed Documentation
 
 > "Documentation Generation Phase complete. The DOCUMENTATION document is ready at [path to the .html] (with its reduced .md projection). Please review and provide feedback or approve."
@@ -285,7 +294,7 @@ changes`. Wait for the answer.
 
 **If changes requested:**
 - Add change request as new row in Prompt Log table
-- Update document
+- Update document, then update the store index line again
 - Present revision
 - Wait for approval
 
@@ -295,7 +304,8 @@ changes`. Wait for the answer.
    - Last Updated: current timestamp
 2. Add completion date to Phase History table (update Completed column for DOCUMENTATION GENERATION PHASE)
 3. Add approval as new row in Prompt Log table
-4. **Git commit**: `git commit -m "chore: complete DOCUMENTATION GENERATION PHASE [skip ci]"`
+4. **Git commit**: `git commit -m "chore: complete DOCUMENTATION GENERATION PHASE [skip ci]"` — the
+   commit includes the updated `.speccen/index.md`
 5. Documentation workflow complete
 
 ---
@@ -660,6 +670,8 @@ This creates automatic checkpoints at phase boundaries for audit trail.
 - **Commits to git** at phase transitions
 - **Reads pre-populated DOCUMENTATION.md** if Architect created it
 - **Generates comprehensive documentation** with dual-format diagrams
+- **Lists the documentation in the store index** — its own line in the `## Documentation`
+  section of `.speccen/index.md`, nothing else in the index
 - **Emphasizes Service Contracts** as critical business capability layer
 
 ---
@@ -671,6 +683,8 @@ This creates automatic checkpoints at phase boundaries for audit trail.
 - Does not self-approve structure
 - Does not auto-deploy documentation
 - Does not modify Workflow State without explicit phase completion
+- Does not regenerate the store index, and does not create `.speccen/` — it only upserts its own
+  Documentation line in an index that already exists
 
 ---
 
@@ -689,5 +703,6 @@ This creates automatic checkpoints at phase boundaries for audit trail.
 - [ ] Service Contracts thoroughly documented
 - [ ] Diagrams created (both PlantUML/Mermaid and ASCII)
 - [ ] Prompt Log maintained throughout
+- [ ] The folder's line in the `## Documentation` section of `.speccen/index.md` is current (or the store does not exist yet)
 - [ ] Architect approved documentation
 - [ ] Git commit created (if in repo)

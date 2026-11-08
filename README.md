@@ -615,7 +615,7 @@ store at the repo root:
 ├── notes/         # DURABLE · hiccup-resolutions + small informal decisions
 ├── features/      # DURABLE · feature/refactoring nodes — the time axis
 ├── audits/        # KEPT · maturity audit runs (<date>.baseline first) + history.md scoreboard
-├── documentation/ # KEPT · code-documentation output, one folder per feature
+├── documentation/ # KEPT · code-documentation output, one folder per feature, listed in index.md
 ├── reviews/       # KEPT · code-review reports, one folder per feature
 └── bundles/       # DISPOSABLE · one folder per workflow run, perishes after merge
     └── <id>/      # a bundle (STATE.md, log.md, speccen-config.yaml, phase-NN-.../, adrs/)

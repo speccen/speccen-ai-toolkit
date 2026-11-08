@@ -205,7 +205,7 @@ graduate into a permanent, repo-native store at the repo root:
 ├── notes/         DURABLE · hiccup-resolutions + small informal decisions (low-ceremony)
 ├── features/      DURABLE · feature/refactoring nodes — the time axis
 ├── audits/        KEPT · maturity audit runs, oldest = <date>.baseline, + history.md
-├── documentation/ KEPT · code-documentation output (html + md), one folder per feature
+├── documentation/ KEPT · code-documentation output (html + md), one folder per feature, listed in index.md
 ├── reviews/       KEPT · code-review reports, one folder per feature
 └── bundles/       DISPOSABLE · one folder per workflow run (perishes after merge)
 ```

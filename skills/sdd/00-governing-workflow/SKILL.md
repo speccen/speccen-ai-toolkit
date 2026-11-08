@@ -1836,14 +1836,16 @@ sorts chronologically by plain text. Filenames stay date-only; the precise insta
 - **Root `index.md`** — the single, **complete** map of the store, regenerable. An index lists
   **everything in the store** — a reader opens it and finds every artifact and where it is,
   with nothing omitted. That means: the other top-level projection (`timeline.md`), the entry
-  nodes grouped by kind (one line each: title, status, link), and any reconciliation records.
-  If an artifact exists at the store root, the index lists it. No per-kind index files.
+  nodes grouped by kind (one line each: title, status, link), the code-documentation folders,
+  and any reconciliation records. If an artifact exists at the store root, the index lists it.
+  No per-kind index files.
 - **Section order is fixed: Timeline → Features → Decisions → Lessons learned → Notes →
-  Reconciliation records.** The order follows how a developer digs into the history: first the
-  overview of what happened when, then the features themselves, then the deliberate decisions
-  behind them, then what was learned along the way, then the small informal residue, and last
-  the store's own maintenance log. Each section goes one level deeper, so a reader stops as soon
-  as they have what they need.
+  Documentation → Reconciliation records.** The order follows how a developer digs into the
+  history: first the overview of what happened when, then the features themselves, then the
+  deliberate decisions behind them, then what was learned along the way, then the small
+  informal residue, then the long-lived documentation of what was built, and last the store's
+  own maintenance log. Each section goes one level deeper, so a reader stops as soon as they
+  have what they need.
 - **`timeline.md`** — a second regenerable projection: the feature nodes, oldest-first (see
   Graph model), listed in `index.md` like everything else.
 - **Nav bar** — every entry carries `[Index]` under its H1.
@@ -1879,12 +1881,26 @@ type: Index
 ## Notes
 - [<title>](./notes/<id>.md) — <status>
 
+## Documentation                 (only if any exist)
+- [<title>](./documentation/<id>/<name>_documentation.html) — [md](./documentation/<id>/<name>_documentation.md)
+
 ## Reconciliation records        (only if any exist)
 - [Reconciliation <UTC>](./reconciliation-<UTC>.md)
 ```
 
+**The Documentation section** lists the output of `code-documentation`: one line per folder in
+`.speccen/documentation/`, sorted by `<id>` (oldest first). The title is the H1 of the folder's
+`*_documentation.md`. The line links the `.html` deliverable and its `.md` projection; a folder
+still in planning has no `.html` yet, so its line links the `.md` only. Documentation is not a
+graph node: it has no edges and is not on the timeline, like a reconciliation record. A folder
+holding no `*_documentation.md` and no `*_documentation.html` is not listed — reconcile reports
+it as structural drift. `code-documentation` upserts its own line in this section when it
+writes or revises a document, and only that line; reconcile and Phase 06 close-out regenerate
+the whole index, so they stay the safety net.
+
 Omit a section that has no files yet (no Reconciliation section before the first reconcile
-run). The index is **complete**: whatever is at the store root appears here.
+run, no Documentation section before the first `code-documentation` run). The index is
+**complete**: whatever is at the store root appears here.
 
 ### The entry rules
 
