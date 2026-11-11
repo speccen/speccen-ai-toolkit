@@ -1,6 +1,8 @@
 # speccen project configuration — committed. The defaults for every bundle in this repository.
 # A bundle overrides them in its own speccen-config.yaml; a person in speccen-config.local.yaml.
 
+version: 2                   # the template version — speccen adds new keys at session start
+
 # How the workflow leaves a phase:
 #   gated       stop at the end of the phase and wait for the Architect's go
 #   autonomous  the Architect's delegate decides, and advances once the gate test passes
@@ -23,21 +25,28 @@ lock: false                  # true: no bundle file and no local file can change
 phases:
   feature-analysis:          # 01 — discovery interview
     mode: inherit
+    stops: inherit
     lock: false
   code-analysis:             # 02 — evidence reading runs as a subagent
     mode: inherit
+    stops: inherit
     model: economy
     lock: false
   compliance-review:         # 03 — ADR interview; optional prototypes run as subagents
     mode: inherit
+    stops: inherit
     model: balanced
     prototypes: 0
     lock: false
   specification:             # 04 — the plan and the intent freeze
     mode: inherit
+    stops: inherit
+    model: inherit           # searches
     lock: false
   implementation:            # 05 — the code and the accept
     mode: inherit
+    stops: inherit
+    model: inherit           # searches
     lock: false
   close-out:                 # 06 — the audience documents run as subagents
     model: balanced
