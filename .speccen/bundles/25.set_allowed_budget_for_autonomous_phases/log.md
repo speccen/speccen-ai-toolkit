@@ -6,6 +6,32 @@ type: Log
 
 ## 2026-11-11
 
+- **15:46 — CODE ANALYSIS → COMPLIANCE & REVIEW** — delegate gate check passed after three stops answered by the Architect and one delegate repair (DD-8) ([summary](./phase-02-code-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config)
+- **15:46 — CODE ANALYSIS** — verifier run 6 confirmed row 20; all 20 rows confirmed
+- **15:45 — CODE ANALYSIS subagent** — gate-check verifier, run 6 (row 20 only) · model: session → claude-opus-5-5 (rule: the verifier always runs on the session model)
+- **15:45 — CODE ANALYSIS** — run 5 failed row 20 on a citation (log 15:44 for the 15:43 entry); repaired without a stop round (DD-8): "loop until fixed"
+- **15:45 — CODE ANALYSIS** — I don't know how to express in simple English that have to loop until issues are fixed
+- **15:44 — CODE ANALYSIS subagent** — gate-check verifier, run 5 (row 20 only — per 02/5) · model: session → claude-opus-5-5 (rule: the verifier always runs on the session model)
+- **15:44 — CODE ANALYSIS** — repair (02/5): row 20 reworded to both stop rounds; answer recorded in `summary.md` and here only
+- **15:43 — CODE ANALYSIS** — the Architect's instruction above is taken as part of the decision basis: for the rest of this bundle, a gate test that still fails after its fix is repaired and re-checked by the delegate without a stop round, as long as the run makes progress and no fix changes a conclusion, a delegated decision or an ADR (the guards of issue #25). Each such repair is recorded as a delegated decision. This departs from the current skill text, where condition 5 stays a hard stop under `stops: proceed` (`SKILL.md:1249-1250`); the departure is the Architect's, recorded here verbatim, and is evidence for issue #25. 02/5 is read as "you decide" → the proposed answer (yes)
+- **15:43 — CODE ANALYSIS** — don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?
+- **15:42 — CODE ANALYSIS** — STOP 3 (autonomous, after a stop, `:1180-1182`): verifier run 4 confirmed rows 14 and 17; row 20 not confirmed (its new wording predates recording 02/4 as round 2 — delegate error). Stop round 02/5 → [summary](./phase-02-code-analysis/summary.md#stop-3)
+- **15:41 — CODE ANALYSIS subagent** — gate-check verifier, run 4 (rows 14, 17, 20 — per 02/4) · model: session → claude-opus-5-5 (rule: the verifier always runs on the session model)
+- **15:41 — CODE ANALYSIS** — stop-round repair (02/4): row 20 evidence reworded; round 2 recorded under Interview — note: recording the round appended to `phase.md#interview`, against the "`phase.md` stays unchanged" in the proposal; only row 20 cites that section, and row 20 is in the re-check
+- **15:41 — CODE ANALYSIS** — ok, continue *(read as: yes to 02/4)*
+- **15:40 — CODE ANALYSIS** — STOP 2 (autonomous, stop condition 5 after a stop, `:1180-1182`): verifier run 3 confirmed 18 of 19 re-checked rows; row 20 not confirmed (evidence cell stale after the 15:33 repair). Stop round 02/4 → [summary](./phase-02-code-analysis/summary.md#stop-2)
+- **15:37 — CODE ANALYSIS** — ok, continue *(no question was open; the verifier run 3 was still running)*
+- **15:34 — CODE ANALYSIS subagent** — gate-check verifier, run 3 (rows 5, 8, 10, 19 and rows citing the changed `phase.md`/`summary.md`: 1–15, 17–20; per 02/1) · model: session → claude-opus-5-5 (rule: the verifier always runs on the session model)
+- **15:33 — CODE ANALYSIS** — stop-round repair (02/1 – 02/3): gate-check size 15–24 rows; fail-safe phrasing corrected; "six budgets"; site S-19 (`05-implementation/SKILL.md:27-28`) added; description "seven diffs (six subsections)"; stop round recorded under Interview
+- **15:31 — CODE ANALYSIS** — ok, continue *(read as: yes to every proposal of the stop round — 02/1, 02/2, 02/3)*
+- **15:24 — CODE ANALYSIS** — STOP (autonomous, stop condition 5): verifier run 2 confirmed 15 of 19 re-checked rows; rows 5, 8, 10, 19 not confirmed (precision faults; run 1 failed 6). Stop round 02/1 – 02/3 → [summary](./phase-02-code-analysis/summary.md#stop)
+- **15:23 — CODE ANALYSIS subagent** — gate-check verifier, run 2 resumed after the usage limit reset (interrupted 13:05 by a rate limit)
+- **13:02 — CODE ANALYSIS subagent** — gate-check verifier, run 2 (all rows but 16: failed rows 3, 4, 7, 8, 11, 19, new row 20, and rows citing the changed `phase.md`/`summary.md`) · model: session → claude-opus-5-5 (rule: the verifier always runs on the session model)
+- **13:00 — CODE ANALYSIS** — gate check fix attempt (one allowed): verifier run 1 confirmed 13 of 19 rows; rows 3, 4, 7, 8, 11, 19 not confirmed. Fixed: no-subagent path and 05b paths added to the steps and the diagram (diagram redrawn, boxes and arrows checked by script); lesson quotes made exact; "six places" claim corrected; T-1 … T-19; §5 heading comparison corrected; retrospective INFO finding added; line references corrected (`:914-915`, `:846-915`, `README.md:191-195`, `:193`, `:687-700`, `:1169-1172`, `:1172`); the brief's `:1183-1184` recorded as off by one (`:1184-1185`); commit wording (`8ecb30a` source, branch HEAD `f371eb9`); sites S-16 – S-18 and the subagent re-run budget added; gate row 20 (parked questions) added
+- **12:36 — CODE ANALYSIS subagent** — gate-check verifier, run 1 · model: session → claude-opus-5-5 (rule: the verifier always runs on the session model)
+- **12:35 — CODE ANALYSIS** — summary and gate check written; self-check: done — 1 fix (a retrospective heading quoted with the wrong quote marks)
+- **12:30 — CODE ANALYSIS** — analysis written; searches ran inline on the session model (no search unit launched); evolution-gap doc not generated (no indicator fires)
+- **12:07 — CODE ANALYSIS** — phase started by the autonomous transition (no Architect prompt)
 - **12:06 — FEATURE ANALYSIS → CODE ANALYSIS** — delegate gate check passed after the stop round was answered by the Architect ([summary](./phase-01-feature-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config)
 - **12:05 — FEATURE ANALYSIS** — verifier run 3 confirmed all 14 re-checked rows; rows 1, 9, 14 keep confirmed (run 1)
 - **12:00 — FEATURE ANALYSIS subagent** — gate-check verifier, run 3 (rows 7 and 16, and rows citing a changed file: 2–8, 10–13, 15–17 — per 01/8) · model: session → claude-opus-5-5 (rule: the verifier always runs on the session model)

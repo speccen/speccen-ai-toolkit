@@ -113,3 +113,19 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Alternatives** | acceptance includes a measured run with `fixes: 3` |
 | **Materiality** | not material |
 | **Status** | DELEGATED |
+
+<a id="dd-8"></a>
+## DD-8 — Phase 02 gate repair: correct the log time cited in row 20, re-check without a stop
+
+|     | Info |
+| --- | --- |
+| **Phase** | CODE ANALYSIS PHASE |
+| **When** | 2026-11-11 14:45 UTC |
+| **Question** | Check run 5 failed row 20 on one citation: the Architect's 15:43 words were cited as "log 15:44". Repair and re-check, or stop? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): repair the citation (15:44 → 15:43, two places) and re-check row 20, without a stop round. Row 20 failed in run 4 and run 5 (one row each, so no drop in count), but each time on a different, mechanical defect; the fix changes no conclusion, decision or ADR. |
+| **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45). |
+| **Alternatives** | stop round to the Architect (current skill text, condition 5 after a stop) |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
