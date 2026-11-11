@@ -72,7 +72,7 @@ Close-out complete. The Architect's review set the ceiling to 10 and approved th
 
 | # | Item | Status |
 |---|---|---|
-| DD-12 | OVERRIDDEN (ceiling 10). The override's ADR can be scribed on request (governing skill → Scribing a stated decision) | open, on request |
+| DD-12 | OVERRIDDEN (ceiling 10); ADR [2026-11-11.fix_budget_ceiling_10](../adrs/2026-11-11.fix_budget_ceiling_10.md) scribed on the Architect's request | closed |
 | DD-14, DD-30 – DD-32 | ADOPTED | closed |
 | G-1 – G-7 | Graduation proposal | decided |
 | C-1 | Commit the three skill files | done (R/5) |

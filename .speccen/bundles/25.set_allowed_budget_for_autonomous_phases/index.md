@@ -4,6 +4,12 @@ type: Index
 
 # set allowed budget for autonomous phases — Analysis Bundle
 
+## Architecture Decision Records
+
+| ADR | Date | Status | Description |
+|---|---|---|---|
+| [2026-11-11.fix_budget_ceiling_10](./adrs/2026-11-11.fix_budget_ceiling_10.md) | 2026-11-11 | DECIDED | What is the highest number of fix attempts a phase's fix budget may allow? (review R/1, overrides DD-12) |
+
 ## Bundle Control
 
 | File | Type | Description |
