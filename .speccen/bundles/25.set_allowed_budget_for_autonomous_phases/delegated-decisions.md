@@ -129,3 +129,228 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Materiality** | not material |
 | **Status** | DELEGATED |
 
+
+<a id="dd-9"></a>
+## DD-9 — Kind of request: fix (confirmed)
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:50 UTC |
+| **Question** | Is the kind of request confirmed as a fix? |
+| **Interview question** | [`03/1`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): fix. Phase 01 hypothesis H-1 holds. |
+| **Basis** | Session-start Work kind answer "fix" ([log.md](./log.md), 11:05); brief §1: the stop "costs the Architect's attention and does not add a decision". |
+| **Alternatives** | feature |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-10"></a>
+## DD-10 — Reach: the budget also governs the Phase 05 accept check
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:50 UTC |
+| **Question** | Does the fix budget also govern the Phase 05 accept check, so a spent or stalled budget there still leads to rejection and revert, not to a stop? |
+| **Interview question** | [`03/2`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. Phase 05 Step 7 (`05-implementation/SKILL.md:324`) fixes up to the phase's effective `fixes`, with the same guards; when the budget is spent or stalls, the delegate rejects and runs 05b as today. Phase 01 hypothesis H-2 holds. |
+| **Basis** | Brief §2: "It applies to **every `autonomous` phase**"; §2.3: `fixes` takes the same five phases as `mode`, `implementation` included — without this, `phases.implementation.fixes` would have no effect. |
+| **Alternatives** | governing gate test only; Phase 05 keeps "fix once" |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-11"></a>
+## DD-11 — Values `1`, `2`, `3`
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:50 UTC |
+| **Question** | Are the key's values `1`, `2` or `3`? |
+| **Interview question** | [`03/10`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | Brief §2.3; bounded by the ceiling of 3 ([DD-12](#dd-12)) and the default `1` ([DD-17](#dd-17)). |
+| **Alternatives** | another range |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-12"></a>
+## DD-12 — Ceiling: keep 3 fix attempts, not a loop with no ceiling
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:50 UTC |
+| **Question** | Does the ceiling of 3 fix attempts stay, rather than looping with no ceiling until the check passes? |
+| **Interview question** | [`03/3`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): keep the ceiling of 3. The Architect's 15:45 words govern how this bundle runs under today's one-fix rule; with `fixes: 3` and the progress guard, a converging run loops on its own up to the ceiling. |
+| **Basis** | Brief §2 guard 3 ("At most `3` fix attempts") and §4 ("Unbounded retries" rejected); the Architect: "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45). |
+| **Alternatives** | no ceiling — loop while the progress guard holds |
+| **Materiality** | MATERIAL — unconfirmed |
+| **Status** | DELEGATED |
+
+<a id="dd-13"></a>
+## DD-13 — Conclusions guard: stop at once
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:50 UTC |
+| **Question** | Does the delegate stop at once when the next fix would change a phase conclusion, a delegated decision or an ADR? |
+| **Interview question** | [`03/4`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | Brief §2, guard 2. |
+| **Alternatives** | let the budget cover such fixes |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-14"></a>
+## DD-14 — Progress measured by breaches, not by the count of failed rows
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:50 UTC |
+| **Question** | Is "no progress" measured by breaches, not by the count of failed rows: stop when a breach the run before named is still there, or when more rows fail than in the run before? |
+| **Interview question** | [`03/5`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. This replaces the brief's "fails as many rows or more than the run before". It does not depend on which rows a run re-checks (Phase 02 O-5). |
+| **Basis** | Brief §2 guard 1, intent "the delegate is going round in circles, not converging"; this bundle's Phase 02 check runs 4 and 5 each failed row 20 on a different defect and run 6 passed ([log.md](./log.md), 15:42 – 15:46) — the brief's count would have stopped a converging run; the Architect: "loop until issues are fixed" ([log.md](./log.md), 15:45). |
+| **Alternatives** | the brief's row count ("as many rows or more") |
+| **Materiality** | MATERIAL — unconfirmed |
+| **Status** | DELEGATED |
+
+<a id="dd-15"></a>
+## DD-15 — Restated site: the version row says version 3
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:50 UTC |
+| **Question** | Does the version row (`SKILL.md:691`) change from "the current version is `2`" to `3`? |
+| **Interview question** | [`03/11`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | Done-when hypothesis H-4 ([DD-7](#dd-7)): "every other place that restates the changed rules agrees"; version 3 ([DD-18](#dd-18)); Phase 02 site S-10. |
+| **Alternatives** | leave the row unchanged |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-16"></a>
+## DD-16 — Self-check line: "N corrections" instead of "N fixes"
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:50 UTC |
+| **Question** | Is the self-check record line renamed from "N fixes" to "N corrections", so "fix" means only a gate-test fix attempt? |
+| **Interview question** | [`03/6`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes, at `SKILL.md:1168`. Records in earlier bundles stay as written. |
+| **Basis** | Governing skill, STE rule 4 "One meaning per word"; the brief's new log line "fix attempt <n> of <fixes>". |
+| **Alternatives** | keep "N fixes" |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-17"></a>
+## DD-17 — Default `1`
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:55 UTC |
+| **Question** | Is the default `1`, so absence and the upgrade keep today's behaviour? |
+| **Interview question** | [`03/7`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | Brief §2.1 ("default `1`"), §2.5 and §3 "Unchanged by default". |
+| **Alternatives** | another default |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-18"></a>
+## DD-18 — Template version 3
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:55 UTC |
+| **Question** | Does the template go to version 3? |
+| **Interview question** | [`03/8`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | Brief §2.4, §2.5; "When the template gains a key, its `version` goes up by one" (`SKILL.md:914-915`). |
+| **Alternatives** | no version bump |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-19"></a>
+## DD-19 — Restated site: the README absence values gain `1`
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:55 UTC |
+| **Question** | Do the README absence values (`README.md:193`) gain `1`? |
+| **Interview question** | [`03/12`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | Done-when hypothesis H-4 ([DD-7](#dd-7)); default `1` ([DD-17](#dd-17)); Phase 02 site S-11. |
+| **Alternatives** | leave the list unchanged |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-20"></a>
+## DD-20 — Restated site: the fail-safe example stays
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:55 UTC |
+| **Question** | Does the fail-safe example (`SKILL.md:944-946`) stay unchanged? |
+| **Interview question** | [`03/9`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | The rule covers `fixes` on a phase that does not take it without naming it, so it stays true; Phase 02 site S-14. |
+| **Alternatives** | add `fixes` to the example |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-21"></a>
+## DD-21 — Phase 03 gate fix: repair the five failed rows and re-check every row
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:55 UTC |
+| **Question** | Check run 1 did not confirm rows 2, 3, 13, 14 and 15 (an empty `adrs/` folder called absent; questions holding more than one decision; an unlogged quote; one decision question that differs from its interview question). The gate test allows one fix and a re-run (`SKILL.md:1176-1179`): does the re-run re-check every row? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): yes — the repair changed every file the rows cite, so every row is re-checked. Splitting the questions changes the record's structure, not an answer: every earlier answer stands. This is the one fix the current text allows; it does not depart from it. |
+| **Basis** | Gate test: the re-run re-checks "every row that failed" and "every row whose evidence is in a file you changed during the fix" (`SKILL.md:1176-1179`). |
+| **Alternatives** | re-check only the failed rows |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-22"></a>
+## DD-22 — Phase 03 gate repair after the fix: repair the two failed rows and re-check, without a stop
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 14:58 UTC |
+| **Question** | Check run 2 did not confirm rows 3 and 15 (question numbers that do not run on across rounds; a default cited to a brief section that does not state it), after the one allowed fix. Repair and re-check, or stop? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): repair and re-check every row that cites a changed file. Progress: 5 failed rows in run 1, 2 in run 2, and no breach of run 1 came back. Renumbering changes no answer. |
+| **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45). |
+| **Alternatives** | stop round to the Architect (current skill text, condition 5: the gate test still fails after one fix attempt) |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-23"></a>
+## DD-23 — Phase 03 gate repair: correct the brief-section list in row 15, re-check without a stop
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-11 15:01 UTC |
+| **Question** | Check run 3 did not confirm row 15: its list of cited brief sections left out §2.1 and named §2.6, which no file in its scope cites. Repair and re-check, or stop? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): correct the list to "§1, §2, §2.1, §2.3 – §2.5, §3, §4" and re-check rows 9, 12, 14 and 15 (the rows citing `summary.md` or `delegated-decisions.md`). Progress: 2 failed rows in run 2, 1 in run 3, and no breach of run 2 came back. The fix changes no answer. |
+| **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45). |
+| **Alternatives** | stop round to the Architect (current skill text, condition 5: the gate test still fails after one fix attempt) |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
