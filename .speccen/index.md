@@ -9,6 +9,7 @@ type: Index
 
 ## Features
 - [Use cheaper subagent to work](./features/2026-11-05.use_cheaper_subagent_to_work/node.md) — active
+- [Set allowed budget for autonomous phases](./features/25.set_allowed_budget_for_autonomous_phases/node.md) — active
 
 ## Decisions
 - [Searches share the phase's `model` tier — no separate search key](./decisions/2026-11-05.code_search_tier.md) — active
