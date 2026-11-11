@@ -47,8 +47,17 @@ type: Index
 | [specification](./phase-04-specification/specification.html) | Specification | COMPLETE | Intent specification — a fixes budget for the gate test of autonomous phases, with three guards |
 | [specification (reduced)](./phase-04-specification/specification.md) | Specification | COMPLETE | Reduced projection of specification.html — a fixes budget for the gate test of autonomous phases, with three guards |
 
+### Phase 05 — Implementation
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-05-implementation/phase.md) | Phase | COMPLETE | The fixes budget written into the governing skill, the Phase 05 skill and the README; text checks T-1 – T-19 |
+| [summary](./phase-05-implementation/summary.md) | Summary | COMPLETE | The fixes budget is in the governing skill, the Phase 05 skill and the README; text checks T-1 – T-19 pass; changes uncommitted for the Architect |
+
 ## Files
 
 | File |
 |---|
 | [gh-25-gate-test-fix-budget.md](./files/gh-25-gate-test-fix-budget.md) |
+| [phase-05-move-test.py](./files/phase-05-move-test.py) |
+| [phase-05-text-checks.py](./files/phase-05-text-checks.py) |

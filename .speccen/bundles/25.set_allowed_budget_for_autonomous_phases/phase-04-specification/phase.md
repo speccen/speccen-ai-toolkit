@@ -129,7 +129,7 @@ prototype ran, so no strategy table is needed.
 
 ### Implementation Phases
 
-#### Phase 1: Configuration — the `fixes` key, the template and the upgrade ⬜
+#### Phase 1: Configuration — the `fixes` key, the template and the upgrade ✅
 
 **Why:** The key must exist, with its values, default, template entry and upgrade rule, before
 any rule refers to "the phase's effective `fixes`". Keys, template, upgrade and fail-safe
@@ -137,30 +137,30 @@ change together, as for `stops` — source: brief §2.3 – §2.6; DD-11, DD-15,
 [Phase 02 Data Model](../phase-02-code-analysis/phase.md#code-analysis).
 
 ##### 1.1 Keys
-- [ ] Governing Keys table, `version` row (`:691`): "the current version is `2`" → "the current version is `3`" (DD-15).
-- [ ] Governing Keys table, after the `phases.<phase>.stops` row (`:695`): add the two rows of brief §2.3 — `` | `fixes` | `1` · `2` · `3` | `autonomous` only; the default at that level. How many fix attempts the delegate makes on a failing gate test before it stops (Autonomous Execution → Gate test). Independent of `stops` | `` and `` | `phases.<phase>.fixes` | `inherit` · `1` · `2` · `3` | `autonomous` only; the fix budget for one phase. `inherit` means no value at this level | ``.
-- [ ] Governing "Which phases take which key", after the `stops` bullet (`:707`): add "- `fixes`: the same five phases as `mode`. It has no effect in a `gated` phase."
+- [x] Governing Keys table, `version` row (`:691`): "the current version is `2`" → "the current version is `3`" (DD-15).
+- [x] Governing Keys table, after the `phases.<phase>.stops` row (`:695`): add the two rows of brief §2.3 — `` | `fixes` | `1` · `2` · `3` | `autonomous` only; the default at that level. How many fix attempts the delegate makes on a failing gate test before it stops (Autonomous Execution → Gate test). Independent of `stops` | `` and `` | `phases.<phase>.fixes` | `inherit` · `1` · `2` · `3` | `autonomous` only; the fix budget for one phase. `inherit` means no value at this level | ``.
+- [x] Governing "Which phases take which key", after the `stops` bullet (`:707`): add "- `fixes`: the same five phases as `mode`. It has no effect in a `gated` phase."
 
 ##### 1.2 Template (`:731-798`)
-- [ ] `version: 2` → `version: 3` (DD-18).
-- [ ] After `stops: ask`: add the two comment lines and the key of brief §2.4 — "# How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–3).", "# It stops sooner when a repair makes no progress or would change a conclusion.", "fixes: 1".
-- [ ] Per-phase legend, after the `stops` line: add "#   fixes       inherit · 1 · 2 · 3 — autonomous only: see the top-level fixes".
-- [ ] Add `fixes: inherit` after `stops: inherit` in `feature-analysis`, `code-analysis`, `compliance-review`, `specification` and `implementation`.
+- [x] `version: 2` → `version: 3` (DD-18).
+- [x] After `stops: ask`: add the two comment lines and the key of brief §2.4 — "# How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–3).", "# It stops sooner when a repair makes no progress or would change a conclusion.", "fixes: 1".
+- [x] Per-phase legend, after the `stops` line: add "#   fixes       inherit · 1 · 2 · 3 — autonomous only: see the top-level fixes".
+- [x] Add `fixes: inherit` after `stops: inherit` in `feature-analysis`, `code-analysis`, `compliance-review`, `specification` and `implementation`.
 
 ##### 1.3 Upgrade (`:857-861`, `:907-908`)
 **Why:** the Architect asked that the upgrade bring in the new version key on its own — source: log 11:05.
-- [ ] Absence values: "`mode: gated`, `stops: ask` and `lock: false` at the top; `inherit` for a phase's `mode`, `stops` and `model`" → "`mode: gated`, `stops: ask`, `fixes: 1` and `lock: false` at the top; `inherit` for a phase's `mode`, `stops`, `fixes` and `model`" (brief §2.5).
-- [ ] After the version-2 sentence (`:907-908`): add "An upgrade to version 3 adds `fixes: 1` at the top and `fixes: inherit` to the five phases that take `stops`, and sets `version: 3`. Behaviour is unchanged until the Architect raises `fixes`."
+- [x] Absence values: "`mode: gated`, `stops: ask` and `lock: false` at the top; `inherit` for a phase's `mode`, `stops` and `model`" → "`mode: gated`, `stops: ask`, `fixes: 1` and `lock: false` at the top; `inherit` for a phase's `mode`, `stops`, `fixes` and `model`" (brief §2.5).
+- [x] After the version-2 sentence (`:907-908`): add "An upgrade to version 3 adds `fixes: 1` at the top and `fixes: inherit` to the five phases that take `stops`, and sets `version: 3`. Behaviour is unchanged until the Architect raises `fixes`."
 
 ##### 1.4 Effective settings and fail-safe (`:925-926`, `:941`)
-- [ ] "The other per-phase keys (`stops`, `model`, `prototypes`) … (`ask`, `inherit`, `0`)" → "The other per-phase keys (`stops`, `fixes`, `model`, `prototypes`) … (`ask`, `1`, `inherit`, `0`)" (brief §2.6).
-- [ ] After the `prototypes` fail-safe line (`:941`): add "- A `fixes` value that is not `1`, `2` or `3` counts as `1`." (brief §2.6; the ceiling, DD-12).
-- [ ] Leave the "key on a phase that does not take it" line (`:944-946`) unchanged (DD-20).
+- [x] "The other per-phase keys (`stops`, `model`, `prototypes`) … (`ask`, `inherit`, `0`)" → "The other per-phase keys (`stops`, `fixes`, `model`, `prototypes`) … (`ask`, `1`, `inherit`, `0`)" (brief §2.6).
+- [x] After the `prototypes` fail-safe line (`:941`): add "- A `fixes` value that is not `1`, `2` or `3` counts as `1`." (brief §2.6; the ceiling, DD-12).
+- [x] Leave the "key on a phase that does not take it" line (`:944-946`) unchanged (DD-20).
 
 ##### 1.5 Build and Validate
-- [ ] No build exists (Markdown only). Validate: T-1, T-2, T-3, T-4, T-5, T-6, T-7 pass.
+- [x] No build exists (Markdown only). Validate: T-1, T-2, T-3, T-4, T-5, T-6, T-7 pass.
 
-#### Phase 2: Gate test — the fix budget and its guards ⬜
+#### Phase 2: Gate test — the fix budget and its guards ✅
 
 **Why:** This is the change itself: the delegate repairs its own work up to the budget, and stops
 sooner when a repair would change a conclusion or the runs stop converging. It needs the key
@@ -169,20 +169,20 @@ are fixed" (log 15:45).
 
 ##### 2.1 The fix rule (`:1176-1182`)
 **Why:** progress counts breaches, not failed rows, because a later run re-checks another set of rows; the verifier already lists every breach of a failed row (`:1181-1182`) — source: DD-14.
-- [ ] Replace the bullet "If any item fails, fix it once and run the test again. … If a re-checked row still fails, stop." with: "If any item fails, fix it and run the test again — up to the phase's effective `fixes` attempts (Configuration; default `1`). Each later verifier run re-checks (a) every row that failed in the run before, and (b) every row whose evidence is in a file you changed during the fix. Rows it does not re-check keep their last `confirmed (run N)`."
-- [ ] Add after it the stop bullet: "Stop (stop condition 5) when: 1. the fix you would make next changes a phase conclusion, a delegated decision or an ADR; or 2. a re-checked row still fails and the budget is used up; or 3. a run makes no progress: a rule breach the run before named is still there, or more rows fail than in the run before. Log each attempt as `fix attempt <n> of <fixes>: run <N> failed rows <list>`."
-- [ ] Replace the "After a stop" bullet with brief §2.1's text: "After a stop, the Architect's answer sets which rows the next verifier run re-checks, and whether further fix attempts are allowed; without that, one run, and a failing row stops again. Rows it does not re-check keep their last `confirmed (run N)`. A verifier that fails a row lists every rule breach it finds in that row at once."
+- [x] Replace the bullet "If any item fails, fix it once and run the test again. … If a re-checked row still fails, stop." with: "If any item fails, fix it and run the test again — up to the phase's effective `fixes` attempts (Configuration; default `1`). Each later verifier run re-checks (a) every row that failed in the run before, and (b) every row whose evidence is in a file you changed during the fix. Rows it does not re-check keep their last `confirmed (run N)`."
+- [x] Add after it the stop bullet: "Stop (stop condition 5) when: 1. the fix you would make next changes a phase conclusion, a delegated decision or an ADR; or 2. a re-checked row still fails and the budget is used up; or 3. a run makes no progress: a rule breach the run before named is still there, or more rows fail than in the run before. Log each attempt as `fix attempt <n> of <fixes>: run <N> failed rows <list>`."
+- [x] Replace the "After a stop" bullet with brief §2.1's text: "After a stop, the Architect's answer sets which rows the next verifier run re-checks, and whether further fix attempts are allowed; without that, one run, and a failing row stops again. Rows it does not re-check keep their last `confirmed (run N)`. A verifier that fails a row lists every rule breach it finds in that row at once."
 
 ##### 2.2 Self-check record line (`:1168`)
-- [ ] "`Self-check: done — N fixes`" → "`Self-check: done — N corrections`" (DD-16).
+- [x] "`Self-check: done — N fixes`" → "`Self-check: done — N corrections`" (DD-16).
 
 ##### 2.3 Stop condition 5 (`:1212`)
-- [ ] "5. a gate test still fails after one fix attempt;" → "5. a gate test still fails after the fix budget, makes no progress, or needs a fix that changes a conclusion, a delegated decision or an ADR (Gate test);" (brief §2.2).
+- [x] "5. a gate test still fails after one fix attempt;" → "5. a gate test still fails after the fix budget, makes no progress, or needs a fix that changes a conclusion, a delegated decision or an ADR (Gate test);" (brief §2.2).
 
 ##### 2.4 Build and Validate
-- [ ] Validate: T-8, T-9, T-10, T-11, T-12, T-13 pass.
+- [x] Validate: T-8, T-9, T-10, T-11, T-12, T-13 pass.
 
-#### Phase 3: Phase 05 accept — the same budget ⬜
+#### Phase 3: Phase 05 accept — the same budget ✅
 
 **Why:** `phases.implementation.fixes` must have an effect, so the Phase 05 accept check uses the
 budget and the guards; it keeps its own outcome — reject and 05b — when the budget is spent or
@@ -190,13 +190,13 @@ the runs stop converging. It needs the Phase 2 rule to point to — source: DD-1
 [Phase 02 site S-12](../phase-02-code-analysis/phase.md#restated-sites).
 
 ##### 3.1 Step 7 (`05-implementation/SKILL.md:324-325`)
-- [ ] "If it fails, fix once and test again. If it still fails, the delegate rejects: run Phase 05b." → "If it fails, fix and test again, up to the phase's effective `fixes` attempts, with the gate test's guards (governing skill → Autonomous Execution → Gate test). If the next fix would change a phase conclusion, a delegated decision or an ADR, stop. If it still fails when the budget is used up, or a run makes no progress, the delegate rejects: run Phase 05b."
-- [ ] Leave "After two rejected iterations, stop." (`:330`) and the opening sentence (`:27-28`) unchanged.
+- [x] "If it fails, fix once and test again. If it still fails, the delegate rejects: run Phase 05b." → "If it fails, fix and test again, up to the phase's effective `fixes` attempts, with the gate test's guards (governing skill → Autonomous Execution → Gate test). If the next fix would change a phase conclusion, a delegated decision or an ADR, stop. If it still fails when the budget is used up, or a run makes no progress, the delegate rejects: run Phase 05b."
+- [x] Leave "After two rejected iterations, stop." (`:330`) and the opening sentence (`:27-28`) unchanged.
 
 ##### 3.2 Build and Validate
-- [ ] Validate: T-14, T-15 pass.
+- [x] Validate: T-14, T-15 pass.
 
-#### Phase 4: Restated copies ⬜
+#### Phase 4: Restated copies ✅
 
 **Why:** The README restates the absence values and copies the template; a copy that differs from
 its source tells the reader something false. It comes after Phases 1 and 2, because it copies the
@@ -204,13 +204,13 @@ final template block and absence values from Phase 1 — source: DD-19; done-whe
 [restated sites](../phase-02-code-analysis/phase.md#restated-sites) S-5, S-11.
 
 ##### 4.1 README
-- [ ] `README.md:193`: "(`inherit`, `ask`, `0`, `false`)" → "(`inherit`, `ask`, `1`, `0`, `false`)" (DD-19).
-- [ ] `README.md:238-305`: replace the template block with the new governing template block, character for character.
+- [x] `README.md:193`: "(`inherit`, `ask`, `0`, `false`)" → "(`inherit`, `ask`, `1`, `0`, `false`)" (DD-19).
+- [x] `README.md:238-305`: replace the template block with the new governing template block, character for character.
 
 ##### 4.2 Build and Validate
-- [ ] Validate: T-16, T-17 pass.
+- [x] Validate: T-16, T-17 pass.
 
-#### Phase 5: Verification and hand-over ⬜
+#### Phase 5: Verification and hand-over ✅
 
 **Why:** The skills have no test runner, so the planned text checks are the evidence that the
 text says what the requirements state. It comes last, because it checks the text that Phases 1 – 4 change — source: [Phase 02 test
@@ -218,12 +218,12 @@ conventions](../phase-02-code-analysis/phase.md#code-analysis); precedent
 `.speccen/bundles/2026-11-05.use_cheaper_subagent_to_work/files/phase-05-text-checks.py`.
 
 ##### 5.1 Run all checks
-- [ ] Write the checks T-1 – T-19 as `files/phase-05-text-checks.py` (run with `python3 -I` from the repository root) and record each result in `phase-05-implementation/phase.md`.
-- [ ] `git diff --stat -- . ':(exclude).speccen'` shows only the three files of the Proposed Changes Summary.
-- [ ] Leave the skill changes uncommitted for the Architect (DD-24).
+- [x] Write the checks T-1 – T-19 as `files/phase-05-text-checks.py` (run with `python3 -I` from the repository root) and record each result in `phase-05-implementation/phase.md`.
+- [x] `git diff --stat -- . ':(exclude).speccen'` shows only the three files of the Proposed Changes Summary.
+- [x] Leave the skill changes uncommitted for the Architect (DD-24).
 
 ##### 5.2 Build and Validate
-- [ ] All checks pass, or each failure is a deviation.
+- [x] All checks pass, or each failure is a deviation.
 
 ### Risk Mitigation
 

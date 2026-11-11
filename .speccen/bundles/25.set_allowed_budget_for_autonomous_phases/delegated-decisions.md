@@ -444,3 +444,48 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Alternatives** | a stop round to the Architect |
 | **Materiality** | not material |
 | **Status** | DELEGATED |
+
+<a id="dd-30"></a>
+## DD-30 — Phase 05 accept after check run 2: repair the check script again, not reject
+
+|     | Info |
+| --- | --- |
+| **Phase** | IMPLEMENTATION PHASE |
+| **When** | 2026-11-11 20:08 UTC |
+| **Question** | Check run 2 of the Phase 05 accept did not confirm row 7: checks T-8, T-12 and T-14 search a wider area than their Test Plan rows name. The current Step 7 says "If it still fails, the delegate rejects: run Phase 05b". Reject and revert the three skill files, or repair the check script and re-check? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): repair and re-check rows 7, 8, 11, 12 and 14. Progress: run 1 failed 1 row and run 2 failed 1 row, and the T-9 breach that run 1 named is gone. Every failure lies in the check script; run 1 and run 2 both confirmed that the skill text states every requirement (R-1 – R-15). A rejection would revert correct skill text to repair a test. The repair narrows T-8, T-12 and T-14 to their bullets. (Check run 3 found seven more checks with the same weakness; the stop round 05/1 covers that repair.) |
+| **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45); the progress guard of [DD-14](#dd-14); the same loop in Phases 03 and 04 (DD-22, DD-23, DD-26 – DD-29). |
+| **Alternatives** | reject and run Phase 05b (the current Step 7 text); a stop round to the Architect |
+| **Materiality** | not material — it changes no requirement, plan item or skill text |
+| **Status** | DELEGATED |
+
+<a id="dd-31"></a>
+## DD-31 — Phase 05 accept after check run 5: repair the check script, no stop
+
+|     | Info |
+| --- | --- |
+| **Phase** | IMPLEMENTATION PHASE |
+| **When** | 2026-11-11 20:24 UTC |
+| **Question** | Check run 5 did not confirm rows 7 and 11: T-13 and T-15 compare their unchanged bullets with `a7c8206` wherever the bullets are, not in their places, and the row-7 evidence claims every check reads its place. Repair and re-check, or stop? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): repair and re-check rows 7, 8 and 11 and the rows that cite a changed file. Progress: run 4 failed 2 rows and run 5 failed 2 rows (not more), and the T-7 breach that run 4 named is gone. The repair reads the T-13 bullet only in "Proceeding on a proposal", the T-15 bullet only in "Mode behaviour", and the T-19 Locks text only in "Effective settings" (the delegate found T-19 itself). When the text a check reads is not in its place, the check fails or the script stops with an error; the move test counts both as a fail (wording corrected after verifier runs 6 and 7, DD-32, stop round 05/3). The move test gains three cases that move each whole bullet or block, and all 24 cases fail. |
+| **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45); the progress guard of [DD-14](#dd-14); the Architect's "ok, continue" to the stop rounds 05/1 and 05/2 (log 21:13, 21:20). |
+| **Alternatives** | a stop round to the Architect; reject and run Phase 05b |
+| **Materiality** | not material — it changes no requirement, plan item or skill text |
+| **Status** | DELEGATED |
+
+<a id="dd-32"></a>
+## DD-32 — Phase 05 accept after check run 6: correct one overstated claim, no stop
+
+|     | Info |
+| --- | --- |
+| **Phase** | IMPLEMENTATION PHASE |
+| **When** | 2026-11-11 20:28 UTC |
+| **Question** | Check run 6 confirmed row 7 (every check reads its place) and did not confirm row 11: the summary, DD-31 and the 21:24 log entry say that a check whose place is gone fails without an error, but a missing section heading, or a missing Step 7 or Phase 05b bullet, stops the script with an error. Repair and re-check, or stop? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): correct the three texts to say what the script does, and re-check row 11. (The first correction was still not true in every case; check run 7 failed it, and the stop round 05/3 settled the final sentence: "When the text a check reads is not in its place, the check fails or the script stops with an error; the move test counts both as a fail.") The script does not change: an error is a fail in the move test, and the Test Plan does not ask for a clean failure. Progress: run 5 failed 2 rows and run 6 failed 1, and the T-13/T-15 breach that run 5 named is gone. |
+| **Basis** | Architect: "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45); the progress guard of [DD-14](#dd-14). |
+| **Alternatives** | make the script catch every missing section; a stop round to the Architect |
+| **Materiality** | not material — it changes wording in the bundle records only |
+| **Status** | DELEGATED |
