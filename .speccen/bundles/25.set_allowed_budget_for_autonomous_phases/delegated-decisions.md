@@ -188,7 +188,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §2 guard 3 ("At most `3` fix attempts") and §4 ("Unbounded retries" rejected); the Architect: "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45). |
 | **Alternatives** | no ceiling — loop while the progress guard holds |
 | **Materiality** | MATERIAL — unconfirmed |
-| **Status** | DELEGATED |
+| **Status** | OVERRIDDEN — the Architect: "1 max loop 10" (log 21:58, review R/1): the ceiling is 10, not 3 |
 
 <a id="dd-13"></a>
 ## DD-13 — Conclusions guard: stop at once
@@ -218,7 +218,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §2 guard 1, intent "the delegate is going round in circles, not converging"; this bundle's Phase 02 check runs 4 and 5 each failed row 20 on a different defect and run 6 passed ([log.md](./log.md), 15:42 – 15:46) — the brief's count would have stopped a converging run; the Architect: "loop until issues are fixed" ([log.md](./log.md), 15:45). |
 | **Alternatives** | the brief's row count ("as many rows or more") |
 | **Materiality** | MATERIAL — unconfirmed |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect: "rest yes" (log 21:58, review R/2 – R/3) |
 
 <a id="dd-15"></a>
 ## DD-15 — Restated site: the version row says version 3
@@ -458,7 +458,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45); the progress guard of [DD-14](#dd-14); the same loop in Phases 03 and 04 (DD-22, DD-23, DD-26 – DD-29). |
 | **Alternatives** | reject and run Phase 05b (the current Step 7 text); a stop round to the Architect |
 | **Materiality** | not material — it changes no requirement, plan item or skill text |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect: "rest yes" (log 21:58, review R/2 – R/3) |
 
 <a id="dd-31"></a>
 ## DD-31 — Phase 05 accept after check run 5: repair the check script, no stop
@@ -473,7 +473,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45); the progress guard of [DD-14](#dd-14); the Architect's "ok, continue" to the stop rounds 05/1 and 05/2 (log 21:13, 21:20). |
 | **Alternatives** | a stop round to the Architect; reject and run Phase 05b |
 | **Materiality** | not material — it changes no requirement, plan item or skill text |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect: "rest yes" (log 21:58, review R/2 – R/3) |
 
 <a id="dd-32"></a>
 ## DD-32 — Phase 05 accept after check run 6: correct one overstated claim, no stop
@@ -488,4 +488,4 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Architect: "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45); the progress guard of [DD-14](#dd-14). |
 | **Alternatives** | make the script catch every missing section; a stop round to the Architect |
 | **Materiality** | not material — it changes wording in the bundle records only |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect: "rest yes" (log 21:58, review R/2 – R/3) |

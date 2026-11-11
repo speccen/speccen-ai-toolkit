@@ -6,6 +6,8 @@ type: Log
 
 ## 2026-11-11
 
+- **21:59 — CLOSE-OUT** — review recorded: DD-12 OVERRIDDEN (ceiling 10), DD-14 and DD-30 – DD-32 ADOPTED; ceiling 10 applied to the governing skill (Keys rows, template comment and legend, fail-safe) and the README copy; checks T-2, T-4, T-7 and the move test updated, all pass; graduated 2 decisions and 3 lessons, feature node `produced` and store index/timeline updated; close-out seeds updated; skill files committed with the bundle (R/5)
+- **21:58 — CLOSE-OUT** — 1 max loop 10; rest yes; *(read as: R/1 — the ceiling of fix attempts is 10, not 3 (DD-12 OVERRIDDEN); yes to R/2 – R/5)*
 - **21:56 — CLOSE-OUT** — end-of-run report and review round put to the Architect (R/1 – R/5)
 - **21:56 — CLOSE-OUT** — phase complete: three audience seeds; feature node, graduated specification, store index and timeline; graduation proposal G-1 – G-7 pending; skill files left uncommitted (DD-24)
 - **21:54 — CLOSE-OUT** — phase started by the autonomous transition (no Architect prompt)

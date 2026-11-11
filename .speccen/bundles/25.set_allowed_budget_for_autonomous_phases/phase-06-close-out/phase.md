@@ -2,7 +2,7 @@
 type: Phase
 phase: "06 — Close-out"
 status: COMPLETE
-description: Three audience seeds, feature node and graduated specification written; graduation proposal and the skill-file commit pending the Architect
+description: Three audience seeds, feature node and graduated specification written; review decided — ceiling 10, five entries graduated, skill files committed
 ---
 
 <a id="phase-top"></a>
@@ -50,12 +50,12 @@ All 29 Implementation Plan items are ticked; none skipped →
 <a id="graduation-proposal"></a>
 ## Graduation Proposal
 
-Pending the Architect (end-of-run review).
+Decided by the Architect in the review round (log 21:58): "1 max loop 10; rest yes;". R/1 overrides DD-12 (ceiling 10); R/2 adopts DD-14; R/3 adopts DD-30 – DD-32; R/4 promotes G-1 – G-5 as proposed (G-2 with the ceiling 10) and keeps G-6, G-7 local; R/5 commits the three skill files. Written at 21:59: `.speccen/decisions/2026-11-11.fix_progress_by_breaches.md`, `2026-11-11.fix_budget_ceiling_10.md`; `.speccen/lessons/2026-11-11.text_checks_read_their_place.md`, `2026-11-11.repair_every_case_of_a_breach.md`, `2026-11-11.write_lists_and_summary_last.md`; the feature node's `produced` list; store index and timeline.
 
 | # | Candidate | Kind | Proposed | Evidence |
 |---|---|---|---|---|
 | G-1 | Progress is measured by rule breaches that come back, or more failed rows — not by fewer failed rows (DD-14) | decision | promote, if the review confirms DD-14 | A fence: a later change may return to the brief's "fewer rows"; Phase 02 runs 4 – 6 converged with the same row count ([DD-14](../delegated-decisions.md#dd-14)) |
-| G-2 | The fix budget is capped at 3; an invalid value counts as 1 (DD-12) | decision | promote, if the review confirms DD-12 | A fence against "loop until it passes"; the Architect's 15:45 words point the other way ([DD-12](../delegated-decisions.md#dd-12)) |
+| G-2 | The fix budget is capped at 3; an invalid value counts as 1 (DD-12) — overridden to 10 | decision | promote, if the review confirms DD-12 | A fence against "loop until it passes"; the Architect's 15:45 words point the other way ([DD-12](../delegated-decisions.md#dd-12)) |
 | G-3 | Lesson: a text check reads only the place its Test Plan row names, and an "unchanged" part compares that place with the base; run a move test before the verifier | lesson | promote | Most failures of the Phase 05 accept's eight verifier runs and three stop rounds ([Phase 05 summary](../phase-05-implementation/summary.md#delegate-gate-check)) |
 | G-4 | Lesson: repair every case of a breach type, not only the cases the verifier names | lesson | promote | Phase 05 runs 3 – 7 each found the next case of the same type ([log.md](../log.md)) |
 | G-5 | Lesson: write decision records and final edits first; lists, render and summary last; no decision ranges in lists | lesson | promote | Phase 04 stop round 04/2 ([Phase 04 summary](../phase-04-specification/summary.md#stop)) |
@@ -65,16 +65,16 @@ Pending the Architect (end-of-run review).
 <a id="outcome"></a>
 ## Outcome
 
-Close-out complete under delegation. The three skill files remain uncommitted in the working
-tree (DD-24); the end-of-run report asks the Architect whether to commit them.
+Close-out complete. The Architect's review set the ceiling to 10 and approved the rest; the three skill files are committed with the bundle.
 
 <a id="open-items"></a>
 ## Open Items
 
 | # | Item | Status |
 |---|---|---|
-| DD-12, DD-14 | `MATERIAL — unconfirmed` decisions | pending the Architect (review round) |
-| DD-30 – DD-32 | repairs past the current Step 7 text ("If it still fails, the delegate rejects") | pending the Architect (review round) |
-| G-1 – G-7 | Graduation proposal | pending the Architect |
-| C-1 | Commit the three skill files (DD-24 leaves them uncommitted) | pending the Architect |
+| DD-12 | OVERRIDDEN (ceiling 10). The override's ADR can be scribed on request (governing skill → Scribing a stated decision) | open, on request |
+| DD-14, DD-30 – DD-32 | ADOPTED | closed |
+| G-1 – G-7 | Graduation proposal | decided |
+| C-1 | Commit the three skill files | done (R/5) |
+| C-3 | The specification (intent, frozen) still states a ceiling of 3 (R-6); the feature node records the override | note |
 | C-2 | The first measurement of the budget comes from the next autonomous bundle ([doc-technical.md](./doc-technical.md) Results) | follow-up |

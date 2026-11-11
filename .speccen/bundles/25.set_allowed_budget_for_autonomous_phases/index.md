@@ -58,8 +58,8 @@ type: Index
 
 | File | Type | Status | Description |
 |---|---|---|---|
-| [phase](./phase-06-close-out/phase.md) | Phase | COMPLETE | Three audience seeds, feature node and graduated specification written; graduation proposal and the skill-file commit pending the Architect |
-| [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | A fixes budget (1 – 3, default 1) for the gate test of autonomous phases, with three guards; skill files uncommitted for the Architect |
+| [phase](./phase-06-close-out/phase.md) | Phase | COMPLETE | Three audience seeds, feature node and graduated specification written; review decided — ceiling 10, five entries graduated, skill files committed |
+| [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | A fixes budget (1 – 10, default 1) for the gate test of autonomous phases, with three guards; skill files committed |
 | [doc-executive](./phase-06-close-out/doc-executive.md) | Doc (executive) | COMPLETE | The Architect now sets how many fix attempts the delegate makes on a failed gate test |
 | [doc-business](./phase-06-close-out/doc-business.md) | Doc (business) | COMPLETE | The delegate corrects a failed gate test up to the number of fix attempts that the Architect sets |
 | [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | The fixes key, template version 3, the gate-test budget with three guards and the Phase 05 accept, in three files |

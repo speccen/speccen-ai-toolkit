@@ -3,7 +3,7 @@ type: Summary
 phase: "06 — Close-out"
 status: COMPLETE
 phase_file: ./phase.md
-description: A fixes budget (1 – 3, default 1) for the gate test of autonomous phases, with three guards; skill files uncommitted for the Architect
+description: A fixes budget (1 – 10, default 1) for the gate test of autonomous phases, with three guards; skill files committed
 ---
 
 # Phase 06 Summary — Close-out
@@ -26,9 +26,10 @@ once the plugin is released → [doc-technical.md](./doc-technical.md)
 
 **Deviations:** none → [detail](../phase-05-implementation/phase.md#deviations)
 
-**Graduated to durable store:** the feature node and the specification; no decision, lesson or
-note yet → [.speccen/](../../../index.md)
+**Graduated to durable store:** 2 decisions, 3 lessons, 0 notes; the feature node and the specification → [.speccen/](../../../index.md)
 
 **Delegated decisions:** 32 (DD-1 – DD-32) → [delegated-decisions.md](../delegated-decisions.md)
 
-**Graduation proposal:** pending → [detail](./phase.md#graduation-proposal)
+**Graduation proposal:** decided by the Architect (log 21:58) → [detail](./phase.md#graduation-proposal)
+
+**Review:** the Architect set the ceiling of fix attempts to 10 (DD-12 OVERRIDDEN) and adopted the rest; applied to the skill files and checks.

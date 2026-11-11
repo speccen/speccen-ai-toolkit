@@ -321,8 +321,10 @@ governed by `skills/sdd/06-close-out/SKILL.md`. This skill does not perform docu
   criteria below; every acceptance scenario of the specification has a passing planned test
   (cite the test); no waiver; every deviation has a decision; the delivered behaviour matches the
   scenarios (cite files and tests). If it passes, the delegate accepts and the workflow advances
-  to Phase 06. If it fails, fix once and test again. If it still fails, the delegate rejects:
-  run Phase 05b.
+  to Phase 06. If it fails, fix and test again, up to the phase's effective `fixes` attempts,
+  with the gate test's guards (governing skill → Autonomous Execution → Gate test). If the next
+  fix would change a phase conclusion, a delegated decision or an ADR, stop. If it still fails
+  when the budget is used up, or a run makes no progress, the delegate rejects: run Phase 05b.
 - **Phase 05b.** The rejection reason is the failed check, recorded verbatim. Revert only the
   files this iteration changed; if that cannot be established — unrelated uncommitted changes in
   those files, or no repository — stop. Verify the revert instead of asking the Architect to

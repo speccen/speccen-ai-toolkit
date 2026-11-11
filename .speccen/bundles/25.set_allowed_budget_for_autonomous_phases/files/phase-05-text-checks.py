@@ -21,14 +21,14 @@ kraw=sec(G,'### Keys\n','Which phases take which key')
 vrow=[l for l in kraw.split('\n') if l.startswith('| `version` |')]
 res['T-1']=len(vrow)==1 and 'the current version is `3`' in vrow[0] and 'the current version is `2`' not in g
 keys=sec(G,'### Keys\n','Which phases take which key')
-res['T-2']=('| `phases.<phase>.stops` | `inherit` · `ask` · `proceed` | `autonomous` only; the stop policy for one phase. `inherit` means no value at this level |\n| `fixes` | `1` · `2` · `3` |' in keys
-  and 'Independent of `stops` |\n| `phases.<phase>.fixes` | `inherit` · `1` · `2` · `3` |' in keys)
+res['T-2']=('| `phases.<phase>.stops` | `inherit` · `ask` · `proceed` | `autonomous` only; the stop policy for one phase. `inherit` means no value at this level |\n| `fixes` | `1` – `10` |' in keys
+  and 'Independent of `stops` |\n| `phases.<phase>.fixes` | `inherit` · `1` – `10` |' in keys)
 which=sec(G,'Which phases take which key','The modes:')
 res['T-3']='- `fixes`: the same five phases as `mode`. It has no effect in a `gated` phase.' in which
 ph=re.findall(r'^  ([a-z-]+):[^\n]*\n((?:    [^\n]*\n)+)',tg,re.M)
 with_fixes=[n for n,b in ph if '    stops: inherit\n    fixes: inherit\n' in b]
-res['T-4']=('\nversion: 3 ' in tg and 'stops: ask\n# How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–3).\n# It stops sooner when a repair makes no progress or would change a conclusion.\nfixes: 1\n' in tg
-  and '#   stops       inherit · ask · proceed — autonomous only: see the top-level stops\n#   fixes       inherit · 1 · 2 · 3 — autonomous only: see the top-level fixes\n' in tg
+res['T-4']=('\nversion: 3 ' in tg and 'stops: ask\n# How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–10).\n# It stops sooner when a repair makes no progress or would change a conclusion.\nfixes: 1\n' in tg
+  and '#   stops       inherit · ask · proceed — autonomous only: see the top-level stops\n#   fixes       inherit · 1 – 10 — autonomous only: see the top-level fixes\n' in tg
   and with_fixes==['feature-analysis','code-analysis','compliance-review','specification','implementation']
   and tg.count('fixes: inherit')==5)
 uraw=sec(G,'### Upgrading the project file\n','### Effective settings\n'); upg=norm(uraw)
@@ -43,7 +43,7 @@ res_=eff.split('**Locks.**')[0]
 fs=lambda t: sec(t,'**Fail-safe','### Reading and ownership\n')
 kb=lambda t: bul(fs(t),'- A `phases` entry whose name is not one of the eight phase keys')
 res['T-7']=('The other per-phase keys (`stops`, `fixes`, `model`, `prototypes`) resolve the same way at phase level, then fall back to their defaults (`ask`, `1`, `inherit`, `0`).' in norm(res_)
-  and '- A `fixes` value that is not `1`, `2` or `3` counts as `1`.' in fs(G) and kb(G) is not None and kb(G)==kb(G0) and kl in kb(G))
+  and '- A `fixes` value that is not a whole number from `1` to `10` counts as `1`.' in fs(G) and kb(G) is not None and kb(G)==kb(G0) and kl in kb(G))
 fixb=bullet('- If any item fails, fix it and run the test again')
 res['T-8']="up to the phase's effective `fixes` attempts (Configuration; default `1`)" in fixb and 'fix it once and run the test again' not in g
 stopb=bullet('- Stop (stop condition 5) when:')

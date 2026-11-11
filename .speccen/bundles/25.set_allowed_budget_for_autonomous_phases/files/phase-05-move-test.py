@@ -19,12 +19,12 @@ def mv(f,a,anc,after=True):
 tpl_i=src['G'].index('# speccen project configuration — committed.')
 cases=[
  ('T-1',mv('G',"the current version is `3`. ","### Templates\n")),
- ('T-2',mv('G',"| `fixes` | `1` · `2` · `3` |","| `lock` | `true` · `false` |",False)),
+ ('T-2',mv('G',"| `fixes` | `1` – `10` |","| `lock` | `true` · `false` |",False)),
  ('T-3',mv('G',"- `fixes`: the same five phases as `mode`. It has no effect in a `gated` phase.\n","### Effective settings\n")),
  ('T-4',{'G':src['G'][:tpl_i]+src['G'][tpl_i:].replace('    stops: inherit\n    fixes: inherit\n','    stops: inherit\n',1).replace('  close-out:                 # 06 — the audience documents run as subagents\n','  close-out:                 # 06 — the audience documents run as subagents\n    fixes: inherit\n',1)}),
  ('T-5',mv('G',", `fixes: 1` and","**Set `version`**")),
  ('T-6',mv('G',"An upgrade to version 3 adds `fixes: 1` at the top and `fixes: inherit` to the five phases that\ntake `stops`, and sets `version: 3`. Behaviour is unchanged until the Architect raises `fixes`.\n","### Effective settings\n")),
- ('T-7',mv('G',"- A `fixes` value that is not `1`, `2` or `3` counts as `1`.\n","**Locks.**\n")),
+ ('T-7',mv('G',"- A `fixes` value that is not a whole number from `1` to `10` counts as `1`.\n","**Locks.**\n")),
  ('T-7',mv('G',"So is a key on a phase that does not take it","- A `prototypes` value that is not a whole number of `0` or more counts as `0`.")),
  ('T-7',{'G':src['G'].replace("is ignored and mentioned once.\n  So is a key","is an error.\n  So is a key",1)}),
  ('T-8',mv('G',"up to the phase's effective `fixes`\n  attempts (Configuration; default `1`)","  again. Rows it does not re-check keep")),

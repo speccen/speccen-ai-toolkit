@@ -8,10 +8,10 @@ description: The delegate corrects a failed gate test up to the number of fix at
 
 # set allowed budget for autonomous phases — Business Process & Experience (seed)
 
-Intent: [Phase 04 business seed](../phase-04-specification/doc-business.md). Intended → delivered: the same. No deviation.
+Intent: [Phase 04 business seed](../phase-04-specification/doc-business.md). Intended → delivered: the same, except the ceiling. The intent was at most 3 fix attempts. At the review, the Architect set the ceiling to 10.
 
 ## Capability
-- The Architect sets the number of fix attempts in the project file: 1, 2 or 3.
+- The Architect sets the number of fix attempts in the project file: from 1 to 10.
 - The Architect can set a different number for each phase.
 - The delegate corrects a failed gate test up to that number. Then the delegate halts.
 
@@ -43,6 +43,6 @@ Intent: [Phase 04 business seed](../phase-04-specification/doc-business.md). Int
 
 ## Not Included
 - The default number stays 1.
-- The number is never more than 3.
+- The number is never more than 10.
 - Gated phases do not change. In a gated phase, the Architect approves each gate.
 - Other limits of autonomous mode do not change, for example the limit of two rejected implementations.
