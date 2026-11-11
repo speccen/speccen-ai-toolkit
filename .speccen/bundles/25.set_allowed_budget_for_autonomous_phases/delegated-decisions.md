@@ -354,3 +354,93 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Alternatives** | stop round to the Architect (current skill text, condition 5: the gate test still fails after one fix attempt) |
 | **Materiality** | not material |
 | **Status** | DELEGATED |
+
+<a id="dd-24"></a>
+## DD-24 — Skill-text changes stay uncommitted for the Architect
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-11 15:06 UTC |
+| **Question** | Are the skill-text changes left uncommitted in the working tree for the Architect, with only the bundle files committed at each phase transition? |
+| **Interview question** | [`04/1`](./phase-04-specification/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | Phase Transition Protocol, which commits "the changed bundle files — only those"; precedent: bundle `2026-11-05.use_cheaper_subagent_to_work`, its Phase 04 question 04/2; the Architect: "feature branch, no push on main is allowed" ([log.md](./log.md), 11:05). |
+| **Alternatives** | commit the skill changes with the Phase 05 transition |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-25"></a>
+## DD-25 — Phase 04 gate fix: repair the five failed rows and re-check every row
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-11 15:17 UTC |
+| **Question** | Check run 1 did not confirm rows 5, 8, 12, 15 and 22 (two phase Whys without their place in the order; subtask Whys inside checklist items; words used as noun and verb in the seeds and the specification; the specification diagram sent a changed conclusion to rejection in Phase 05; traceability rows out of line with the requirements and the Test Plan, and two Architect prompts missing). The gate test allows one fix and a re-run (`SKILL.md:1176-1179`): does the re-run re-check every row? |
+| **Interview question** | — (gate fix, no interview question) |
+| **Decision** | Decided under delegation (autonomous): yes — the fix changed phase.md, summary.md, both seeds, specification.html and specification.md, which the rows cite, so every row is re-checked. The fix changes no requirement, no decision and no answer. This is the one fix the current text allows. |
+| **Basis** | Gate test: the re-run re-checks "every row that failed" and "every row whose evidence is in a file you changed during the fix" (`SKILL.md:1176-1179`). |
+| **Alternatives** | re-check only the failed rows |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-26"></a>
+## DD-26 — Phase 04 gate repair after the fix: repair rows 15, 17 and 22, re-check without a stop
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-11 19:22 UTC |
+| **Question** | Check run 2 did not confirm rows 15 (more words used as noun and verb; two passives; two long sentences; three names for the project file; the guard order differed between the plan's flow and the specification; R-8 worded "the number of further fix attempts"), 17 (the render cited predates the rebuild) and 22 (the 15:43 traceability row in the wrong columns), after the one allowed fix. Repair and re-check, or stop? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): repair and re-check every row (the repair changed phase.md, summary.md, specification.html and specification.md). Progress: 5 failed rows in run 1, 3 in run 2, and no breach of run 1 came back. The guard order follows the specification and the plan text (conclusions first, then budget and progress), which is the more cautious reading; it changes no requirement, decision or answer. |
+| **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45). |
+| **Alternatives** | stop round to the Architect (current skill text, condition 5: the gate test still fails after one fix attempt) |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-27"></a>
+## DD-27 — Phase 04 gate repair: STE word use in the specification, re-check without a stop
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-11 19:29 UTC |
+| **Question** | Check run 3 did not confirm row 15 only: "fix", "pass", "upgrade" and "edit" each had two meanings or parts of speech in the specification; R-4 had 29 words; R-13 had no verb for its object; specification.md kept the old heading, two long sentences and an incomplete list of decisions. Repair and re-check, or stop? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): repair and re-check rows 15 – 19 and 21 – 23 (the rows citing the specification, the summary, `delegated-decisions.md` or `index.md`). Progress: 3 failed rows in run 2, 1 in run 3, and no breach of run 2 came back. The repair changes wording only, no requirement, decision or answer. |
+| **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45). |
+| **Alternatives** | stop round to the Architect (current skill text, condition 5: the gate test still fails after one fix attempt) |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-28"></a>
+## DD-28 — Phase 04 gate repair after the stop round: repair rows 15, 22 and 23, re-check without a stop
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-11 19:54 UTC |
+| **Question** | Check run 5 (after the stop round 04/2) did not confirm rows 15 (STE: "count" and "read" in two senses, "accept" as verb and noun, three unclear pronouns, "opening" without its noun), 22 (the 20:48 answer not in the traceability table; 15:37 called a stop-round answer) and 23 (the evidence leaves out the stop round). Repair and re-check, or stop? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): repair and re-check rows 15 – 19 and 21 – 23 (row 15 and the rows that cite a changed file). Progress: 3 failed rows in run 4 and 3 in run 5 (not more), and no breach that run 4 named is still there. The specification and the traceability table no longer name decision ranges, so a new decision does not make them stale. The repair changes wording only. |
+| **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45); the progress guard of [DD-14](#dd-14). |
+| **Alternatives** | a second stop round to the Architect |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-29"></a>
+## DD-29 — Phase 04 gate repair after check run 6: name two start prompts in the traceability table
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-11 19:58 UTC |
+| **Question** | Check run 6 did not confirm row 22: the traceability table does not name two 11:05 prompts ("/speccen:start" and "analyse the gh issue on speccen-ai-tools"). Repair and re-check, or stop? |
+| **Interview question** | — (gate repair, no interview question) |
+| **Decision** | Decided under delegation (autonomous): name both prompts in the row for other prompts and re-check row 22 and the rows that cite a changed file (18, 19, 21, 23). Progress: 3 failed rows in run 5, 1 in run 6, and no breach that run 5 named is still there. The repair adds a list entry only. |
+| **Basis** | Architect: "don't you understand that [ autonomous + stops:proceed] means that you are on your won to decide?" ([log.md](./log.md), 15:43), and "I don't know how to express in simple English that have to loop until issues are fixed" ([log.md](./log.md), 15:45); the progress guard of [DD-14](#dd-14). |
+| **Alternatives** | a stop round to the Architect |
+| **Materiality** | not material |
+| **Status** | DELEGATED |

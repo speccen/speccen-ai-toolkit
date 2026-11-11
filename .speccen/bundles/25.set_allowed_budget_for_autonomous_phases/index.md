@@ -36,6 +36,17 @@ type: Index
 | [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | No bundle ADRs; four standing decisions, all compliant; twelve open questions settled by the delegate (two MATERIAL — unconfirmed); Definition of Ready met |
 | [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Definition of Ready met in one iteration; twelve open questions settled by the delegate, two of them MATERIAL — unconfirmed (ceiling 3, progress by breaches) |
 
+### Phase 04 — Specification
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-04-specification/phase.md) | Phase | COMPLETE | Five-phase plan — the fixes key and template version 3, the gate-test budget with its three guards, the Phase 05 accept, the restated copies, text verification |
+| [summary](./phase-04-specification/summary.md) | Summary | COMPLETE | Five-phase plan for the fixes budget; fifteen requirements, nineteen text checks; specification assembled |
+| [doc-executive](./phase-04-specification/doc-executive.md) | Doc (executive) | COMPLETE | The Architect sets how many fix attempts the delegate makes on a failed gate test |
+| [doc-business](./phase-04-specification/doc-business.md) | Doc (business) | COMPLETE | The delegate corrects a failed gate test up to the number of fix attempts that the Architect sets |
+| [specification](./phase-04-specification/specification.html) | Specification | COMPLETE | Intent specification — a fixes budget for the gate test of autonomous phases, with three guards |
+| [specification (reduced)](./phase-04-specification/specification.md) | Specification | COMPLETE | Reduced projection of specification.html — a fixes budget for the gate test of autonomous phases, with three guards |
+
 ## Files
 
 | File |
