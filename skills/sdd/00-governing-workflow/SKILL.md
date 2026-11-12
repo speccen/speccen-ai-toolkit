@@ -938,8 +938,14 @@ For each phase, the **most specific setting wins**:
 2. then the top-level `mode`, in the same order;
 3. then `gated`.
 
-`inherit` counts as no value. The other per-phase keys (`stops`, `fixes`, `model`, `prototypes`) resolve
-the same way at phase level, then fall back to their defaults (`ask`, `5`, `inherit`, `0`).
+`inherit` counts as no value. `stops` and `fixes` resolve the same way as `mode`:
+
+1. `phases.<phase>.stops` / `phases.<phase>.fixes` in: bundle local → bundle → project local → project;
+2. then the top-level `stops` / `fixes`, in the same order;
+3. then their defaults: `ask` / `5`.
+
+`model` and `prototypes` have no top-level key: the phase value, in the same file order, then
+their defaults (`inherit`, `0`).
 
 **Locks.**
 - A lock in the **project** file binds every file below it: for a locked phase — or for
