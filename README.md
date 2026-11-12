@@ -397,6 +397,10 @@ For each phase, the most specific setting wins:
 2. then the top-level `mode`, in the same order;
 3. then `gated`.
 
+`stops` and `fixes` resolve the same way: the phase's own value, then the top-level value, then
+their defaults `ask` and `5`. `model` and `prototypes` have only a phase value; without one, they
+are `inherit` and `0`.
+
 `inherit` counts as "not set here". A `lock: true` in the project file shuts out the bundle file
 and every personal file for that phase (or for everything, at the top level); a lock in the bundle
 file shuts out only personal files. A lock in a personal file does nothing.
