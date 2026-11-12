@@ -190,7 +190,7 @@ them are plain YAML with no frontmatter, and you edit them by hand.
 
 The project file always lists every setting speccen offers. At the start of every session speccen
 checks it against the current template — its `version` and every key — and adds whatever a newer
-speccen introduced, with the value that keeps today's behaviour (`inherit`, `ask`, `0`, `false`),
+speccen introduced, with the value its absence means (`inherit`, `ask`, `5`, `0`, `false`),
 and tells you which keys it added. It never changes a value you set, your comments or your order,
 and it never fills in a bundle file or a personal file.
 
@@ -239,7 +239,7 @@ answer). Every phase and every key is written out; `inherit` means "use the leve
 # speccen project configuration — committed. The defaults for every bundle in this repository.
 # A bundle overrides them in its own speccen-config.yaml; a person in speccen-config.local.yaml.
 
-version: 2                   # the template version — speccen adds new keys at session start
+version: 3                   # the template version — speccen adds new keys at session start
 
 # How the workflow leaves a phase:
 #   gated       stop at the end of the phase and wait for the Architect's go
@@ -250,11 +250,15 @@ mode: gated
 #   proceed  take its own proposed answer, record it as unconfirmed, and put it to the review round
 # Hard stops (new dependency, conflicting ADRs, irreversible action, failed gate or tests) always halt.
 stops: ask
+# How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–10).
+# It stops sooner when a repair makes no progress or would change a conclusion.
+fixes: 5
 lock: false                  # true: no bundle file and no local file can change anything
 
 # Per phase. "inherit" means: use the mode above, or the session's model.
 #   mode        inherit · gated · autonomous
 #   stops       inherit · ask · proceed — autonomous only: see the top-level stops
+#   fixes       inherit · 1 – 10 — autonomous only: see the top-level fixes
 #   model       inherit · economy · balanced · premium — the tier for the phase's subagent work
 #   prototypes  0 or more — autonomous only: prototypes the delegate may build (Phase 03)
 #   lock        true: no bundle file and no local file can change this phase
@@ -264,26 +268,31 @@ phases:
   feature-analysis:          # 01 — discovery interview
     mode: inherit
     stops: inherit
+    fixes: inherit
     lock: false
   code-analysis:             # 02 — evidence reading runs as a subagent
     mode: inherit
     stops: inherit
+    fixes: inherit
     model: economy
     lock: false
   compliance-review:         # 03 — ADR interview; optional prototypes run as subagents
     mode: inherit
     stops: inherit
+    fixes: inherit
     model: balanced
     prototypes: 0
     lock: false
   specification:             # 04 — the plan and the intent freeze
     mode: inherit
     stops: inherit
+    fixes: inherit
     model: economy           # searches
     lock: false
   implementation:            # 05 — the code and the accept
     mode: inherit
     stops: inherit
+    fixes: inherit
     model: economy           # searches
     lock: false
   close-out:                 # 06 — the audience documents run as subagents

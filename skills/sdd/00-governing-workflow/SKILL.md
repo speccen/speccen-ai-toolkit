@@ -688,11 +688,13 @@ durable store's graph: the store index, the timeline and reconcile leave it alon
 
 | Key | Values | Meaning |
 |---|---|---|
-| `version` | a whole number | **Project file only.** The template version the file follows; the current version is `2`. A file without it predates versioning. See **Upgrading the project file** |
+| `version` | a whole number | **Project file only.** The template version the file follows; the current version is `3`. A file without it predates versioning. See **Upgrading the project file** |
 | `mode` | `gated` · `autonomous` | The default mode at that level |
 | `phases.<phase>.mode` | `inherit` · `gated` · `autonomous` | The mode for one phase. `inherit` means no value at this level |
 | `stops` | `ask` · `proceed` | `autonomous` only; the default at that level. `ask`: a material decision the basis leaves open is a stop. `proceed`: the delegate takes its own proposed answer and records it for review (Autonomous Execution → Stop conditions) |
 | `phases.<phase>.stops` | `inherit` · `ask` · `proceed` | `autonomous` only; the stop policy for one phase. `inherit` means no value at this level |
+| `fixes` | `1` – `10` | `autonomous` only; the default at that level. How many fix attempts the delegate makes on a failing gate test before it stops (Autonomous Execution → Gate test). Independent of `stops` |
+| `phases.<phase>.fixes` | `inherit` · `1` – `10` | `autonomous` only; the fix budget for one phase. `inherit` means no value at this level |
 | `phases.<phase>.model` | `inherit` · `economy` · `balanced` · `premium` | The **tier** for that phase's subagent work (Subagent Execution). `inherit` means the session's model |
 | `models.<tier>` | a model name for this host | Maps a tier to a model — the team default in the project file, a person's budget or host in their local file |
 | `phases.compliance-review.prototypes` | `0` or more | `autonomous` only: how many prototypes the delegate may build for one material choice before it stops (Phase 03, Step 5a) |
@@ -705,6 +707,7 @@ Which phases take which key:
   decides, including the gate at its end (for `implementation`, the accept). Close-out has no
   exit gate and no `mode` key: it runs under the bundle's effective `mode`.
 - `stops`: the same five phases as `mode`. It has no effect in a `gated` phase.
+- `fixes`: the same five phases as `mode`. It has no effect in a `gated` phase.
 - `model`: `code-analysis`, `compliance-review`, `specification`, `implementation`, `close-out`,
   `retrospective`, `reference` — the phases with subagent units.
 - `lock`: any of these eight.
@@ -732,7 +735,7 @@ Later versions add keys under the same structure. Unknown keys are ignored.
 # speccen project configuration — committed. The defaults for every bundle in this repository.
 # A bundle overrides them in its own speccen-config.yaml; a person in speccen-config.local.yaml.
 
-version: 2                   # the template version — speccen adds new keys at session start
+version: 3                   # the template version — speccen adds new keys at session start
 
 # How the workflow leaves a phase:
 #   gated       stop at the end of the phase and wait for the Architect's go
@@ -743,11 +746,15 @@ mode: gated
 #   proceed  take its own proposed answer, record it as unconfirmed, and put it to the review round
 # Hard stops (new dependency, conflicting ADRs, irreversible action, failed gate or tests) always halt.
 stops: ask
+# How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–10).
+# It stops sooner when a repair makes no progress or would change a conclusion.
+fixes: 5
 lock: false                  # true: no bundle file and no local file can change anything
 
 # Per phase. "inherit" means: use the mode above, or the session's model.
 #   mode        inherit · gated · autonomous
 #   stops       inherit · ask · proceed — autonomous only: see the top-level stops
+#   fixes       inherit · 1 – 10 — autonomous only: see the top-level fixes
 #   model       inherit · economy · balanced · premium — the tier for the phase's subagent work
 #   prototypes  0 or more — autonomous only: prototypes the delegate may build (Phase 03)
 #   lock        true: no bundle file and no local file can change this phase
@@ -757,26 +764,31 @@ phases:
   feature-analysis:          # 01 — discovery interview
     mode: inherit
     stops: inherit
+    fixes: inherit
     lock: false
   code-analysis:             # 02 — evidence reading runs as a subagent
     mode: inherit
     stops: inherit
+    fixes: inherit
     model: economy
     lock: false
   compliance-review:         # 03 — ADR interview; optional prototypes run as subagents
     mode: inherit
     stops: inherit
+    fixes: inherit
     model: balanced
     prototypes: 0
     lock: false
   specification:             # 04 — the plan and the intent freeze
     mode: inherit
     stops: inherit
+    fixes: inherit
     model: economy           # searches
     lock: false
   implementation:            # 05 — the code and the accept
     mode: inherit
     stops: inherit
+    fixes: inherit
     model: economy           # searches
     lock: false
   close-out:                 # 06 — the audience documents run as subagents
@@ -855,8 +867,8 @@ key is missing. If it is not current:
   lines for that key — including its line in a shared comment block, such as the per-phase legend
   above `phases:`. Inserting such a line is adding, not changing a comment.
 - **An added key keeps the effective setting unchanged**: it gets the value that means what its
-  absence meant — `mode: gated`, `stops: ask` and `lock: false` at the top; `inherit` for a phase's
-  `mode`, `stops` and `model`; `0` for `prototypes`; `false` for a phase's `lock`; and the built-in
+  absence meant — `mode: gated`, `stops: ask`, `fixes: 5` and `lock: false` at the top; `inherit` for a
+  phase's `mode`, `stops`, `fixes` and `model`; `0` for `prototypes`; `false` for a phase's `lock`; and the built-in
   fallback for a tier under `models`. So a phase's `model` is added as `inherit`, not as the
   template's tier — choosing a tier is the Architect's change to make.
 - **Set `version`** to the template's version (add it if missing).
@@ -907,6 +919,10 @@ added `version`, `stops`, `stops` on 5 phases".
 An upgrade to version 2 also adds `model: inherit` to `specification` and `implementation`, and
 sets `version: 2`.
 
+An upgrade to version 3 adds `fixes: 5` at the top and `fixes: inherit` to the five phases that
+take `stops`, and sets `version: 3`. An autonomous phase then makes up to five fix attempts; set
+`fixes: 1` to keep one.
+
 The upgrade is a change to a committed file: it is announced in one line (Step 0), recorded in the
 bundle's `log.md` at the session's first entry, and committed with the next phase-transition
 commit.
@@ -922,8 +938,8 @@ For each phase, the **most specific setting wins**:
 2. then the top-level `mode`, in the same order;
 3. then `gated`.
 
-`inherit` counts as no value. The other per-phase keys (`stops`, `model`, `prototypes`) resolve the same
-way at phase level, then fall back to their defaults (`ask`, `inherit`, `0`).
+`inherit` counts as no value. The other per-phase keys (`stops`, `fixes`, `model`, `prototypes`) resolve
+the same way at phase level, then fall back to their defaults (`ask`, `5`, `inherit`, `0`).
 
 **Locks.**
 - A lock in the **project** file binds every file below it: for a locked phase — or for
@@ -939,6 +955,7 @@ When a lock overrides something a file sets, say so once per session: "your sett
   favour of a more permissive level below it.
 - A `lock` value that is not `true` or `false` counts as `true` — locked.
 - A `prototypes` value that is not a whole number of `0` or more counts as `0`.
+- A `fixes` value that is not a whole number from `1` to `10` counts as `1`.
 - A file that **cannot be read** as the YAML subset below makes the whole bundle `gated` until it
   is fixed.
 - A `phases` entry whose name is not one of the eight phase keys is ignored and mentioned once.
@@ -1165,7 +1182,7 @@ At the end of every `autonomous` phase, before the transition, run the **gate te
   4. **Index** — `index.md` lists every file this phase wrote.
   5. **Interview structure** — every round holds only the frontier, and every question one
      decision.
-  Record the self-check in one line above the gate table: `Self-check: done — N fixes`.
+  Record the self-check in one line above the gate table: `Self-check: done — N corrections`.
 - Where the host can run subagents, have a **verifier** (`speccen-worker`, on the session model
   — see Subagent Execution) re-open the evidence of every row and confirm whether it shows what
   the row claims. Its answer fills the `verified` column; a row it does not confirm has failed.
@@ -1173,13 +1190,21 @@ At the end of every `autonomous` phase, before the transition, run the **gate te
 - No question of this phase that was parked with "later" is still unanswered.
 - Every active extension of this phase was applied: each applicable requirement is met or marked
   "not applicable, because …", and the Extensions table in `phase.md` is complete.
-- If any item fails, fix it once and run the test again. The second verifier run re-checks
-  (a) every row that failed, and (b) every row whose evidence is in a file you changed during
-  the fix. Rows it does not re-check keep their `confirmed` value and say `confirmed (run 1)`.
-  If a re-checked row still fails, stop.
-- After a stop, the Architect's answer sets which rows the next verifier run re-checks; rows it
-  does not re-check keep their last `confirmed (run N)`. A verifier that fails a row lists every
-  rule breach it finds in that row at once.
+- If any item fails, fix it and run the test again — up to the phase's effective `fixes`
+  attempts (Configuration; default `5`). Each later verifier run re-checks (a) every row that
+  failed in the run before, and (b) every row whose evidence is in a file you changed during the
+  fix. Rows it does not re-check keep their last `confirmed (run N)`.
+- Stop (stop condition 5) when:
+  1. the fix you would make next changes a phase conclusion, a delegated decision or an ADR; or
+  2. a re-checked row still fails and the budget is used up; or
+  3. a run makes no progress: a rule breach the run before named is still there, or more rows
+     fail than in the run before.
+
+  Log each attempt as `fix attempt <n> of <fixes>: run <N> failed rows <list>`.
+- After a stop, the Architect's answer sets which rows the next verifier run re-checks, and
+  whether further fix attempts are allowed; without that, one run, and a failing row stops
+  again. Rows it does not re-check keep their last `confirmed (run N)`. A verifier that fails a
+  row lists every rule breach it finds in that row at once.
 
 You review your own work, so the evidence is the point: an item without cited evidence has not
 passed.
@@ -1209,7 +1234,8 @@ Stop — do not continue, do not guess — when:
 4. a deviation goes beyond implementation detail — it would change an acceptance scenario, a
    contract, the scope or the **Why** of its plan phase (smaller deviations you decide and
    record);
-5. a gate test still fails after one fix attempt;
+5. a gate test still fails after the fix budget, makes no progress, or needs a fix that changes
+   a conclusion, a delegated decision or an ADR (Gate test);
 6. a planned test still fails after the retry budget: a rejected implementation is reverted and
    retried **at most twice**, and the Phase 03 loop runs **at most two** iterations;
 7. an action is irreversible or outside the skills — a force-push, a deploy, deleting data, any
