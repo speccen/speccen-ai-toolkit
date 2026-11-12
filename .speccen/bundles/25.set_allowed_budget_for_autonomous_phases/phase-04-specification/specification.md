@@ -8,7 +8,7 @@ revised: 2026-11-12 — ceiling 10 and default 5, by the Architect
 
 # set allowed budget for autonomous phases — Specification (reduced)
 
-[Index](../index.md) · [Full specification](./specification.html) · [Plan](./phase.md#implementation-plan)
+[Index](../index.md) · [Full specification](./specification.html) · [Reference](../phase-08-reference/reference.html) (what was actually built) · [Plan](./phase.md#implementation-plan)
 
 ---
 

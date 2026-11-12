@@ -1,0 +1,789 @@
+<!--
+---
+type: Reference
+phase: "08 — Reference"
+status: COMPLETE
+description: Technical reference for the gate-test fix budget — the fixes key (1–10, default 5), its three guards, template version 3 and the Phase 05 accept; what changed in three files, and why.
+---
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gate-Test Fix Budget — Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* One reading column (~70ch); figures scroll sideways on phones; C4 levels run top to bottom. */
+:root {
+  --bg: #f4f6f8; --panel: #ffffff; --sunk: #eaeef2; --ink: #17202b; --muted: #5a6574; --line: #c3ccd6;
+  --accent: #0a6c88; --accent-soft: #dcedf2; --ok: #2c7a4b; --ok-soft: #e1f1e7;
+  --warn: #9a5800; --warn-soft: #f6ead6; --bad: #b1281f; --bad-soft: #f8e1df;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1319; --panel: #151c25; --sunk: #111820; --ink: #e3e8ee; --muted: #93a0b0; --line: #2f3b49;
+    --accent: #52b6d2; --accent-soft: #11313b; --ok: #5cc28a; --ok-soft: #12291c; --warn: #e2a64a; --warn-soft: #2d2213;
+    --bad: #f07c72; --bad-soft: #321816; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1319; --panel: #151c25; --sunk: #111820; --ink: #e3e8ee; --muted: #93a0b0; --line: #2f3b49;
+  --accent: #52b6d2; --accent-soft: #11313b; --ok: #5cc28a; --ok-soft: #12291c; --warn: #e2a64a; --warn-soft: #2d2213;
+  --bad: #f07c72; --bad-soft: #321816; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; margin: 0; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 80px; }
+.prose { max-width: 70ch; display: grid; gap: 12px; }
+header.top { display: grid; gap: 14px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.nav { font-size: 14px; }
+.nav a { color: var(--accent); }
+h1, h2, h3 { font-family: var(--display); font-stretch: 85%; text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 800; }
+h2 { font-size: clamp(24px, 3.2vw, 30px); font-weight: 750; }
+h3 { font-size: 19px; font-weight: 700; margin-top: 8px; }
+p { margin: 0; }
+.lead { font-size: 18px; color: var(--muted); max-width: 68ch; }
+section { display: grid; gap: 18px; padding-block: 44px 8px; }
+.secnum { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .05em; }
+code, .mono { font-family: var(--mono); font-size: .88em; }
+code { background: var(--sunk); padding: 1px 5px; border-radius: 4px; }
+pre { margin: 0; font-family: var(--mono); font-size: 13px; line-height: 1.5; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; }
+pre .add { background: var(--ok-soft); color: var(--ok); display: block; }
+pre .cm { color: var(--muted); }
+ul.tight { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 76ch; }
+a { color: var(--accent); }
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; }
+nav.toc a { text-decoration: none; border-bottom: 1px solid transparent; }
+nav.toc a:hover, nav.toc a:focus-visible { border-bottom-color: var(--accent); outline: none; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; }
+.fact { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; display: grid; gap: 2px; min-width: 0; }
+.fact b { font-family: var(--display); font-stretch: 85%; font-size: 24px; font-variant-numeric: tabular-nums; }
+.fact span { font-size: 13px; color: var(--muted); }
+figure { margin: 0; display: grid; gap: 10px; }
+.scroll { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+figcaption { font-size: 14px; color: var(--muted); max-width: 84ch; }
+figcaption b { color: var(--ink); font-weight: 600; }
+.level { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
+svg.d { display: block; width: 100%; height: auto; color: var(--muted); }
+svg.w { min-width: 900px; } svg.m { min-width: 700px; } svg.n { min-width: 560px; }
+.d text { font-family: var(--sans); fill: var(--ink); font-size: 12px; }
+.d .t { font-weight: 600; font-size: 12.5px; }
+.d .s { fill: var(--muted); font-size: 10.5px; }
+.d .lb { font-family: var(--mono); fill: var(--muted); font-size: 10.5px; }
+.d .k { font-size: 10px; letter-spacing: .07em; fill: var(--muted); font-weight: 600; }
+.d .acc { fill: var(--accent); }
+.d .wt { fill: var(--warn); }
+.d .box { fill: var(--panel); stroke: var(--line); stroke-width: 1.2; }
+.d .mute { fill: var(--sunk); stroke: var(--line); stroke-width: 1.2; }
+.d .chg { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.d .ext { fill: var(--sunk); stroke: var(--line); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.d .bound { fill: none; stroke: var(--line); stroke-width: 1.2; stroke-dasharray: 6 5; }
+.d .e { stroke: var(--muted); stroke-width: 1.4; fill: none; }
+.d .eh { stroke: var(--accent); stroke-width: 1.8; fill: none; }
+.d .ed { stroke-dasharray: 5 4; }
+.d .life { stroke: var(--line); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.d .ah { fill: var(--muted); }
+.d .ahh { fill: var(--accent); }
+.d .pok { fill: var(--ok-soft); stroke: var(--ok); stroke-width: 1.3; }
+.d .pwarn { fill: var(--warn-soft); stroke: var(--warn); stroke-width: 1.3; }
+.d .pbad { fill: var(--bad-soft); stroke: var(--bad); stroke-width: 1.3; }
+.d .pmut { fill: var(--sunk); stroke: var(--line); stroke-width: 1.2; }
+.d .chip { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.1; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; background: var(--sunk); }
+tr.new td { background: var(--accent-soft); }
+.st { display: inline-block; font-family: var(--mono); font-size: 12px; padding: 1px 8px; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+.st.ok { color: var(--ok); background: var(--ok-soft); border-color: var(--ok); }
+.st.acc { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+.st.mut { color: var(--muted); background: var(--sunk); border-color: var(--line); }
+.st.warn { color: var(--warn); background: var(--warn-soft); border-color: var(--warn); }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 4px; white-space: nowrap; }
+.tag.req { color: var(--bad); background: var(--bad-soft); }
+.tag.corr { color: var(--warn); background: var(--warn-soft); }
+.tag.choice { color: var(--accent); background: var(--accent-soft); }
+.callout { border-left: 3px solid var(--accent); background: var(--panel); padding: 14px 18px; border-radius: 0 8px 8px 0; display: grid; gap: 8px; max-width: 80ch; }
+.callout.warn { border-left-color: var(--warn); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.two > * { min-width: 0; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
+.card h3 { margin: 0; font-size: 17px; }
+footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+section, figure, header.top, .prose, .card, .callout { grid-template-columns: minmax(0, 1fr); }
+.facts > * { flex: 1 1 140px; }
+.d .band { fill: var(--accent-soft); opacity: .45; }
+.st.bad { color: var(--bad); background: var(--bad-soft); border-color: var(--bad); }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="nav"><a href="../index.md">Index</a> · <a href="../phase-04-specification/specification.html">Specification</a> (what we set out to build)</div>
+  <div class="eyebrow">speccen plugin · GitHub issue 25 · fix · Reference (Phase 08)</div>
+  <h1>A fix budget for the gate test of autonomous phases</h1>
+  <p class="lead">This change adds one configuration key, <code>fixes</code>. It sets how many times the delegate repairs a failing gate test before it stops. Three guards bound every repair loop. The key takes <code>1</code> to <code>10</code>. The default is <code>5</code>. The change is prose and YAML in three files. No code runs.</p>
+  <div class="facts" aria-label="Facts">
+    <div class="fact"><b>19/19</b><span>text checks T-1 – T-19 pass</span></div>
+    <div class="fact"><b>all fail</b><span>checks in the move test, after it moves the text (the checks detect misplaced text)</span></div>
+    <div class="fact"><b>3</b><span>files changed</span></div>
+    <div class="fact"><b>2</b><span>bundle ADRs (ceiling 10, default 5)</span></div>
+    <div class="fact"><b>26.1108.1</b><span>plugin version</span></div>
+    <div class="fact"><b>77fb4f4</b><span>implementation commit</span></div>
+    <div class="fact"><b>438e538</b><span>ceiling ADR commit</span></div>
+  </div>
+  <div class="callout">
+    <p><strong>Current text.</strong> The default-5 amendment of 2026-11-12 is committed after 438e538. The text in this reference is the current text of the three files. Where a bundle phase file still says "default 1", that wording is history. The code and the amended specification (revised 2026-11-12) are current.</p>
+  </div>
+  <nav class="toc" aria-label="Sections">
+    <a href="#system">1 · The system</a>
+    <a href="#containers">2 · The three files</a>
+    <a href="#components">3 · Sections on the path</a>
+    <a href="#contracts">4 · Contracts</a>
+    <a href="#run">5 · One gate-test run</a>
+    <a href="#config">6 · Configuration reference</a>
+    <a href="#guards">7 · The three guards</a>
+    <a href="#why">8 · What changed, and why</a>
+    <a href="#progress">9 · Why breaches, not counts</a>
+    <a href="#decisions">10 · Delegated decisions</a>
+    <a href="#sources">11 · Sources</a>
+  </nav>
+</header>
+
+<!-- 1 -->
+<section id="system">
+  <div class="prose">
+    <div class="secnum">1 · The system</div>
+    <h2>Where the change lives</h2>
+    <p>speccen is a plugin of skills. A skill is a text file. The skills guide a Software Architect and an AI through a phased workflow. A phase runs in one of two modes. In <code>gated</code> mode, the Architect decides at the end of the phase. In <code>autonomous</code> mode, the Architect's delegate decides.</p>
+    <p>An autonomous phase ends with a <strong>gate test</strong>. The delegate checks the phase against its quality criteria and writes one row per item. A <strong>verifier</strong> subagent re-opens the evidence of every row. If a row fails, the delegate repairs the record and runs the test again.</p>
+    <p>Before this change, the delegate made one repair. A second failure was a stop. In the evidence of issue 25, most second failures were precision faults: a line number one off, a count that differed between two files. The Architect answered "yes, go ahead" to almost every such stop. The stop cost attention and added no decision.</p>
+    <p>This change makes the number of repairs a setting. The new key is <code>fixes</code>. It does not depend on <code>stops</code>. The key <code>stops</code> answers "may the delegate decide a material question". The key <code>fixes</code> answers "how often may the delegate repair its own work before it asks for help".</p>
+  </div>
+
+  <figure class="scroll" data-md="Level 1, context. The Architect sets the key fixes in the speccen config files and answers stops. The speccen plugin (changed: the gate-test rule and the config contract) is read by the host (Claude Code). The host runs the delegate and the verifier subagent. The delegate writes the gate rows into the bundle (summary.md, log.md). The config files (changed: a new key) are read by the plugin.">
+    <svg class="d n" viewBox="0 0 800 270" role="img" aria-label="C4 level 1 context diagram">
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+        <marker id="h1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahh"/></marker>
+      </defs>
+      <circle cx="70" cy="80" r="15" class="box"/>
+      <path d="M45 126 q25 -30 50 0" class="e"/>
+      <text x="70" y="154" text-anchor="middle" class="lb">Architect</text>
+      <rect x="250" y="30" width="230" height="110" rx="10" class="chg"/>
+      <text x="365" y="58" text-anchor="middle" class="k">CHANGED</text>
+      <text x="365" y="80" text-anchor="middle" class="t">speccen plugin</text>
+      <text x="365" y="100" text-anchor="middle" class="s">skills + README</text>
+      <text x="365" y="120" text-anchor="middle" class="s">gate-test fix budget</text>
+      <rect x="580" y="30" width="190" height="110" rx="10" class="mute"/>
+      <text x="675" y="66" text-anchor="middle" class="t">Host (Claude Code)</text>
+      <text x="675" y="88" text-anchor="middle" class="s">runs the delegate</text>
+      <text x="675" y="106" text-anchor="middle" class="s">and the verifier subagent</text>
+      <rect x="250" y="195" width="230" height="56" rx="10" class="chg"/>
+      <text x="365" y="219" text-anchor="middle" class="t">speccen-config.yaml</text>
+      <text x="365" y="238" text-anchor="middle" class="s">project · bundle · local · new key fixes</text>
+      <rect x="580" y="195" width="190" height="56" rx="10" class="mute"/>
+      <text x="675" y="219" text-anchor="middle" class="t">Bundle</text>
+      <text x="675" y="238" text-anchor="middle" class="s">summary.md gate table · log.md</text>
+      <path d="M95 80 L248 80" class="e" marker-end="url(#a1)"/>
+      <text x="170" y="70" text-anchor="middle" class="lb">gates, answers</text>
+      <path d="M85 135 L250 215" class="eh" marker-end="url(#h1)"/>
+      <text x="120" y="205" class="lb">sets fixes</text>
+      <path d="M480 85 L578 85" class="e" marker-end="url(#a1)"/>
+      <text x="529" y="75" text-anchor="middle" class="lb">instructs</text>
+      <path d="M365 195 L365 142" class="eh" marker-end="url(#h1)"/>
+      <text x="375" y="172" class="lb">read at session start</text>
+      <path d="M675 140 L675 193" class="e" marker-end="url(#a1)"/>
+      <text x="685" y="172" class="lb">writes rows</text>
+    </svg>
+    <figcaption><span class="level">L1</span><b>Context.</b> Accent border: changed in this work. Muted: unchanged. The Architect edits the key. The plugin reads it. The host runs the delegate and the verifier. Nothing outside speccen is involved.</figcaption>
+  </figure>
+</section>
+
+<!-- 2 -->
+<section id="containers">
+  <div class="prose">
+    <div class="secnum">2 · The three files</div>
+    <h2>What the change touched</h2>
+    <p>The change touches three files. All other skills and all code are unchanged. The other phase skills run their gate test through the governing skill, so they take the new rule without an edit.</p>
+  </div>
+  <figure class="scroll" data-md="Level 2, containers. Three changed files: the governing skill (skills/sdd/00-governing-workflow/SKILL.md), the Phase 05 skill (skills/sdd/05-implementation/SKILL.md) and README.md. The governing skill defines the rule. The Phase 05 skill points back to it in Step 7. The README holds a copy of the config template that must equal the template in the governing skill. Unchanged: the skills of phases 01 to 04 and 06, which run their gate test through the governing skill; and the project file .speccen/speccen-config.yaml, which speccen upgrades from the template at session start.">
+    <svg class="d w" viewBox="0 0 900 300" role="img" aria-label="C4 level 2 container diagram">
+      <defs>
+        <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+        <marker id="h2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahh"/></marker>
+      </defs>
+      <rect x="290" y="25" width="320" height="100" rx="10" class="chg"/>
+      <text x="450" y="50" text-anchor="middle" class="k">CHANGED</text>
+      <text x="450" y="73" text-anchor="middle" class="t">governing-workflow/SKILL.md</text>
+      <text x="450" y="93" text-anchor="middle" class="s">the rule, the key, the template, the upgrade</text>
+      <text x="450" y="110" text-anchor="middle" class="s">the effective settings, the gate test, stop 5</text>
+      <rect x="30" y="195" width="250" height="80" rx="10" class="chg"/>
+      <text x="155" y="220" text-anchor="middle" class="k">CHANGED</text>
+      <text x="155" y="241" text-anchor="middle" class="t">05-implementation/SKILL.md</text>
+      <text x="155" y="260" text-anchor="middle" class="s">Step 7 accept uses the budget</text>
+      <rect x="325" y="195" width="250" height="80" rx="10" class="chg"/>
+      <text x="450" y="220" text-anchor="middle" class="k">CHANGED</text>
+      <text x="450" y="241" text-anchor="middle" class="t">README.md</text>
+      <text x="450" y="260" text-anchor="middle" class="s">template copy and upgrade paragraph</text>
+      <rect x="620" y="195" width="250" height="80" rx="10" class="ext"/>
+      <text x="745" y="226" text-anchor="middle" class="t">speccen-config.yaml</text>
+      <text x="745" y="245" text-anchor="middle" class="s">project file · not edited here</text>
+      <text x="745" y="261" text-anchor="middle" class="s">upgraded from the template</text>
+      <rect x="670" y="25" width="200" height="100" rx="10" class="mute"/>
+      <text x="770" y="62" text-anchor="middle" class="t">Skills 01 – 04, 06</text>
+      <text x="770" y="82" text-anchor="middle" class="s">unchanged</text>
+      <text x="770" y="99" text-anchor="middle" class="s">run the gate test through</text>
+      <text x="770" y="113" text-anchor="middle" class="s">the governing skill</text>
+      <path d="M370 125 L190 193" class="eh" marker-end="url(#h2)"/>
+      <text x="245" y="150" class="lb">Step 7 points back</text>
+      <path d="M450 125 L450 193" class="eh ed" marker-end="url(#h2)"/>
+      <text x="440" y="168" text-anchor="end" class="lb">copy must equal the template</text>
+      <path d="M540 125 L700 193" class="e ed" marker-end="url(#a2)"/>
+      <text x="650" y="140" class="lb">upgrade at session start</text>
+      <path d="M610 75 L668 75" class="e ed" marker-end="url(#a2)"/>
+    </svg>
+    <figcaption><span class="level">L2</span><b>The three files.</b> The governing skill is the only file that defines the rule. The two other changed files restate or point to it.</figcaption>
+  </figure>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>File</th><th>What changed</th><th>Where (current text)</th></tr></thead>
+      <tbody>
+        <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md</code></td><td>Keys table and phase list; template <code>version: 3</code> with <code>fixes</code>; upgrade to version 3; effective settings; fail-safe; gate-test repair rule with three guards; self-check line; stop condition 5</td><td><code>:696-697</code>, <code>:710</code>, <code>:738-791</code>, <code>:870</code>, <code>:922-924</code>, <code>:941</code>, <code>:958</code>, <code>:1185</code>, <code>:1193-1208</code>, <code>:1237-1238</code></td></tr>
+        <tr><td><code>skills/sdd/05-implementation/SKILL.md</code></td><td>The Step 7 accept uses the budget and the same guards. A spent budget or a run with no progress is a rejection (Phase 05b)</td><td><code>:320-327</code></td></tr>
+        <tr><td><code>README.md</code></td><td>The template copy gains <code>fixes: 5</code> and <code>version: 3</code>. The upgrade paragraph names <code>5</code> among the absence values</td><td><code>:193</code>, <code>:242-295</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="components">
+  <div class="prose">
+    <div class="secnum">3 · Sections on the path</div>
+    <h2>Which sections carry the rule</h2>
+    <p>A skill has sections, not classes. This level shows each section that carries the rule, in the order a reader meets it. The accent path runs from the key definition to the stop condition.</p>
+    <ol class="tight">
+      <li><strong>Keys</strong> defines <code>fixes</code> and the values <code>1</code> – <code>10</code>.</li>
+      <li><strong>Effective settings, Locks and Fail-safe</strong> turn the files into one number for a phase.</li>
+      <li><strong>Gate test</strong> uses that number as the repair budget and applies the guards.</li>
+      <li><strong>Stop conditions</strong>, condition 5, names the three causes of a stop.</li>
+      <li><strong>Phase 05 Step 7</strong> reuses the same budget and guards for the accept.</li>
+    </ol>
+    <p>The template, the upgrade text and the README copy keep the project file and its documentation in line with the key.</p>
+  </div>
+  <figure class="scroll" data-md="Level 3, components. Inside the governing skill: Keys and phase list (:696-710), Template (:738-791), Upgrading the project file (:870, :922-924), Effective settings plus Locks plus Fail-safe (:933-958), Gate test (:1165-1208) and Stop conditions, condition 5 (:1237-1238). All are changed. Unchanged: Proceeding on a proposal, which removes only stop condition 1. The accent path runs Keys, Effective settings, Gate test, Stop condition 5. In the Phase 05 skill, Step 7 accept (:320-327, changed) reuses the gate test; Phase 05b rejection (:328, unchanged text) runs when the budget is spent or a run makes no progress. In the README, the template copy (:242-295) and the upgrade paragraph (:190-196) are changed; the copy must equal the template.">
+    <svg class="d w" viewBox="0 0 1000 470" role="img" aria-label="C4 level 3 component diagram">
+      <defs>
+        <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+        <marker id="h3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahh"/></marker>
+      </defs>
+      <rect x="15" y="15" width="710" height="440" rx="12" class="bound"/>
+      <text x="30" y="36" class="k">GOVERNING-WORKFLOW/SKILL.MD</text>
+
+      <rect x="35" y="55" width="200" height="70" rx="8" class="chg"/>
+      <text x="135" y="82" text-anchor="middle" class="t">Keys · phase list</text>
+      <text x="135" y="100" text-anchor="middle" class="s">:696-697 · :710</text>
+      <text x="135" y="114" text-anchor="middle" class="s">defines fixes, 1 – 10</text>
+
+      <rect x="265" y="55" width="200" height="70" rx="8" class="chg"/>
+      <text x="365" y="82" text-anchor="middle" class="t">Template</text>
+      <text x="365" y="100" text-anchor="middle" class="s">:738-791</text>
+      <text x="365" y="114" text-anchor="middle" class="s">version 3 · fixes: 5 · 5 × inherit</text>
+
+      <rect x="495" y="55" width="210" height="70" rx="8" class="chg"/>
+      <text x="600" y="82" text-anchor="middle" class="t">Upgrading the project file</text>
+      <text x="600" y="100" text-anchor="middle" class="s">:870 · :922-924</text>
+      <text x="600" y="114" text-anchor="middle" class="s">adds fixes: 5, then 5 × inherit</text>
+
+      <rect x="35" y="175" width="300" height="80" rx="8" class="chg"/>
+      <text x="185" y="203" text-anchor="middle" class="t">Effective settings · Locks · Fail-safe</text>
+      <text x="185" y="222" text-anchor="middle" class="s">:941 default 5 · :958 invalid counts as 1</text>
+      <text x="185" y="238" text-anchor="middle" class="s">one number per phase</text>
+
+      <rect x="395" y="175" width="310" height="80" rx="8" class="mute"/>
+      <text x="550" y="203" text-anchor="middle" class="t">Proceeding on a proposal</text>
+      <text x="550" y="222" text-anchor="middle" class="s">unchanged · stops: proceed removes</text>
+      <text x="550" y="238" text-anchor="middle" class="s">only stop condition 1</text>
+
+      <rect x="35" y="320" width="300" height="110" rx="8" class="chg"/>
+      <text x="185" y="348" text-anchor="middle" class="t">Gate test</text>
+      <text x="185" y="367" text-anchor="middle" class="s">:1165-1208</text>
+      <text x="185" y="385" text-anchor="middle" class="s">self-check · repair loop up to fixes</text>
+      <text x="185" y="401" text-anchor="middle" class="s">three guards · log line per attempt</text>
+      <text x="185" y="417" text-anchor="middle" class="s">re-check scope</text>
+
+      <rect x="395" y="320" width="310" height="110" rx="8" class="chg"/>
+      <text x="550" y="348" text-anchor="middle" class="t">Stop conditions · 5</text>
+      <text x="550" y="367" text-anchor="middle" class="s">:1237-1238</text>
+      <text x="550" y="385" text-anchor="middle" class="s">budget used up · no progress</text>
+      <text x="550" y="401" text-anchor="middle" class="s">or a fix that changes a conclusion,</text>
+      <text x="550" y="417" text-anchor="middle" class="s">a delegated decision or an ADR</text>
+
+      <rect x="750" y="15" width="235" height="215" rx="12" class="bound"/>
+      <text x="765" y="36" class="k">05-IMPLEMENTATION/SKILL.MD</text>
+      <rect x="770" y="55" width="195" height="80" rx="8" class="chg"/>
+      <text x="867" y="82" text-anchor="middle" class="t">Step 7 · accept</text>
+      <text x="867" y="100" text-anchor="middle" class="s">:320-327</text>
+      <text x="867" y="116" text-anchor="middle" class="s">fix up to the same budget</text>
+      <rect x="770" y="150" width="195" height="62" rx="8" class="mute"/>
+      <text x="867" y="177" text-anchor="middle" class="t">Phase 05b · reject</text>
+      <text x="867" y="195" text-anchor="middle" class="s">:328 · unchanged text</text>
+
+      <rect x="750" y="260" width="235" height="195" rx="12" class="bound"/>
+      <text x="765" y="281" class="k">README.MD</text>
+      <rect x="770" y="300" width="195" height="62" rx="8" class="chg"/>
+      <text x="867" y="327" text-anchor="middle" class="t">Template copy</text>
+      <text x="867" y="345" text-anchor="middle" class="s">:242-295 · equals the template</text>
+      <rect x="770" y="378" width="195" height="62" rx="8" class="chg"/>
+      <text x="867" y="405" text-anchor="middle" class="t">Upgrade paragraph</text>
+      <text x="867" y="423" text-anchor="middle" class="s">:190-196 · lists absence values</text>
+
+      <path d="M135 125 L135 173" class="eh" marker-end="url(#h3)"/>
+      <path d="M185 255 L185 318" class="eh" marker-end="url(#h3)"/>
+      <path d="M335 375 L393 375" class="eh" marker-end="url(#h3)"/>
+      <path d="M185 430 L185 445 L738 445 L738 95 L768 95" class="eh ed" marker-end="url(#h3)"/>
+      <text x="215" y="440" class="lb">Step 7 reuses the gate test and its guards</text>
+      <path d="M865 135 L865 148" class="e ed" marker-end="url(#a3)"/>
+      <path d="M365 125 L365 150 L190 150 L190 173" class="e ed" marker-end="url(#a3)"/>
+      <path d="M465 90 L493 90" class="e ed" marker-end="url(#a3)"/>
+          </svg>
+    <figcaption><span class="level">L3</span><b>Sections on the path.</b> Solid accent arrows: the path of the rule. Dashed arrows: restated or reused text. The README boxes restate the template and the upgrade text. Every box with an accent border changed. The muted boxes did not change.</figcaption>
+  </figure>
+</section>
+
+<!-- 4 -->
+<section id="contracts">
+  <div class="prose">
+    <div class="secnum">4 · Contracts</div>
+    <h2>Service Contracts and the key contract</h2>
+    <p><strong>Service Contracts: none.</strong> The scope is skill prose and YAML. No service is registered, no controller consumes an interface, and no external boundary exists. This reference does not make one up.</p>
+    <p>The equivalent of a component API here is the <strong>key contract</strong> and the <strong>gate-test rule</strong>. They are the interface between the Architect, the config files and the delegate. The next sections give both.</p>
+    <div class="two">
+      <div class="card">
+        <h3>Key contract</h3>
+        <p>Input: a <code>fixes</code> value in a config file. Output: one effective number per autonomous phase. A value outside <code>1</code> – <code>10</code> gives <code>1</code>. No value gives <code>5</code>. See section 6.</p>
+      </div>
+      <div class="card">
+        <h3>Gate-test rule</h3>
+        <p>Precondition: the phase is <code>autonomous</code> and a gate-test row failed. Postcondition: the delegate stops, or the gate test passes, within the effective number of fix attempts. Invariant: no repair changes a conclusion, a delegated decision or an ADR. See section 7.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="run">
+  <div class="prose">
+    <div class="secnum">5 · One gate-test run</div>
+    <h2>One failing gate test, call by call</h2>
+    <p>The diagram shows one representative run in an autonomous phase with the default <code>fixes: 5</code>. Steps 1 to 3 existed before. Steps 4 to 9 are the new repair loop. The three guards act inside the loop. A stop at any guard is stop condition 5.</p>
+  </div>
+  <figure class="scroll" data-md="Level 4, runtime sequence. Lifelines: Delegate, Verifier, Bundle files (summary.md and log.md), Architect. Unchanged steps: 1 the delegate writes the gate table and the line 'Self-check: done — N corrections'; 2 it launches verifier run 1; 3 the verifier returns the failed rows, for example 3 and 7. New repair loop: Guard 1, conclusions: if the next fix would change a phase conclusion, a delegated decision or an ADR, stop. 4 The delegate repairs and logs 'fix attempt 1 of 5: run 1 failed rows 3, 7'. Guard 2, budget: the attempt number must not pass the effective fixes (default 5, ceiling 10); when it does, stop (in Phase 05: reject). 5 The delegate launches run 2, which re-checks (a) the rows that failed and (b) the rows whose evidence is in a changed file. 6 The verifier returns, for example, row 7 failed on a new breach. Guard 3, progress: if a breach that the run before named is still there, or more rows fail than in the run before, stop; otherwise go on. 7 The loop repeats steps 4 to 6. 8 The verifier confirms every re-checked row. 9 The delegate writes 'confirmed (run N)' and advances. On any stop, the delegate asks the Architect through a stop round.">
+    <svg class="d w" viewBox="0 0 960 790" role="img" aria-label="C4 level 4 runtime sequence diagram">
+      <defs>
+        <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+        <marker id="h4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahh"/></marker>
+      </defs>
+      <rect x="10" y="225" width="940" height="490" rx="10" class="band"/>
+      <text x="24" y="246" class="k">NEW · THE REPAIR LOOP</text>
+
+      <rect x="55" y="15" width="130" height="34" rx="6" class="box"/>
+      <text x="120" y="37" text-anchor="middle" class="t">Delegate</text>
+      <rect x="315" y="15" width="130" height="34" rx="6" class="box"/>
+      <text x="380" y="37" text-anchor="middle" class="t">Verifier</text>
+      <rect x="560" y="15" width="160" height="34" rx="6" class="box"/>
+      <text x="640" y="37" text-anchor="middle" class="t">summary.md · log.md</text>
+      <rect x="795" y="15" width="130" height="34" rx="6" class="box"/>
+      <text x="860" y="37" text-anchor="middle" class="t">Architect</text>
+      <path d="M120 49 L120 770" class="life"/>
+      <path d="M380 49 L380 770" class="life"/>
+      <path d="M640 49 L640 770" class="life"/>
+      <path d="M860 49 L860 770" class="life"/>
+
+      <path d="M120 95 L638 95" class="e" marker-end="url(#a4)"/>
+      <text x="380" y="87" text-anchor="middle" class="lb">1 write gate table · "Self-check: done — N corrections"</text>
+      <path d="M120 140 L378 140" class="e" marker-end="url(#a4)"/>
+      <text x="250" y="132" text-anchor="middle" class="lb">2 launch run 1 · re-open every row</text>
+      <path d="M378 185 L122 185" class="e ed" marker-end="url(#a4)"/>
+      <text x="250" y="177" text-anchor="middle" class="lb">3 run 1 failed rows 3, 7</text>
+
+      <rect x="150" y="262" width="480" height="48" rx="8" class="pwarn"/>
+      <text x="165" y="282" class="t">Guard 1 · conclusions</text>
+      <text x="165" y="300" class="s">The next fix changes a phase conclusion, a delegated decision or an ADR? Yes: stop.</text>
+
+      <path d="M120 345 L638 345" class="eh" marker-end="url(#h4)"/>
+      <text x="380" y="337" text-anchor="middle" class="lb">4 repair · log "fix attempt 1 of 5: run 1 failed rows 3, 7"</text>
+
+      <rect x="150" y="365" width="480" height="48" rx="8" class="pwarn"/>
+      <text x="165" y="385" class="t">Guard 2 · budget and ceiling</text>
+      <text x="165" y="403" class="s">Attempt n is above the effective fixes (default 5, at most 10)? Yes: stop. In Phase 05: reject.</text>
+
+      <path d="M120 450 L378 450" class="eh" marker-end="url(#h4)"/>
+      <text x="135" y="442" class="lb">5 run 2 · re-check (a) failed rows (b) rows citing a changed file</text>
+      <path d="M378 492 L122 492" class="eh ed" marker-end="url(#h4)"/>
+      <text x="250" y="484" text-anchor="middle" class="lb">6 run 2 failed row 7 · a new breach</text>
+
+      <rect x="150" y="512" width="480" height="48" rx="8" class="pwarn"/>
+      <text x="165" y="532" class="t">Guard 3 · progress</text>
+      <text x="165" y="550" class="s">A breach of the run before is still there, or more rows fail? Yes: stop. No: go on.</text>
+
+      <rect x="150" y="582" width="480" height="30" rx="8" class="pmut"/>
+      <text x="165" y="602" class="s">7 repeat steps 4 to 6 until the re-checked rows pass, or a guard stops the loop</text>
+
+      <path d="M378 645 L122 645" class="e ed" marker-end="url(#a4)"/>
+      <text x="250" y="637" text-anchor="middle" class="lb">8 run N confirms every re-checked row</text>
+      <path d="M120 685 L638 685" class="e" marker-end="url(#a4)"/>
+      <text x="380" y="677" text-anchor="middle" class="lb">9 write "confirmed (run N)" · advance the phase</text>
+
+      <path d="M120 745 L858 745" class="eh ed" marker-end="url(#h4)"/>
+      <text x="490" y="737" text-anchor="middle" class="lb">on any guard stop: stop condition 5 · stop round with a proposed answer</text>
+    </svg>
+    <figcaption><span class="level">L4</span><b>One run.</b> Solid arrows are calls. Dashed arrows are returns. The shaded band is new. Accent arrows are the new calls. The numbers 3 and 7 in the example (rows, attempt number) are illustrative.</figcaption>
+  </figure>
+  <div class="prose">
+    <h3>What the run records</h3>
+    <ul class="tight">
+      <li>One log line per attempt: <code>fix attempt &lt;n&gt; of &lt;fixes&gt;: run &lt;N&gt; failed rows &lt;list&gt;</code> (<code>:1203</code>).</li>
+      <li>Rows that a later run does not re-check keep their last <code>confirmed (run N)</code> (<code>:1196</code>).</li>
+      <li>After a stop, the Architect's answer sets which rows the next run re-checks, and whether more fix attempts are allowed. Without that answer, one run follows, and a failing row stops again (<code>:1204-1208</code>).</li>
+      <li>Cost: one first run and at most <code>fixes</code> repeat runs, so at most <code>fixes + 1</code> verifier runs for each gate. Each run is on the session model.</li>
+    </ul>
+  </div>
+  <div class="prose">
+    <h3>Evidence from this bundle</h3>
+    <p>This bundle ran under the older one-fix text. The delegate repaired gate tests in a loop under the Architect's words at 15:43 and 15:45 (<code>log.md</code>). The table shows the failed rows per verifier run. These are the runs that showed the need for the rule. They are not tests of the new rule. The new rule is not yet measured in a release.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Gate</th><th>Failed rows per verifier run</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Phase 02</td><td>run 4: row 20 · run 5: row 20 (another defect) · run 6: none</td><td>DD-8, DD-14</td></tr>
+        <tr><td>Phase 03</td><td>5 · 2 · 1</td><td>DD-22, DD-23</td></tr>
+        <tr><td>Phase 04</td><td>5 · 3 · 1 · (stop round) · 3 · 3 · 1</td><td>DD-26 – DD-29</td></tr>
+        <tr><td>Phase 05</td><td>1 → 1 → 2 → 2 → 2 → 1 → 1 → 0 (accepted after run 8)</td><td>Phase 05 summary, DD-30 – DD-32</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="config">
+  <div class="prose">
+    <div class="secnum">6 · Configuration reference</div>
+    <h2>The <code>fixes</code> key</h2>
+    <p>The key is in the Keys table of the governing skill (<code>:696-697</code>). Both rows say <code>autonomous</code> only.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Key</th><th>Values</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr class="new"><td><code>fixes</code></td><td><code>1</code> – <code>10</code></td><td>The default at that level. The number of fix attempts the delegate makes on a failing gate test before it stops. Independent of <code>stops</code>.</td></tr>
+        <tr class="new"><td><code>phases.&lt;phase&gt;.fixes</code></td><td><code>inherit</code> · <code>1</code> – <code>10</code></td><td>The fix budget for one phase. <code>inherit</code> means no value at this level.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose">
+    <h3>Which phases take the key</h3>
+    <p>Five phases take <code>fixes</code>: <code>feature-analysis</code>, <code>code-analysis</code>, <code>compliance-review</code>, <code>specification</code> and <code>implementation</code>. These are the phases that take <code>mode</code> (<code>:710</code>). The key has no effect in a <code>gated</code> phase. Close-out has no exit gate and takes no <code>fixes</code>. A <code>fixes</code> key on a phase that does not take it is ignored and mentioned once (<code>:961-963</code> fail-safe).</p>
+
+    <h3>Resolution order</h3>
+    <p>The text says <code>fixes</code> resolves "the same way" as the other per-phase keys (<code>:941</code>). The steps below follow the rule for <code>mode</code> (<code>:933-939</code>).</p>
+    <ol class="tight">
+      <li>The phase-level value, in this order of files: bundle local, bundle, project local, project. <code>inherit</code> counts as no value.</li>
+      <li>The top-level <code>fixes</code>, in the same order of files.</li>
+      <li>The default <code>5</code>.</li>
+    </ol>
+
+    <h3>Lock</h3>
+    <ul class="tight">
+      <li>A lock in the project file binds every file below it. A locked phase, or a top-level <code>lock: true</code>, skips the bundle file and both local files. So a project lock stops a bundle or local file from raising <code>fixes</code>.</li>
+      <li>A lock in the bundle file binds only the bundle's local file.</li>
+      <li>A lock in a local file is ignored.</li>
+      <li>When a lock overrides a setting, speccen says so once per session.</li>
+    </ul>
+
+    <h3>Fail-safe</h3>
+    <p>A <code>fixes</code> value that is not a whole number from <code>1</code> to <code>10</code> counts as <code>1</code> (<code>:958</code>). The fail-safe takes the smallest budget. Absence is different: absence means <code>5</code>.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Input</th><th>Effective value</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td><code>3</code>, <code>10</code></td><td>as written</td><td>A whole number from 1 to 10</td></tr>
+        <tr><td>no <code>fixes</code> in any file</td><td><code>5</code></td><td>The default (<code>:941</code>)</td></tr>
+        <tr><td><code>inherit</code> on a phase</td><td>the next level down the order</td><td><code>inherit</code> counts as no value</td></tr>
+        <tr><td><code>12</code>, <code>0</code>, <code>many</code></td><td><code>1</code></td><td>Fail-safe: not a whole number from 1 to 10</td></tr>
+        <tr><td>any value, phase is <code>gated</code></td><td>no effect</td><td>The Architect is the gate</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose">
+    <h3>Template and upgrade to version 3</h3>
+    <p>The template is <code>version: 3</code> (<code>:738</code>). It has <code>fixes: 5</code> at the top (<code>:751</code>), a comment and a legend line (<code>:757</code>), and <code>fixes: inherit</code> on the five phases (<code>:767</code>, <code>:772</code>, <code>:778</code>, <code>:785</code>, <code>:791</code>). The README holds a copy of this block (<code>README.md:242-295</code>).</p>
+    <p>At session start, speccen compares the project file with the template. A file of an earlier version gets the missing keys with the value that its absence meant. An upgrade to version 3 adds <code>fixes: 5</code> at the top and <code>fixes: inherit</code> to the five phases, and sets <code>version: 3</code> (<code>:922-924</code>). It never changes a value that is already there. It does not touch a bundle file or a local file.</p>
+    <p>An autonomous phase then makes up to five fix attempts. The upgrade sentence says: set <code>fixes: 1</code> to keep one.</p>
+  </div>
+  <figure class="scroll">
+    <pre><span class="add">+ # How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–10).</span>
+<span class="add">+ # It stops sooner when a repair makes no progress or would change a conclusion.</span>
+<span class="add">+ fixes: 5</span>
+<span class="cm">lock: false</span>
+<span class="cm">#   stops       inherit · ask · proceed — autonomous only: see the top-level stops</span>
+<span class="add">+ #   fixes       inherit · 1 – 10 — autonomous only: see the top-level fixes</span>
+<span class="cm">phases:
+  feature-analysis:
+    mode: inherit
+    stops: inherit</span>
+<span class="add">+     fixes: inherit</span>
+<span class="cm">    lock: false     # … and the same line in code-analysis, compliance-review, specification, implementation</span></pre>
+    <figcaption>Template lines for <code>fixes</code>, from <code>:738-791</code>. Added lines have a green background.</figcaption>
+  </figure>
+</section>
+
+<!-- 7 -->
+<section id="guards">
+  <div class="prose">
+    <div class="secnum">7 · The three guards</div>
+    <h2>The gate-test rule</h2>
+    <p>The repair rule is in the Gate test section (<code>:1193-1208</code>). The delegate fixes a failing item and runs the test again, up to the phase's effective <code>fixes</code> attempts. Each later verifier run re-checks two sets of rows: (a) every row that failed in the run before, and (b) every row whose evidence is in a file the delegate changed during the fix.</p>
+    <p>Three conditions stop the loop. They are the three items under "Stop (stop condition 5) when" (<code>:1197-1201</code>). Stop condition 5 itself names the same three causes (<code>:1237-1238</code>).</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Guard</th><th>The text says</th><th>What the delegate does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1 · Conclusions</strong></td><td>"the fix you would make next changes a phase conclusion, a delegated decision or an ADR" (<code>:1198</code>)</td><td>Stops at once, before the fix, with budget left. The budget repairs the record. It does not change what the record concludes.</td></tr>
+        <tr><td><strong>2 · Budget and ceiling</strong></td><td>"a re-checked row still fails and the budget is used up" (<code>:1199</code>)</td><td>Stops after <code>fixes</code> attempts. The ceiling is the largest value the key accepts, <code>10</code>.</td></tr>
+        <tr><td><strong>3 · Progress</strong></td><td>"a rule breach the run before named is still there, or more rows fail than in the run before" (<code>:1200-1201</code>)</td><td>Stops, also with attempts left. A run that fails the same number of rows on a new breach is progress.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose">
+    <h3>Phase 05: reject, not stop</h3>
+    <p>Step 7 of the Phase 05 skill (<code>:320-327</code>) uses the same budget and guards. The outcome differs. If the next fix would change a conclusion, a delegated decision or an ADR, the delegate stops. If the budget is used up, or a run makes no progress, the delegate rejects the implementation and runs Phase 05b (<code>:328</code>). Without this step, <code>phases.implementation.fixes</code> would have no effect (DD-10).</p>
+    <h3>Other changes in the same text</h3>
+    <ul class="tight">
+      <li>The self-check line says <code>Self-check: done — N corrections</code> (<code>:1185</code>). The word "fix" now means only a gate-test fix attempt (DD-16).</li>
+      <li>Stop condition 5 names three causes instead of one (<code>:1237-1238</code>).</li>
+      <li>The unchanged rule stays: <code>stops: proceed</code> removes only condition 1. Conditions 2 to 8 stay hard stops.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="why">
+  <div class="prose">
+    <div class="secnum">8 · What changed, and why</div>
+    <h2>The decisions behind the numbers</h2>
+    <p>Two bundle ADRs set the budget. Each one overrides a delegated decision. This section gives the reasoning on the page. The ADRs hold the full record.</p>
+
+    <h3>ADR 2026-11-11 — the ceiling is 10, not 3</h3>
+    <p>The brief (issue 25, section 2, guard 3) capped the budget at 3. The delegate kept 3 (DD-12) and marked it <code>MATERIAL — unconfirmed</code>, because the Architect had also said "I don't know how to express in simple English that have to loop until issues are fixed" (log 15:45). The review put the question to the Architect as R/1. The answer was "1 max loop 10" (log 21:58). DD-12 is <code>OVERRIDDEN</code>. The ADR does not record a reason for the number 10. It records no consequences.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Option</th><th>Outcome</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Ceiling 3 (brief, DD-12)</td><td><span class="st mut">not taken</span></td><td>The Architect chose 10 in review R/1.</td></tr>
+        <tr><td>No ceiling: loop while the progress guard holds</td><td><span class="st mut">not taken</span></td><td>The brief rejects "Unbounded retries" (section 4). One row failed five runs in a row in the 2026-11-05 bundle. The Architect named a maximum of 10.</td></tr>
+        <tr class="new"><td>Ceiling 10</td><td><span class="st acc">taken</span></td><td>The Architect's decision. ADR 2026-11-12 states that the progress guard and the conclusions guard bound every loop.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose">
+    <h3>ADR 2026-11-12 — the default is 5, not 1</h3>
+    <p>The specification set the default to <code>1</code>, so that a project keeps today's behaviour (brief section 3, DD-17). After close-out, the Architect said: "the max cap is raised to 10, and the default value should be 5". The follow-up answers: absence of <code>fixes</code>, the template and the version-3 upgrade all mean <code>5</code> ("5 everywhere"). An invalid value still counts as <code>1</code>. DD-17 is <code>OVERRIDDEN</code>. The Architect had the specification amended on 2026-11-12 (R-1, R-2, R-6, R-11, R-12). The skill and the README follow it.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Option</th><th>Outcome</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Default 1 (brief, DD-17)</td><td><span class="st mut">not taken</span></td><td>It kept today's behaviour. The Architect wanted a larger default.</td></tr>
+        <tr class="new"><td>Default 5; absence, template and upgrade all mean 5</td><td><span class="st acc">taken</span></td><td>The Architect's decision. The upgrade writes the value that absence means, so the rule "keep every effective setting" still holds.</td></tr>
+        <tr><td>Invalid value counts as 5</td><td><span class="st mut">not taken</span></td><td>The Architect answered "Counts as 1". The fail-safe takes the smallest budget.</td></tr>
+        <tr><td>Other defaults (2 – 4, 10)</td><td><span class="st mut">not discussed</span></td><td>The ADR names only 1 and 5.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose">
+    <p><strong>Consequence.</strong> The default changes behaviour at upgrade. An autonomous project that upgrades to version 3 makes up to five fix attempts for each gate test, where it made one before. The upgrade sentence tells the Architect to set <code>fixes: 1</code> to keep one. The brief's claim "Unchanged by default" no longer holds. The progress guard and the conclusions guard bound every loop.</p>
+
+    <h3>Alternatives of the brief that stay rejected</h3>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Alternative</th><th>Why it was not taken</th></tr></thead>
+      <tbody>
+        <tr><td>Tie the budget to <code>stops: proceed</code></td><td><code>proceed</code> removes only stop condition 1. Conditions 2 to 8 mean the basis is broken or the action is not the delegate's to take. A single key would punish an Architect who wants <code>ask</code> for decisions with stops for typos.</td></tr>
+        <tr><td>Unbounded retries</td><td>A ceiling and a progress rule stop a costly loop.</td></tr>
+        <tr><td>Let the verifier ignore precision faults</td><td>That weakens the gate. Evidence that does not show what the row claims has not passed.</td></tr>
+        <tr><td>Count failed rows for progress (the brief's guard 1)</td><td>Not taken: see section 9 and DD-14.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose">
+    <h3>Verdicts</h3>
+    <p>Each change has an honest verdict. <span class="tag req">required</span> means the request or the effect needs it. <span class="tag corr">required for correctness</span> means the rule fails without it. <span class="tag choice">choice</span> means the Architect or the delegate could have chosen otherwise.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Change</th><th>Verdict</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td>The <code>fixes</code> key, independent of <code>stops</code></td><td><span class="tag req">required</span></td><td>Issue 25 asks for it. The two keys answer two different questions.</td></tr>
+        <tr><td>Conclusions guard</td><td><span class="tag corr">required for correctness</span></td><td>Without it, a repair loop could rewrite a decision. DD-13, delegated and not reviewed.</td></tr>
+        <tr><td>Progress guard by breaches</td><td><span class="tag corr">required for correctness</span></td><td>A row count compares different sets of rows (section 9). DD-14, adopted.</td></tr>
+        <tr><td>Phase 05 Step 7 uses the budget</td><td><span class="tag req">required</span></td><td>Without it, <code>phases.implementation.fixes</code> has no effect. DD-10, delegated and not reviewed.</td></tr>
+        <tr><td>Template version 3 and the upgrade text</td><td><span class="tag req">required</span></td><td>The governing skill says a template with a new key goes up by one version. DD-18, delegated and not reviewed.</td></tr>
+        <tr><td>README copy equals the template</td><td><span class="tag req">required</span></td><td>Specification R-11. The copy would otherwise drift.</td></tr>
+        <tr><td>Ceiling 10</td><td><span class="tag choice">choice</span></td><td>The Architect's number. No reason is recorded.</td></tr>
+        <tr><td>Default 5</td><td><span class="tag choice">choice</span></td><td>The Architect's number. It trades the "unchanged by default" property for fewer stops.</td></tr>
+        <tr><td>Invalid value counts as 1</td><td><span class="tag choice">choice</span></td><td>A cautious fail-safe, in line with the other keys. Confirmed by the Architect in the 2026-11-12 answer.</td></tr>
+        <tr><td>Self-check line says "N corrections"</td><td><span class="tag choice">choice</span></td><td>A wording choice for STE rule 4, "one meaning per word". It could have kept "N fixes". DD-16, delegated and not reviewed.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="progress">
+  <div class="prose">
+    <div class="secnum">9 · Why breaches, not counts</div>
+    <h2>How the progress guard measures progress</h2>
+    <p>The brief said a run makes no progress when it "fails as many rows or more than the run before". The delegate replaced that rule (DD-14). The Architect adopted the replacement ("rest yes", review R/2 – R/3). The text now says: a run makes no progress when a rule breach the run before named is still there, or when more rows fail than in the run before (<code>:1200-1201</code>).</p>
+    <p>The reason is in the re-check scope. Run 1 checks every row. Each later run checks only the rows that failed and the rows that cite a changed file. So two runs check different sets of rows. A row count compares two numbers from two different sets. A converging run can show the same count twice, because each run finds a new, smaller defect.</p>
+    <p>The Phase 02 gate of this bundle shows it. Run 4 failed row 20. Run 5 failed row 20 again, on a different mechanical defect (DD-8). Run 6 passed. The brief's rule would have stopped at run 5, because one failed row is "as many as" one failed row. The breach rule continues, because the defect of run 4 was gone.</p>
+  </div>
+  <figure class="scroll" data-md="Argument diagram. Phase 02 gate of this bundle, three verifier runs. Run 4 re-checked rows 14, 17 and 20; rows 14 and 17 passed and row 20 failed on defect A. Run 5 re-checked row 20 only; it failed on defect B, a different defect. Run 6 re-checked its rows and none failed. The rule that counts failed rows (rejected) compares 1 failed row with 1 failed row, finds 'as many', and stops at run 5, although defect A was repaired. The rule that follows breaches (taken) sees that the breach of run 4 is gone, and continues. Run 6 passes. The sets of rows differ between runs, so a count does not compare like with like.">
+    <svg class="d w" viewBox="0 0 900 400" role="img" aria-label="Argument diagram: why progress is measured by breaches">
+      <defs>
+        <marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+      </defs>
+      <text x="20" y="28" class="k">ROWS RE-CHECKED IN EACH RUN — PHASE 02 GATE, THIS BUNDLE (DD-8, DD-14)</text>
+
+      <text x="130" y="62" text-anchor="middle" class="t">Run 4</text>
+      <rect x="40" y="74" width="60" height="44" rx="6" class="pok"/>
+      <text x="70" y="101" text-anchor="middle" class="t">14</text>
+      <rect x="110" y="74" width="60" height="44" rx="6" class="pok"/>
+      <text x="140" y="101" text-anchor="middle" class="t">17</text>
+      <rect x="180" y="74" width="90" height="44" rx="6" class="pbad"/>
+      <text x="225" y="94" text-anchor="middle" class="t">20</text>
+      <text x="225" y="109" text-anchor="middle" class="s">defect A</text>
+      <text x="155" y="136" text-anchor="middle" class="s">3 rows checked · 1 failed</text>
+
+      <text x="460" y="62" text-anchor="middle" class="t">Run 5</text>
+      <rect x="415" y="74" width="90" height="44" rx="6" class="pbad"/>
+      <text x="460" y="94" text-anchor="middle" class="t">20</text>
+      <text x="460" y="109" text-anchor="middle" class="s">defect B</text>
+      <text x="460" y="136" text-anchor="middle" class="s">1 row checked · 1 failed</text>
+
+      <text x="740" y="62" text-anchor="middle" class="t">Run 6</text>
+      <rect x="680" y="74" width="120" height="44" rx="6" class="pok"/>
+      <text x="740" y="101" text-anchor="middle" class="t">re-checked rows</text>
+      <text x="740" y="136" text-anchor="middle" class="s">0 failed · the gate passes</text>
+
+      <path d="M275 96 L413 96" class="e" marker-end="url(#a5)"/>
+      <path d="M508 96 L678 96" class="e" marker-end="url(#a5)"/>
+
+      <rect x="40" y="170" width="390" height="190" rx="10" class="pbad"/>
+      <text x="58" y="196" class="t">Rule that counts failed rows — rejected</text>
+      <text x="58" y="222" class="s">Run 4 failed 1 row. Run 5 failed 1 row.</text>
+      <text x="58" y="240" class="s">1 is as many as 1: "no progress".</text>
+      <text x="58" y="266" class="t">Result: STOP at run 5</text>
+      <text x="58" y="290" class="s">Defect A was repaired. The run was converging.</text>
+      <text x="58" y="308" class="s">The two counts come from two different sets of rows:</text>
+      <text x="58" y="326" class="s">3 rows in run 4, 1 row in run 5.</text>
+      <text x="58" y="344" class="s">The count does not compare like with like.</text>
+
+      <rect x="470" y="170" width="390" height="190" rx="10" class="pok"/>
+      <text x="488" y="196" class="t">Rule that follows breaches — taken</text>
+      <text x="488" y="222" class="s">The breach of run 4 (defect A) is gone.</text>
+      <text x="488" y="240" class="s">Run 5 failed on a different breach (defect B).</text>
+      <text x="488" y="266" class="t">Result: CONTINUE, then run 6 passes</text>
+      <text x="488" y="290" class="s">No breach came back. A run that fails fewer rows,</text>
+      <text x="488" y="308" class="s">or the same number, is progress while the</text>
+      <text x="488" y="326" class="s">breaches change. More rows failing still stops.</text>
+      <text x="488" y="344" class="s">The same breach twice still stops.</text>
+    </svg>
+    <figcaption><b>Argument diagram.</b> The two rules read the same facts. Only the breach rule keeps a converging run alive. The red box rejects the brief's rule. The green box shows the text now in the skill.</figcaption>
+  </figure>
+  <div class="callout">
+    <p><strong>The rule still has a guard against loops.</strong> A breach that comes back stops the run. Also, more failed rows than in the run before stops the run. The ceiling of 10 bounds every other case.</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="decisions">
+  <div class="prose">
+    <div class="secnum">10 · Delegated decisions</div>
+    <h2>Decisions that shaped the outcome</h2>
+    <p>This bundle ran <code>autonomous</code>. The delegate took 32 decisions (DD-1 – DD-32). The table lists those that shaped the rule, with their status in <code>delegated-decisions.md</code>. A decision with status <code>DELEGATED</code> is unreviewed. The Architect has not adopted it. Do not read it as settled.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Id</th><th>Decision</th><th>Status</th><th>Basis</th></tr></thead>
+      <tbody>
+        <tr><td>DD-3</td><td>Scope: only the <code>fixes</code> budget</td><td><span class="st warn">DELEGATED</span></td><td>Brief section 2</td></tr>
+        <tr><td>DD-10</td><td>The budget also governs the Phase 05 accept check</td><td><span class="st warn">DELEGATED</span></td><td>Brief: "every <code>autonomous</code> phase"; <code>fixes</code> takes the same five phases as <code>mode</code></td></tr>
+        <tr><td>DD-11</td><td>Values <code>1</code>, <code>2</code>, <code>3</code> (the range then; now <code>1</code> – <code>10</code> by the ADR)</td><td><span class="st warn">DELEGATED</span></td><td>Brief section 2.3</td></tr>
+        <tr class="new"><td>DD-12</td><td>Ceiling: keep 3</td><td><span class="st acc">OVERRIDDEN</span></td><td>Architect, review R/1: "1 max loop 10". Basis of the delegate: brief guard 3 and section 4</td></tr>
+        <tr><td>DD-13</td><td>Conclusions guard: stop at once</td><td><span class="st warn">DELEGATED</span></td><td>Brief section 2, guard 2</td></tr>
+        <tr class="new"><td>DD-14</td><td>Progress measured by breaches, not by the count of failed rows</td><td><span class="st ok">ADOPTED</span></td><td>Architect, review R/2 – R/3: "rest yes". Basis: Phase 02 runs 4 – 6 of this bundle</td></tr>
+        <tr><td>DD-15</td><td>The version row of the Keys table says version 3</td><td><span class="st warn">DELEGATED</span></td><td>Specification intent; DD-18</td></tr>
+        <tr><td>DD-16</td><td>Self-check line says "N corrections"</td><td><span class="st warn">DELEGATED</span></td><td>STE rule 4, one meaning per word</td></tr>
+        <tr class="new"><td>DD-17</td><td>Default <code>1</code></td><td><span class="st acc">OVERRIDDEN</span></td><td>Architect, 2026-11-12: "the default value should be 5"; ADR 2026-11-12</td></tr>
+        <tr><td>DD-18</td><td>Template version 3</td><td><span class="st warn">DELEGATED</span></td><td>Brief sections 2.4, 2.5; the template rule at <code>:914-915</code></td></tr>
+        <tr><td>DD-19</td><td>README absence values gain the value for <code>fixes</code></td><td><span class="st warn">DELEGATED</span></td><td>Specification intent; the value is now <code>5</code> (DD-17 overridden)</td></tr>
+        <tr><td>DD-20</td><td>The fail-safe example stays; it does not name <code>fixes</code></td><td><span class="st warn">DELEGATED</span></td><td>The rule already covers a key on a phase that does not take it</td></tr>
+        <tr><td>DD-30</td><td>Phase 05 accept after check run 2: repair the check script, do not reject</td><td><span class="st ok">ADOPTED</span></td><td>"rest yes" (review R/2 – R/3)</td></tr>
+        <tr><td>DD-31</td><td>Phase 05 accept after check run 5: repair the check script, no stop</td><td><span class="st ok">ADOPTED</span></td><td>"rest yes"</td></tr>
+        <tr><td>DD-32</td><td>Phase 05 accept after check run 6: correct one overstated claim</td><td><span class="st ok">ADOPTED</span></td><td>"rest yes"</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prose">
+    <p>Other decisions (DD-1 – DD-9, DD-21 – DD-29) are scope, working-hypothesis, evidence and gate-repair decisions of the bundle. They are <code>DELEGATED</code> and carry no rule of the skill text. DD-24 keeps the skill-text changes uncommitted for the Architect until the Architect commits them. DD-21 – DD-29 repeat the loop that this change makes official, under the Architect's words at 15:43 and 15:45.</p>
+  </div>
+</section>
+
+<!-- 11 -->
+<section id="sources">
+  <div class="prose">
+    <div class="secnum">11 · Sources</div>
+    <h2>Source map</h2>
+    <p>This reference is generated from the whole bundle and the current text of the three files. Where the bundle says "default 1", that is the history before the 2026-11-12 amendment.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>What</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>Brief (issue 25)</td><td><a href="../files/gh-25-gate-test-fix-budget.md">files/gh-25-gate-test-fix-budget.md</a></td></tr>
+        <tr><td>Specification (revised 2026-11-12)</td><td><a href="../phase-04-specification/specification.html">phase-04-specification/specification.html</a> · <a href="../phase-04-specification/specification.md">.md</a></td></tr>
+        <tr><td>Bundle ADRs</td><td><a href="../adrs/2026-11-11.fix_budget_ceiling_10.md">2026-11-11.fix_budget_ceiling_10</a> · <a href="../adrs/2026-11-12.fix_budget_default_5.md">2026-11-12.fix_budget_default_5</a></td></tr>
+        <tr><td>Delegated decisions</td><td><a href="../delegated-decisions.md">delegated-decisions.md</a></td></tr>
+        <tr><td>Durable decisions</td><td><code>.speccen/decisions/2026-11-11.fix_budget_ceiling_10.md</code> · <code>2026-11-11.fix_progress_by_breaches.md</code> · <code>2026-11-12.fix_budget_default_5.md</code></td></tr>
+        <tr><td>Phase files</td><td><a href="../phase-01-feature-analysis/phase.md">01</a> · <a href="../phase-02-code-analysis/phase.md">02</a> · <a href="../phase-03-compliance-review/phase.md">03</a> · <a href="../phase-04-specification/phase.md">04</a> · <a href="../phase-05-implementation/phase.md">05</a> · <a href="../phase-06-close-out/phase.md">06</a></td></tr>
+        <tr><td>Text checks T-1 – T-19 and the move test</td><td><a href="../files/phase-05-text-checks.py">files/phase-05-text-checks.py</a> · <a href="../files/phase-05-move-test.py">files/phase-05-move-test.py</a></td></tr>
+        <tr><td>Earlier change this one builds on</td><td><code>.speccen/features/2026-11-05.use_cheaper_subagent_to_work/reference.html</code> (gate-test self-check and delta re-check)</td></tr>
+        <tr><td>The code</td><td><code>skills/sdd/00-governing-workflow/SKILL.md</code> · <code>skills/sdd/05-implementation/SKILL.md</code> · <code>README.md</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p>Reference (Phase 08) for bundle 25.set_allowed_budget_for_autonomous_phases. Plugin version 26.1108.1. Back to the <a href="../index.md">Index</a>.</p>
+</footer>
+</div>
+</body>
+</html>

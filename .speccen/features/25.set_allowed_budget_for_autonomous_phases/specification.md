@@ -8,7 +8,7 @@ revised: 2026-11-12 — ceiling 10 and default 5, by the Architect
 
 # set allowed budget for autonomous phases — Specification (reduced)
 
-[Index](../../bundles/25.set_allowed_budget_for_autonomous_phases/index.md) · [Full specification](./specification.html) · [Plan](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md#implementation-plan)
+[Index](../../bundles/25.set_allowed_budget_for_autonomous_phases/index.md) · [Full specification](./specification.html) · [Reference](./reference.html) (what was actually built) · [Plan](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md#implementation-plan)
 
 ---
 

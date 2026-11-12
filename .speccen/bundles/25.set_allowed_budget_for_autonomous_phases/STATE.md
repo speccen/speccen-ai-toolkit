@@ -6,8 +6,8 @@ type: State
 
 | Field | Value |
 |---|---|
-| Current Phase | CLOSE-OUT PHASE |
-| Current Phase Folder | phase-06-close-out |
+| Current Phase | REFERENCE PHASE |
+| Current Phase Folder | phase-08-reference |
 | Phase Status | COMPLETE |
-| Last Updated | 2026-11-11 |
+| Last Updated | 2026-11-12 |
 | Pending Architect Action | none |

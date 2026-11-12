@@ -9,6 +9,7 @@ type: Index
 | ADR | Date | Status | Description |
 |---|---|---|---|
 | [2026-11-11.fix_budget_ceiling_10](./adrs/2026-11-11.fix_budget_ceiling_10.md) | 2026-11-11 | DECIDED | What is the highest number of fix attempts a phase's fix budget may allow? (review R/1, overrides DD-12) |
+| [2026-11-12.fix_budget_default_5](./adrs/2026-11-12.fix_budget_default_5.md) | 2026-11-12 | DECIDED | What is the default fix budget when no file sets `fixes`? (Architect, after close-out; overrides DD-17) |
 
 ## Bundle Control
 
@@ -65,10 +66,19 @@ type: Index
 | File | Type | Status | Description |
 |---|---|---|---|
 | [phase](./phase-06-close-out/phase.md) | Phase | COMPLETE | Three audience seeds, feature node and graduated specification written; review decided — ceiling 10, five entries graduated, skill files committed |
-| [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | A fixes budget (1 – 10, default 1) for the gate test of autonomous phases, with three guards; skill files committed |
+| [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | A fixes budget (1 – 10, default 5) for the gate test of autonomous phases, with three guards; skill files committed |
 | [doc-executive](./phase-06-close-out/doc-executive.md) | Doc (executive) | COMPLETE | The Architect now sets how many fix attempts the delegate makes on a failed gate test |
 | [doc-business](./phase-06-close-out/doc-business.md) | Doc (business) | COMPLETE | The delegate corrects a failed gate test up to the number of fix attempts that the Architect sets |
 | [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | The fixes key, template version 3, the gate-test budget with three guards and the Phase 05 accept, in three files |
+
+### Phase 08 — Reference
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-08-reference/phase.md) | Phase | COMPLETE | Layered technical reference for the fix budget — approved, copied into the feature store |
+| [summary](./phase-08-reference/summary.md) | Summary | COMPLETE | Layered reference for the gate-test fix budget — fixes 1–10, default 5, three guards, template version 3, the Phase 05 accept, and why |
+| [reference](./phase-08-reference/reference.html) | Reference | COMPLETE | Technical reference for the gate-test fix budget — the fixes key (1–10, default 5), its three guards, template version 3 and the Phase 05 accept |
+| [reference (reduced)](./phase-08-reference/reference.md) | Reference | COMPLETE | Reduced Markdown projection of reference.html |
 
 ## Files
 

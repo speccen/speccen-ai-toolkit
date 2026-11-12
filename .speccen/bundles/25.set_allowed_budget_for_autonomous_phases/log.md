@@ -4,6 +4,19 @@ type: Log
 
 # Workflow History
 
+## 2026-11-12
+
+- **06:39 — REFERENCE** — Phase 08 complete: summary written; reference copied into `features/25.set_allowed_budget_for_autonomous_phases/` and cross-linked with the specification; node `reference` edge and `timeline.md` updated; effective mode: autonomous (bundle file)
+- **06:39 — REFERENCE** — approved, finish phase 08 and commit
+- **06:58 — REFERENCE** — ADR `2026-11-11.fix_budget_ceiling_10` Decision line: "default `1`" → "default `5`", linked to ADR 2026-11-12
+- **06:57 — REFERENCE** — The 2026-11-11 ADR still says "default 1". --> fix this
+- **06:45 — REFERENCE subagent** — gathering and authoring (Steps 3–7) · model: balanced → sonnet (project config)
+- **06:42 — REFERENCE** — scope: "The 3 changed files"; content: "C4 descent + runtime run", "Configuration reference", "Why: decisions & alternatives"; source: "Read the code too"
+- **06:40 — REFERENCE** — /speccen:08-reference
+- **06:25 — CLOSE-OUT** — specification amendment applied: spec (bundle and feature copies, `.md` and `.html`) states ceiling 10 and default 5 (R-1, R-2, R-6, R-11, R-12); Phase 04 plan revised (Phase 6, Test Plan); then the skill and README to default 5; T-1 – T-19 pass, move test fails every check after its move; ADR `adrs/2026-11-12.fix_budget_default_5.md` scribed, DD-17 OVERRIDDEN; durable decision `2026-11-12.fix_budget_default_5` graduated; Phase 06 C-3 closed
+- **06:20 — CLOSE-OUT** — absence and upgrade: "5 everywhere"; invalid value: "Counts as 1" *(answers to the two follow-up questions)*
+- **06:15 — CLOSE-OUT** — there was a change in the max cap value, this was not updated in specifications; in spec-driven development it supposed to be the specification that steers the implementation, so this cannot be left out-of-sync; the max cap is raised to 10, and the default value should be 5;
+
 ## 2026-11-11
 
 - **22:00 — CLOSE-OUT** — ADR `adrs/2026-11-11.fix_budget_ceiling_10.md` scribed from the Architect's R/1 answer ("1 max loop 10"); Phase 06 open item DD-12 closed; the durable decision links it
