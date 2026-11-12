@@ -190,7 +190,7 @@ them are plain YAML with no frontmatter, and you edit them by hand.
 
 The project file always lists every setting speccen offers. At the start of every session speccen
 checks it against the current template — its `version` and every key — and adds whatever a newer
-speccen introduced, with the value that keeps today's behaviour (`inherit`, `ask`, `1`, `0`, `false`),
+speccen introduced, with the value its absence means (`inherit`, `ask`, `5`, `0`, `false`),
 and tells you which keys it added. It never changes a value you set, your comments or your order,
 and it never fills in a bundle file or a personal file.
 
@@ -252,7 +252,7 @@ mode: gated
 stops: ask
 # How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–10).
 # It stops sooner when a repair makes no progress or would change a conclusion.
-fixes: 1
+fixes: 5
 lock: false                  # true: no bundle file and no local file can change anything
 
 # Per phase. "inherit" means: use the mode above, or the session's model.

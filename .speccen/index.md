@@ -18,6 +18,7 @@ type: Index
 - [The gate-test self-check has a fifth check: interview structure](./decisions/2026-11-05.self_check_interview_structure.md) — active
 - [A gate test makes no progress when a breach comes back or more rows fail — not when fewer rows fail](./decisions/2026-11-11.fix_progress_by_breaches.md) — active
 - [The fix budget is at most 10 fix attempts; an invalid value counts as 1](./decisions/2026-11-11.fix_budget_ceiling_10.md) — active
+- [The fix budget defaults to 5 fix attempts; absence and the upgrade both mean 5](./decisions/2026-11-12.fix_budget_default_5.md) — active
 
 ## Lessons learned
 - [Fix the term list before writing STE seeds](./lessons/2026-11-05.ste_term_list_before_writing.md) — active

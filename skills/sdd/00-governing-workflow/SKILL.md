@@ -748,7 +748,7 @@ mode: gated
 stops: ask
 # How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–10).
 # It stops sooner when a repair makes no progress or would change a conclusion.
-fixes: 1
+fixes: 5
 lock: false                  # true: no bundle file and no local file can change anything
 
 # Per phase. "inherit" means: use the mode above, or the session's model.
@@ -867,7 +867,7 @@ key is missing. If it is not current:
   lines for that key — including its line in a shared comment block, such as the per-phase legend
   above `phases:`. Inserting such a line is adding, not changing a comment.
 - **An added key keeps the effective setting unchanged**: it gets the value that means what its
-  absence meant — `mode: gated`, `stops: ask`, `fixes: 1` and `lock: false` at the top; `inherit` for a
+  absence meant — `mode: gated`, `stops: ask`, `fixes: 5` and `lock: false` at the top; `inherit` for a
   phase's `mode`, `stops`, `fixes` and `model`; `0` for `prototypes`; `false` for a phase's `lock`; and the built-in
   fallback for a tier under `models`. So a phase's `model` is added as `inherit`, not as the
   template's tier — choosing a tier is the Architect's change to make.
@@ -919,8 +919,9 @@ added `version`, `stops`, `stops` on 5 phases".
 An upgrade to version 2 also adds `model: inherit` to `specification` and `implementation`, and
 sets `version: 2`.
 
-An upgrade to version 3 adds `fixes: 1` at the top and `fixes: inherit` to the five phases that
-take `stops`, and sets `version: 3`. Behaviour is unchanged until the Architect raises `fixes`.
+An upgrade to version 3 adds `fixes: 5` at the top and `fixes: inherit` to the five phases that
+take `stops`, and sets `version: 3`. An autonomous phase then makes up to five fix attempts; set
+`fixes: 1` to keep one.
 
 The upgrade is a change to a committed file: it is announced in one line (Step 0), recorded in the
 bundle's `log.md` at the session's first entry, and committed with the next phase-transition
@@ -938,7 +939,7 @@ For each phase, the **most specific setting wins**:
 3. then `gated`.
 
 `inherit` counts as no value. The other per-phase keys (`stops`, `fixes`, `model`, `prototypes`) resolve
-the same way at phase level, then fall back to their defaults (`ask`, `1`, `inherit`, `0`).
+the same way at phase level, then fall back to their defaults (`ask`, `5`, `inherit`, `0`).
 
 **Locks.**
 - A lock in the **project** file binds every file below it: for a locked phase — or for
@@ -1190,7 +1191,7 @@ At the end of every `autonomous` phase, before the transition, run the **gate te
 - Every active extension of this phase was applied: each applicable requirement is met or marked
   "not applicable, because …", and the Extensions table in `phase.md` is complete.
 - If any item fails, fix it and run the test again — up to the phase's effective `fixes`
-  attempts (Configuration; default `1`). Each later verifier run re-checks (a) every row that
+  attempts (Configuration; default `5`). Each later verifier run re-checks (a) every row that
   failed in the run before, and (b) every row whose evidence is in a file you changed during the
   fix. Rows it does not re-check keep their last `confirmed (run N)`.
 - Stop (stop condition 5) when:

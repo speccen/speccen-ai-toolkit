@@ -43,11 +43,11 @@ end-of-run review → [detail](./phase.md#open-items)
 | Source | Scenario(s) | Test(s) |
 |---|---|---|
 | brief §2 / §2.3; DD-11 — the `fixes` key, its values, five phases, autonomous only, independent of `stops` | R-1 | T-2, T-3 |
-| brief §3 — unchanged by default; DD-17 | R-2 | T-7 |
+| ADR 2026-11-12 — default 5 (overrides brief §3, DD-17) | R-2 | T-7 |
 | brief §2.1 — fix and re-run up to the budget; re-check scope | R-3 | T-8 |
 | brief §2 guard 1; DD-14 — progress by breaches | R-4 | T-9, T-10 |
 | brief §2 guard 2; DD-13 — conclusions guard | R-5 | T-9 |
-| brief §2 guard 3, §2.6; DD-12 — ceiling 3, invalid → `1` | R-6 | T-7, T-9 |
+| ADR 2026-11-11 — ceiling 10 (overrides DD-12); brief §2.6 — invalid → `1` | R-6 | T-7, T-9 |
 | brief §2.1 — log line per attempt | R-7 | T-11 |
 | brief §2.1 — after a stop | R-8 | T-12 |
 | brief §2.2 — stop condition 5 | R-9 | T-13 |

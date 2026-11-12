@@ -8,7 +8,7 @@ description: The delegate corrects a failed gate test up to the number of fix at
 
 # set allowed budget for autonomous phases — Business Process & Experience (seed)
 
-Intent: [Phase 04 business seed](../phase-04-specification/doc-business.md). Intended → delivered: the same, except the ceiling. The intent was at most 3 fix attempts. At the review, the Architect set the ceiling to 10.
+Intent: [Phase 04 business seed](../phase-04-specification/doc-business.md). Intended → delivered: the same. At the review, the Architect set the ceiling to 10; on 2026-11-12, the default to 5. The intent (specification) was amended to match.
 
 ## Capability
 - The Architect sets the number of fix attempts in the project file: from 1 to 10.
@@ -33,7 +33,7 @@ Intent: [Phase 04 business seed](../phase-04-specification/doc-business.md). Int
   - the project file `.speccen/speccen-config.yaml`, key `fixes`;
   - a `log.md` line for each fix attempt;
   - the gate table in each phase summary.
-- At the next session start, speccen upgrades the project file to version 3. It adds `fixes: 1` and tells the Architect.
+- At the next session start, speccen upgrades the project file to version 3. It adds `fixes: 5` and tells the Architect.
 
 ## What Changes for the User
 - Before: the delegate made one fix attempt. Then the delegate halted and asked the Architect.
@@ -42,7 +42,7 @@ Intent: [Phase 04 business seed](../phase-04-specification/doc-business.md). Int
 - After: a stop means one of two things. The Architect must decide, or the delegate cannot complete the work within its fix attempts.
 
 ## Not Included
-- The default number stays 1.
+- The default number is 5.
 - The number is never more than 10.
 - Gated phases do not change. In a gated phase, the Architect approves each gate.
 - Other limits of autonomous mode do not change, for example the limit of two rejected implementations.

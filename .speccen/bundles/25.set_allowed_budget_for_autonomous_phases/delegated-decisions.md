@@ -263,7 +263,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief §2.1 ("default `1`"), §2.5 and §3 "Unchanged by default". |
 | **Alternatives** | another default |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | OVERRIDDEN — the Architect: "the default value should be 5" (2026-11-12); absence and the upgrade both mean `5` ([ADR 2026-11-12](./adrs/2026-11-12.fix_budget_default_5.md)) |
 
 <a id="dd-18"></a>
 ## DD-18 — Template version 3

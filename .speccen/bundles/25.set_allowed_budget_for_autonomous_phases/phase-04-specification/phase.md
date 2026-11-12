@@ -3,12 +3,19 @@ type: Phase
 phase: "04 — Specification"
 status: COMPLETE
 description: Five-phase plan — the fixes key and template version 3, the gate-test budget with its three guards, the Phase 05 accept, the restated copies, text verification
+revised: 2026-11-12 — ceiling 10 and default 5, by the Architect (Phase 6 of the plan)
 ---
 
 <a id="phase-top"></a>
 # set allowed budget for autonomous phases — Specification
 
 [Index](../index.md) · [State](../STATE.md) · [Log](../log.md)
+
+> **Revised 2026-11-12.** The Architect raised the ceiling from 3 to 10
+> ([ADR 2026-11-11](../adrs/2026-11-11.fix_budget_ceiling_10.md)) and set the default to 5
+> ([ADR 2026-11-12](../adrs/2026-11-12.fix_budget_default_5.md)). The requirements, the risks and the
+> Test Plan below say the new values. Phases 1 – 5 record the plan as first carried out, with
+> `1` – `3` and default `1`; [Phase 6](#plan-revision) brings the text to the new values.
 
 ---
 
@@ -116,10 +123,10 @@ same loop on its accept check; where its outcome differs, the box says so.
 ```
 
 What changed relative to the current state: the single "fix once, then stop" step becomes a loop
-bounded by the effective `fixes` (`1` – `3`). Before each fix, the conclusions guard comes first;
+bounded by the effective `fixes` (`1` – `10`, default `5`). Before each fix, the conclusions guard comes first;
 then the budget and, from run 2 on, the progress guard. Phase 05 accept follows the same loop and
 keeps its reject outcome for the budget and progress guards. With `fixes: 1` the loop runs once,
-as today. Compare the
+as before. Compare the
 [current-state flow](../phase-02-code-analysis/phase.md#code-analysis).
 
 ### Strategy Evaluation
@@ -225,16 +232,38 @@ conventions](../phase-02-code-analysis/phase.md#code-analysis); precedent
 ##### 5.2 Build and Validate
 - [x] All checks pass, or each failure is a deviation.
 
+<a id="plan-revision"></a>
+#### Phase 6: Revision — ceiling 10, default 5 ✅
+
+**Why:** the Architect raised the ceiling to 10 at the end-of-run review (ADR 2026-11-11) and,
+on 2026-11-12, set the default to 5 and asked that the specification steer the implementation
+again — source: [ADR 2026-11-11](../adrs/2026-11-11.fix_budget_ceiling_10.md),
+[ADR 2026-11-12](../adrs/2026-11-12.fix_budget_default_5.md).
+
+##### 6.1 Ceiling 10 (applied after the Phase 05 accept, commit `77fb4f4`)
+- [x] Keys rows, template comment and legend, fail-safe line and the README copy say `1` – `10`.
+
+##### 6.2 Default 5
+- [x] Template and README copy: `fixes: 1` → `fixes: 5`.
+- [x] Upgrade absence values: `fixes: 1` → `fixes: 5`; the version-3 upgrade sentence adds `fixes: 5` and ends "An autonomous phase then makes up to five fix attempts; set `fixes: 1` to keep one."
+- [x] Effective settings defaults: (`ask`, `1`, `inherit`, `0`) → (`ask`, `5`, `inherit`, `0`).
+- [x] Gate test fix rule: "default `1`" → "default `5`".
+- [x] `README.md:193`: "with the value that keeps today's behaviour (`inherit`, `ask`, `1`, `0`, `false`)" → "with the value its absence means (`inherit`, `ask`, `5`, `0`, `false`)".
+- [x] The fail-safe stays: an invalid value counts as `1`.
+
+##### 6.3 Build and Validate
+- [x] T-1 – T-19 updated to the new values; all pass.
+
 ### Risk Mitigation
 
 | Risk | Impact | Mitigation |
 |---|---|---|
 | The README template drifts from the governing template | Medium | T-16 compares the two blocks; Phase 4 copies the block from its source |
 | Keys, template, upgrade and fail-safe disagree on the values or the default | High — a `fixes` value is ignored or misread | Phase 1 changes all four together; T-2 – T-7 check each |
-| Default behaviour changes for existing projects | High if it happened | absence and the upgrade both mean `fixes: 1` (T-5, T-6); T-19 runs the old flow with the new rule |
+| Default behaviour changes for existing projects | Accepted — the Architect chose default 5 (ADR 2026-11-12) | absence and the upgrade both mean `fixes: 5` (T-5, T-6), so the upgrade still writes the effective value; the upgrade sentence tells the Architect to set `fixes: 1` to keep one attempt; the progress and conclusions guards bound every loop |
 | The conclusions guard is a new stop even with `fixes: 1` | Low — it stops only on a fix that would change a conclusion, which today's text does not allow either | stated in the stop bullet; R-5 scenario |
 | The progress guard misreads a run with a different re-check set | Medium | measured by breaches (DD-14), which the verifier lists per row (`:1181-1182`); T-10 |
-| The budget loops at cost | Medium | ceiling 3 (DD-12); invalid values count as `1` (T-7); every attempt is logged (T-11) |
+| The budget loops at cost | Medium | ceiling 10 (ADR 2026-11-11); invalid values count as `1` (T-7); every attempt is logged (T-11) |
 | Line numbers shift during editing | Low | each item names the text it changes |
 
 ### Test Plan
@@ -247,13 +276,13 @@ not from the edited text. The script is a bundle file (`files/`), not a reposito
 | Id | Check | Requirement |
 |---|---|---|
 | T-1 | Keys `version` row says "the current version is `3`"; no "the current version is `2`" remains | R-11 |
-| T-2 | Keys table has the `fixes` row (`1` · `2` · `3`, "Independent of `stops`") and the `phases.<phase>.fixes` row (`inherit` · `1` · `2` · `3`), directly after `phases.<phase>.stops` | R-1 |
+| T-2 | Keys table has the `fixes` row (`1` – `10`, "Independent of `stops`") and the `phases.<phase>.fixes` row (`inherit` · `1` – `10`), directly after `phases.<phase>.stops` | R-1 |
 | T-3 | "Which phases take which key" has "- `fixes`: the same five phases as `mode`. It has no effect in a `gated` phase." | R-1 |
-| T-4 | Template block: `version: 3`; the two `fixes` comment lines and `fixes: 1` after `stops: ask`; the legend line; `fixes: inherit` after `stops: inherit` in exactly the five phases, and not in `close-out`, `retrospective`, `reference` | R-11 |
-| T-5 | Upgrade absence values name `fixes: 1` at the top and `fixes` among the phase keys added as `inherit` | R-12 |
-| T-6 | The version-3 sentence follows the version-2 sentence, ending "Behaviour is unchanged until the Architect raises `fixes`." | R-12 |
-| T-7 | Effective settings list `fixes` with default `1`; the fail-safe has "A `fixes` value that is not `1`, `2` or `3` counts as `1`."; the line "a key on a phase that does not take it" is unchanged | R-2, R-6 |
-| T-8 | Gate test: the fix rule names "the phase's effective `fixes` attempts" and "default `1`"; the old "fix it once and run the test again" is gone | R-3 |
+| T-4 | Template block: `version: 3`; the two `fixes` comment lines ("1–10") and `fixes: 5` after `stops: ask`; the legend line; `fixes: inherit` after `stops: inherit` in exactly the five phases, and not in `close-out`, `retrospective`, `reference` | R-11 |
+| T-5 | Upgrade absence values name `fixes: 5` at the top and `fixes` among the phase keys added as `inherit` | R-12 |
+| T-6 | The version-3 sentence follows the version-2 sentence: it adds `fixes: 5` and ends "set `fixes: 1` to keep one." | R-12 |
+| T-7 | Effective settings list `fixes` with default `5`; the fail-safe has "A `fixes` value that is not a whole number from `1` to `10` counts as `1`."; the line "a key on a phase that does not take it" is unchanged | R-2, R-6 |
+| T-8 | Gate test: the fix rule names "the phase's effective `fixes` attempts" and "default `5`"; the old "fix it once and run the test again" is gone | R-3 |
 | T-9 | Gate test: the stop bullet holds the three guards — conclusion/DD/ADR, budget used up, no progress | R-4, R-5, R-6 |
 | T-10 | Gate test: no progress is "a rule breach the run before named is still there, or more rows fail than in the run before"; the brief's "as many rows or more" is absent | R-4 |
 | T-11 | Gate test: the log line `fix attempt <n> of <fixes>: run <N> failed rows <list>` is present | R-7 |
@@ -262,11 +291,11 @@ not from the edited text. The script is a bundle file (`files/`), not a reposito
 | T-14 | Phase 05 Step 7 names "the phase's effective `fixes` attempts", stops on a fix that changes a conclusion, and rejects (05b) when the budget is used up or a run makes no progress; "fix once and test again" is gone | R-10 |
 | T-15 | Phase 05 "After two rejected iterations, stop." and the opening sentence at `:27-28` are unchanged | R-10 |
 | T-16 | The README template block equals the governing template block | R-11 |
-| T-17 | README absence values read "(`inherit`, `ask`, `1`, `0`, `false`)" | R-12 |
+| T-17 | README absence values read "(`inherit`, `ask`, `5`, `0`, `false`)" | R-12 |
 | T-18 | Self-check record line is "`Self-check: done — N corrections`"; "N fixes" appears nowhere in the governing skill | R-14 |
 | T-19 | Nothing else changed: `git diff --stat` outside `.speccen/` lists only the governing skill, `05-implementation/SKILL.md` and `README.md`; the Locks section is unchanged | R-13, R-15 |
 
-**Behaviours to cover** (what must be true): absence and the upgrade keep today's behaviour
+**Behaviours to cover** (what must be true): absence and the upgrade both mean the default `5`
 (R-2, R-12); an invalid value falls back to `1`, never to more attempts (R-6, error path); a fix
 that changes a conclusion stops at once, whatever the budget (R-5, error path); a run that
 brings back a breach stops even with budget left (R-4, error path); Phase 05 rejects, not stops,
@@ -294,18 +323,18 @@ Each requirement cites its source. They are restated in the [specification](./sp
 
 | Id | Requirement (SHALL) | Scenario (WHEN → THEN) | Source |
 |---|---|---|---|
-| R-1 | The configuration SHALL take a `fixes` key — top level and on the five phases that take `stops` — with values `1`, `2`, `3` (phase level also `inherit`), effective only in `autonomous` phases and independent of `stops`. | WHEN a project file sets `phases.code-analysis.fixes: 2` and the phase is `autonomous` → THEN its gate test allows two fix attempts. WHEN the phase is `gated` → THEN `fixes` has no effect. | brief §2, §2.3; DD-11 |
-| R-2 | The default SHALL be `1`, so a file without `fixes` behaves as today. | WHEN no file sets `fixes` → THEN the gate test allows one fix attempt and stops as today. | brief §3; DD-17 |
+| R-1 | The configuration SHALL take a `fixes` key — top level and on the five phases that take `stops` — with the whole numbers `1` to `10` (phase level also `inherit`), effective only in `autonomous` phases and independent of `stops`. | WHEN a project file sets `phases.code-analysis.fixes: 2` and the phase is `autonomous` → THEN its gate test allows two fix attempts. WHEN the phase is `gated` → THEN `fixes` has no effect. | brief §2, §2.3; DD-11 |
+| R-2 | The default SHALL be `5`. | WHEN no file sets `fixes` → THEN the gate test allows up to five fix attempts, then stops. | ADR 2026-11-12 (overrides brief §3, DD-17) |
 | R-3 | A failing gate test SHALL be fixed and re-run up to the effective `fixes` attempts; each later run re-checks the rows that failed in the run before and the rows that cite a changed file. | WHEN `fixes: 3` and run 1 fails two rows → THEN the delegate fixes them and run 2 re-checks those rows and the rows citing the files it changed; the others keep their last `confirmed (run N)`. | brief §2.1 |
 | R-4 | The delegate SHALL stop when a run makes no progress: a rule breach the run before named is still there, or more rows fail than in the run before. | WHEN run 3 fails a row on the same breach as run 2 → THEN the delegate stops, even with budget left. WHEN run 3 fails one row on a new breach after run 2 failed one → THEN it continues. | DD-14; brief §2 guard 1 |
 | R-5 | The delegate SHALL stop at once when the next fix would change a phase conclusion, a delegated decision or an ADR. | WHEN the only fix for a failing row is to change a delegated decision → THEN the delegate stops before fixing, whatever the budget. | DD-13; brief §2 guard 2 |
-| R-6 | The budget SHALL be at most 3; a `fixes` value that is not `1`, `2` or `3` SHALL count as `1`. | WHEN a file sets `fixes: 5` or `fixes: many` → THEN the effective budget is `1`. | DD-12; brief §2 guard 3, §2.6 |
+| R-6 | The budget SHALL be at most 10; a `fixes` value that is not a whole number from `1` to `10` SHALL count as `1`. | WHEN a file sets `fixes: 12` or `fixes: many` → THEN the effective budget is `1`. | ADR 2026-11-11 (overrides DD-12); brief §2.6 |
 | R-7 | Each fix attempt SHALL be logged as `fix attempt <n> of <fixes>: run <N> failed rows <list>`. | WHEN the delegate makes its second fix attempt with `fixes: 3` → THEN `log.md` gets `fix attempt 2 of 3: run 2 failed rows …`. | brief §2.1 |
 | R-8 | After a stop, the Architect's answer SHALL set which rows the next run re-checks and whether further fix attempts are allowed; without that, one run, and a failing row stops again. | WHEN the Architect answers a stop with "yes" to re-checking two rows → THEN one run re-checks them, and a failing row is a new stop. | brief §2.1 |
 | R-9 | Stop condition 5 SHALL name the three causes: the budget is used up, no progress, a fix that changes a conclusion, a delegated decision or an ADR. | WHEN a reader looks up why a gate test stopped → THEN condition 5 names all three. | brief §2.2 |
 | R-10 | The Phase 05 accept check SHALL use the same budget and guards; when the budget is used up or a run makes no progress, the delegate SHALL reject (05b); a fix that changes a conclusion SHALL stop. | WHEN `phases.implementation.fixes: 2` and the accept check fails twice with progress → THEN the delegate makes two fix attempts, then rejects and runs 05b. | DD-10, DD-13 |
-| R-11 | The template SHALL be version 3 with `fixes: 1` at the top, its comment, its legend line and `fixes: inherit` on the five phases; the Keys row SHALL say the current version is `3`; the README copy SHALL equal it. | WHEN a new project file is written → THEN it has `version: 3` and every `fixes` line; the README shows the same block. | brief §2.4; DD-15, DD-18 |
-| R-12 | Upgrading a project file to version 3 SHALL add `fixes: 1` and `fixes: inherit` on the five phases and set `version: 3`, keeping every effective setting; both lists of absence values SHALL name `1`. | WHEN this repository's version-2 project file is upgraded → THEN it gains `fixes: 1`, `fixes: inherit` × 5 and `version: 3`, and no value it had changes. | brief §2.5; DD-19; the Architect: "introduce version key, should be auto while upgrading skills" (log 11:05) |
+| R-11 | The template SHALL be version 3 with `fixes: 5` at the top, its comment, its legend line and `fixes: inherit` on the five phases; the Keys row SHALL say the current version is `3`; the README copy SHALL equal it. | WHEN a new project file is written → THEN it has `version: 3` and every `fixes` line; the README shows the same block. | brief §2.4; DD-15, DD-18 |
+| R-12 | Upgrading a project file to version 3 SHALL add `fixes: 5` and `fixes: inherit` on the five phases and set `version: 3`; the value added is the value its absence means, so every effective setting is kept; both lists of absence values SHALL name `5`. | WHEN this repository's version-2 project file is upgraded → THEN it gains `fixes: 5`, `fixes: inherit` × 5 and `version: 3`, and no value it had changes. | brief §2.5; DD-19; ADR 2026-11-12; the Architect: "introduce version key, should be auto while upgrading skills" (log 11:05) |
 | R-13 | A project `lock` SHALL stop a bundle or local file from raising `fixes`, as for every other key. | WHEN the project file locks `code-analysis` and a bundle file sets `phases.code-analysis.fixes: 3` → THEN the bundle value is skipped and the session says so once. | brief §2.6 |
 | R-14 | The self-check record line SHALL read `Self-check: done — N corrections`. | WHEN a gate test records its self-check → THEN the line reads "N corrections", and "fix" means only a gate-test fix attempt. | DD-16 |
 | R-15 | The change SHALL touch only the governing skill, the Phase 05 skill and the README. | WHEN the change lands → THEN `git diff --stat` outside `.speccen/` lists those three files. | DD-3; DD-20 |
@@ -324,7 +353,7 @@ seeds are approved when the delegate's gate test passes (autonomous).
 | # | Item | Settles in |
 |---|---|---|
 | O-6 | Acceptance and "done when" (Phase 01 hypothesis H-4) — settled by R-1 – R-15 | settled |
-| — | `MATERIAL — unconfirmed`: the ceiling of 3 (DD-12) and progress by breaches (DD-14) | end-of-run review |
+| — | `MATERIAL — unconfirmed`: the ceiling of 3 (DD-12) and progress by breaches (DD-14) | settled at the end-of-run review: DD-12 OVERRIDDEN (ceiling 10), DD-14 ADOPTED |
 
 Residual assumption: the verifier lists every breach per row (`:1181-1182`), which the progress
 guard relies on.

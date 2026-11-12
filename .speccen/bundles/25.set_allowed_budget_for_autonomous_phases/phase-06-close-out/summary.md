@@ -3,7 +3,7 @@ type: Summary
 phase: "06 — Close-out"
 status: COMPLETE
 phase_file: ./phase.md
-description: A fixes budget (1 – 10, default 1) for the gate test of autonomous phases, with three guards; skill files committed
+description: A fixes budget (1 – 10, default 5) for the gate test of autonomous phases, with three guards; skill files committed
 ---
 
 # Phase 06 Summary — Close-out
@@ -32,4 +32,4 @@ once the plugin is released → [doc-technical.md](./doc-technical.md)
 
 **Graduation proposal:** decided by the Architect (log 21:58) → [detail](./phase.md#graduation-proposal)
 
-**Review:** the Architect set the ceiling of fix attempts to 10 (DD-12 OVERRIDDEN) and adopted the rest; applied to the skill files and checks.
+**Review:** the Architect set the ceiling of fix attempts to 10 (DD-12 OVERRIDDEN) and adopted the rest; applied to the skill files and checks. On 2026-11-12 the Architect set the default to 5 and had the specification amended to ceiling 10, default 5 (ADR 2026-11-12).

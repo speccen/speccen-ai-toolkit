@@ -9,7 +9,7 @@ description: The delegate corrects a failed gate test up to the number of fix at
 # set allowed budget for autonomous phases — Business Process & Experience (intent, seed)
 
 ## Capability
-- The Architect sets the number of fix attempts in the project settings file: 1, 2 or 3.
+- The Architect sets the number of fix attempts in the project settings file: 1 to 10.
 - The Architect can set a different number for each phase.
 - The delegate corrects a failed gate test up to that number. Then the delegate halts.
 
@@ -39,7 +39,7 @@ description: The delegate corrects a failed gate test up to the number of fix at
 - After: a stop means one of two things. The Architect must decide, or the delegate cannot complete the work within its fix attempts.
 
 ## Not Included
-- The default number stays 1. Projects keep their current behaviour until the Architect changes the number.
+- The default number is 5. To keep one fix attempt, the Architect sets the number to 1.
 - The number is never more than 3.
 - Gated phases do not change. In a gated phase, the Architect approves each gate.
 - Other limits of autonomous mode do not change, for example the limit of two rejected implementations.

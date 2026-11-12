@@ -76,5 +76,5 @@ Close-out complete. The Architect's review set the ceiling to 10 and approved th
 | DD-14, DD-30 – DD-32 | ADOPTED | closed |
 | G-1 – G-7 | Graduation proposal | decided |
 | C-1 | Commit the three skill files | done (R/5) |
-| C-3 | The specification (intent, frozen) still states a ceiling of 3 (R-6); the feature node records the override | note |
+| C-3 | The specification stated a ceiling of 3 (R-6) after the override | closed 2026-11-12: specification amended to ceiling 10, default 5 (ADR 2026-11-12) |
 | C-2 | The first measurement of the budget comes from the next autonomous bundle ([doc-technical.md](./doc-technical.md) Results) | follow-up |

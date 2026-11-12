@@ -8,12 +8,12 @@ description: The Architect now sets how many fix attempts the delegate makes on 
 
 # set allowed budget for autonomous phases — Business Outcome Brief (seed)
 
-Intent: [Phase 04 executive seed](../phase-04-specification/doc-executive.md). Intended → delivered: the same, except the ceiling. The intent was at most 3 fix attempts. At the review, the Architect set the ceiling to 10.
+Intent: [Phase 04 executive seed](../phase-04-specification/doc-executive.md). Intended → delivered: the same. At the review, the Architect set the ceiling to 10; on 2026-11-12, the default to 5. The intent (specification) was amended to match.
 
 ## Capability Delivered
 - The Architect sets a number of fix attempts for each autonomous phase: from 1 to 10.
 - The delegate corrects its own bundle files within that number. Then it asks the Architect.
-- The default is 1. Each project keeps its current behaviour until the Architect sets a higher number.
+- The default is 5. A project that wants one fix attempt sets the number to 1.
 
 ## Risk Delta
 - Risk closed: a stop for a small correction takes the Architect's time. This bundle had seven stops. The Architect replied "yes" or "ok, continue" to each stop. Three stops in Phases 01 and 02 came only from the limit of one fix attempt. A budget of 2 or more removes that type of stop.

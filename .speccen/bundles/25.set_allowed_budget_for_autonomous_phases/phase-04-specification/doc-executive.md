@@ -9,7 +9,7 @@ description: The Architect sets how many fix attempts the delegate makes on a fa
 # set allowed budget for autonomous phases — Business Outcome Brief (intent, seed)
 
 ## Capability To Be Delivered
-- The Architect sets a number of fix attempts for each autonomous phase: 1, 2 or 3.
+- The Architect sets a number of fix attempts for each autonomous phase: 1 to 10. The default is 5.
 - The delegate corrects its own bundle files within that number. Then it asks the Architect.
 
 ## Risk Delta (expected)
