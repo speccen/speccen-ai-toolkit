@@ -217,7 +217,8 @@ and not your authority records.
 - **It stops when your recorded intent does not decide** a material choice — a contract, the data
   model, security, a new dependency — or when ADRs conflict, a gate test keeps failing, a rejected
   implementation has been retried twice, or an action cannot be undone. It collects those questions
-  into one numbered round with its proposed answers; you answer "yes", "no, use X" or "later",
+  into one numbered round with its proposed answers, each item named as `[number | text]` so you
+  can answer from the message alone; you answer "yes", "no, use X" or "later",
   and it carries on.
 - **It records what it decides.** Non-trivial choices go into `delegated-decisions.md` as `DD-n`
   entries marked "decided under delegation", for you to adopt or override. Every interview
@@ -227,8 +228,9 @@ and not your authority records.
 - **Some things stay yours:** deciding ADRs, promoting knowledge to the durable store, waiving a
   test, skipping a phase, changing the mode, and starting the optional passes (retrospective and
   reference).
-- **A run ends at close-out**, with one numbered review round: each delegated decision (adopt,
-  override or later) and each graduation candidate (promote, keep local or later).
+- **A run ends at close-out**, with one numbered review round: each delegated decision, named as
+  `[DD-<n> | what was decided]` (adopt, override or later) and each graduation candidate
+  (promote, keep local or later).
 
 ### The project defaults
 
@@ -251,7 +253,8 @@ mode: gated
 # Hard stops (new dependency, conflicting ADRs, irreversible action, failed gate or tests) always halt.
 stops: ask
 # How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–10).
-# It stops sooner when a repair makes no progress or would change a conclusion.
+# It stops sooner when a repair makes no progress, or would change a conclusion, an ADR
+# or what a delegated decision decides.
 fixes: 5
 lock: false                  # true: no bundle file and no local file can change anything
 

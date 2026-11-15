@@ -1,0 +1,10 @@
+# This bundle's overrides of .speccen/speccen-config.yaml — committed. Set only what differs.
+mode: autonomous             # chosen at session start
+
+# For example:
+# phases:
+#   specification:
+#     mode: gated
+#     stops: proceed
+#   compliance-review:
+#     prototypes: 2

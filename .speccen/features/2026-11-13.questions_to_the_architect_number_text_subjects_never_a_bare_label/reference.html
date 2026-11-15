@@ -1,0 +1,639 @@
+<!--
+---
+type: Reference
+phase: "08 — Reference"
+status: COMPLETE
+description: Technical reference for [number | text] subjects — the rule in the governing skill, its pointers in five files, the twenty places that reach the Architect, and the narrowed stop condition 5.
+---
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Subjects Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* One reading column (~70ch); figures scroll sideways on phones; C4 levels run top to bottom. */
+:root {
+  --bg: #f4f6f8; --panel: #ffffff; --sunk: #eaeef2; --ink: #17202b; --muted: #5a6574; --line: #c3ccd6;
+  --accent: #0a6c88; --accent-soft: #dcedf2; --ok: #2c7a4b; --ok-soft: #e1f1e7;
+  --warn: #9a5800; --warn-soft: #f6ead6; --bad: #b1281f; --bad-soft: #f8e1df;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1319; --panel: #151c25; --sunk: #111820; --ink: #e3e8ee; --muted: #93a0b0; --line: #2f3b49;
+    --accent: #52b6d2; --accent-soft: #11313b; --ok: #5cc28a; --ok-soft: #12291c; --warn: #e2a64a; --warn-soft: #2d2213;
+    --bad: #f07c72; --bad-soft: #321816; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1319; --panel: #151c25; --sunk: #111820; --ink: #e3e8ee; --muted: #93a0b0; --line: #2f3b49;
+  --accent: #52b6d2; --accent-soft: #11313b; --ok: #5cc28a; --ok-soft: #12291c; --warn: #e2a64a; --warn-soft: #2d2213;
+  --bad: #f07c72; --bad-soft: #321816; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; margin: 0; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 80px; }
+.prose { max-width: 70ch; display: grid; gap: 12px; }
+header.top { display: grid; gap: 14px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.nav { font-size: 14px; }
+.nav a { color: var(--accent); }
+h1, h2, h3 { font-family: var(--display); font-stretch: 85%; text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 800; }
+h2 { font-size: clamp(24px, 3.2vw, 30px); font-weight: 750; }
+h3 { font-size: 19px; font-weight: 700; margin-top: 8px; }
+p { margin: 0; }
+.lead { font-size: 18px; color: var(--muted); max-width: 68ch; }
+section { display: grid; gap: 18px; padding-block: 44px 8px; }
+.secnum { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .05em; }
+code, .mono { font-family: var(--mono); font-size: .88em; }
+code { background: var(--sunk); padding: 1px 5px; border-radius: 4px; }
+pre { margin: 0; font-family: var(--mono); font-size: 13px; line-height: 1.5; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; overflow-x: auto; }
+pre .add { background: var(--ok-soft); color: var(--ok); display: block; }
+pre .cm { color: var(--muted); }
+ul.tight { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 76ch; }
+a { color: var(--accent); }
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; }
+nav.toc a { text-decoration: none; border-bottom: 1px solid transparent; }
+nav.toc a:hover, nav.toc a:focus-visible { border-bottom-color: var(--accent); outline: none; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; }
+.fact { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; display: grid; gap: 2px; min-width: 0; }
+.fact b { font-family: var(--display); font-stretch: 85%; font-size: 24px; font-variant-numeric: tabular-nums; }
+.fact span { font-size: 13px; color: var(--muted); }
+figure { margin: 0; display: grid; gap: 10px; }
+.scroll { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+figcaption { font-size: 14px; color: var(--muted); max-width: 84ch; }
+figcaption b { color: var(--ink); font-weight: 600; }
+.level { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
+svg.d { display: block; width: 100%; height: auto; color: var(--muted); }
+svg.w { min-width: 900px; } svg.m { min-width: 700px; } svg.n { min-width: 560px; }
+.d text { font-family: var(--sans); fill: var(--ink); font-size: 12px; }
+.d .t { font-weight: 600; font-size: 12.5px; }
+.d .s { fill: var(--muted); font-size: 10.5px; }
+.d .lb { font-family: var(--mono); fill: var(--muted); font-size: 10.5px; }
+.d .k { font-size: 10px; letter-spacing: .07em; fill: var(--muted); font-weight: 600; }
+.d .acc { fill: var(--accent); }
+.d .wt { fill: var(--warn); }
+.d .box { fill: var(--panel); stroke: var(--line); stroke-width: 1.2; }
+.d .mute { fill: var(--sunk); stroke: var(--line); stroke-width: 1.2; }
+.d .chg { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.d .ext { fill: var(--sunk); stroke: var(--line); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.d .bound { fill: none; stroke: var(--line); stroke-width: 1.2; stroke-dasharray: 6 5; }
+.d .e { stroke: var(--muted); stroke-width: 1.4; fill: none; }
+.d .eh { stroke: var(--accent); stroke-width: 1.8; fill: none; }
+.d .ed { stroke-dasharray: 5 4; }
+.d .life { stroke: var(--line); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.d .ah { fill: var(--muted); }
+.d .ahh { fill: var(--accent); }
+.d .pok { fill: var(--ok-soft); stroke: var(--ok); stroke-width: 1.3; }
+.d .pwarn { fill: var(--warn-soft); stroke: var(--warn); stroke-width: 1.3; }
+.d .pbad { fill: var(--bad-soft); stroke: var(--bad); stroke-width: 1.3; }
+.d .pmut { fill: var(--sunk); stroke: var(--line); stroke-width: 1.2; }
+.d .chip { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.1; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; background: var(--sunk); }
+tr.new td { background: var(--accent-soft); }
+.st { display: inline-block; font-family: var(--mono); font-size: 12px; padding: 1px 8px; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+.st.ok { color: var(--ok); background: var(--ok-soft); border-color: var(--ok); }
+.st.acc { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+.st.mut { color: var(--muted); background: var(--sunk); border-color: var(--line); }
+.st.warn { color: var(--warn); background: var(--warn-soft); border-color: var(--warn); }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 4px; white-space: nowrap; }
+.tag.req { color: var(--bad); background: var(--bad-soft); }
+.tag.corr { color: var(--warn); background: var(--warn-soft); }
+.tag.choice { color: var(--accent); background: var(--accent-soft); }
+.callout { border-left: 3px solid var(--accent); background: var(--panel); padding: 14px 18px; border-radius: 0 8px 8px 0; display: grid; gap: 8px; max-width: 80ch; }
+.callout.warn { border-left-color: var(--warn); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.two > * { min-width: 0; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; }
+.card h3 { margin: 0; font-size: 17px; }
+footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+section, figure, header.top, .prose, .card, .callout { grid-template-columns: minmax(0, 1fr); }
+.facts > * { flex: 1 1 140px; }
+.d .band { fill: var(--accent-soft); opacity: .45; }
+.st.bad { color: var(--bad); background: var(--bad-soft); border-color: var(--bad); }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="nav"><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/index.md">Index</a> · <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/STATE.md">State</a> · <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/log.md">Log</a> · <a href="./specification.html">Specification</a> (what we set out to build)</div>
+  <div class="eyebrow">speccen plugin · GitHub issue 26 · feature · Reference (Phase 08)</div>
+  <h1>Questions to the Architect: <code>[number | text]</code> subjects, never a bare label</h1>
+  <p class="lead">speccen puts questions, stops and reviews to the Architect. Before this change, these messages named items by label only: <code>DD-19</code>, <code>01/7</code>, row 16. The Architect had to open other files to know what a label meant. Now every item put to the Architect has a subject: the number, a bar, and the item in plain words. A second change narrows stop condition 5: a fix that only repairs a record no longer stops an autonomous run. The change is prose in five files. No code runs.</p>
+  <div class="facts" aria-label="Facts">
+    <div class="fact"><b>20/20</b><span>text checks T-1 – T-20 pass at <code>dcccc2b</code></span></div>
+    <div class="fact"><b>19/20</b><span>checks fail on the text before the change (<code>67c6ad8</code>), as they must</span></div>
+    <div class="fact"><b>5</b><span>files changed, 71 lines added, 31 removed</span></div>
+    <div class="fact"><b>28</b><span>delegated decisions, all ADOPTED by the Architect</span></div>
+    <div class="fact"><b>0</b><span>deviations from the plan</span></div>
+    <div class="fact"><b>dcccc2b</b><span>implementation commit</span></div>
+  </div>
+  <nav class="toc" aria-label="Sections">
+    <a href="#system">1 · The system</a>
+    <a href="#files">2 · The five files</a>
+    <a href="#places">3 · Where items reach the Architect</a>
+    <a href="#contracts">4 · Contracts</a>
+    <a href="#run">5 · One stop round</a>
+    <a href="#rule">6 · The rule, as written</a>
+    <a href="#why">7 · What changed, and why</a>
+    <a href="#repair">8 · Record repair or changed answer</a>
+    <a href="#decisions">9 · Delegated decisions</a>
+    <a href="#testing">10 · Testing</a>
+    <a href="#limits">11 · Known limits</a>
+    <a href="#sources">12 · Sources</a>
+  </nav>
+</header>
+
+<!-- 1 -->
+<section id="system">
+  <div class="prose">
+    <div class="secnum">1 · The system</div>
+    <h2>Where the change lives</h2>
+    <p>speccen is a plugin of skills. A skill is a text file. The host, Claude Code, reads the skills and runs the workflow. The workflow has phases. In <code>autonomous</code> mode, a delegate decides for the Architect, and stops when its recorded basis does not decide.</p>
+    <p>The workflow gives numbers to its items. A delegated decision is <code>DD-&lt;n&gt;</code>. An interview question is <code>01/&lt;n&gt;</code>. A gate-check row has a row number. The numbers make the decision tree traceable across <code>log.md</code>, the delegated decisions and the review.</p>
+    <p>The evidence for issue 26 is a stop round of an earlier bundle. The round named items by number only. The Architect answered: "do you really think a human knows what these numbers mean?" The numbers stay. The change puts the words next to them.</p>
+  </div>
+
+  <figure class="scroll" data-md="Level 1, context. The host (Claude Code) reads the speccen plugin (changed: the subject rule and the narrowed stop condition 5). The host sends questions, stops and the review round to the Architect, each item with a [number | text] subject. The Architect answers by number. The host writes stop records into the bundle; the Architect reads the stop record later.">
+    <svg class="d n" viewBox="0 0 800 250" role="img" aria-label="C4 level 1 context diagram">
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+        <marker id="h1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahh"/></marker>
+      </defs>
+      <circle cx="70" cy="105" r="15" class="box"/>
+      <path d="M45 151 q25 -30 50 0" class="e"/>
+      <text x="70" y="176" text-anchor="middle" class="lb">Architect</text>
+      <rect x="250" y="60" width="210" height="100" rx="10" class="mute"/>
+      <text x="355" y="98" text-anchor="middle" class="t">Host (Claude Code)</text>
+      <text x="355" y="118" text-anchor="middle" class="s">runs the delegate</text>
+      <text x="355" y="136" text-anchor="middle" class="s">and the verifier subagent</text>
+      <rect x="560" y="14" width="210" height="100" rx="10" class="chg"/>
+      <text x="665" y="38" text-anchor="middle" class="k">CHANGED</text>
+      <text x="665" y="60" text-anchor="middle" class="t">speccen plugin</text>
+      <text x="665" y="80" text-anchor="middle" class="s">five files</text>
+      <text x="665" y="98" text-anchor="middle" class="s">subject rule · stop condition 5</text>
+      <rect x="560" y="140" width="210" height="90" rx="10" class="box"/>
+      <text x="665" y="170" text-anchor="middle" class="t">Bundle</text>
+      <text x="665" y="190" text-anchor="middle" class="s">STATE.md · summary.md</text>
+      <text x="665" y="208" text-anchor="middle" class="s">log.md · delegated-decisions.md</text>
+      <path d="M248 92 L98 92" class="eh" marker-end="url(#h1)"/>
+      <text x="173" y="84" text-anchor="middle" class="lb">[n | text] items</text>
+      <path d="M98 124 L248 124" class="e" marker-end="url(#a1)"/>
+      <text x="173" y="142" text-anchor="middle" class="lb">answers by number</text>
+      <path d="M558 72 L462 92" class="e" marker-end="url(#a1)"/>
+      <text x="512" y="70" text-anchor="middle" class="lb">skill text</text>
+      <path d="M462 140 L558 170" class="eh" marker-end="url(#h1)"/>
+      <text x="505" y="176" text-anchor="middle" class="lb">records</text>
+      <path d="M70 186 L70 222 L558 222" class="eh ed" marker-end="url(#h1)"/>
+      <text x="310" y="214" text-anchor="middle" class="lb">reads the stop record later</text>
+    </svg>
+    <figcaption><span class="level">L1</span><b>Context.</b> The plugin changed. The host and the bundle did not. The accent arrows carry subjects: the messages to the Architect, and the records the Architect reads later.</figcaption>
+  </figure>
+</section>
+
+<!-- 2 -->
+<section id="files">
+  <div class="prose">
+    <div class="secnum">2 · The five files</div>
+    <h2>The parts the change touched</h2>
+    <p>The governing skill holds the rule, once. The rule is the last paragraph of its section "Structured questions". The other four files point to the rule. They do not restate it.</p>
+    <p>Other skills put items to the Architect through the interview round. Phase 03 asks its ADR questions as a round. Phase 06 asks its graduation question as a round. The audit and code-documentation skills use the same round. These skills get the rule through the round template, so their text does not change.</p>
+  </div>
+
+  <figure class="scroll" data-md="Level 2, files. The governing skill (changed, +44 −16) holds the subject rule and the narrowed stop condition 5. Four files (changed) point to the rule: interview (+10 −6), 05-implementation (+5 −2), reconcile (+5 −3), README.md (+7 −4). Unchanged: 03-compliance-review and 06-close-out use the interview round; the audit and code skills use the interview round; ARCHITECTURE.md stays unchanged (DD-27).">
+    <svg class="d m" viewBox="0 0 820 320" role="img" aria-label="C4 level 2 file diagram">
+      <defs>
+        <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+        <marker id="h2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahh"/></marker>
+      </defs>
+      <rect x="10" y="10" width="800" height="300" rx="12" class="bound"/>
+      <text x="26" y="30" class="k">SPECCEN PLUGIN</text>
+      <rect x="30" y="44" width="760" height="72" rx="10" class="chg"/>
+      <text x="410" y="66" text-anchor="middle" class="k">CHANGED · +44 −16</text>
+      <text x="410" y="86" text-anchor="middle" class="t">skills/sdd/00-governing-workflow/SKILL.md</text>
+      <text x="410" y="104" text-anchor="middle" class="s">Structured questions → Subjects (the rule) · gate test · stop condition 5 · five pointers · self-check item 6</text>
+      <rect x="30" y="150" width="175" height="64" rx="10" class="chg"/>
+      <text x="117" y="174" text-anchor="middle" class="t">interview/SKILL.md</text>
+      <text x="117" y="192" text-anchor="middle" class="s">round · review · summary</text>
+      <text x="117" y="207" text-anchor="middle" class="lb">+10 −6</text>
+      <rect x="225" y="150" width="175" height="64" rx="10" class="chg"/>
+      <text x="312" y="174" text-anchor="middle" class="t">05-implementation</text>
+      <text x="312" y="192" text-anchor="middle" class="s">waived tests · accept rule</text>
+      <text x="312" y="207" text-anchor="middle" class="lb">+5 −2</text>
+      <rect x="420" y="150" width="175" height="64" rx="10" class="chg"/>
+      <text x="507" y="174" text-anchor="middle" class="t">reconcile/SKILL.md</text>
+      <text x="507" y="192" text-anchor="middle" class="s">needs-human items</text>
+      <text x="507" y="207" text-anchor="middle" class="lb">+5 −3</text>
+      <rect x="615" y="150" width="175" height="64" rx="10" class="chg"/>
+      <text x="702" y="174" text-anchor="middle" class="t">README.md</text>
+      <text x="702" y="192" text-anchor="middle" class="s">autonomous section</text>
+      <text x="702" y="207" text-anchor="middle" class="lb">+7 −4</text>
+      <path d="M117 148 L117 118" class="eh" marker-end="url(#h2)"/>
+      <path d="M312 148 L312 118" class="eh" marker-end="url(#h2)"/>
+      <path d="M507 148 L507 118" class="eh" marker-end="url(#h2)"/>
+      <path d="M702 148 L702 118" class="eh" marker-end="url(#h2)"/>
+      <text x="214" y="138" text-anchor="middle" class="lb">points to</text>
+      <text x="604" y="138" text-anchor="middle" class="lb">points to</text>
+      <rect x="30" y="250" width="175" height="46" rx="10" class="mute"/>
+      <text x="117" y="270" text-anchor="middle" class="t">03-compliance-review</text>
+      <text x="117" y="286" text-anchor="middle" class="s">ADR round</text>
+      <rect x="225" y="250" width="175" height="46" rx="10" class="mute"/>
+      <text x="312" y="270" text-anchor="middle" class="t">06-close-out</text>
+      <text x="312" y="286" text-anchor="middle" class="s">graduation round</text>
+      <rect x="420" y="250" width="175" height="46" rx="10" class="mute"/>
+      <text x="507" y="270" text-anchor="middle" class="t">audit · code skills</text>
+      <text x="507" y="286" text-anchor="middle" class="s">interview rounds</text>
+      <rect x="615" y="250" width="175" height="46" rx="10" class="mute"/>
+      <text x="702" y="270" text-anchor="middle" class="t">ARCHITECTURE.md</text>
+      <text x="702" y="286" text-anchor="middle" class="s">unchanged (DD-27)</text>
+      <path d="M117 248 L117 216" class="e ed" marker-end="url(#a2)"/>
+      <path d="M290 248 L150 216" class="e ed" marker-end="url(#a2)"/>
+      <path d="M470 248 L180 216" class="e ed" marker-end="url(#a2)"/>
+      <text x="490" y="236" class="lb">← use the round template</text>
+    </svg>
+    <figcaption><span class="level">L2</span><b>Files.</b> Five files changed (accent). Each of the four lower files points up to the rule. The muted skills use the interview round template (dashed) and get the rule from it.</figcaption>
+  </figure>
+</section>
+
+<!-- 3 -->
+<section id="places">
+  <div class="prose">
+    <div class="secnum">3 · Where items reach the Architect</div>
+    <h2>Twenty places, three outcomes</h2>
+    <p>Phase 02 searched the plugin for every place that puts an item to the Architect. It found twenty places, A-1 to A-20. Phase 03 decided each one. Eleven places now point to the rule. Five places get the rule through the round template. Four places stay outside the rule: two are records, and two name no item.</p>
+    <p>The gate test also changed. Its stop condition 5 sits in the governing skill. It is not one of the twenty places, because it does not put an item to the Architect. It decides when the delegate stops.</p>
+  </div>
+
+  <figure class="scroll" data-md="Level 3, places. Governing skill: the Subjects rule (changed); A-3 stop record, A-5 end-of-run report, A-6 self-check item 6, A-7 proceed open item, A-8 resume summary, A-18 STATE.md stop line (changed); A-4 stop round (inherits through the round template); A-20 fix-attempt log line (outside: a record); stop condition 5 (changed: narrowed). Interview: A-1 round template, A-2 review round, A-16 closing summary (changed). 05-implementation: A-17 completion notice (changed); A-11 deviation notice (outside: names no item). Reconcile: A-19 needs-human items (changed). Other skills: A-9 Phase 06 graduation, A-10 Phase 03 ADR interview, A-13 audit scorecard, A-14 code-documentation (inherit); A-12 phase-end notices (outside: names no item); A-15 Retrospective delegation findings (outside: a record).">
+    <svg class="d w" viewBox="0 0 860 370" role="img" aria-label="C4 level 3 diagram of the twenty places">
+      <rect x="10" y="14" width="300" height="300" rx="10" class="bound"/>
+      <text x="22" y="32" class="k">00-GOVERNING-WORKFLOW</text>
+      <rect x="20" y="42" width="280" height="38" rx="8" class="chg"/>
+      <text x="160" y="58" text-anchor="middle" class="t">Structured questions → Subjects</text>
+      <text x="160" y="72" text-anchor="middle" class="s">the rule, stated once</text>
+
+      <rect x="20" y="90" width="135" height="34" rx="6" class="chg"/><text x="28" y="104" class="lb">A-3</text><text x="28" y="118" class="t">stop record</text>
+      <rect x="20" y="132" width="135" height="34" rx="6" class="box"/><text x="28" y="146" class="lb">A-4</text><text x="28" y="160" class="t">stop round</text>
+      <rect x="20" y="174" width="135" height="34" rx="6" class="chg"/><text x="28" y="188" class="lb">A-5</text><text x="28" y="202" class="t">end-of-run report</text>
+      <rect x="20" y="216" width="135" height="34" rx="6" class="chg"/><text x="28" y="230" class="lb">A-6</text><text x="28" y="244" class="t">self-check item 6</text>
+      <rect x="20" y="258" width="135" height="34" rx="6" class="chg"/><text x="28" y="272" class="lb">A-7</text><text x="28" y="286" class="t">proceed open item</text>
+
+      <rect x="165" y="90" width="135" height="34" rx="6" class="chg"/><text x="173" y="104" class="lb">A-8</text><text x="173" y="118" class="t">resume summary</text>
+      <rect x="165" y="132" width="135" height="34" rx="6" class="chg"/><text x="173" y="146" class="lb">A-18</text><text x="173" y="160" class="t">STATE.md stop line</text>
+      <rect x="165" y="174" width="135" height="34" rx="6" class="mute"/><text x="173" y="188" class="lb">A-20 · record</text><text x="173" y="202" class="t">fix-attempt log line</text>
+      <rect x="165" y="216" width="135" height="34" rx="6" class="chg"/><text x="173" y="230" class="lb">gate test</text><text x="173" y="244" class="t">stop condition 5</text>
+
+      <rect x="320" y="14" width="190" height="300" rx="10" class="bound"/>
+      <text x="332" y="32" class="k">INTERVIEW</text>
+      <rect x="330" y="42" width="170" height="34" rx="6" class="chg"/><text x="338" y="56" class="lb">A-1</text><text x="338" y="70" class="t">round template</text>
+      <rect x="330" y="84" width="170" height="34" rx="6" class="chg"/><text x="338" y="98" class="lb">A-2</text><text x="338" y="112" class="t">review round</text>
+      <rect x="330" y="126" width="170" height="34" rx="6" class="chg"/><text x="338" y="140" class="lb">A-16</text><text x="338" y="154" class="t">closing summary</text>
+
+      <rect x="520" y="14" width="150" height="140" rx="10" class="bound"/>
+      <text x="532" y="32" class="k">05-IMPLEMENTATION</text>
+      <rect x="530" y="42" width="130" height="34" rx="6" class="chg"/><text x="538" y="56" class="lb">A-17</text><text x="538" y="70" class="t">completion notice</text>
+      <rect x="530" y="84" width="130" height="34" rx="6" class="mute"/><text x="538" y="98" class="lb">A-11 · no item</text><text x="538" y="112" class="t">deviation notice</text>
+
+      <rect x="520" y="166" width="150" height="90" rx="10" class="bound"/>
+      <text x="532" y="184" class="k">RECONCILE</text>
+      <rect x="530" y="196" width="130" height="34" rx="6" class="chg"/><text x="538" y="210" class="lb">A-19</text><text x="538" y="224" class="t">needs-human items</text>
+
+      <rect x="680" y="14" width="170" height="300" rx="10" class="bound"/>
+      <text x="692" y="32" class="k">OTHER SKILLS (UNCHANGED)</text>
+      <rect x="690" y="42" width="150" height="34" rx="6" class="box"/><text x="698" y="56" class="lb">A-9</text><text x="698" y="70" class="t">06 graduation</text>
+      <rect x="690" y="84" width="150" height="34" rx="6" class="box"/><text x="698" y="98" class="lb">A-10</text><text x="698" y="112" class="t">03 ADR interview</text>
+      <rect x="690" y="126" width="150" height="34" rx="6" class="box"/><text x="698" y="140" class="lb">A-13</text><text x="698" y="154" class="t">audit scorecard</text>
+      <rect x="690" y="168" width="150" height="34" rx="6" class="box"/><text x="698" y="182" class="lb">A-14</text><text x="698" y="196" class="t">code-documentation</text>
+      <rect x="690" y="210" width="150" height="34" rx="6" class="mute"/><text x="698" y="224" class="lb">A-12 · no item</text><text x="698" y="238" class="t">phase-end notices</text>
+      <rect x="690" y="252" width="150" height="34" rx="6" class="mute"/><text x="698" y="266" class="lb">A-15 · record</text><text x="698" y="280" class="t">retro findings</text>
+
+      <rect x="20" y="334" width="16" height="12" rx="3" class="chg"/><text x="42" y="344" class="s">points to the rule (changed)</text>
+      <rect x="250" y="334" width="16" height="12" rx="3" class="box"/><text x="272" y="344" class="s">gets the rule through the round template</text>
+      <rect x="530" y="334" width="16" height="12" rx="3" class="mute"/><text x="552" y="344" class="s">outside the rule: a record, or names no item</text>
+    </svg>
+    <figcaption><span class="level">L3</span><b>Places.</b> Every place that puts an item to the Architect, grouped by file. Accent: the text changed. White: the place uses the round template (A-1), so the rule reaches it without a change. Muted: the rule does not apply.</figcaption>
+  </figure>
+</section>
+
+<!-- 4 -->
+<section id="contracts">
+  <div class="prose">
+    <div class="secnum">4 · Contracts</div>
+    <h2>No service contract, no component API</h2>
+    <p>The change has no business service contract and no component API. The five files are prose that an AI host reads. The contract of the change is a writing rule: the subject form. Section 6 gives its exact text.</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="run">
+  <div class="prose">
+    <div class="secnum">5 · One stop round</div>
+    <h2>A stop, from the failing row to the answer</h2>
+    <p>This run is from this bundle. In Phase 03, on 2026-11-13 at 07:41, verifier run 2 failed rows 7, 16 and 17. Breaches that run 1 named were still there. The run made no progress, so stop condition 5 stopped it. The delegate wrote the stop line, the stop record and the stop round. Each one named its items with subjects.</p>
+  </div>
+
+  <figure class="scroll" data-md="Level 4, one stop round. 1. The delegate asks the verifier to re-check rows 7, 16 and 17 (run 2). 2. The verifier returns: rows 7, 16 and 17 fail. 3. The delegate finds no progress and stops (stop condition 5). 4. The delegate writes the STATE.md stop line, with subjects (changed). 5. The delegate writes the stop record in summary.md: question, options, lean, evidence, with subjects (changed). 6. The delegate sends the stop round in one message: [03/22 | May the delegate repair rows 7, 16 and 17 with record-only fixes, within the phase's fix budget, stopping only on a fix that changes what a decision decides?] and [03/23 | For the rest of this run, does an answered stop allow the phase's full fix budget again, unless the answer says otherwise?] (changed). 7. The Architect answers yes. 8. The delegate makes fix attempt 1 of 5, a record-only repair.">
+    <svg class="d w" viewBox="0 0 880 390" role="img" aria-label="C4 level 4 runtime sequence of one stop round">
+      <defs>
+        <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+        <marker id="h4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahh"/></marker>
+      </defs>
+      <rect x="60" y="14" width="120" height="38" rx="8" class="box"/><text x="120" y="38" text-anchor="middle" class="t">Delegate</text>
+      <rect x="320" y="14" width="120" height="38" rx="8" class="mute"/><text x="380" y="38" text-anchor="middle" class="t">Verifier</text>
+      <rect x="530" y="14" width="140" height="38" rx="8" class="box"/><text x="600" y="38" text-anchor="middle" class="t">Bundle</text>
+      <rect x="730" y="14" width="120" height="38" rx="8" class="box"/><text x="790" y="38" text-anchor="middle" class="t">Architect</text>
+      <path d="M120 52 L120 380" class="life"/><path d="M380 52 L380 380" class="life"/><path d="M600 52 L600 380" class="life"/><path d="M790 52 L790 380" class="life"/>
+
+      <path d="M120 90 L378 90" class="e" marker-end="url(#a4)"/>
+      <text x="250" y="82" text-anchor="middle" class="lb">1 run 2: re-check rows 7, 16, 17</text>
+      <path d="M380 122 L122 122" class="e ed" marker-end="url(#a4)"/>
+      <text x="250" y="114" text-anchor="middle" class="lb">2 rows 7, 16, 17 fail</text>
+      <path d="M120 140 h36 v22 h-34" class="e" marker-end="url(#a4)"/>
+      <text x="164" y="156" class="s">3 no progress → stop (condition 5)</text>
+
+      <path d="M120 196 L598 196" class="eh" marker-end="url(#h4)"/>
+      <text x="360" y="188" text-anchor="middle" class="lb">4 STATE.md: Stopped (autonomous) — reason, with subjects</text>
+      <path d="M120 232 L598 232" class="eh" marker-end="url(#h4)"/>
+      <text x="360" y="224" text-anchor="middle" class="lb">5 summary.md stop record: question, options, lean, evidence</text>
+
+      <path d="M120 290 L788 290" class="eh" marker-end="url(#h4)"/>
+      <text x="455" y="262" text-anchor="middle" class="lb">6 stop round, one message:</text>
+      <text x="455" y="282" text-anchor="middle" class="lb"><tspan class="acc">[03/22 | May the delegate repair rows 7, 16 and 17 with record-only fixes …?]</tspan></text>
+      <text x="455" y="306" text-anchor="middle" class="lb"><tspan class="acc">[03/23 | Does an answered stop allow the full fix budget again …?]</tspan></text>
+
+      <path d="M790 334 L122 334" class="e ed" marker-end="url(#a4)"/>
+      <text x="455" y="326" text-anchor="middle" class="lb">7 "yes" — answered from the message alone</text>
+      <path d="M120 350 h36 v20 h-34" class="e" marker-end="url(#a4)"/>
+      <text x="164" y="364" class="s">8 fix attempt 1 of 5: a record-only repair</text>
+    </svg>
+    <figcaption><span class="level">L4</span><b>One stop round.</b> Solid arrows are calls; dashed arrows are returns. The accent steps 4 – 6 are what changed: each item the Architect reads has its subject. The subjects in step 6 are cut short here; the record holds them in full.</figcaption>
+  </figure>
+</section>
+
+<!-- 6 -->
+<section id="rule">
+  <div class="prose">
+    <div class="secnum">6 · The rule, as written</div>
+    <h2>The text the delegate follows</h2>
+    <p>The rule is the last paragraph of "Structured questions" in the governing skill. It comes after "A series of decisions". This is the full text at <code>dcccc2b</code>:</p>
+  </div>
+  <pre>**Subjects: `[INTERNAL-NUMBER | HUMAN UNDERSTANDABLE TEXT]`.** Anything put to the Architect —
+an interview round, a stop, the review round, the end-of-run report — reads on its own. Give
+every question, decision, checklist row or open item it mentions a subject in this form, for
+example `[01/7 | Which queue carries the retry?]` or `[DD-4 | Does the fix budget also cover
+Phase 05's own fix rule?]`. The number (`DD-&lt;n&gt;`, `01/&lt;n&gt;`, `&lt;skill&gt;/&lt;n&gt;`, `Deviation [N]`,
+`O-&lt;n&gt;`, `H-&lt;n&gt;`, `P02-&lt;n&gt;`, a gate-check row, or any number a bundle gives its items) keeps it
+traceable; the text says what it is, so the Architect can answer without opening another file.
+A label never stands alone.
+- In an `AskUserQuestion` call, question text that names an item gives it a subject; the
+  header is exempt.
+- Inside a markdown table, write the subject's bar as `\|`.
+- Records are not questions and keep their form: the gate-check, delegated-decision and
+  interview tables, the Retrospective's delegation findings, and the fix-attempt log line.</pre>
+  <div class="prose">
+    <p>The number leads. The Architect answers by number, for example "22 yes". The text follows the bar. The text says what the item is, as a plain question or a short statement.</p>
+    <p>A markdown table uses the bar as a cell border. In a table cell, the subject's bar takes a backslash in front of it. The rendered table then shows a plain bar.</p>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="why">
+  <div class="prose">
+    <div class="secnum">7 · What changed, and why</div>
+    <h2>Each change, with an honest verdict</h2>
+    <p>A verdict of <span class="tag req">required</span> means the issue or a Phase 03 decision needs the change. <span class="tag corr">required for correctness</span> means another text would contradict the rule without it. <span class="tag choice">placement choice</span> means the change could live elsewhere.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Where</th><th>Change</th><th>Verdict</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr class="new"><td><code>00-governing-workflow</code> → Structured questions</td><td>The Subjects rule, stated once, with the label list and three bullets</td><td><span class="tag req">required</span></td><td>brief §2.1; 03/2; DD-10, DD-18, DD-20</td></tr>
+      <tr><td><code>00-governing-workflow</code> → resume summary, <code>STATE.md</code> stop line, stop record, <code>stops: proceed</code> open item, end-of-run report</td><td>Each place points to the rule</td><td><span class="tag req">required</span></td><td>brief §2.4, §2.5; 03/5, 03/17, 03/20; DD-13, DD-21, DD-24</td></tr>
+      <tr><td><code>00-governing-workflow</code> → gate-test self-check</td><td>"five" becomes "six"; item 6 is <strong>Subjects</strong></td><td><span class="tag req">required</span></td><td>brief §2.6; 03/4; DD-12</td></tr>
+      <tr class="new"><td><code>00-governing-workflow</code> → gate test trigger 1, stop condition 5, config comment</td><td>A fix stops only if it changes a conclusion, an ADR or what a delegated decision decides; the record-repair paragraph</td><td><span class="tag choice">placement choice</span></td><td>the Architect, log 2026-11-13 07:32 and 07:33; 03/16, 03/24</td></tr>
+      <tr><td><code>interview</code></td><td>Round template <code>[01/7 | The decision, as a plain question]</code>; a Subject format bullet; review round <code>[DD-&lt;n&gt; | what was decided]</code>; closing summary with subjects</td><td><span class="tag req">required</span></td><td>brief §2.2, §2.3; 03/9, 03/18; DD-22</td></tr>
+      <tr><td><code>05-implementation</code></td><td>Waived-test template <code>[T-&lt;n&gt; | what the test checks]</code>; the accept rule narrowed like trigger 1</td><td><span class="tag corr">required for correctness</span></td><td>03/19; DD-23; R-16</td></tr>
+      <tr><td><code>reconcile</code></td><td>Needs-human items and the notice name each item with a subject</td><td><span class="tag req">required</span></td><td>03/6; DD-14</td></tr>
+      <tr><td><code>README.md</code></td><td>The autonomous section names the subject form in the stop round and the review round; the config comment matches the governing skill</td><td><span class="tag corr">required for correctness</span></td><td>03/14, 03/15; DD-26, DD-27</td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose">
+    <p>The narrowed stop condition 5 is a placement choice. It is a separate change from the subject rule. The Architect asked for it during this run, and asked to put it in this bundle. It could be its own issue.</p>
+    <h3>Rejected alternatives</h3>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Alternative</th><th>Why it was not taken</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Drop the labels</td><td>The labels make the decision tree traceable across <code>log.md</code>, the delegated decisions and the review. The Retrospective uses them.</td><td>brief §4</td></tr>
+      <tr><td>A glossary of labels</td><td>The Architect still opens another place before answering.</td><td>brief §4</td></tr>
+      <tr><td>Plain words, with the number as a trailing pointer</td><td>The Architect answers by number. The number must lead, next to its text.</td><td>brief §4</td></tr>
+      <tr><td>Fix it in chat only</td><td>The Architect answers from the stop record in <code>summary.md</code> later. The record must read on its own too.</td><td>brief §4</td></tr>
+      <tr><td>Repeat the rule at each place</td><td>Copies drift. One rule with pointers keeps one text to change.</td><td>03/2; DD-10</td></tr>
+      <tr><td>Put subjects in the record tables too</td><td>A table row already holds the item's text in its own columns.</td><td>03/3; DD-11</td></tr>
+      <tr><td>Put subjects in the fix-attempt log line</td><td>The line is a record. The stop round that quotes its rows gives them subjects.</td><td>03/21; DD-25</td></tr>
+      <tr><td>Keep trigger 1 as "a delegated decision"</td><td>Every record repair touched a delegated decision, so every repair stopped the run. The Architect answered "yes" to each such stop.</td><td>the Architect, log 2026-11-13 07:32</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 8 -->
+<section id="repair">
+  <div class="prose">
+    <div class="secnum">8 · Record repair or changed answer</div>
+    <h2>The one point that decides a stop</h2>
+    <p>Trigger 1 of the gate test stops the run when the next fix changes a decision. Before this change, the text said "a delegated decision". A fix that only split a question touched a delegated decision, so it stopped the run. Now the text says "what a delegated decision decides". The test is the answer: if the answer stays the same, the fix is a record repair, and the run continues.</p>
+  </div>
+
+  <figure class="scroll" data-md="Argument diagram. The verifier fails a row and the delegate plans the next fix. Question: does the next fix change a conclusion, an ADR, or what a delegated decision decides? No: a record repair. Example from this bundle: split 03/16 into 03/16 and 03/24 with the same answer each; raise DD-19 to MATERIAL — unconfirmed with its answer unchanged. Result: continue; the fix counts as one fix attempt and is logged; the review round still puts every entry to the Architect. Yes: a changed answer. Example (no such fix ran): change what DD-19 decides, from README.md mentions the subject form to it does not. Result: stop, stop condition 5, trigger 1; the Architect answers in a stop round.">
+    <svg class="d m" viewBox="0 0 820 370" role="img" aria-label="Argument diagram: record repair against changed answer">
+      <defs>
+        <marker id="a8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+      </defs>
+      <rect x="260" y="12" width="300" height="38" rx="8" class="mute"/>
+      <text x="410" y="36" text-anchor="middle" class="t">A row fails. The delegate plans the next fix.</text>
+      <path d="M410 50 L410 76" class="e" marker-end="url(#a8)"/>
+      <rect x="190" y="78" width="440" height="52" rx="8" class="chg"/>
+      <text x="410" y="99" text-anchor="middle" class="t">Does the next fix change a conclusion, an ADR,</text>
+      <text x="410" y="118" text-anchor="middle" class="t">or what a delegated decision decides?</text>
+      <path d="M300 130 L200 176" class="e" marker-end="url(#a8)"/>
+      <text x="234" y="150" class="lb">no</text>
+      <path d="M520 130 L620 176" class="e" marker-end="url(#a8)"/>
+      <text x="578" y="150" class="lb">yes</text>
+
+      <rect x="20" y="178" width="370" height="104" rx="10" class="pok"/>
+      <text x="36" y="200" class="k">RECORD REPAIR · FROM THIS BUNDLE</text>
+      <text x="36" y="222" class="s">Split [03/16 | …] into [03/16 | …] and [03/24 | …],</text>
+      <text x="36" y="238" class="s">with the Architect's same answer on each.</text>
+      <text x="36" y="258" class="s">Raise DD-19 to MATERIAL — unconfirmed.</text>
+      <text x="36" y="274" class="s">The answer of DD-19 does not change.</text>
+
+      <rect x="430" y="178" width="370" height="104" rx="10" class="pbad"/>
+      <text x="446" y="200" class="k">CHANGED ANSWER · AN EXAMPLE</text>
+      <text x="446" y="222" class="s">Change what DD-19 decides:</text>
+      <text x="446" y="238" class="s">"README.md mentions the subject form"</text>
+      <text x="446" y="254" class="s">becomes "README.md does not mention it".</text>
+      <text x="446" y="274" class="s">No such fix ran in this bundle.</text>
+
+      <path d="M205 282 L205 304" class="e" marker-end="url(#a8)"/>
+      <path d="M615 282 L615 304" class="e" marker-end="url(#a8)"/>
+      <rect x="20" y="306" width="370" height="50" rx="10" class="chg"/>
+      <text x="36" y="326" class="t">Continue: one fix attempt, logged</text>
+      <text x="36" y="344" class="s">The review round still puts each entry to the Architect.</text>
+      <rect x="430" y="306" width="370" height="50" rx="10" class="box"/>
+      <text x="446" y="326" class="t">Stop: stop condition 5, trigger 1</text>
+      <text x="446" y="344" class="s">The Architect answers in a stop round.</text>
+    </svg>
+    <figcaption><b>Argument diagram.</b> Both fixes touch DD-19. Only the right one changes its answer. Before the change, both fixes stopped the run. Now only the right one does.</figcaption>
+  </figure>
+  <div class="prose">
+    <p>The skill lists the record repairs: split a question into one per decision with the same answer each; move a question to the round its dependencies allow; correct a citation; raise a decision's materiality to <code>MATERIAL — unconfirmed</code>. Each new or changed entry keeps the decision's answer and states the repair in a Repair row. The review round still puts every entry to the Architect. Conditions 2 to 8 stay hard stops.</p>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="decisions">
+  <div class="prose">
+    <div class="secnum">9 · Delegated decisions</div>
+    <h2>Twenty-eight decisions, all adopted</h2>
+    <p>The run was <code>autonomous</code> with <code>stops: proceed</code>. The delegate took 28 decisions and recorded each one. Fifteen were material. The Architect reviewed all 28 in the review round on 2026-11-15 and answered "yes" to each. Every status is ADOPTED. The full record is in <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md">delegated-decisions.md</a>.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Decision</th><th>Phase</th><th>Materiality</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-1">DD-1</a> — Issue #26 counts as the Architect&#x27;s own words</td><td>Feature Analysis</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-2">DD-2</a> — Target: the plugin source in this repository</td><td>Feature Analysis</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-3">DD-3</a> — The rule&#x27;s reach: every place, as a working hypothesis</td><td>Feature Analysis</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-4">DD-4</a> — The §5 proposals are the starting proposal for Phase 03</td><td>Feature Analysis</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-5">DD-5</a> — Earlier bundles and the durable store are not rewritten</td><td>Feature Analysis</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-6">DD-6</a> — This bundle already uses the subject form</td><td>Feature Analysis</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-7">DD-7</a> — <code>AskUserQuestion</code>: question text covered, headers exempt, as a working hypothesis</td><td>Feature Analysis</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-8">DD-8</a> — Done when, as a working hypothesis</td><td>Feature Analysis</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-9">DD-9</a> — Kind of request confirmed: feature</td><td>Compliance &amp; Review</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-10">DD-10</a> — The rule is stated once and pointed to</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-11">DD-11</a> — Record tables stay outside the rule</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-12">DD-12</a> — A sixth self-check item: Subjects</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-13">DD-13</a> — The <code>stops: proceed</code> open item points to the rule</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-14">DD-14</a> — The reconcile report&#x27;s questions follow the rule</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-15">DD-15</a> — Retrospective findings stay outside</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-16">DD-16</a> — <code>AskUserQuestion</code>: question text covered, header exempt</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-17">DD-17</a> — Audit and code interviews inherit the rule</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-18">DD-18</a> — The rule goes at the end of Structured questions</td><td>Compliance &amp; Review</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-19">DD-19</a> — <code>README.md</code> mentions the subject form; <code>ARCHITECTURE.md</code> unchanged</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-20">DD-20</a> — The label list adds <code>&lt;skill&gt;/&lt;n&gt;</code> and <code>Deviation [N]</code></td><td>Compliance &amp; Review</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-21">DD-21</a> — The resume summary points to the rule</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-22">DD-22</a> — The interview&#x27;s closing summary points to the rule</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-23">DD-23</a> — The Phase 05 completion notice points to the rule</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-24">DD-24</a> — The <code>STATE.md</code> stop line points to the rule</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-25">DD-25</a> — The fix-attempt log line stays outside</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-26">DD-26</a> — <code>README.md</code> mentions the subject form</td><td>Compliance &amp; Review</td><td><span class="st warn">material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-27">DD-27</a> — <code>ARCHITECTURE.md</code> stays unchanged</td><td>Compliance &amp; Review</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+      <tr><td><a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md#dd-28">DD-28</a> — Skill-text changes stay uncommitted for the Architect</td><td>Specification</td><td><span class="st mut">not material</span></td><td><span class="st ok">ADOPTED</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose">
+    <p>DD-19 held two decisions. Phase 03 replaced it with DD-26 and DD-27 and kept its entry as recorded. DD-28 kept the skill-text changes uncommitted for the Architect. After the review, the Architect committed them at close-out, in <code>dcccc2b</code>.</p>
+    <p>Two decisions graduated to the durable store: <a href="../../decisions/2026-11-15.labels_travel_inside_subjects.md">labels travel inside subjects</a> and <a href="../../decisions/2026-11-15.record_repair_is_not_a_stop.md">a record repair is not a stop</a>.</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="testing">
+  <div class="prose">
+    <div class="secnum">10 · Testing</div>
+    <h2>Twenty text checks, and a control run</h2>
+    <p>The change is prose, so there are no unit tests. A script, <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/files/phase-05-text-checks.py">phase-05-text-checks.py</a>, reads the five files and checks the exact text in the right section. It compares unchanged passages and the list of changed files with <code>67c6ad8</code>, the last commit before the change.</p>
+    <p>All 20 checks pass at <code>dcccc2b</code>. On the text at <code>67c6ad8</code>, 19 checks fail. T-19 passes there, because it checks passages that must not change.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Check</th><th>What it checks</th><th>Requirement</th></tr></thead>
+    <tbody>
+      <tr><td>T-1</td><td>The rule is at the end of Structured questions, after "A series of decisions", with both examples and the full label list</td><td>R-1</td></tr>
+      <tr><td>T-2</td><td>The three bullets: the <code>AskUserQuestion</code> header, the escaped bar in tables, the records</td><td>R-1, R-2, R-3</td></tr>
+      <tr><td>T-3</td><td>The rule is defined once in all skills</td><td>R-1</td></tr>
+      <tr><td>T-4</td><td>The round template uses subjects; "[Short title]" is gone; the Subject format bullet follows "One decision per question"</td><td>R-4</td></tr>
+      <tr><td>T-5</td><td>The review round names each decision as <code>[DD-&lt;n&gt; | what was decided]</code></td><td>R-5</td></tr>
+      <tr><td>T-6</td><td>The stop record gives every item a subject</td><td>R-6</td></tr>
+      <tr><td>T-7</td><td>The end-of-run report uses subjects</td><td>R-7</td></tr>
+      <tr><td>T-8</td><td>The self-check has six items; item 6 is Subjects</td><td>R-8</td></tr>
+      <tr><td>T-9</td><td>The <code>stops: proceed</code> open item has a subject</td><td>R-9</td></tr>
+      <tr><td>T-10</td><td>The resume summary names each item with a subject</td><td>R-10</td></tr>
+      <tr><td>T-11</td><td>The interview closing summary uses subjects</td><td>R-11</td></tr>
+      <tr><td>T-12</td><td>The waived-test notice uses <code>[T-&lt;n&gt; | what the test checks]</code></td><td>R-12</td></tr>
+      <tr><td>T-13</td><td>The <code>STATE.md</code> stop line gives a named item its subject</td><td>R-13</td></tr>
+      <tr><td>T-14</td><td>The reconcile report and notice use subjects</td><td>R-14</td></tr>
+      <tr><td>T-15</td><td><code>README.md</code> names the form; <code>ARCHITECTURE.md</code> has no change</td><td>R-15</td></tr>
+      <tr><td>T-16</td><td>Trigger 1 is narrowed; the record-repair paragraph comes before the log line</td><td>R-16</td></tr>
+      <tr><td>T-17</td><td>Stop condition 5 and the Phase 05 accept rule are narrowed the same way</td><td>R-16</td></tr>
+      <tr><td>T-18</td><td>The config comment is the same in the governing skill and <code>README.md</code></td><td>R-16</td></tr>
+      <tr><td>T-19</td><td>Unchanged passages: the tool constraints, the interview numbering, the log line, conditions 2 to 8</td><td>R-2, R-17</td></tr>
+      <tr><td>T-20</td><td>Only the five files changed</td><td>R-4, R-17</td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose">
+    <p>Each autonomous phase also passed its gate test. The verifier subagent re-checked every row. Phase 04 used 5 of its 5 fix attempts, with progress at each run. Phase 05 used 1 of 5.</p>
+  </div>
+</section>
+
+<!-- 11 -->
+<section id="limits">
+  <div class="prose">
+    <div class="secnum">11 · Known limits</div>
+    <h2>What the change does not do</h2>
+  </div>
+  <ul class="tight">
+    <li><strong>No move test.</strong> The text checks find exact sentences inside a section. A check does not prove that a sentence fails when it moves to a wrong place inside that section. The store lesson <a href="../../lessons/2026-11-11.text_checks_read_their_place.md">text checks read their place</a> asks for a move test. This run did not make one.</li>
+    <li><strong>A prose rule.</strong> No code enforces the rule. Self-check item 6 and the verifier check it at each gate test. Between gate tests, the delegate follows it as text.</li>
+    <li><strong>Old bundles keep bare labels.</strong> Earlier bundles and the durable store are not rewritten (DD-5).</li>
+    <li><strong>Headers stay short.</strong> An <code>AskUserQuestion</code> header holds at most 12 characters, so it is exempt (DD-16). The question text carries the subject.</li>
+    <li><strong>Records keep their form.</strong> The record tables, the Retrospective's delegation findings and the fix-attempt log line keep bare labels (DD-11, DD-15, DD-25).</li>
+  </ul>
+</section>
+
+<!-- 12 -->
+<section id="sources">
+  <div class="prose">
+    <div class="secnum">12 · Sources</div>
+    <h2>Source map</h2>
+    <p>Line numbers are at <code>dcccc2b</code>.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Place</th><th>What is there</th></tr></thead>
+    <tbody>
+      <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md:403-415</code></td><td>The Subjects rule</td></tr>
+      <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md:554</code></td><td>Resume summary pointer</td></tr>
+      <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md:765</code></td><td>Config template comment</td></tr>
+      <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md:1198-1208</code></td><td>Self-check, six items; item 6 Subjects</td></tr>
+      <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md:1222-1233</code></td><td>Trigger 1 and the record-repair paragraph</td></tr>
+      <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md:1269</code></td><td>Stop condition 5</td></tr>
+      <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md:1284-1288</code></td><td><code>STATE.md</code> stop line and stop record</td></tr>
+      <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md:1307-1309</code></td><td><code>stops: proceed</code> open item; conditions 2 to 8</td></tr>
+      <tr><td><code>skills/sdd/00-governing-workflow/SKILL.md:1365</code></td><td>End-of-run report</td></tr>
+      <tr><td><code>skills/sdd/interview/SKILL.md:88-97</code></td><td>Round template and the Subject format bullet</td></tr>
+      <tr><td><code>skills/sdd/interview/SKILL.md:160</code>, <code>:178</code></td><td>Review round; closing summary</td></tr>
+      <tr><td><code>skills/sdd/05-implementation/SKILL.md:293</code>, <code>:327</code></td><td>Waived-test notice; accept rule</td></tr>
+      <tr><td><code>skills/sdd/reconcile/SKILL.md:158</code>, <code>:176</code></td><td>Needs-human items; the notice</td></tr>
+      <tr><td><code>README.md:220</code>, <code>:232</code>, <code>:256</code></td><td>Stop round; review round; config comment</td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose">
+    <p>Bundle basis: <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/files/gh-26-questions-subjects.md">the brief (issue 26)</a>, <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/phase-01-feature-analysis/phase.md">Phase 01</a>, <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/phase-02-code-analysis/phase.md">Phase 02</a> (the inventory A-1 to A-20), <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/phase-03-compliance-review/phase.md">Phase 03</a> (the decisions), <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/phase-04-specification/phase.md">Phase 04</a> (the plan, R-1 to R-17, T-1 to T-20), <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/phase-05-implementation/phase.md">Phase 05</a>, <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/phase-06-close-out/doc-technical.md">the technical close-out</a>, <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/delegated-decisions.md">the delegated decisions</a>, <a href="../../bundles/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/log.md">the log</a>. The bundle has no ADR of its own; Phase 03 found seven standing decisions in the store, and the change touches none of them.</p>
+    <p>Durable store: <a href="../../decisions/2026-11-15.labels_travel_inside_subjects.md">labels travel inside subjects</a>, <a href="../../decisions/2026-11-15.record_repair_is_not_a_stop.md">a record repair is not a stop</a>, <a href="../../lessons/2026-11-15.escape_bar_in_table_cells.md">escape the bar in table cells</a>, <a href="../../lessons/2026-11-15.kept_breach_is_no_progress.md">a kept breach is no progress</a>, <a href="../../lessons/2026-11-15.stop_question_proposes_fix_budget.md">a stop question proposes a fix budget</a>.</p>
+  </div>
+</section>
+
+<footer>Reference for bundle <code>2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label</code>. Intent: <a href="./specification.html">specification</a>. Generated from the whole bundle and the code at <code>dcccc2b</code>.</footer>
+</div>
+</body>
+</html>
