@@ -5,11 +5,12 @@ work-kind: feature
 status: active
 evidence: confirmed
 created: 2026-11-15T19:48Z
-updated: 2026-11-15T19:53:37Z
+updated: 2026-11-15T20:06:37Z
 date: 2026-11-15T19:48Z
 touches: [governing-workflow, interview, gate-test]
 produced: [2026-11-15.labels_travel_inside_subjects, 2026-11-15.record_repair_is_not_a_stop, 2026-11-15.escape_bar_in_table_cells, 2026-11-15.kept_breach_is_no_progress, 2026-11-15.stop_question_proposes_fix_budget]
 specification: ./specification.html
+reference: ./reference.html
 ---
 
 # Questions to the Architect: [number | text] subjects, never a bare label
@@ -28,5 +29,6 @@ specification: ./specification.html
 | Related | |
 | --- | --- |
 | **Specification** | [specification.html](./specification.html) — intent |
+| **Reference** | [reference.html](./reference.html) — outcome |
 | **Builds on** | [25.set_allowed_budget_for_autonomous_phases](../25.set_allowed_budget_for_autonomous_phases/node.md) — the gate-test fix budget and stop condition 5 this feature narrows |
 | **Produced** | [2026-11-15.labels_travel_inside_subjects](../../decisions/2026-11-15.labels_travel_inside_subjects.md), [2026-11-15.record_repair_is_not_a_stop](../../decisions/2026-11-15.record_repair_is_not_a_stop.md), [2026-11-15.escape_bar_in_table_cells](../../lessons/2026-11-15.escape_bar_in_table_cells.md), [2026-11-15.kept_breach_is_no_progress](../../lessons/2026-11-15.kept_breach_is_no_progress.md), [2026-11-15.stop_question_proposes_fix_budget](../../lessons/2026-11-15.stop_question_proposes_fix_budget.md) — decisions & lessons from this feature |

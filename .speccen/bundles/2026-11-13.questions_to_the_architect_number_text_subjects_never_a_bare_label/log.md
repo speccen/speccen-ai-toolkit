@@ -6,6 +6,12 @@ type: Log
 
 ## 2026-11-15
 
+- **21:14 — REFERENCE** — complete: reference approved; `reference.html` and `reference.md` copied to `.speccen/features/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/`, node `reference` edge and Related row set, specification ↔ reference cross-linked, timeline Reference column filled; STATE → REFERENCE PHASE / COMPLETE; bundle closed
+- **21:13 — REFERENCE** — close bundle
+- **21:12 — REFERENCE** — use feature branch, generate commit message, create PR, merge, pull again
+- **21:08 — REFERENCE** — reference drafted: `phase-08-reference/reference.html` (L1 – L4, the rule, what changed and why, the stop condition 5 argument-diagram, DD-1 – DD-28 ADOPTED, T-1 – T-20, known limits, source map at `dcccc2b`); five SVG diagrams parsed and rendered in headless Chrome (dark and light); `reference.md` extracted; presented to the Architect for approval
+- **20:56 — REFERENCE** — scope answered (`AskUserQuestion`): [08/1 \| Which files are in scope for the reference?] "The five files (Recommended)"; [08/2 \| Which content areas should the reference cover?] "Focused set (Recommended)"; [08/3 \| Should the reference read the codebase directly, or is the bundle enough?] "Bundle + code (Recommended)"
+- **20:55 — REFERENCE** — run the reference
 - **20:54 — CLOSE-OUT** — review round decided ("yes", every proposal): DD-1 – DD-28 ADOPTED; G-1 – G-5 promoted (2 decisions, 3 lessons written to `.speccen/`, feature node `produced` list, store index and timeline); G-6 kept local; the five skill files committed with the bundle
 - **20:54 — CLOSE-OUT** — yes
 - **20:53 — CLOSE-OUT** — review round

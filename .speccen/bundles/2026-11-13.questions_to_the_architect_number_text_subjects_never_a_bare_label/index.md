@@ -64,6 +64,15 @@ type: Index
 | [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | One subject rule in the governing skill, its pointers in four skills and the README, and the narrowed stop condition 5 |
 | [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | Every item put to the Architect carries a [number \| text] subject; record-only repairs no longer stop a run — reviewed and committed |
 
+### Phase 08 — Reference
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-08-reference/phase.md) | Phase | COMPLETE | Working notes for the reference — scope, the depth descent, contracts; five diagrams verified, reference approved and stored |
+| [reference.html](./phase-08-reference/reference.html) | Reference | COMPLETE | Technical reference for [number \| text] subjects — the rule, its pointers in five files, the twenty places that reach the Architect, and the narrowed stop condition 5 |
+| [reference.md](./phase-08-reference/reference.md) | Reference | COMPLETE | Reduced Markdown view of reference.html |
+| [summary](./phase-08-reference/summary.md) | Summary | COMPLETE | Depth-layered reference for [number \| text] subjects and the narrowed stop condition 5, copied into the feature node |
+
 ## Files
 
 | File | Description |
