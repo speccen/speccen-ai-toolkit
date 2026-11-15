@@ -135,7 +135,7 @@ Architect's scope addition (03/16, 03/24). No prototype ran, so no strategy tabl
 
 ### Implementation Phases
 
-#### Phase 1: The rule — governing skill, Structured questions ⬜
+#### Phase 1: The rule — governing skill, Structured questions ✅
 
 **Why:** Every pointer in later phases names this rule, so it comes first. It is stated once, at
 the end of Structured questions, because it governs both the tool and the interview — source:
@@ -143,7 +143,7 @@ brief §2.1; 03/2 ([DD-10](../delegated-decisions.md#dd-10)), 03/10 ([DD-18](../
 
 ##### 1.1 Add the Subjects paragraph after "A series of decisions" (after `gov :401`, before `---`)
 **Why:** the paragraph also carries 03/12, 03/8, 03/3, 03/7, 03/21 (DD-20, DD-16, DD-11, DD-15, DD-25), the Phase 02 finding on bundle-invented numbers and the Phase 03 escape note.
-- [ ] Insert, as a new paragraph:
+- [x] Insert, as a new paragraph:
 
   ```
   **Subjects: `[INTERNAL-NUMBER | HUMAN UNDERSTANDABLE TEXT]`.** Anything put to the Architect —
@@ -162,42 +162,42 @@ brief §2.1; 03/2 ([DD-10](../delegated-decisions.md#dd-10)), 03/10 ([DD-18](../
   ```
 
 ##### 1.2 Build and Validate
-- [ ] Re-read Structured questions: the paragraph follows "A series of decisions" and precedes the
+- [x] Re-read Structured questions: the paragraph follows "A series of decisions" and precedes the
   section's `---`; the tool's constraints above it are unchanged.
 
-#### Phase 2: Pointers in the governing skill ⬜
+#### Phase 2: Pointers in the governing skill ✅
 
 **Why:** The governing skill writes the stop, the `stops: proceed` record, the resume summary and
 the end-of-run report, so each must point to the rule; the self-check enforces it — source:
 brief §2.4 – §2.6; 03/4 (DD-12), 03/5 (DD-13), 03/17 (DD-21), 03/20 (DD-24).
 
 ##### 2.1 Stop record in `summary.md` (`gov :1260-1261`, brief §2.4)
-- [ ] After "an open item with the exact question, the options, your lean and the evidence"
+- [x] After "an open item with the exact question, the options, your lean and the evidence"
   add " — every item with a `[number | text]` subject, readable without the rest of the bundle
   (Structured questions)".
 
 ##### 2.2 `STATE.md` stop line (`gov :1258-1259`, 03/20)
-- [ ] After "`Stopped (autonomous) — <one-line reason>`" add ", where an item the reason names
+- [x] After "`Stopped (autonomous) — <one-line reason>`" add ", where an item the reason names
   has its `[number | text]` subject".
 
 ##### 2.3 `stops: proceed` open item (`gov :1279-1280`, 03/5)
-- [ ] Change "and in the phase `summary.md` under its open items." to "and in the phase
+- [x] Change "and in the phase `summary.md` under its open items." to "and in the phase
   `summary.md` under its open items, with a `[number | text]` subject (Structured questions)."
 
 ##### 2.4 Resume summary (`gov :539-540`, 03/17)
-- [ ] Change "any stop awaiting the Architect, and any pending graduation proposal" to "any stop
+- [x] Change "any stop awaiting the Architect, and any pending graduation proposal" to "any stop
   awaiting the Architect, and any pending graduation proposal — each named with a
   `[number | text]` subject (Structured questions)".
 
 ##### 2.5 End-of-run report (`gov :1337-1339`, brief §2.5)
-- [ ] Change "Then report to the Architect in one message: the phases run," to "Then report to
+- [x] Change "Then report to the Architect in one message: the phases run," to "Then report to
   the Architect in one message, with `[number | text]` subjects (Structured questions): the phases
   run,"; rewrap the paragraph to ≤ 100 columns.
 
 ##### 2.6 Self-check (`gov :1182`, `:1189-1190`, brief §2.6, 03/4)
 **Why:** the lead-in counts the items, so "five" becomes "six" with the new item — source: Phase 02, A-6.
-- [ ] Change "for the five common failures" to "for the six common failures".
-- [ ] After item 5 add the brief's two lines:
+- [x] Change "for the five common failures" to "for the six common failures".
+- [x] After item 5 add the brief's two lines:
 
   ```
     6. **Subjects** — every question and item put to the Architect has a `[number | text]`
@@ -205,9 +205,9 @@ brief §2.4 – §2.6; 03/4 (DD-12), 03/5 (DD-13), 03/17 (DD-21), 03/20 (DD-24).
   ```
 
 ##### 2.7 Build and Validate
-- [ ] Re-read each changed passage in context; list numbering of the self-check runs 1 – 6.
+- [x] Re-read each changed passage in context; list numbering of the self-check runs 1 – 6.
 
-#### Phase 3: The interview skill ⬜
+#### Phase 3: The interview skill ✅
 
 **Why:** The round template is the shape of every interview, stop round and graduation question,
 so its change reaches them all; the review round and the closing summary are its other
@@ -215,61 +215,61 @@ Architect-facing outputs — source: brief §2.2, §2.3; Phase 02, A-4, A-9 (the
 graduation question use the round template); 03/9 (DD-17), 03/18 (DD-22).
 
 ##### 3.1 Round template (`int :88-96`, brief §2.2)
-- [ ] Replace "**01/7 — [Short title]** — [The question: one decision, stated plainly, with one
+- [x] Replace "**01/7 — [Short title]** — [The question: one decision, stated plainly, with one
   line on why it matters. Name the options if there are any.]" with "**[01/7 | The decision, as
   a plain question]** — [One line on why it matters. Name the options if there are any.]".
-- [ ] Replace "**01/8 — [Short title]** — [...]" with "**[01/8 | …]** — [...]".
-- [ ] After the bullet "**One decision per question**, …" add: "- **Subject format** (governing
+- [x] Replace "**01/8 — [Short title]** — [...]" with "**[01/8 | …]** — [...]".
+- [x] After the bullet "**One decision per question**, …" add: "- **Subject format** (governing
   skill → Structured questions): `[01/7 | …]`; any decision, item or row the question mentions
   gets its own `[number | text]` subject."
 
 ##### 3.2 Review round (`int :158-159`, brief §2.3)
-- [ ] Replace "- **One question per delegated decision** (`DD-<n>`): `adopt`, `override` or
+- [x] Replace "- **One question per delegated decision** (`DD-<n>`): `adopt`, `override` or
   `later`, with your proposed answer. Put the `MATERIAL — unconfirmed` decisions first." with the
   brief's text: "- **One question per delegated decision**, with the subject `[DD-<n> | what was
   decided]`, then why, and `adopt`, `override` or `later`, with your proposed answer. Put the
   `MATERIAL — unconfirmed` decisions first."
 
 ##### 3.3 Closing summary (`int :174`, 03/18)
-- [ ] Change "Give a short closing summary of the decisions — in the Architect's words where
+- [x] Change "Give a short closing summary of the decisions — in the Architect's words where
   possible." to "Give a short closing summary of the decisions — in the Architect's words where
   possible, each with its `[number | text]` subject (governing skill → Structured questions)."
 
 ##### 3.4 Build and Validate
-- [ ] Re-read the round template as rendered markdown: the code block still opens and closes.
+- [x] Re-read the round template as rendered markdown: the code block still opens and closes.
 
-#### Phase 4: Phase 05 and reconcile ⬜
+#### Phase 4: Phase 05 and reconcile ✅
 
 **Why:** These two skills put items to a person outside the governing and interview skills — a
 waived test, a contradictory decision — source: 03/19 (DD-23), 03/6 (DD-14).
 
 ##### 4.1 Phase 05 completion notice (`p05 :292`, 03/19)
-- [ ] Change "[or: with the following waived: …]" to "[or: with the following waived:
+- [x] Change "[or: with the following waived: …]" to "[or: with the following waived:
   [T-<n> | what the test checks], …]".
 
 ##### 4.2 Reconcile report (`rec :158`, 03/6)
-- [ ] Change "- [id-A] and [id-B] both govern" to "- [id-A | what it decides] and [id-B | what it
+- [x] Change "- [id-A] and [id-B] both govern" to "- [id-A | what it decides] and [id-B | what it
   decides] both govern".
 
 ##### 4.3 Reconcile notice (`rec :174-175`, 03/6)
-- [ ] Change "the list of items needing human resolution, pointing them at" to "the list of items
+- [x] Change "the list of items needing human resolution, pointing them at" to "the list of items
   needing human resolution, each with a `[id | text]` subject (governing skill → Structured
   questions), pointing them at".
 
 ##### 4.4 Build and Validate
-- [ ] Re-read both passages; the report template's headings are unchanged.
+- [x] Re-read both passages; the report template's headings are unchanged.
 
-#### Phase 5: Stop condition 5 narrowed ⬜
+#### Phase 5: Stop condition 5 narrowed ✅
 
 **Why:** The Architect added this to the scope and applied it to this run; the skill text must
 say it, in every place that restates the trigger — source: 03/16, 03/24 (the Architect, log
 07:32, 07:33); [Phase 03 scope addition](../phase-03-compliance-review/phase.md#scope-addition).
 
 ##### 5.1 Gate test trigger 1 and the repair paragraph (`gov :1204`, before `:1209`)
-- [ ] Replace "  1. the fix you would make next changes a phase conclusion, a delegated decision or
+- [x] Replace "  1. the fix you would make next changes a phase conclusion, a delegated decision or
   an ADR; or" with "  1. the fix you would make next changes a phase conclusion, an ADR, or what a
   delegated" / "     decision decides; or".
-- [ ] After trigger 3 and before "Log each attempt as …", add the paragraph of the scope
+- [x] After trigger 3 and before "Log each attempt as …", add the paragraph of the scope
   addition, indented two spaces: "A fix that only repairs how a decision is recorded is not such
   a change: splitting a question into one per decision with the same answer each, moving a
   question to the round its dependencies allow, correcting a citation, or raising a decision's
@@ -277,48 +277,48 @@ say it, in every place that restates the trigger — source: 03/16, 03/24 (the A
   and states the repair; the review round still puts every one of them to the Architect."
 
 ##### 5.2 Stop condition 5 (`gov :1243-1244`)
-- [ ] Change "or needs a fix that changes a conclusion, a delegated decision or an ADR (Gate
+- [x] Change "or needs a fix that changes a conclusion, a delegated decision or an ADR (Gate
   test);" to "or needs a fix that changes a conclusion, an ADR or what a delegated decision
   decides (Gate test);".
 
 ##### 5.3 Phase 05 accept (`p05 :325-326`)
-- [ ] Change "If the next fix would change a phase conclusion, a delegated decision or an ADR,
+- [x] Change "If the next fix would change a phase conclusion, a delegated decision or an ADR,
   stop." to "If the next fix would change a phase conclusion, an ADR, or what a delegated
   decision decides, stop; a fix that only repairs how a decision is recorded is not such a change
   (governing skill → Gate test)."
 
 ##### 5.4 Configuration comment (`gov :750`, `README.md:254`)
 **Why:** the README block is a copy of the governing template and stays identical — source: lesson `2026-11-05.readme_restates_config_template`, cited by Phase 01; Phase 03 scope addition.
-- [ ] In both, replace "# It stops sooner when a repair makes no progress or would change a
+- [x] In both, replace "# It stops sooner when a repair makes no progress or would change a
   conclusion." with "# It stops sooner when a repair makes no progress, or would change a
   conclusion, an ADR" / "# or what a delegated decision decides." (two lines).
 
 ##### 5.5 Build and Validate
-- [ ] `gov`: no "a delegated decision or an ADR" remains in the Gate test or Stop conditions; the
+- [x] `gov`: no "a delegated decision or an ADR" remains in the Gate test or Stop conditions; the
   two template copies are identical.
 
-#### Phase 6: README and verification ⬜
+#### Phase 6: README and verification ✅
 
 **Why:** The README tells the Architect what an autonomous stop and review round look like, so it
 names the form (03/14); then every requirement is checked against the edited text — source:
 03/14 (DD-26); this plan's Test Plan.
 
 ##### 6.1 README autonomous-mode section (`README.md:219-221`, `:230-231`, 03/14)
-- [ ] Change "It collects those questions into one numbered round with its proposed answers;" to
+- [x] Change "It collects those questions into one numbered round with its proposed answers;" to
   "It collects those questions into one numbered round with its proposed answers, each item
   named as `[number | text]` so you can answer from the message alone;".
-- [ ] Change "with one numbered review round: each delegated decision (adopt, override or
+- [x] Change "with one numbered review round: each delegated decision (adopt, override or
   later)" to "with one numbered review round: each delegated decision, named as
   `[DD-<n> | what was decided]` (adopt, override or later)".
 
 ##### 6.2 Run the text checks
-- [ ] Write `files/phase-05-text-checks.py` from the Test Plan below (T-1 – T-20) and run it from
+- [x] Write `files/phase-05-text-checks.py` from the Test Plan below (T-1 – T-20) and run it from
   the repository root; every check passes.
-- [ ] `git diff --stat` outside `.speccen/` lists exactly the five files of the Proposed Changes
+- [x] `git diff --stat` outside `.speccen/` lists exactly the five files of the Proposed Changes
   Summary.
 
 ##### 6.3 Build and Validate
-- [ ] The repository has no build. Validation is 6.2.
+- [x] The repository has no build. Validation is 6.2.
 
 ### Risk Mitigation
 

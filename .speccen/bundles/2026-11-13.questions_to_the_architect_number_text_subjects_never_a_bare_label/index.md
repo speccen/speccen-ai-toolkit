@@ -47,8 +47,16 @@ type: Index
 | [doc-business](./phase-04-specification/doc-business.md) | Doc (business) | COMPLETE | The Architect reads every question, stop and review item with its subject in plain words |
 | [summary](./phase-04-specification/summary.md) | Summary | COMPLETE | Six-phase plan, seventeen requirements and twenty text checks — the subject rule with its pointers, and the narrowed stop condition 5 |
 
+### Phase 05 — Implementation
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-05-implementation/phase.md) | Phase | COMPLETE | The subject rule, its pointers and the narrowed stop condition 5 applied to five files; twenty text checks pass |
+| [summary](./phase-05-implementation/summary.md) | Summary | COMPLETE | Five files changed as planned; twenty text checks pass, and fail on the unedited text; no deviation |
+
 ## Files
 
 | File | Description |
 |---|---|
 | [gh-26-questions-subjects.md](./files/gh-26-questions-subjects.md) | Issue #26, the brief, copied verbatim |
+| [phase-05-text-checks.py](./files/phase-05-text-checks.py) | Phase 05 text checks T-1 – T-20, run from the repository root |

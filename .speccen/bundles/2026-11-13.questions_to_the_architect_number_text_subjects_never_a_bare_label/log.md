@@ -6,6 +6,12 @@ type: Log
 
 ## 2026-11-15
 
+- **20:47 — IMPLEMENTATION → CLOSE-OUT** — transition (autonomous, delegate): gate test passed — all 13 rows pass or n/a, verified (runs 1 – 2, 1 of 5 fix attempts used); every acceptance scenario has a passing text check; no deviation; implementation accepted by the delegate. Skill-text changes stay uncommitted for the Architect (DD-28)
+- **20:47 — IMPLEMENTATION subagent** — gate-check verifier, run 2 · model: session model — rows 4, 6, 7, 8, 9 confirmed; no new breach
+- **20:46 — IMPLEMENTATION** — fix attempt 1 of 5: run 1 failed row 9 — no fix changes a conclusion, an ADR or what a delegated decision decides. Repaired: the end-of-run report paragraph in the governing skill rewrapped as a whole to ≤ 100 columns (plan item 2.5); phase.md's rewrap note corrected (all rewrapped places named); the text-check script compares unchanged passages and the file list with `67c6ad8` instead of HEAD, and T-16 reports FAIL instead of raising; T-1 – T-20 PASS; now 71 insertions, 31 deletions
+- **20:46 — IMPLEMENTATION subagent** — gate-check verifier, run 1 · model: session model — row 9 failed (item 2.5 rewrap); 12 rows confirmed; new: phase.md's rewrap note wrong, script weak spots
+- **20:43 — IMPLEMENTATION** — all six plan phases executed; five files changed (68 insertions, 28 deletions), left uncommitted (DD-28); text checks T-1 – T-20 all PASS; control run on an unedited worktree at `67c6ad8`: 19 FAIL, T-19 (unchanged passages) PASS; no deviation
+- **20:41 — IMPLEMENTATION** — phase started by the autonomous transition (no Architect prompt); plan confirmed by the delegate
 - **20:41 — SPECIFICATION → IMPLEMENTATION** — transition (autonomous, delegate): gate test passed — all 23 rows pass or n/a, verified (runs 1 – 6, 5 of 5 fix attempts used, progress at each run); traceability complete (R-1 – R-17, T-1 – T-20); the Implementation Plan, the Test Plan and the intent seeds are approved and frozen
 - **20:41 — SPECIFICATION subagent** — gate-check verifier, run 6 · model: session model — row 8 confirmed; no new breach
 - **20:40 — SPECIFICATION** — fix attempt 5 of 5: run 5 failed row 8 — progress judged: 1 row fails against 1, and run 4's named breaches are gone; run 5's is new. Repaired: the Phase 3 Why cites Phase 02, A-4 and A-9 for the stop round and the graduation question
