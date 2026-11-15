@@ -3,7 +3,7 @@ type: Summary
 phase: "06 — Close-out"
 status: COMPLETE
 phase_file: ./phase.md
-description: Every item put to the Architect carries a [number | text] subject; record-only repairs no longer stop a run — review pending
+description: Every item put to the Architect carries a [number | text] subject; record-only repairs no longer stop a run — reviewed and committed
 ---
 
 # Phase 06 Summary — Close-out
@@ -17,7 +17,7 @@ interview, Phase 05 and reconcile skills and the README; a sixth self-check item
 5 narrowed so a record-only repair is not a stop.
 
 **Outcome:** twenty of twenty text checks pass (one of twenty on the unedited text); five files
-changed, uncommitted for the Architect.
+changed and committed after the review.
 
 **Audience documents (expansion seeds — not for verbatim external sharing):**
 - Executive → [doc-executive.md](./doc-executive.md)
@@ -26,8 +26,8 @@ changed, uncommitted for the Architect.
 
 **Deviations:** none → [detail](../phase-05-implementation/phase.md#deviations)
 
-**Graduated to durable store:** none yet; feature node and specification written → [.speccen/](../../../index.md)
+**Graduated to durable store:** 2 decisions, 3 lessons, the feature node and the specification → [.speccen/](../../../index.md)
 
-**Delegated decisions:** 28 (15 `MATERIAL — unconfirmed`) → [delegated-decisions.md](../delegated-decisions.md)
+**Delegated decisions:** 28, all adopted by the Architect in the review round → [delegated-decisions.md](../delegated-decisions.md)
 
-**Graduation proposal:** pending → [detail](./phase.md#graduation-proposal)
+**Graduation proposal:** decided — G-1 – G-5 promoted, G-6 kept local → [detail](./phase.md#graduation-proposal)

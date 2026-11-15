@@ -20,6 +20,8 @@ type: Index
 - [A gate test makes no progress when a breach comes back or more rows fail — not when fewer rows fail](./decisions/2026-11-11.fix_progress_by_breaches.md) — active
 - [The fix budget is at most 10 fix attempts; an invalid value counts as 1](./decisions/2026-11-11.fix_budget_ceiling_10.md) — active
 - [The fix budget defaults to 5 fix attempts; absence and the upgrade both mean 5](./decisions/2026-11-12.fix_budget_default_5.md) — active
+- [Labels stay and travel inside a `[number | text]` subject — never a bare label](./decisions/2026-11-15.labels_travel_inside_subjects.md) — active
+- [A fix that only repairs how a decision is recorded is not a stop](./decisions/2026-11-15.record_repair_is_not_a_stop.md) — active
 
 ## Lessons learned
 - [Fix the term list before writing STE seeds](./lessons/2026-11-05.ste_term_list_before_writing.md) — active
@@ -27,5 +29,8 @@ type: Index
 - [A text check reads only the place its plan row names — test it with a move test](./lessons/2026-11-11.text_checks_read_their_place.md) — active
 - [Repair every case of a breach type, not only the cases the verifier names](./lessons/2026-11-11.repair_every_case_of_a_breach.md) — active
 - [Write decision records and final edits first; lists, render and summary last](./lessons/2026-11-11.write_lists_and_summary_last.md) — active
+- [Escape `|` in every table cell, also inside backticks](./lessons/2026-11-15.escape_bar_in_table_cells.md) — active
+- [A breach kept on purpose still counts as no progress — take it out of the round](./lessons/2026-11-15.kept_breach_is_no_progress.md) — active
+- [A gate stop question proposes the fix budget that follows the answer](./lessons/2026-11-15.stop_question_proposes_fix_budget.md) — active
 
 ## Notes

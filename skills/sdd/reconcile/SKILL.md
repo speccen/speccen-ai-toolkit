@@ -155,8 +155,9 @@ date: <UTC>
 - Suspected same component: `rule-engine`, `ruleengine` — used by [ids]. Pick canonical.
 
 ### Contradictory decisions
-- [id-A] and [id-B] both govern `rule-engine` with opposing intent, neither supersedes the
-  other. Decide: which wins (supersession), or scoped override?
+- [id-A | what it decides] and [id-B | what it decides] both govern `rule-engine` with
+  opposing intent, neither supersedes the other. Decide: which wins (supersession), or scoped
+  override?
 
 ### [other judgment items]
 
@@ -172,7 +173,8 @@ store), but it carries no graph edges.
 ### Step 5 — Notify
 
 Report to the person running it: what was fixed automatically, and — prominently — the list of
-items needing human resolution, pointing them at `reconciliation-<UTC>.md`. If nothing needed
+items needing human resolution, each with a `[id | text]` subject (governing skill → Structured
+questions), pointing them at `reconciliation-<UTC>.md`. If nothing needed
 fixing or flagging, say so plainly.
 
 ---

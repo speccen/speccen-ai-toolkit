@@ -58,11 +58,11 @@ type: Index
 
 | File | Type | Status | Description |
 |---|---|---|---|
-| [phase](./phase-06-close-out/phase.md) | Phase | COMPLETE | Three audience seeds, feature node and graduated specification written; graduation proposal and the review of the delegated decisions wait for the Architect |
+| [phase](./phase-06-close-out/phase.md) | Phase | COMPLETE | Three audience seeds, feature node and graduated specification written; review decided — every delegated decision adopted, five entries graduated, skill files committed |
 | [doc-executive](./phase-06-close-out/doc-executive.md) | Doc (executive) | COMPLETE | Every question that speccen puts to the Architect names its subject in plain words; record corrections no longer stop a run |
 | [doc-business](./phase-06-close-out/doc-business.md) | Doc (business) | COMPLETE | The Architect reads every question, stop and review item with its subject in plain words |
 | [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | One subject rule in the governing skill, its pointers in four skills and the README, and the narrowed stop condition 5 |
-| [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | Every item put to the Architect carries a [number \| text] subject; record-only repairs no longer stop a run — review pending |
+| [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | Every item put to the Architect carries a [number \| text] subject; record-only repairs no longer stop a run — reviewed and committed |
 
 ## Files
 

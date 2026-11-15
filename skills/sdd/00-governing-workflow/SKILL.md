@@ -400,6 +400,20 @@ Phases 01, 03 and 04 use it in both modes — in `autonomous` mode the delegate 
 the same questions — and so do autonomous stops, the end-of-run review and Phase 06's graduation
 decision.
 
+**Subjects: `[INTERNAL-NUMBER | HUMAN UNDERSTANDABLE TEXT]`.** Anything put to the Architect —
+an interview round, a stop, the review round, the end-of-run report — reads on its own. Give
+every question, decision, checklist row or open item it mentions a subject in this form, for
+example `[01/7 | Which queue carries the retry?]` or `[DD-4 | Does the fix budget also cover
+Phase 05's own fix rule?]`. The number (`DD-<n>`, `01/<n>`, `<skill>/<n>`, `Deviation [N]`,
+`O-<n>`, `H-<n>`, `P02-<n>`, a gate-check row, or any number a bundle gives its items) keeps it
+traceable; the text says what it is, so the Architect can answer without opening another file.
+A label never stands alone.
+- In an `AskUserQuestion` call, question text that names an item gives it a subject; the
+  header is exempt.
+- Inside a markdown table, write the subject's bar as `\|`.
+- Records are not questions and keep their form: the gate-check, delegated-decision and
+  interview tables, the Retrospective's delegation findings, and the fix-attempt log line.
+
 ---
 
 ## Session Start Protocol
@@ -537,7 +551,8 @@ To **resume**, the Architect names the existing bundle id (or speccen lists the 
    - The effective mode for the current phase and where it comes from (default, project config,
      project local config, bundle config or bundle local config)
    - In `autonomous` mode: how many delegated decisions are not yet reviewed, any stop awaiting
-     the Architect, and any pending graduation proposal
+     the Architect, and any pending graduation proposal — each named with a `[number | text]`
+     subject (Structured questions)
 5. In `gated` mode, wait for the Architect to confirm or correct before proceeding. In
    `autonomous` mode, continue unless something awaits the Architect — a stop, or a pending
    graduation proposal — and if so, wait for that.
@@ -747,7 +762,8 @@ mode: gated
 # Hard stops (new dependency, conflicting ADRs, irreversible action, failed gate or tests) always halt.
 stops: ask
 # How many times the delegate repairs a failing gate test before it stops (autonomous only, 1–10).
-# It stops sooner when a repair makes no progress or would change a conclusion.
+# It stops sooner when a repair makes no progress, or would change a conclusion, an ADR
+# or what a delegated decision decides.
 fixes: 5
 lock: false                  # true: no bundle file and no local file can change anything
 
@@ -1179,7 +1195,7 @@ At the end of every `autonomous` phase, before the transition, run the **gate te
 - Write the result into the phase's `summary.md` under the fixed heading
   `## Delegate gate check`: one row per item — `item | result | evidence | verified`.
 - **Self-check before the verifier.** Before you launch the verifier, check every row yourself
-  for the five common failures, and fix what you find:
+  for the six common failures, and fix what you find:
   1. **Quotes** — every quote of the Architect matches `log.md` word for word.
   2. **References** — every `path:line` and anchor still points at what the row says; re-open
      the files you edited after you wrote the row.
@@ -1188,6 +1204,8 @@ At the end of every `autonomous` phase, before the transition, run the **gate te
   4. **Index** — `index.md` lists every file this phase wrote.
   5. **Interview structure** — every round holds only the frontier, and every question one
      decision.
+  6. **Subjects** — every question and item put to the Architect has a `[number | text]`
+     subject; no label stands alone.
   Record the self-check in one line above the gate table: `Self-check: done — N corrections`.
 - Where the host can run subagents, have a **verifier** (`speccen-worker`, on the session model
   — see Subagent Execution) re-open the evidence of every row and confirm whether it shows what
@@ -1201,10 +1219,17 @@ At the end of every `autonomous` phase, before the transition, run the **gate te
   failed in the run before, and (b) every row whose evidence is in a file you changed during the
   fix. Rows it does not re-check keep their last `confirmed (run N)`.
 - Stop (stop condition 5) when:
-  1. the fix you would make next changes a phase conclusion, a delegated decision or an ADR; or
+  1. the fix you would make next changes a phase conclusion, an ADR, or what a delegated
+     decision decides; or
   2. a re-checked row still fails and the budget is used up; or
   3. a run makes no progress: a rule breach the run before named is still there, or more rows
      fail than in the run before.
+
+  A fix that only repairs how a decision is recorded is not such a change: splitting a question
+  into one per decision with the same answer each, moving a question to the round its
+  dependencies allow, correcting a citation, or raising a decision's materiality to
+  `MATERIAL — unconfirmed`. Each new or changed entry keeps the decision's answer and states
+  the repair; the review round still puts every one of them to the Architect.
 
   Log each attempt as `fix attempt <n> of <fixes>: run <N> failed rows <list>`.
 - After a stop, the Architect's answer sets which rows the next verifier run re-checks, and
@@ -1241,7 +1266,7 @@ Stop — do not continue, do not guess — when:
    contract, the scope or the **Why** of its plan phase (smaller deviations you decide and
    record);
 5. a gate test still fails after the fix budget, makes no progress, or needs a fix that changes
-   a conclusion, a delegated decision or an ADR (Gate test);
+   a conclusion, an ADR or what a delegated decision decides (Gate test);
 6. a planned test still fails after the retry budget: a rejected implementation is reverted and
    retried **at most twice**, and the Phase 03 loop runs **at most two** iterations;
 7. an action is irreversible or outside the skills — a force-push, a deploy, deleting data, any
@@ -1256,9 +1281,11 @@ In Phase 01, an open question that Phase 02 can investigate is a working hypothe
 A stop produces:
 
 - `STATE.md`: `Phase Status` → `AWAITING ARCHITECT REVIEW`; `Pending Architect Action` →
-  `Stopped (autonomous) — <one-line reason>`;
+  `Stopped (autonomous) — <one-line reason>`, where an item the reason names has its
+  `[number | text]` subject;
 - the phase's `summary.md`: an open item with the exact question, the options, your lean and the
-  evidence;
+  evidence — every item with a `[number | text]` subject, readable without the rest of the bundle
+  (Structured questions);
 - a `log.md` entry recording the stop;
 - the **stop round**: the stopped questions as one numbered interview round, each with your
   proposed answer (`interview` → Stop rounds).
@@ -1277,7 +1304,8 @@ stop. With `proceed`, you do not halt on a material decision the basis leaves op
 - Take your own **proposed answer** (the one you would have put in the stop round) and carry on.
   Choose the answer the basis supports best; where it supports none, the most reversible one.
 - Record it as a delegated decision with `Materiality` → `MATERIAL — unconfirmed`, so it is
-  visible in the review round, and in the phase `summary.md` under its open items.
+  visible in the review round, and in the phase `summary.md` under its open items, with a
+  `[number | text]` subject (Structured questions).
 - Condition 1 is the **only** stop `proceed` removes. Conditions 2 to 8 stay hard stops: they
   mean the basis is broken, or the action is not yours to take.
 - The Architect's answers in the review round are logged verbatim and become basis for later
@@ -1333,14 +1361,14 @@ test as its trigger. The phase-boundary commits are the Architect's revert point
 The run continues from phase to phase until a stop, or until Phase 06 completes. When Phase 06
 completes under `autonomous`: `STATE.md` shows `CLOSE-OUT PHASE` / `COMPLETE` with `Pending
 Architect Action` → `Review the delegated decisions and decide the graduation proposal`; the
-discretionary graduation proposal is prepared and left pending; the optional passes are named,
-never started. Then report to the Architect in one message: the phases run, the gate checks
-passed, the delegated decisions recorded, any stops and their answers, and the pending
-graduation proposal. When any delegated decision or gate check exists, the report also
-recommends the Retrospective (Phase 07), which audits them against the code; only the Architect
-starts it. It also lists any prototype branches left for the Architect to delete. Then offer the **review
-round** (`interview` → The review round): every delegated decision and every pending
-graduation candidate, as one numbered interview.
+discretionary graduation proposal is prepared and left pending; the optional passes are named, never
+started. Then report to the Architect in one message, with `[number | text]` subjects (Structured
+questions): the phases run, the gate checks passed, the delegated decisions recorded, any stops and
+their answers, and the pending graduation proposal. When any delegated decision or gate check
+exists, the report also recommends the Retrospective (Phase 07), which audits them against the code;
+only the Architect starts it. It also lists any prototype branches left for the Architect to delete.
+Then offer the **review round** (`interview` → The review round): every delegated decision and every
+pending graduation candidate, as one numbered interview.
 
 ---
 

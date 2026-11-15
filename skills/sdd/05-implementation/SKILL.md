@@ -289,7 +289,8 @@ and passing** (or explicitly waived), write `{{SUMMARY_FILE}}`
 result (what was tested, all green / waived items), and any deviations, linking back into
 `{{PHASE_FILE}}`'s anchors — then notify the Architect:
 
-> "Implementation is complete and the planned tests pass [or: with the following waived: …].
+> "Implementation is complete and the planned tests pass [or: with the following waived:
+> [T-<n> | what the test checks], …].
 > Please review and either accept, or reject (which triggers Rejection & Revert). On
 > acceptance, the workflow advances to Close-out."
 
@@ -323,7 +324,9 @@ governed by `skills/sdd/06-close-out/SKILL.md`. This skill does not perform docu
   scenarios (cite files and tests). If it passes, the delegate accepts and the workflow advances
   to Phase 06. If it fails, fix and test again, up to the phase's effective `fixes` attempts,
   with the gate test's guards (governing skill → Autonomous Execution → Gate test). If the next
-  fix would change a phase conclusion, a delegated decision or an ADR, stop. If it still fails
+  fix would change a phase conclusion, an ADR, or what a delegated decision decides, stop; a fix
+  that only repairs how a decision is recorded is not such a change (governing skill → Gate
+  test). If it still fails
   when the budget is used up, or a run makes no progress, the delegate rejects: run Phase 05b.
 - **Phase 05b.** The rejection reason is the failed check, recorded verbatim. Revert only the
   files this iteration changed; if that cannot be established — unrelated uncommitted changes in

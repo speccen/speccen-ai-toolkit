@@ -2,7 +2,7 @@
 type: Phase
 phase: "06 — Close-out"
 status: COMPLETE
-description: Three audience seeds, feature node and graduated specification written; graduation proposal and the review of the delegated decisions wait for the Architect
+description: Three audience seeds, feature node and graduated specification written; review decided — every delegated decision adopted, five entries graduated, skill files committed
 ---
 
 <a id="phase-top"></a>
@@ -48,7 +48,12 @@ Every Implementation Plan item is ticked; none skipped →
 <a id="graduation-proposal"></a>
 ## Graduation Proposal
 
-Pending — the Architect decides in the review round.
+Decided by the Architect in the review round: "yes" (log 2026-11-15 20:54) — every proposal taken.
+R/1 – R/28 adopt DD-1 – DD-28; R/29 – R/33 promote G-1 – G-5; R/34 keeps G-6 local; R/35 commits
+the five skill files. Written: `.speccen/decisions/2026-11-15.labels_travel_inside_subjects.md`,
+`2026-11-15.record_repair_is_not_a_stop.md`; `.speccen/lessons/2026-11-15.escape_bar_in_table_cells.md`,
+`2026-11-15.kept_breach_is_no_progress.md`, `2026-11-15.stop_question_proposes_fix_budget.md`; the
+feature node's `produced` list; store index and timeline.
 
 | # | Candidate | Kind | Proposed | Evidence |
 |---|---|---|---|---|
@@ -62,15 +67,14 @@ Pending — the Architect decides in the review round.
 <a id="outcome"></a>
 ## Outcome
 
-Close-out complete under delegation. The five skill files stay uncommitted for the Architect
-(DD-28); the review round decides the delegated decisions, the graduation proposal and the
-commit of the skill files.
+Close-out complete. The Architect adopted every delegated decision, promoted G-1 – G-5 and kept
+G-6 local; the five skill files are committed with the bundle.
 
 <a id="open-items"></a>
 ## Open Items
 
 | # | Item | Settles in |
 |---|---|---|
-| O-8 | [O-8 \| Fourteen material answers taken under `stops: proceed` wait for the Architect] | the review round |
-| O-9 | [O-9 \| Graduation proposal G-1 – G-6 waits for the Architect] | the review round |
-| O-10 | [O-10 \| The five skill files are uncommitted; commit them with the bundle?] | the review round |
+| O-8 | [O-8 \| Fourteen material answers taken under `stops: proceed` wait for the Architect] | settled in the review round (R/1 – R/35) |
+| O-9 | [O-9 \| Graduation proposal G-1 – G-6 waits for the Architect] | settled in the review round (R/1 – R/35) |
+| O-10 | [O-10 \| The five skill files are uncommitted; commit them with the bundle?] | settled in the review round (R/1 – R/35) |

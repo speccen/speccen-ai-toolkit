@@ -85,15 +85,17 @@ Every round follows the same five steps — no step is skipped and no step is me
    ```markdown
    **Round [n]**
 
-   **01/7 — [Short title]** — [The question: one decision, stated plainly, with one line on why
-   it matters. Name the options if there are any.]
+   **[01/7 | The decision, as a plain question]** — [One line on why it matters. Name the
+   options if there are any.]
    → Proposed: [the answer you propose]
 
-   **01/8 — [Short title]** — [...]
+   **[01/8 | …]** — [...]
    → Proposed: [...]
    ```
 
    - **One decision per question**, phrased so that a plain "yes" takes the proposed answer.
+   - **Subject format** (governing skill → Structured questions): `[01/7 | …]`; any decision,
+     item or row the question mentions gets its own `[number | text]` subject.
    - Answers come by number ("7 yes, 8: use the queue"), or as one "yes" for the whole round.
    - This list is the interview's own format. It does not use the `AskUserQuestion` tool.
 3. **Answer.**
@@ -155,8 +157,9 @@ meet a hard stop (conflicting basis, new dependency, irreversible action) still 
 When an `autonomous` run ends, or whenever the Architect asks to review it, put one interview to
 the Architect:
 
-- **One question per delegated decision** (`DD-<n>`): `adopt`, `override` or `later`, with your
-  proposed answer. Put the `MATERIAL — unconfirmed` decisions first.
+- **One question per delegated decision**, with the subject `[DD-<n> | what was decided]`, then
+  why, and `adopt`, `override` or `later`, with your proposed answer. Put the
+  `MATERIAL — unconfirmed` decisions first.
 - **One question per pending graduation candidate**: `promote`, `keep local` or `later`, with
   your proposed answer and its evidence.
 
@@ -171,7 +174,8 @@ promotion.
 The interview ends once no open decision remains on the tree — each branch has been worked
 through and nothing rests on an assumption. In `gated` mode, then:
 
-1. Give a short closing summary of the decisions — in the Architect's words where possible.
+1. Give a short closing summary of the decisions — in the Architect's words where possible,
+   each with its `[number | text]` subject (governing skill → Structured questions).
 2. Ask the calling phase's closing question:
    - Phase 01: **"Is this where we stand? — yes / not yet"**.
    - Phase 03, with undecided ADRs: **"Record these decisions into their ADRs? — yes / not
