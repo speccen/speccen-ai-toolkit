@@ -29,6 +29,13 @@ type: Index
 | [phase](./phase-02-code-analysis/phase.md) | Phase | COMPLETE | The skills give items labels but nowhere ask that the item's text travel with the label; the brief's edits fit, and several Architect-facing places the brief does not list also name items by label |
 | [summary](./phase-02-code-analysis/summary.md) | Summary | COMPLETE | The brief's six edits fit the skills as they are; several more Architect-facing places name items by label, and three governing line references have drifted |
 
+### Phase 03 — Compliance & Review
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | The rule's reach, form and place decided under delegation, with fourteen material answers left unconfirmed for the review round; the Architect added the narrowing of stop condition 5 to the scope |
+| [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Definition of Ready met — the rule's reach, form and place decided under delegation, fourteen material answers wait for the Architect; stop condition 5 narrowed by the Architect |
+
 ## Files
 
 | File | Description |
