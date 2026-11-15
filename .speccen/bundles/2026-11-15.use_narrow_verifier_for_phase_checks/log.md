@@ -6,6 +6,18 @@ type: Log
 
 ## 2026-11-15
 
+- **21:57 — CODE ANALYSIS → COMPLIANCE & REVIEW** — delegate gate check passed in verifier run 3 (fix attempts 2 of 5; failed rows per run 5 → 1 → 0) ([summary](./phase-02-code-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
+- **21:56 — CODE ANALYSIS** — verifier run 3: rows 3, 4, 9 confirmed; rows 1, 2, 5 – 8, 10 – 12, 18 checked only as outside the changed regions (no earlier version on disk to diff) and keep `confirmed (run 2)` · usage: 67 628 ms, 8 tool calls, 64 272 tokens
+- **21:54 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 3) · model: session model → opus (Gate test: verifier runs on the session model)
+- **21:53 — CODE ANALYSIS** — fix attempt 2 of 5: run 2 failed rows 9 — the Quotes-item sentence now counts one breach (row 7), not two; also the step-8 stop trigger quoted in full (1222 – 1223) and the diagram's loop-back aligned (verifier notes)
+- **21:52 — CODE ANALYSIS** — verifier run 2: row 9 not confirmed (a new sentence overstated what the Quotes item covers); rows 1 – 8, 10 – 14, 17, 18 confirmed · usage: 159 864 ms, 18 tool calls, 84 281 tokens
+- **21:48 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 2) · model: session model → opus (Gate test: verifier runs on the session model)
+- **21:47 — CODE ANALYSIS** — fix attempt 1 of 5: run 1 failed rows 2, 4, 5, 8, 9 — Callers row names each phase's checklist (row 2); diagram's `not run` branch joins the "any item fails?" decision (row 4); row range 11 – 21 with all five counts (row 5); `92ee62f` cited as a `chore/` merge (row 8); "(client project)" removed and run figures sourced to this entry (row 9)
+- **21:47 — CODE ANALYSIS** — verifier usage reports as returned to the main session (not stored elsewhere): Phase 01 run 1 — 139 297 ms, 7 tool calls, 79 512 tokens; run 2 — 87 595 ms, 9, 67 125; run 3 — 62 963 ms, 7, 61 598; Phase 02 run 1 — 155 067 ms, 21, 83 448
+- **21:46 — CODE ANALYSIS** — verifier run 1: rows 2, 4, 5, 8, 9 not confirmed; rows 1, 3, 6, 7, 10 – 19 confirmed
+- **21:44 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
+- **21:43 — CODE ANALYSIS** — gate test: self-check done — 6 corrections (line citations and the `plugin.json` commit count); evolution-gap doc not generated
+- **21:31 — CODE ANALYSIS** — phase started by the autonomous transition (no Architect prompt); effective mode: autonomous (bundle config); code read inline in the main session (no search units)
 - **21:29 — FEATURE ANALYSIS → CODE ANALYSIS** — delegate gate check passed in verifier run 3 (fix attempts 2 of 5; failed rows per run 3 → 1 → 0) ([summary](./phase-01-feature-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
 - **21:29 — FEATURE ANALYSIS** — verifier run 3: rows 1–8, 10, 11, 16, 17 confirmed; gate test passed
 - **21:27 — FEATURE ANALYSIS subagent** — gate-check verifier (Phase 01, run 3) · model: session model → opus (Gate test: verifier runs on the session model)
