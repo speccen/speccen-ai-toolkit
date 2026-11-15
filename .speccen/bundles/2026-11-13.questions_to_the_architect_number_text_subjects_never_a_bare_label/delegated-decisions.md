@@ -426,3 +426,18 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Materiality** | not material |
 | **Repair** | 2026-11-13, Phase 03 iteration 2, under the narrowed stop condition 5 (03/16, Architect, log 07:32): replaces the `ARCHITECTURE.md` half of DD-19 (03/11). |
 | **Status** | DELEGATED |
+
+<a id="dd-28"></a>
+## DD-28 — Skill-text changes stay uncommitted for the Architect
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-15 19:20 UTC |
+| **Question** | [04/1 \| Are the skill-text changes left uncommitted in the working tree for the Architect, with only the bundle files committed at each phase transition?] |
+| **Interview question** | [`04/1`](./phase-04-specification/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | Phase Transition Protocol: a transition commits "the changed bundle files — only those"; precedent: bundle `2026-11-12.set_allowed_budget_for_autonomous_phases`, its question 04/1 (its DD-24). |
+| **Alternatives** | commit the skill changes with the Phase 05 transition |
+| **Materiality** | not material |
+| **Status** | DELEGATED |

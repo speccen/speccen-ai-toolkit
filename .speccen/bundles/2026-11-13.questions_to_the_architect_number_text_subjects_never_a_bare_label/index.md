@@ -36,6 +36,17 @@ type: Index
 | [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | The rule's reach, form and place decided under delegation, with fourteen material answers left unconfirmed for the review round; the Architect added the narrowing of stop condition 5 to the scope |
 | [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Definition of Ready met — the rule's reach, form and place decided under delegation, fourteen material answers wait for the Architect; stop condition 5 narrowed by the Architect |
 
+### Phase 04 — Specification
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-04-specification/phase.md) | Phase | COMPLETE | Six-phase plan — the subject rule in Structured questions, its pointers in the governing, interview, Phase 05 and reconcile skills, the narrowed stop condition 5, the README, and text verification |
+| [specification](./phase-04-specification/specification.html) | Specification | COMPLETE | Intent specification — every item put to the Architect carries a [number \| text] subject; record repairs no longer stop an autonomous run |
+| [specification (reduced)](./phase-04-specification/specification.md) | Specification | COMPLETE | Reduced projection of specification.html — every item put to the Architect carries a [number \| text] subject; record repairs no longer stop an autonomous run |
+| [doc-executive](./phase-04-specification/doc-executive.md) | Doc (executive) | COMPLETE | Every question that speccen puts to the Architect names its subject in plain words, so the Architect answers from the message alone |
+| [doc-business](./phase-04-specification/doc-business.md) | Doc (business) | COMPLETE | The Architect reads every question, stop and review item with its subject in plain words |
+| [summary](./phase-04-specification/summary.md) | Summary | COMPLETE | Six-phase plan, seventeen requirements and twenty text checks — the subject rule with its pointers, and the narrowed stop condition 5 |
+
 ## Files
 
 | File | Description |

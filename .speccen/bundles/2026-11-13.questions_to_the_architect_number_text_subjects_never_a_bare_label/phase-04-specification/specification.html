@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subjects Specification</title>
+<!--
+type: Specification
+phase: "04 — Specification"
+status: COMPLETE
+description: Intent specification — every item put to the Architect carries a [number | text] subject; record repairs no longer stop an autonomous run
+-->
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#5f5e58;--line:#d9d6cc;--card:#ffffff;--accent:#2f5d8a;--new:#e6f2e6;--newline:#3f8a4a;--chg:#fff3d6;--chgline:#b7861e;--code:#f2f0ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161615;--fg:#ecebe6;--muted:#a8a69d;--line:#3a3935;--card:#1f1f1d;--accent:#8db6e0;--new:#1d2e1f;--newline:#6fbf7a;--chg:#33290f;--chgline:#d9a940;--code:#262624}}
+:root[data-theme="dark"]{--bg:#161615;--fg:#ecebe6;--muted:#a8a69d;--line:#3a3935;--card:#1f1f1d;--accent:#8db6e0;--new:#1d2e1f;--newline:#6fbf7a;--chg:#33290f;--chgline:#d9a940;--code:#262624}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .3em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.4em 0 .4em}
+p,li{max-width:72ch}
+.lede{color:var(--muted);font-size:1.05rem}
+.nav{font-size:.9rem;margin:.4em 0 1em}
+.nav a{color:var(--accent)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px;padding:0;list-style:none}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:.85rem}
+.toc{font-size:.9rem;columns:2;column-gap:24px;padding-left:18px}
+@media (max-width:600px){.toc{columns:1}}
+a{color:var(--accent)}
+code{background:var(--code);padding:1px 4px;border-radius:3px;font-size:.88em}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:.6em 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--card)}
+tr.new td{background:var(--new)}
+tr.chg td{background:var(--chg)}
+.legend{font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-block;padding:0 6px;border-radius:3px;margin-right:6px}
+.req{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:10px 14px;margin:10px 0}
+.req h3{margin:.1em 0 .3em}
+.req ul{margin:.3em 0;padding-left:20px}
+figure{margin:1em 0;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
+svg text{fill:var(--fg);font:13px system-ui,sans-serif}
+svg .box{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+svg .boxnew{fill:var(--new);stroke:var(--newline);stroke-width:1.5}
+svg .boxchg{fill:var(--chg);stroke:var(--chgline);stroke-width:1.5}
+svg .arrow{stroke:var(--muted);stroke-width:1.5;fill:none;marker-end:url(#ah)}
+svg .arrownew{stroke:var(--newline);stroke-width:2;fill:none;marker-end:url(#ahn)}
+svg .small{font-size:11px;fill:var(--muted)}
+details{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+.verdict{font-weight:600}
+</style>
+
+</head>
+<body>
+<main>
+
+<p class="nav"><a href="../index.md">Index</a> · <a href="../STATE.md">State</a> · <a href="../log.md">Log</a> · <a href="./phase.md">Plan (phase.md)</a> · <a href="./summary.md">Summary</a></p>
+
+<h1>Questions to the Architect: [number | text] subjects</h1>
+<p class="lede">Each question, decision or item that speccen puts to the Architect has a number and a plain text. The Architect answers from the message alone. A correction that only changes how a decision is recorded does not stop an autonomous run.</p>
+<ul class="facts">
+<li>Intent specification — before code</li>
+<li>Kind of request: <code>feature</code></li>
+<li>Plugin 26.1112.2 (skills unchanged since <code>7cfcb66</code>)</li>
+<li>5 files to change, 0 new</li>
+<li>0 bundle ADRs · 7 standing decisions · 17 requirements · 20 text checks</li>
+<li>Mode: autonomous</li>
+</ul>
+
+<ol class="toc">
+<li><a href="#what">What the update builds</a></li>
+<li><a href="#current">What exists today</a></li>
+<li><a href="#context">Where the rules live (L1)</a></li>
+<li><a href="#parts">The files that change (L2)</a></li>
+<li><a href="#flow">How an item reaches the Architect (L3)</a></li>
+<li><a href="#stop5">The narrowed stop condition 5 (L3)</a></li>
+<li><a href="#decisions">Decisions and constraints</a></li>
+<li><a href="#requirements">Requirements and acceptance scenarios</a></li>
+<li><a href="#plan">The plan</a></li>
+<li><a href="#tests">The text checks</a></li>
+<li><a href="#limits">Not included</a></li>
+</ol>
+
+<h2 id="what">What the update builds</h2>
+<p>speccen gives each question, decision and item a label, for example <code>DD-4</code>, <code>01/8</code> or <code>row 16</code>. The labels make the decisions traceable. Today a stop round or a review round often shows the label alone. The Architect must then open other files to learn what the question is about.</p>
+<p>This update adds one rule to the governing skill. Each item that speccen puts to the Architect has a subject in the form <code>[INTERNAL-NUMBER | HUMAN UNDERSTANDABLE TEXT]</code>, for example <code>[DD-4 | Does the fix budget also cover Phase 05's own fix rule?]</code>. The number keeps the item traceable. The text tells the Architect what the item is. A label never stands alone.</p>
+<p>Each place that puts items to the Architect points to the rule. The records in the bundle do not change: they are records, not questions.</p>
+<p>The Architect added a second change during this run. A correction that only changes how a decision is recorded is not a stop. Examples: one question becomes two with the same answer, or a question moves to a later round. The delegate keeps the answer, writes what it repaired, and continues.</p>
+<p>Source: the Architect's brief (<a href="../files/gh-26-questions-subjects.md">issue #26</a>), the <a href="../phase-01-feature-analysis/phase.md#feature-description">Phase 01 analysis</a>, the <a href="../phase-03-compliance-review/phase.md#analysis-updates">Phase 03 decisions</a> and the <a href="../phase-03-compliance-review/phase.md#scope-addition">scope addition</a>.</p>
+
+<h3>Terms</h3>
+<ul>
+<li><strong>Subject</strong> — the pair <code>[number | text]</code> that names one item.</li>
+<li><strong>Label</strong> — the number alone, for example <code>DD-4</code>.</li>
+<li><strong>Record</strong> — a table or log line in the bundle: the gate check, the delegated decisions, the interview tables, the Retrospective's findings, the fix-attempt log line.</li>
+<li><strong>Record repair</strong> — a correction that changes how a decision is recorded, not what it decides.</li>
+</ul>
+
+<h2 id="current">What exists today</h2>
+<p>Phase 02 found the places where speccen puts items to the Architect today. The skills give each item a label, but no skill says that the label must have its text. The full list (A-1 to A-20) and the current-state flow are in the <a href="../phase-02-code-analysis/phase.md#code-analysis">Phase 02 analysis</a>.</p>
+<div class="tablewrap"><table>
+<tr><th>Place today</th><th>What the skill asks for</th><th>Inventory</th></tr>
+<tr><td>Interview round</td><td>"<code>01/7 — [Short title]</code>": a label and a short title</td><td>A-1</td></tr>
+<tr><td>Review round</td><td>"One question per delegated decision (<code>DD-&lt;n&gt;</code>)": the label alone</td><td>A-2</td></tr>
+<tr><td>Stop record in <code>summary.md</code></td><td>"the exact question, the options, your lean and the evidence"</td><td>A-3</td></tr>
+<tr><td>End-of-run report</td><td>phases, gate checks, decisions, stops, graduation proposal</td><td>A-5</td></tr>
+<tr><td>Self-check</td><td>five items; none checks the subjects</td><td>A-6</td></tr>
+<tr><td><code>stops: proceed</code> item, resume summary, closing summary, Phase 05 notice, <code>STATE.md</code> stop line, reconcile report</td><td>items by label, not listed by the brief</td><td>A-7, A-8, A-16 – A-19</td></tr>
+</table></div>
+<p>Stop condition 5 today stops on any fix that changes "a phase conclusion, a delegated decision or an ADR". A fix that only changes how a decision is recorded is such a fix, so it stops the run.</p>
+
+<h2 id="context">Where the rules live (L1)</h2>
+<p>The governing skill states the rule once. The other skills and the README point to it.</p>
+<figure>
+<svg viewBox="0 0 760 220" width="100%" role="img" aria-label="Context: the governing skill holds the rule; the interview, Phase 05 and reconcile skills and the README point to it">
+<defs>
+<marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a887f"/></marker>
+<marker id="ahn" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#3f8a4a"/></marker>
+</defs>
+<rect class="boxnew" x="270" y="10" width="220" height="60" rx="6"/>
+<text x="380" y="36" text-anchor="middle">Governing skill</text>
+<text x="380" y="54" text-anchor="middle" class="small">Structured questions → Subjects</text>
+<rect class="boxchg" x="10" y="130" width="170" height="60" rx="6"/>
+<text x="95" y="156" text-anchor="middle">Interview skill</text>
+<text x="95" y="174" text-anchor="middle" class="small">rounds · review · summary</text>
+<rect class="boxchg" x="200" y="130" width="170" height="60" rx="6"/>
+<text x="285" y="156" text-anchor="middle">Phase 05 skill</text>
+<text x="285" y="174" text-anchor="middle" class="small">notice · accept trigger</text>
+<rect class="boxchg" x="390" y="130" width="170" height="60" rx="6"/>
+<text x="475" y="156" text-anchor="middle">Reconcile skill</text>
+<text x="475" y="174" text-anchor="middle" class="small">report · notice</text>
+<rect class="boxchg" x="580" y="130" width="170" height="60" rx="6"/>
+<text x="665" y="156" text-anchor="middle">README</text>
+<text x="665" y="174" text-anchor="middle" class="small">autonomous section · template</text>
+<path class="arrownew" d="M95,128 L320,72"/>
+<path class="arrownew" d="M285,128 L360,72"/>
+<path class="arrownew" d="M475,128 L400,72"/>
+<path class="arrownew" d="M665,128 L440,72"/>
+<text x="560" y="100" class="small">point to the rule</text>
+</svg>
+<figcaption>Green: new rule. Amber: changed text that points to it.</figcaption>
+</figure>
+
+<h2 id="parts">The files that change (L2)</h2>
+<p class="legend"><span style="background:var(--chg)">changed</span> Five files change. The update adds no file and deletes no file. <code>ARCHITECTURE.md</code> does not change.</p>
+<div class="tablewrap"><table>
+<tr><th>File</th><th>What changes</th><th>Source</th></tr>
+<tr class="chg"><td><code>skills/sdd/00-governing-workflow/SKILL.md</code></td><td>The Subjects rule; pointers in the resume summary, the stop record, the <code>STATE.md</code> stop line, the <code>stops: proceed</code> open item and the end-of-run report; a sixth self-check item; the narrowed stop trigger, stop condition 5 and the config comment</td><td>brief §2.1, §2.4 – §2.6; DD-10 – DD-13, DD-15, DD-16, DD-18, DD-20, DD-21, DD-24, DD-25; 03/16</td></tr>
+<tr class="chg"><td><code>skills/sdd/interview/SKILL.md</code></td><td>The round template, the review round, the closing summary</td><td>brief §2.2, §2.3; DD-17, DD-22</td></tr>
+<tr class="chg"><td><code>skills/sdd/05-implementation/SKILL.md</code></td><td>The completion notice names waived tests with subjects; the accept trigger is narrowed</td><td>DD-23; 03/16</td></tr>
+<tr class="chg"><td><code>skills/sdd/reconcile/SKILL.md</code></td><td>"Needs human resolution" items and the notice carry subjects</td><td>DD-14</td></tr>
+<tr class="chg"><td><code>README.md</code></td><td>The autonomous-mode section names the form; the template comment matches the governing template</td><td>DD-26; 03/16</td></tr>
+</table></div>
+<p>Current state: <a href="../phase-02-code-analysis/phase.md#code-analysis">Phase 02 analysis</a>, with the inventory A-1 to A-20 of places that put items to the Architect.</p>
+
+<h2 id="flow">How an item reaches the Architect (L3)</h2>
+<figure>
+<svg viewBox="0 0 760 300" width="100%" role="img" aria-label="Flow: a message to the Architect names items; each item gets a number and text subject; records keep their form; the Architect answers from the message">
+<rect class="box" x="10" y="20" width="300" height="70" rx="6"/>
+<text x="160" y="44" text-anchor="middle">A message to the Architect</text>
+<text x="160" y="62" text-anchor="middle" class="small">round · stop · review · report · summary</text>
+<text x="160" y="78" text-anchor="middle" class="small">notice · reconcile report · tool question</text>
+<rect class="boxnew" x="10" y="130" width="300" height="60" rx="6"/>
+<text x="160" y="156" text-anchor="middle">Each item gets [number | text]</text>
+<text x="160" y="174" text-anchor="middle" class="small">table cell: \| · tool header: exempt</text>
+<rect class="boxnew" x="10" y="230" width="300" height="50" rx="6"/>
+<text x="160" y="260" text-anchor="middle">The Architect answers from the message</text>
+<rect class="box" x="440" y="130" width="310" height="60" rx="6"/>
+<text x="595" y="156" text-anchor="middle">A record keeps its form</text>
+<text x="595" y="174" text-anchor="middle" class="small">gate check · DD and interview tables · log line</text>
+<path class="arrow" d="M160,92 L160,128"/>
+<path class="arrownew" d="M160,192 L160,228"/>
+<path class="arrow" d="M312,55 L590,128"/>
+<text x="470" y="84" class="small">a record, not a question</text>
+</svg>
+<figcaption>Green: new behaviour. Compare the <a href="../phase-02-code-analysis/phase.md#code-analysis">current-state flow</a>.</figcaption>
+</figure>
+
+<h2 id="stop5">The narrowed stop condition 5 (L3)</h2>
+<figure>
+<svg viewBox="0 0 760 260" width="100%" role="img" aria-label="Gate test at a failing row: a fix that changes a conclusion, an ADR or what a decision decides stops; a record repair continues; a used-up budget or no progress stops; otherwise fix and run the verifier again">
+<rect class="box" x="10" y="20" width="230" height="70" rx="6"/>
+<text x="125" y="44" text-anchor="middle">Next fix changes a</text>
+<text x="125" y="62" text-anchor="middle">conclusion, an ADR or what</text>
+<text x="125" y="80" text-anchor="middle">a decision decides?</text>
+<rect class="box" x="520" y="30" width="230" height="50" rx="6"/>
+<text x="635" y="60" text-anchor="middle">Stop (condition 5)</text>
+<rect class="boxnew" x="10" y="130" width="230" height="56" rx="6"/>
+<text x="125" y="154" text-anchor="middle">Any other fix — a record</text>
+<text x="125" y="172" text-anchor="middle">repair keeps the answer</text>
+<rect class="box" x="290" y="130" width="200" height="56" rx="6"/>
+<text x="390" y="154" text-anchor="middle">Budget used up or</text>
+<text x="390" y="172" text-anchor="middle">no progress?</text>
+<rect class="box" x="290" y="210" width="200" height="40" rx="6"/>
+<text x="390" y="235" text-anchor="middle">Fix, then verifier again</text>
+<path class="arrow" d="M242,55 L518,55"/>
+<text x="380" y="47" text-anchor="middle" class="small">yes</text>
+<path class="arrownew" d="M125,92 L125,128"/>
+<text x="135" y="114" class="small">no</text>
+<path class="arrow" d="M242,158 L288,158"/>
+<path class="arrow" d="M492,150 L630,82"/>
+<text x="575" y="122" class="small">yes</text>
+<path class="arrow" d="M390,188 L390,208"/>
+<text x="400" y="202" class="small">no</text>
+</svg>
+<figcaption>Green: the new record-repair path. The review round still shows each repair to the Architect.</figcaption>
+</figure>
+
+<h2 id="decisions">Decisions and constraints</h2>
+<p>No bundle ADR exists. Seven standing decisions were checked in <a href="../phase-03-compliance-review/phase.md#adrs">Phase 03</a>; none conflicts. The delegate decided the open questions under delegation. Fourteen answers are material and wait for the Architect in the review round (<a href="../phase-03-compliance-review/phase.md#open-items">O-8</a>).</p>
+<div class="tablewrap"><table>
+<tr><th>Decision</th><th>Answer</th><th>Record</th></tr>
+<tr><td>[03/2 | Is the rule stated once, in governing → Structured questions, and pointed to from each place, not repeated at each site?]</td><td>yes — material, unconfirmed</td><td><a href="../delegated-decisions.md#dd-10">DD-10</a></td></tr>
+<tr><td>[03/3 | Does the rule cover only what is put to the Architect, leaving the record tables — gate check, delegated decisions, interview tables — unchanged?]</td><td>yes — material, unconfirmed</td><td><a href="../delegated-decisions.md#dd-11">DD-11</a></td></tr>
+<tr><td>[03/4 | Does the gate-test self-check get a sixth item, "Subjects"?]</td><td>yes — material, unconfirmed</td><td><a href="../delegated-decisions.md#dd-12">DD-12</a></td></tr>
+<tr><td>[03/8 | In an <code>AskUserQuestion</code> call, does the rule cover the question text that names an item, with the 12-character header exempt?]</td><td>yes — material, unconfirmed</td><td><a href="../delegated-decisions.md#dd-16">DD-16</a></td></tr>
+<tr><td>[03/10 | Does the rule go at the end of governing → Structured questions, after the paragraph "A series of decisions"?]</td><td>yes</td><td><a href="../delegated-decisions.md#dd-18">DD-18</a></td></tr>
+<tr><td>[03/14 | Should <code>README.md</code> mention the subject form in its autonomous-mode section, where it describes the stop round and the review round?]</td><td>yes — material, unconfirmed</td><td><a href="../delegated-decisions.md#dd-26">DD-26</a></td></tr>
+<tr><td>[03/16 | Does the narrowing of stop condition 5 join this bundle's scope?]</td><td>yes — the Architect</td><td><a href="../phase-03-compliance-review/phase.md#scope-addition">scope addition</a></td></tr>
+</table></div>
+<p>The full list of decisions is in <a href="../phase-03-compliance-review/phase.md#interview">the Phase 03 interview</a> and <a href="../delegated-decisions.md">delegated-decisions.md</a>.</p>
+
+<h2 id="requirements">Requirements and acceptance scenarios</h2>
+<div class="req"><h3>Requirement: R-1 — The rule, stated once</h3>
+<p>The governing skill SHALL state once, at the end of Structured questions, that anything put to the Architect reads on its own: every question, decision, checklist row or open item it mentions has a <code>[INTERNAL-NUMBER | HUMAN UNDERSTANDABLE TEXT]</code> subject, for every label kind including numbers a bundle invents; in a table the bar is escaped with a backslash.</p>
+<h4>Scenario: A label in a stop round</h4>
+<ul><li>WHEN a stop round names DD-4</li><li>THEN it reads <code>[DD-4 | Does the fix budget also cover Phase 05's own fix rule?]</code>, never <code>DD-4</code> alone.</li></ul>
+<h4>Scenario: A subject in a table</h4>
+<ul><li>WHEN the subject sits in a table cell</li><li>THEN its bar is escaped and the table renders.</li></ul>
+<p class="legend">Source: brief §2, §2.1; 03/2, 03/10, 03/12 (DD-10, DD-18, DD-20); Phase 03 domain note</p></div>
+<div class="req"><h3>Requirement: R-2 — Records keep their form</h3>
+<p>The rule SHALL cover only what is put to the Architect; the gate-check, delegated-decision and interview tables, the Retrospective's delegation findings and the fix-attempt log line SHALL keep their form.</p>
+<h4>Scenario: Gate-check rows</h4>
+<ul><li>WHEN a gate check is written</li><li>THEN its rows keep their numbers and form.</li></ul>
+<h4>Scenario: Fix-attempt line</h4>
+<ul><li>WHEN a fix attempt is logged</li><li>THEN the line is <code>fix attempt &lt;n&gt; of &lt;fixes&gt;: run &lt;N&gt; failed rows &lt;list&gt;</code>.</li></ul>
+<p class="legend">Source: brief §3, §5.2; 03/3, 03/7, 03/21 (DD-11, DD-15, DD-25)</p></div>
+<div class="req"><h3>Requirement: R-3 — Tool questions</h3>
+<p>In an <code>AskUserQuestion</code> call, question text that names an item SHALL give it a subject; the header SHALL be exempt.</p>
+<h4>Scenario: A tool question names an item</h4>
+<ul><li>WHEN a tool question names O-3</li><li>THEN its text carries <code>[O-3 | …]</code>, and its header stays ≤ 12 characters.</li></ul>
+<p class="legend">Source: 03/8 (DD-16)</p></div>
+<div class="req"><h3>Requirement: R-4 — Round template</h3>
+<p>The interview round template SHALL write each question as <code>[01/7 | the decision, as a plain question]</code> and SHALL point to the rule for every item a question mentions; the stop round, the ADR and graduation interviews and the interviews outside a bundle SHALL follow it through the template.</p>
+<h4>Scenario: A Phase 01 round</h4>
+<ul><li>WHEN a Phase 01 round is written</li><li>THEN each question leads with <code>[01/&lt;n&gt; | …]</code>.</li></ul>
+<h4>Scenario: An audit interview</h4>
+<ul><li>WHEN an audit interview is written</li><li>THEN it uses the same form without a pointer of its own.</li></ul>
+<p class="legend">Source: brief §2.2; 03/9 (DD-17); Phase 02, A-4, A-9, A-10, A-13, A-14</p></div>
+<div class="req"><h3>Requirement: R-5 — Review round</h3>
+<p>The review round SHALL put each delegated decision as <code>[DD-&lt;n&gt; | what was decided]</code>, then why, with <code>adopt</code>, <code>override</code> or <code>later</code>; the material ones first.</p>
+<h4>Scenario: Material decisions first</h4>
+<ul><li>WHEN a run ends with DD-12 <code>MATERIAL — unconfirmed</code></li><li>THEN the review round opens with <code>[DD-12 | …]</code> and its proposal.</li></ul>
+<p class="legend">Source: brief §2.3</p></div>
+<div class="req"><h3>Requirement: R-6 — Stop record</h3>
+<p>The stop record in <code>summary.md</code> SHALL give every item a subject, readable without the rest of the bundle.</p>
+<h4>Scenario: A gate stop names a row</h4>
+<ul><li>WHEN a gate stop names row 16</li><li>THEN the record reads <code>[Row 16 | …]</code>.</li></ul>
+<p class="legend">Source: brief §2.4</p></div>
+<div class="req"><h3>Requirement: R-7 — End-of-run report</h3>
+<p>The end-of-run report SHALL use subjects for the phases, gate checks, decisions, stops and graduation proposal it names.</p>
+<h4>Scenario: The report lists a stop</h4>
+<ul><li>WHEN the report lists a stop</li><li>THEN the stop's question carries its text.</li></ul>
+<p class="legend">Source: brief §2.5</p></div>
+<div class="req"><h3>Requirement: R-8 — Sixth self-check item</h3>
+<p>The gate-test self-check SHALL have six items, the sixth "Subjects".</p>
+<h4>Scenario: The self-check runs</h4>
+<ul><li>WHEN the delegate runs the self-check</li><li>THEN it checks that no label stands alone.</li></ul>
+<h4>Scenario: The lead-in counts</h4>
+<ul><li>WHEN a reader counts the items</li><li>THEN the lead-in says six.</li></ul>
+<p class="legend">Source: brief §2.6; 03/4 (DD-12)</p></div>
+<div class="req"><h3>Requirement: R-9 — <code>stops: proceed</code> open item</h3>
+<p>The <code>stops: proceed</code> open item in <code>summary.md</code> SHALL carry a subject.</p>
+<h4>Scenario: A decision under <code>proceed</code></h4>
+<ul><li>WHEN a material decision is taken under <code>proceed</code></li><li>THEN the open item reads <code>[DD-&lt;n&gt; | …]</code>.</li></ul>
+<p class="legend">Source: 03/5 (DD-13)</p></div>
+<div class="req"><h3>Requirement: R-10 — Resume summary</h3>
+<p>The resume summary SHALL name each stop and candidate with a subject.</p>
+<h4>Scenario: A stop waits at resume</h4>
+<ul><li>WHEN a session resumes with a stop waiting</li><li>THEN the summary names the stop's question with its text.</li></ul>
+<p class="legend">Source: 03/17 (DD-21)</p></div>
+<div class="req"><h3>Requirement: R-11 — Closing summary</h3>
+<p>The interview's closing summary SHALL give each decision its subject.</p>
+<h4>Scenario: A <code>gated</code> interview closes</h4>
+<ul><li>WHEN a <code>gated</code> interview closes</li><li>THEN each summarised decision reads <code>[&lt;phase&gt;/&lt;n&gt; | …]</code>.</li></ul>
+<p class="legend">Source: 03/18 (DD-22)</p></div>
+<div class="req"><h3>Requirement: R-12 — Phase 05 completion notice</h3>
+<p>The Phase 05 completion notice SHALL name each waived test with a subject.</p>
+<h4>Scenario: A test is waived</h4>
+<ul><li>WHEN a test is waived</li><li>THEN the notice reads <code>[T-&lt;n&gt; | what the test checks]</code>.</li></ul>
+<p class="legend">Source: 03/19 (DD-23)</p></div>
+<div class="req"><h3>Requirement: R-13 — <code>STATE.md</code> stop line</h3>
+<p>The <code>STATE.md</code> stop line SHALL give any item its reason names a subject.</p>
+<h4>Scenario: A stop reason names a row</h4>
+<ul><li>WHEN a stop's reason names a row</li><li>THEN the line carries the row's text.</li></ul>
+<p class="legend">Source: 03/20 (DD-24)</p></div>
+<div class="req"><h3>Requirement: R-14 — Reconcile report</h3>
+<p>The reconcile report's "Needs human resolution" items and its notice SHALL carry subjects.</p>
+<h4>Scenario: Two decisions contradict</h4>
+<ul><li>WHEN two decisions contradict</li><li>THEN the report reads <code>[id-A | what it decides] and [id-B | what it decides]</code>.</li></ul>
+<p class="legend">Source: 03/6 (DD-14)</p></div>
+<div class="req"><h3>Requirement: R-15 — README</h3>
+<p><code>README.md</code> SHALL name the subject form where its autonomous-mode section describes the stop round and the review round; <code>ARCHITECTURE.md</code> SHALL stay unchanged.</p>
+<h4>Scenario: The autonomous section</h4>
+<ul><li>WHEN a reader opens the README's autonomous section</li><li>THEN it says each item is named as <code>[number | text]</code>.</li></ul>
+<p class="legend">Source: 03/14, 03/15 (DD-26, DD-27)</p></div>
+<div class="req"><h3>Requirement: R-16 — Stop condition 5 narrowed</h3>
+<p>Stop condition 5 SHALL stop on a fix that changes a phase conclusion, an ADR, or what a delegated decision decides, and SHALL NOT stop on a fix that only repairs how a decision is recorded; each such repair keeps the answer and states the repair. The gate test, stop condition 5, Phase 05 Step 7 and the config comment (with its README copy) SHALL say so.</p>
+<h4>Scenario: A record repair continues</h4>
+<ul><li>WHEN the only fix splits a question in two with the same answer each</li><li>THEN the delegate fixes, states the repair and re-runs the verifier.</li></ul>
+<h4>Scenario: A changed answer stops</h4>
+<ul><li>WHEN the only fix changes a DD's answer</li><li>THEN the delegate stops.</li></ul>
+<p class="legend">Source: 03/16, 03/24 (the Architect, log 07:32, 07:33); Phase 03 scope addition</p></div>
+<div class="req"><h3>Requirement: R-17 — Scope</h3>
+<p>The change SHALL touch only <code>gov</code>, <code>int</code>, <code>p05</code>, <code>rec</code> and <code>README.md</code>; labels themselves and the interview's Numbering SHALL stay.</p>
+<h4>Scenario: The files that change</h4>
+<ul><li>WHEN the change lands</li><li>THEN <code>git diff --stat</code> outside <code>.speccen/</code> lists those five files.</li></ul>
+<p class="legend">Source: brief §3, §4 ("Drop the labels" rejected); 03/15</p></div>
+
+<h2 id="plan">The plan</h2>
+<p>Six implementation phases. The full plan is in <a href="./phase.md#implementation-plan">phase.md</a>.</p>
+<ol>
+<li><strong>The rule.</strong> Add the Subjects paragraph to Structured questions. Why: every pointer names the rule, so the rule comes first. It goes at the end of the section because it governs the tool and the interview (brief §2.1; 03/2, 03/10).</li>
+<li><strong>Governing pointers.</strong> Point the stop record, the stop line, the <code>stops: proceed</code> item, the resume summary and the end-of-run report to the rule. Add the sixth self-check item. Why: the governing skill writes these messages, and the self-check enforces the rule (brief §2.4 – §2.6; 03/4, 03/5, 03/17, 03/20).</li>
+<li><strong>Interview.</strong> Change the round template, the review round and the closing summary. Why: the template is the shape of every interview, so one change reaches all of them (brief §2.2, §2.3; 03/9, 03/18).</li>
+<li><strong>Phase 05 and reconcile.</strong> Give waived tests and contradictory decisions their subjects. Why: these two skills also put items to a person (03/19, 03/6).</li>
+<li><strong>Stop condition 5.</strong> Narrow the trigger in each place that states it, and keep the README template copy identical. Why: the Architect added this change and applied it to this run (03/16, 03/24).</li>
+<li><strong>README and verification.</strong> Name the form in the README. Run the text checks. Why: the README tells the Architect what a stop and a review look like (03/14); the checks prove each requirement.</li>
+</ol>
+
+<h2 id="tests">The text checks</h2>
+<p>The repository has no test framework. A Python script in <code>files/</code> checks the edited text after Phase 05. Each requirement has at least one check.</p>
+<details><summary>Text checks T-1 to T-20</summary>
+<div class="tablewrap"><table>
+<tr><th>Id</th><th>Check</th><th>Requirement</th></tr>
+<tr><td>T-1</td><td>Structured questions ends with the Subjects paragraph, after "A series of decisions": it holds <code>[INTERNAL-NUMBER | HUMAN UNDERSTANDABLE TEXT]</code>, "A label never stands alone.", both examples and every label kind (<code>DD-&lt;n&gt;</code>, <code>01/&lt;n&gt;</code>, <code>&lt;skill&gt;/&lt;n&gt;</code>, <code>Deviation [N]</code>, <code>O-&lt;n&gt;</code>, <code>H-&lt;n&gt;</code>, <code>P02-&lt;n&gt;</code>, a gate-check row)</td><td>R-1</td></tr>
+<tr><td>T-2</td><td>The paragraph's bullets: the <code>AskUserQuestion</code> header exemption, the escape of the bar with a backslash, and the records sentence naming the gate-check, delegated-decision and interview tables, the delegation findings and the fix-attempt log line</td><td>R-1, R-2, R-3</td></tr>
+<tr><td>T-3</td><td>The subject rule's form is defined once: "HUMAN UNDERSTANDABLE TEXT" appears exactly once in the skills</td><td>R-1</td></tr>
+<tr><td>T-4</td><td>Round template: <code>**[01/7 | The decision, as a plain question]**</code> and <code>**[01/8 | …]**</code>; no "[Short title]" remains; the "Subject format" bullet follows "One decision per question"</td><td>R-4</td></tr>
+<tr><td>T-5</td><td>Review round: "with the subject <code>[DD-&lt;n&gt; | what was decided]</code>"; the old "(<code>DD-&lt;n&gt;</code>): <code>adopt</code>" is gone; "Put the <code>MATERIAL — unconfirmed</code> decisions first." stays</td><td>R-5</td></tr>
+<tr><td>T-6</td><td>Stop record: "every item with a <code>[number | text]</code> subject, readable without the rest of the bundle"</td><td>R-6</td></tr>
+<tr><td>T-7</td><td>End-of-run report: "in one message, with <code>[number | text]</code> subjects (Structured questions): the phases run"</td><td>R-7</td></tr>
+<tr><td>T-8</td><td>Self-check: "for the six common failures"; item 6 "<strong>Subjects</strong>"; no "five common failures" remains</td><td>R-8</td></tr>
+<tr><td>T-9</td><td><code>stops: proceed</code>: "under its open items, with a <code>[number | text]</code> subject"</td><td>R-9</td></tr>
+<tr><td>T-10</td><td>Resume summary: "each named with a <code>[number | text]</code> subject"</td><td>R-10</td></tr>
+<tr><td>T-11</td><td>Closing summary: "each with its <code>[number | text]</code> subject"</td><td>R-11</td></tr>
+<tr><td>T-12</td><td>Phase 05 notice: "[T-&lt;n&gt; | what the test checks]"</td><td>R-12</td></tr>
+<tr><td>T-13</td><td><code>STATE.md</code> stop line: "where an item the reason names has its <code>[number | text]</code> subject"</td><td>R-13</td></tr>
+<tr><td>T-14</td><td>Reconcile: "[id-A | what it decides] and [id-B | what it decides]" and the notice's "each with a <code>[id | text]</code> subject"</td><td>R-14</td></tr>
+<tr><td>T-15</td><td>README: "each item named as <code>[number | text]</code>" and "<code>[DD-&lt;n&gt; | what was decided]</code>" in the autonomous-mode section; <code>ARCHITECTURE.md</code> has no diff</td><td>R-15</td></tr>
+<tr><td>T-16</td><td>Gate test: trigger 1 reads "an ADR, or what a delegated decision decides"; the repair paragraph lists the four repairs and "keeps the decision's answer and states the repair" and sits before "Log each attempt"</td><td>R-16</td></tr>
+<tr><td>T-17</td><td>Stop condition 5 reads "an ADR or what a delegated decision decides"; Phase 05 Step 7 reads "an ADR, or what a delegated decision decides, stop"; "a delegated decision or an ADR" appears in neither skill</td><td>R-16</td></tr>
+<tr><td>T-18</td><td>The config comment's new two lines are in the governing template and the README copy, and the two template blocks are identical</td><td>R-16</td></tr>
+<tr><td>T-19</td><td>Unchanged: the tool's constraints in Structured questions; the fix-attempt log line format; the interview Numbering section; "Conditions 2 to 8 stay hard stops"</td><td>R-2, R-17</td></tr>
+<tr><td>T-20</td><td><code>git diff --stat</code> outside <code>.speccen/</code> lists exactly <code>gov</code>, <code>int</code>, <code>p05</code>, <code>rec</code> and <code>README.md</code> — so the audit and code-documentation skills get no pointer of their own</td><td>R-4, R-17</td></tr>
+</table></div>
+</details>
+
+<h2 id="limits">Not included</h2>
+<ul>
+<li>The labels stay. The update does not remove them.</li>
+<li>The record tables, the Retrospective's findings and the fix-attempt log line keep their form.</li>
+<li><code>ARCHITECTURE.md</code> does not change.</li>
+<li>The audit and code-documentation interviews get no pointer of their own. They use the round template.</li>
+<li>The rule "an answered stop gives the full fix budget again" applied to this run only. It is not part of this update.</li>
+</ul>
+</main>
+</body>
+</html>
