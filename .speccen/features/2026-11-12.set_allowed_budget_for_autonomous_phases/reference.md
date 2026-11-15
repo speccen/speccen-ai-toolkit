@@ -7,7 +7,7 @@ description: Technical reference for the gate-test fix budget — the fixes key 
 
 # Gate-Test Fix Budget — Reference (reduced view)
 
-[Index](../../bundles/25.set_allowed_budget_for_autonomous_phases/index.md) · [State](../../bundles/25.set_allowed_budget_for_autonomous_phases/STATE.md) · [Log](../../bundles/25.set_allowed_budget_for_autonomous_phases/log.md) · [Specification](./specification.html) (what we set out to build)
+[Index](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/index.md) · [State](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/STATE.md) · [Log](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/log.md) · [Specification](./specification.html) (what we set out to build)
 
 ---
 
@@ -317,14 +317,14 @@ This reference is generated from the whole bundle and the current text of the th
 
 | What | Where |
 |---|---|
-| Brief (issue 25) | [files/gh-25-gate-test-fix-budget.md](../../bundles/25.set_allowed_budget_for_autonomous_phases/files/gh-25-gate-test-fix-budget.md) |
+| Brief (issue 25) | [files/gh-25-gate-test-fix-budget.md](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/files/gh-25-gate-test-fix-budget.md) |
 | Specification (revised 2026-11-12) | [phase-04-specification/specification.html](./specification.html) · [.md](./specification.md) |
-| Bundle ADRs | [2026-11-11.fix_budget_ceiling_10](../../bundles/25.set_allowed_budget_for_autonomous_phases/adrs/2026-11-11.fix_budget_ceiling_10.md) · [2026-11-12.fix_budget_default_5](../../bundles/25.set_allowed_budget_for_autonomous_phases/adrs/2026-11-12.fix_budget_default_5.md) |
-| Delegated decisions | [delegated-decisions.md](../../bundles/25.set_allowed_budget_for_autonomous_phases/delegated-decisions.md) |
+| Bundle ADRs | [2026-11-11.fix_budget_ceiling_10](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/adrs/2026-11-11.fix_budget_ceiling_10.md) · [2026-11-12.fix_budget_default_5](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/adrs/2026-11-12.fix_budget_default_5.md) |
+| Delegated decisions | [delegated-decisions.md](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/delegated-decisions.md) |
 | Durable decisions | `.speccen/decisions/2026-11-11.fix_budget_ceiling_10.md` · `2026-11-11.fix_progress_by_breaches.md` · `2026-11-12.fix_budget_default_5.md` |
-| Phase files | [01](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-01-feature-analysis/phase.md) · [02](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-02-code-analysis/phase.md) · [03](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-03-compliance-review/phase.md) · [04](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md) · [05](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-05-implementation/phase.md) · [06](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-06-close-out/phase.md) |
-| Text checks T-1 – T-19 and the move test | [files/phase-05-text-checks.py](../../bundles/25.set_allowed_budget_for_autonomous_phases/files/phase-05-text-checks.py) · [files/phase-05-move-test.py](../../bundles/25.set_allowed_budget_for_autonomous_phases/files/phase-05-move-test.py) |
+| Phase files | [01](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-01-feature-analysis/phase.md) · [02](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-02-code-analysis/phase.md) · [03](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-03-compliance-review/phase.md) · [04](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md) · [05](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-05-implementation/phase.md) · [06](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-06-close-out/phase.md) |
+| Text checks T-1 – T-19 and the move test | [files/phase-05-text-checks.py](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/files/phase-05-text-checks.py) · [files/phase-05-move-test.py](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/files/phase-05-move-test.py) |
 | Earlier change this one builds on | `.speccen/features/2026-11-05.use_cheaper_subagent_to_work/reference.html` (gate-test self-check and delta re-check) |
 | The code | `skills/sdd/00-governing-workflow/SKILL.md` · `skills/sdd/05-implementation/SKILL.md` · `README.md` |
 
-Reference (Phase 08) for bundle 25.set_allowed_budget_for_autonomous_phases. Plugin version 26.1108.1. Back to the [Index](../../bundles/25.set_allowed_budget_for_autonomous_phases/index.md).
+Reference (Phase 08) for bundle 2026-11-12.set_allowed_budget_for_autonomous_phases. Plugin version 26.1108.1. Back to the [Index](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/index.md).

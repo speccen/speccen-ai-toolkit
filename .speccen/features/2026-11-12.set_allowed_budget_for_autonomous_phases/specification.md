@@ -8,7 +8,7 @@ revised: 2026-11-12 — ceiling 10 and default 5, by the Architect
 
 # set allowed budget for autonomous phases — Specification (reduced)
 
-[Index](../../bundles/25.set_allowed_budget_for_autonomous_phases/index.md) · [Full specification](./specification.html) · [Reference](./reference.html) (what was actually built) · [Plan](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md#implementation-plan)
+[Index](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/index.md) · [Full specification](./specification.html) · [Reference](./reference.html) (what was actually built) · [Plan](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md#implementation-plan)
 
 ---
 
@@ -17,12 +17,12 @@ revised: 2026-11-12 — ceiling 10 and default 5, by the Architect
 In an autonomous phase, the delegate corrects a failed gate test up to a number of fix attempts.
 The key `fixes` in the project file sets that number: 1 to 10, default 5. The delegate halts
 sooner in two cases. The next correction would change a conclusion, a delegated decision or an
-ADR, or a verifier run makes no progress. Source: [issue #25](../../bundles/25.set_allowed_budget_for_autonomous_phases/files/gh-25-gate-test-fix-budget.md),
-[Phase 01](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-01-feature-analysis/phase.md#feature-description),
-[Phase 03 decisions](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-03-compliance-review/phase.md#outcome).
+ADR, or a verifier run makes no progress. Source: [issue #25](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/files/gh-25-gate-test-fix-budget.md),
+[Phase 01](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-01-feature-analysis/phase.md#feature-description),
+[Phase 03 decisions](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-03-compliance-review/phase.md#outcome).
 
 > **Revised 2026-11-12.** The Architect raised the ceiling from 3 to 10
-> ([ADR 2026-11-11](../../bundles/25.set_allowed_budget_for_autonomous_phases/adrs/2026-11-11.fix_budget_ceiling_10.md)) and set the default to 5 ([ADR 2026-11-12](../../bundles/25.set_allowed_budget_for_autonomous_phases/adrs/2026-11-12.fix_budget_default_5.md)). R-1, R-2, R-6, R-11 and
+> ([ADR 2026-11-11](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/adrs/2026-11-11.fix_budget_ceiling_10.md)) and set the default to 5 ([ADR 2026-11-12](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/adrs/2026-11-12.fix_budget_default_5.md)). R-1, R-2, R-6, R-11 and
 > R-12 say the new values; an invalid value still counts as `1`.
 
 ## The files that change
@@ -36,12 +36,12 @@ ADR, or a verifier run makes no progress. Source: [issue #25](../../bundles/25.s
 ## Decisions
 
 Two bundle ADRs set the budget: the ceiling of 10
-([2026-11-11.fix_budget_ceiling_10](../../bundles/25.set_allowed_budget_for_autonomous_phases/adrs/2026-11-11.fix_budget_ceiling_10.md)) and the default of 5
-([2026-11-12.fix_budget_default_5](../../bundles/25.set_allowed_budget_for_autonomous_phases/adrs/2026-11-12.fix_budget_default_5.md)). The update complies with the four standing decisions. The delegated
-decisions of this bundle are in [delegated-decisions.md](../../bundles/25.set_allowed_budget_for_autonomous_phases/delegated-decisions.md). Two of them
-were `MATERIAL — unconfirmed` and went to the review: a ceiling of 3 fix attempts, OVERRIDDEN to 10 ([DD-12](../../bundles/25.set_allowed_budget_for_autonomous_phases/delegated-decisions.md#dd-12)),
+([2026-11-11.fix_budget_ceiling_10](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/adrs/2026-11-11.fix_budget_ceiling_10.md)) and the default of 5
+([2026-11-12.fix_budget_default_5](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/adrs/2026-11-12.fix_budget_default_5.md)). The update complies with the four standing decisions. The delegated
+decisions of this bundle are in [delegated-decisions.md](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/delegated-decisions.md). Two of them
+were `MATERIAL — unconfirmed` and went to the review: a ceiling of 3 fix attempts, OVERRIDDEN to 10 ([DD-12](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/delegated-decisions.md#dd-12)),
 and a progress guard that looks at breaches that come back, and at more failed rows, ADOPTED
-([DD-14](../../bundles/25.set_allowed_budget_for_autonomous_phases/delegated-decisions.md#dd-14)).
+([DD-14](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/delegated-decisions.md#dd-14)).
 
 ## Requirements & acceptance scenarios
 
@@ -66,4 +66,4 @@ and a progress guard that looks at breaches that come back, and at more failed r
 ## The plan and the text checks
 
 Five phases: configuration → gate test → Phase 05 accept → restated copies → verification.
-Nineteen text checks: T-1 – T-19 ([Test Plan](../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md#implementation-plan)).
+Nineteen text checks: T-1 – T-19 ([Test Plan](../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md#implementation-plan)).

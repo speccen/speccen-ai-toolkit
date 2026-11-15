@@ -327,4 +327,4 @@ This reference is generated from the whole bundle and the current text of the th
 | Earlier change this one builds on | `.speccen/features/2026-11-05.use_cheaper_subagent_to_work/reference.html` (gate-test self-check and delta re-check) |
 | The code | `skills/sdd/00-governing-workflow/SKILL.md` · `skills/sdd/05-implementation/SKILL.md` · `README.md` |
 
-Reference (Phase 08) for bundle 25.set_allowed_budget_for_autonomous_phases. Plugin version 26.1108.1. Back to the [Index](../index.md).
+Reference (Phase 08) for bundle 2026-11-12.set_allowed_budget_for_autonomous_phases. Plugin version 26.1108.1. Back to the [Index](../index.md).

@@ -9,7 +9,7 @@ type: Index
 
 ## Features
 - [Use cheaper subagent to work](./features/2026-11-05.use_cheaper_subagent_to_work/node.md) — active
-- [Set allowed budget for autonomous phases](./features/25.set_allowed_budget_for_autonomous_phases/node.md) — active
+- [Set allowed budget for autonomous phases](./features/2026-11-12.set_allowed_budget_for_autonomous_phases/node.md) — active
 - [Questions to the Architect: [number | text] subjects, never a bare label](./features/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/node.md) — active
 
 ## Decisions

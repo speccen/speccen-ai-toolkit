@@ -1,5 +1,5 @@
 ---
-id: 25.set_allowed_budget_for_autonomous_phases
+id: 2026-11-12.set_allowed_budget_for_autonomous_phases
 kind: feature
 work-kind: fix
 status: active
@@ -24,7 +24,7 @@ reference: ./reference.html
 | **What** | A `fixes` key (1 – 10, default 5) sets how many fix attempts the delegate makes on a failing gate test; three guards stop it sooner |
 | **Outcome** | Template version 3; the gate test loops up to the budget and stops on a conclusion change or no progress; the Phase 05 accept uses the same budget and rejects |
 | **Touches** | governing-workflow, configuration, gate-test |
-| **Origin bundle** | bundles/25.set_allowed_budget_for_autonomous_phases (disposable; this node is the durable residue) |
+| **Origin bundle** | bundles/2026-11-12.set_allowed_budget_for_autonomous_phases (disposable; this node is the durable residue) |
 
 | Related | |
 | --- | --- |
