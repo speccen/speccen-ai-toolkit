@@ -129,7 +129,7 @@ section, figure, header.top, .prose, .card, .callout { grid-template-columns: mi
 <body>
 <div class="wrap">
 <header class="top">
-  <div class="nav"><a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/index.md">Index</a> · <a href="./specification.html">Specification</a> (what we set out to build)</div>
+  <div class="nav"><a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/index.md">Index</a> · <a href="./specification.html">Specification</a> (what we set out to build)</div>
   <div class="eyebrow">speccen plugin · GitHub issue 25 · fix · Reference (Phase 08)</div>
   <h1>A fix budget for the gate test of autonomous phases</h1>
   <p class="lead">This change adds one configuration key, <code>fixes</code>. It sets how many times the delegate repairs a failing gate test before it stops. Three guards bound every repair loop. The key takes <code>1</code> to <code>10</code>. The default is <code>5</code>. The change is prose and YAML in three files. No code runs.</p>
@@ -767,13 +767,13 @@ section, figure, header.top, .prose, .card, .callout { grid-template-columns: mi
     <table>
       <thead><tr><th>What</th><th>Where</th></tr></thead>
       <tbody>
-        <tr><td>Brief (issue 25)</td><td><a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/files/gh-25-gate-test-fix-budget.md">files/gh-25-gate-test-fix-budget.md</a></td></tr>
+        <tr><td>Brief (issue 25)</td><td><a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/files/gh-25-gate-test-fix-budget.md">files/gh-25-gate-test-fix-budget.md</a></td></tr>
         <tr><td>Specification (revised 2026-11-12)</td><td><a href="./specification.html">phase-04-specification/specification.html</a> · <a href="./specification.md">.md</a></td></tr>
-        <tr><td>Bundle ADRs</td><td><a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/adrs/2026-11-11.fix_budget_ceiling_10.md">2026-11-11.fix_budget_ceiling_10</a> · <a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/adrs/2026-11-12.fix_budget_default_5.md">2026-11-12.fix_budget_default_5</a></td></tr>
-        <tr><td>Delegated decisions</td><td><a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/delegated-decisions.md">delegated-decisions.md</a></td></tr>
+        <tr><td>Bundle ADRs</td><td><a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/adrs/2026-11-11.fix_budget_ceiling_10.md">2026-11-11.fix_budget_ceiling_10</a> · <a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/adrs/2026-11-12.fix_budget_default_5.md">2026-11-12.fix_budget_default_5</a></td></tr>
+        <tr><td>Delegated decisions</td><td><a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/delegated-decisions.md">delegated-decisions.md</a></td></tr>
         <tr><td>Durable decisions</td><td><code>.speccen/decisions/2026-11-11.fix_budget_ceiling_10.md</code> · <code>2026-11-11.fix_progress_by_breaches.md</code> · <code>2026-11-12.fix_budget_default_5.md</code></td></tr>
-        <tr><td>Phase files</td><td><a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-01-feature-analysis/phase.md">01</a> · <a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-02-code-analysis/phase.md">02</a> · <a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-03-compliance-review/phase.md">03</a> · <a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md">04</a> · <a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-05-implementation/phase.md">05</a> · <a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/phase-06-close-out/phase.md">06</a></td></tr>
-        <tr><td>Text checks T-1 – T-19 and the move test</td><td><a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/files/phase-05-text-checks.py">files/phase-05-text-checks.py</a> · <a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/files/phase-05-move-test.py">files/phase-05-move-test.py</a></td></tr>
+        <tr><td>Phase files</td><td><a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-01-feature-analysis/phase.md">01</a> · <a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-02-code-analysis/phase.md">02</a> · <a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-03-compliance-review/phase.md">03</a> · <a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-04-specification/phase.md">04</a> · <a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-05-implementation/phase.md">05</a> · <a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/phase-06-close-out/phase.md">06</a></td></tr>
+        <tr><td>Text checks T-1 – T-19 and the move test</td><td><a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/files/phase-05-text-checks.py">files/phase-05-text-checks.py</a> · <a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/files/phase-05-move-test.py">files/phase-05-move-test.py</a></td></tr>
         <tr><td>Earlier change this one builds on</td><td><code>.speccen/features/2026-11-05.use_cheaper_subagent_to_work/reference.html</code> (gate-test self-check and delta re-check)</td></tr>
         <tr><td>The code</td><td><code>skills/sdd/00-governing-workflow/SKILL.md</code> · <code>skills/sdd/05-implementation/SKILL.md</code> · <code>README.md</code></td></tr>
       </tbody>
@@ -782,7 +782,7 @@ section, figure, header.top, .prose, .card, .callout { grid-template-columns: mi
 </section>
 
 <footer>
-  <p>Reference (Phase 08) for bundle 25.set_allowed_budget_for_autonomous_phases. Plugin version 26.1108.1. Back to the <a href="../../bundles/25.set_allowed_budget_for_autonomous_phases/index.md">Index</a>.</p>
+  <p>Reference (Phase 08) for bundle 2026-11-12.set_allowed_budget_for_autonomous_phases. Plugin version 26.1108.1. Back to the <a href="../../bundles/2026-11-12.set_allowed_budget_for_autonomous_phases/index.md">Index</a>.</p>
 </footer>
 </div>
 </body>
