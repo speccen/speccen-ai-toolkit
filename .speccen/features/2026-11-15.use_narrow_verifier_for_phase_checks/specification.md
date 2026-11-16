@@ -7,7 +7,7 @@ description: Reduced projection of specification.html — the narrow gate-check 
 
 # A narrow verifier for the gate test
 
-[Index](../../bundles/2026-11-15.use_narrow_verifier_for_phase_checks/index.md) · [Specification (full)](./specification.html)
+[Index](../../bundles/2026-11-15.use_narrow_verifier_for_phase_checks/index.md) · [Specification (full)](./specification.html) · [Reference](./reference.html) (what was actually built)
 
 ---
 

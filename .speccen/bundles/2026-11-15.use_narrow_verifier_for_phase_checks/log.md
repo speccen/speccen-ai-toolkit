@@ -6,6 +6,13 @@ type: Log
 
 ## 2026-11-16
 
+- **09:19 — REFERENCE** — Phase 08 complete: summary written; reference copied to the feature node (links repointed), `reference` edge set, specification ↔ reference cross-linked, timeline updated; STATE: REFERENCE PHASE / COMPLETE
+- **09:19 — REFERENCE** — generate commit message, commit, push, create PR, merge, and pull but wait for the version number to bump *(read as: approval of the reference, then the release steps)*
+- **09:14 — REFERENCE** — worker returned: `reference.html` (6 inline SVG diagrams, each parsed and rendered with `qlmanage`) and `reference.md`; checked in the main session: frontmatter, SVG parse, no external assets, fact strip (diff stat 9 files +89 −17, Phase 04 run times 143 – 279 s) against git and `log.md`; T-16 fails at `1b002d1` by design (CI set `26.1116.2`), stated on the page · usage: 382 018 ms, 30 tool calls, 183 158 tokens
+- **09:07 — REFERENCE subagent** — reference gathering and authoring (Steps 3 – 7) · model: balanced → sonnet (project config)
+- **09:07 — REFERENCE** — scope answers: "Which code is in scope for the reference?"="Changed files only (Recommended)", "Which content areas should the reference include?"="Feature-sized set (Recommended)", "Should the codebase be read directly, or is the bundle enough?"="Read the code (Recommended)"
+- **09:07 — REFERENCE** — start the reference phase
+- **09:07 — CLOSE-OUT** — release done: PR #32 merged (`faa5d31`) after merging main into the branch (version conflict with the CI bump `26.1115.2`; kept `26.1116.1`); CI bumped to `26.1116.2` (`1b002d1`, tag `v26.1116.2`); main pulled; Phase 08 runs on branch `docs/reference-use-narrow-verifier-for-phase-checks`
 - **09:05 — CLOSE-OUT** — generate commit message, commit, push, create PR, merge, and pull but wait for the version number to bump
 - **09:04 — CLOSE-OUT** — review round recorded: DD-1 – DD-27 ADOPTED; 06/1, 06/2 promoted to `.speccen/lessons/` (`2026-11-16.run_error_checks_on_planned_text`, `2026-11-16.full_phase_verifier_finds_new_detail`); 06/3 kept local; feature node `produced` and the store index and timeline updated
 - **09:03 — CLOSE-OUT** — accept *(read as: every proposed answer of the review round — 06/1 promote, 06/2 promote, 06/3 keep local, 06/4 – 06/30 adopt DD-14, DD-20, DD-21, DD-10, DD-26, DD-27, DD-11, DD-15 – DD-19, DD-12, DD-13, DD-22 – DD-25, DD-9, DD-1 – DD-8)*

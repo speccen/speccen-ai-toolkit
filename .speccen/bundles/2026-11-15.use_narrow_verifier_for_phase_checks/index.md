@@ -65,6 +65,16 @@ type: Index
 | [doc-business](./phase-06-close-out/doc-business.md) | Doc (business) | COMPLETE | The delegate lists the code facts behind each phase, and a checker run confirms only those facts |
 | [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | The gate-check verifier settles a capped list of code and repository claims; the self-check owns the bundle; slips cost no fix attempt |
 
+
+### Phase 08 — Reference
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-08-reference/phase.md) | Phase | COMPLETE | Working notes for the comprehensive technical reference of the narrow gate-check verifier |
+| [summary](./phase-08-reference/summary.md) | Summary | COMPLETE | Layered technical reference of the narrow gate-check verifier, copied into the feature node and cross-linked with the specification |
+| [reference](./phase-08-reference/reference.html) | Reference | COMPLETE | The narrow gate-check verifier, its claim list and work order, slip versus wrong, and why the full-phase verifier was replaced |
+| [reference (md)](./phase-08-reference/reference.md) | Reference | COMPLETE | Reduced Markdown view of reference.html |
+
 ## Files
 
 - [phase-05-text-checks.py](./files/phase-05-text-checks.py)
