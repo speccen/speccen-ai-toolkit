@@ -22,7 +22,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Session-start Work kind answer "refactoring" ([log.md](./log.md), 21:10). |
 | **Alternatives** | feature |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-2"></a>
 ## DD-2 — Target: the plugin source in this repository at HEAD
@@ -37,7 +37,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, "Files to change", names repository paths (`skills/sdd/…`, `agents/speccen-worker.md`, `.claude-plugin/plugin.json`) ([log.md](./log.md), 21:14). |
 | **Alternatives** | the installed plugin cache |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-3"></a>
 ## DD-3 — Evidence: the measured case is taken as stated
@@ -52,7 +52,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Problem ([log.md](./log.md), 21:14). |
 | **Alternatives** | ask for the source bundle of the measurement |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-4"></a>
 ## DD-4 — Self-check remit: items unchanged (working hypothesis)
@@ -67,7 +67,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rules 1, 11 and 12 ([log.md](./log.md), 21:14); decision `2026-11-05.self_check_interview_structure` (prior art). |
 | **Alternatives** | a new self-check item covering the bundle-internal rows |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-5"></a>
 ## DD-5 — Later phases: only 01 – 05 need a claim source (working hypothesis)
@@ -82,7 +82,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rule 5 lists 01 – 05 ([log.md](./log.md), 21:14). |
 | **Alternatives** | claim sources for 06 – 08 now |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-6"></a>
 ## DD-6 — Reach: every place that restates the verifier rule (working hypothesis)
@@ -97,7 +97,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Acceptance: "No skill tells the verifier to check "every row" or "every quote"." ([log.md](./log.md), 21:14); lesson `2026-11-05.readme_restates_config_template`. |
 | **Alternatives** | only the four listed files |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-7"></a>
 ## DD-7 — Claim-list place: the phase summary (working hypothesis)
@@ -112,7 +112,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rule 2 "At the gate the list already exists" ([log.md](./log.md), 21:14); the gate table lives in `summary.md` (governing skill, Gate test). |
 | **Alternatives** | `phase.md`; a separate bundle file |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-8"></a>
 ## DD-8 — Done when: Acceptance plus the H-3 places (working hypothesis)
@@ -127,7 +127,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Acceptance ([log.md](./log.md), 21:14); depends on 01/5 and 01/6. |
 | **Alternatives** | the brief's Acceptance list alone |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-9"></a>
 ## DD-9 — Kind of request: refactoring (confirmed)
@@ -142,7 +142,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Session-start Work kind "refactoring" ([log.md](./log.md), 21:10); the brief's "Files to change" lists only existing files and no config key. |
 | **Alternatives** | feature |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-10"></a>
 ## DD-10 — Version bump by hand, as the brief says
@@ -157,7 +157,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief: "Bump the version in `.claude-plugin/plugin.json` and `marketplace.json`." ([log.md](./log.md), 21:14) — ranks above the convention observed in Phase 02 (`.github/workflows/bump-version.yml`). |
 | **Alternatives** | leave the bump to CI |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-11"></a>
 ## DD-11 — After-a-stop paragraph restated in claims
@@ -172,7 +172,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rule 10 and Acceptance "the `n/a` case and the later-runs rule" ([log.md](./log.md), 21:14); Phase 02 C-2. |
 | **Alternatives** | leave it in rows |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-12"></a>
 ## DD-12 — Phase 07 spot-check unchanged
@@ -187,7 +187,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief "Files to change" lists no Phase 07 edit ([log.md](./log.md), 21:14); 07: 134 – 136 does not describe the verifier (Phase 02 C-2). |
 | **Alternatives** | add the new `verified` values to Phase 07 |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-13"></a>
 ## DD-13 — README and ARCHITECTURE unchanged
@@ -202,7 +202,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rule 12 (the verifier stays on the session model) ([log.md](./log.md), 21:14); Phase 02 architecture table (README 269, 343; ARCHITECTURE 158). |
 | **Alternatives** | describe the narrow verifier in README |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-14"></a>
 ## DD-14 — Claim list in the phase summary, under the gate table
@@ -217,7 +217,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rule 2 ([log.md](./log.md), 21:14); the gate table lives in `summary.md` (governing skill, Gate test). |
 | **Alternatives** | `phase.md`; a separate bundle file; claims inside the gate-table evidence cell |
 | **Materiality** | MATERIAL — unconfirmed |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-15"></a>
 ## DD-15 — Self-check items unchanged; rule 1 as an ownership split
@@ -232,7 +232,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rules 1 and 12 ([log.md](./log.md), 21:14); standing decision `2026-11-05.self_check_interview_structure`. |
 | **Alternatives** | a new self-check item covering bundle-internal rows |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-16"></a>
 ## DD-16 — Stop trigger 3 kept as written
@@ -247,7 +247,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rules 7, 11 and 12 ([log.md](./log.md), 21:14); standing decision `2026-11-11.fix_progress_by_breaches`. |
 | **Alternatives** | restate the trigger in claims |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-17"></a>
 ## DD-17 — Verifier template beside the generic one
@@ -262,7 +262,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, "Files to change" item 1, which puts "the template above" under Subagent Execution → The worker and the work order ([log.md](./log.md), 21:14); precedent: the Search unit's own fields. |
 | **Alternatives** | replace the generic template; put the template in Gate test |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-18"></a>
 ## DD-18 — `noticed:` answers as extra gate-table rows
@@ -277,7 +277,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rule 8 "The delegate answers each one in the gate table" ([log.md](./log.md), 21:14). |
 | **Alternatives** | a separate list under the table |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-19"></a>
 ## DD-19 — Done when: Acceptance plus the Phase 03 decisions
@@ -292,7 +292,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Acceptance ([log.md](./log.md), 21:14); 03/2, 03/3, 03/6, 03/9, 03/10, 03/12, 03/13. |
 | **Alternatives** | the brief's Acceptance alone |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-20"></a>
 ## DD-20 — Claim-line form: brief form with `K-<n> (row <N>)` ids
@@ -307,7 +307,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rules 3 and 11 ([log.md](./log.md), 21:14). |
 | **Alternatives** | `C-<n>` ids (taken by Phase 02 open items); a row column in a claims table |
 | **Materiality** | MATERIAL — unconfirmed |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-21"></a>
 ## DD-21 — Claim result appended to its line
@@ -322,7 +322,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief rules 7 and 11 ([log.md](./log.md), 21:14). |
 | **Alternatives** | a result column in a claims table; results only in the gate table's `verified` cell |
 | **Materiality** | MATERIAL — unconfirmed |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-22"></a>
 ## DD-22 — Test approach: a text-check script in `files/`
@@ -337,7 +337,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Phase 02 conventions, "Tests of skill text" ([phase-02 #conventions](./phase-02-code-analysis/phase.md#conventions)); lesson `2026-11-11.text_checks_read_their_place`. |
 | **Alternatives** | manual review only |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-23"></a>
 ## DD-23 — Version value by the CI rule
@@ -352,7 +352,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief "Files to change" item 4 ([log.md](./log.md), 2026-11-15 21:14); `.github/workflows/bump-version.yml`; DD-10. |
 | **Alternatives** | `26.1115.2` (the next number on the current date) |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-24"></a>
 ## DD-24 — Claim-source line as a `**Verifier claims.**` bullet
@@ -367,7 +367,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief "Files to change" item 3: "add that phase's line from rule 5, and refer to the governing skill for the rest" ([log.md](./log.md), 2026-11-15 21:14). |
 | **Alternatives** | a sentence inside the Quality Criteria bullet |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-25"></a>
 ## DD-25 — Plan structure: four phases
@@ -382,7 +382,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief "Files to change" items 1 – 4 ([log.md](./log.md), 2026-11-15 21:14). |
 | **Alternatives** | one phase per file |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-26"></a>
 ## DD-26 — Two inserted lines reworded so the "every row" search finds none
@@ -396,7 +396,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Specification R-11, scenario "A search for the old rule" (frozen Phase 04 artifact); Phase 05 Mode behaviour (a deviation that changes no acceptance scenario, contract or scope is the delegate's) |
 | **Alternatives** | Narrow T-14 to lines that tell the verifier to check every row — rejected: it changes R-11's acceptance scenario, which is a stop |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 
 <a id="dd-27"></a>
 ## DD-27 — The rendering step recorded as a raw-text inspection
@@ -410,5 +410,5 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | The Architect's "yes" to 05/1, whose proposed answer named this route (`log.md` 2026-11-16 08:38); Phase 05 Mode behaviour (a deviation that changes no scenario, contract or scope); stop condition 3 (a renderer would be a new dependency) |
 | **Alternatives** | Install a renderer — a new dependency, a stop; the Architect renders it — offered in 05/1, not taken |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-16 09:03, "accept") |
 

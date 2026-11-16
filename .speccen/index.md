@@ -33,5 +33,7 @@ type: Index
 - [Escape `|` in every table cell, also inside backticks](./lessons/2026-11-15.escape_bar_in_table_cells.md) — active
 - [A breach kept on purpose still counts as no progress — take it out of the round](./lessons/2026-11-15.kept_breach_is_no_progress.md) — active
 - [A gate stop question proposes the fix budget that follows the answer](./lessons/2026-11-15.stop_question_proposes_fix_budget.md) — active
+- [Run a plan's error-case text checks on the planned text before Phase 04 closes](./lessons/2026-11-16.run_error_checks_on_planned_text.md) — active
+- [A verifier that re-reads the whole phase finds new detail on every run](./lessons/2026-11-16.full_phase_verifier_finds_new_detail.md) — active
 
 ## Notes

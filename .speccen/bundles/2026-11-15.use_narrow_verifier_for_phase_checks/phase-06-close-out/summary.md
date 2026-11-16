@@ -3,7 +3,7 @@ type: Summary
 phase: "06 — Close-out"
 status: COMPLETE
 phase_file: ./phase.md
-description: Narrow gate-check verifier delivered in 26.1116.1; seeds written; feature node and specification graduated; graduation proposal pending
+description: Narrow gate-check verifier delivered in 26.1116.1; seeds written; feature node and specification graduated; review round done
 ---
 
 # Phase 06 Summary — Close-out
@@ -25,11 +25,11 @@ next bundle (this bundle ran under `26.1112.2`).
 
 **Deviations:** 2 → [detail](../phase-05-implementation/phase.md#deviations)
 
-**Graduated to durable store:** the feature node and its specification; 0 decisions, 0 lessons,
+**Graduated to durable store:** the feature node and its specification; 0 decisions, 2 lessons,
 0 notes → [.speccen/](../../../index.md)
 
-**Delegated decisions:** 27 → [delegated-decisions.md](../delegated-decisions.md)
+**Delegated decisions:** 27, all ADOPTED in the review round → [delegated-decisions.md](../delegated-decisions.md)
 
-**Graduation proposal:** pending → [detail](./phase.md#graduation-proposal)
+**Graduation proposal:** decided — 2 promoted, 1 kept local → [detail](./phase.md#graduation-proposal)
 
 **Extensions applied:** none
