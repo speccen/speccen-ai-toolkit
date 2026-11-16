@@ -35,3 +35,15 @@ type: Index
 |---|---|---|---|
 | [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | No bundle ADR; nine standing decisions are compatible; the interview settles kind, version bump, reach, claim-list place, template place and the noticed-line answer — Definition of Ready met |
 | [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Definition of Ready met — compliant with nine standing decisions; reach, claim-list place, template place and the version bump settled in the interview |
+
+### Phase 04 — Specification
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-04-specification/phase.md) | Phase | COMPLETE | Four implementation phases rewrite the Gate test's verifier rules, the verifier unit and work order, the worker bullet and five claim-source lines, then bump the version; checked by text checks T-1 – T-19 |
+| [summary](./phase-04-specification/summary.md) | Summary | COMPLETE | Four implementation phases with the exact text in Appendices A – F; 13 requirements, 19 text checks; specification assembled |
+| [doc-executive](./phase-04-specification/doc-executive.md) | Doc (executive) | COMPLETE | Intent — the autonomous gate check costs less time and fewer tokens, and an independent checker run on code facts stays |
+| [doc-business](./phase-04-specification/doc-business.md) | Doc (business) | COMPLETE | Intent — the delegate lists the code facts behind each phase in a fact list, and a checker run confirms only those facts |
+| [specification](./phase-04-specification/specification.html) | Specification | COMPLETE | Intent specification — the gate-check verifier settles a capped list of code and repository claims; slips cost no fix attempt |
+| [specification (md)](./phase-04-specification/specification.md) | Specification | COMPLETE | Reduced projection of specification.html — the narrow gate-check verifier |
+

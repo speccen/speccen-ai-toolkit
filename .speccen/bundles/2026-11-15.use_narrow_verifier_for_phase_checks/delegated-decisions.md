@@ -324,3 +324,62 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Materiality** | MATERIAL — unconfirmed |
 | **Status** | DELEGATED |
 
+<a id="dd-22"></a>
+## DD-22 — Test approach: a text-check script in `files/`
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-16 05:22 UTC |
+| **Question** | Verify the change with a throwaway text-check script in the bundle's `files/`, run by the main session? |
+| **Interview question** | [`04/1`](./phase-04-specification/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed: `files/phase-05-text-checks.py`, checks T-1 – T-19 (T-19 added in fix attempt 1; its one-rule half by hand, 04/6). |
+| **Basis** | Phase 02 conventions, "Tests of skill text" ([phase-02 #conventions](./phase-02-code-analysis/phase.md#conventions)); lesson `2026-11-11.text_checks_read_their_place`. |
+| **Alternatives** | manual review only |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-23"></a>
+## DD-23 — Version value by the CI rule
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-16 05:22 UTC |
+| **Question** | Set the next version by the CI's own rule, on the day Phase 05 runs? |
+| **Interview question** | [`04/2`](./phase-04-specification/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed: `YY.MDD.N` — on 2026-11-16, `26.1116.1`. |
+| **Basis** | Brief "Files to change" item 4 ([log.md](./log.md), 2026-11-15 21:14); `.github/workflows/bump-version.yml`; DD-10. |
+| **Alternatives** | `26.1115.2` (the next number on the current date) |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-24"></a>
+## DD-24 — Claim-source line as a `**Verifier claims.**` bullet
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-16 05:22 UTC |
+| **Question** | Add the claim source to each phase's Mode behaviour as one `**Verifier claims.**` bullet, directly before the line that points to the governing skill? |
+| **Interview question** | [`04/3`](./phase-04-specification/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed. |
+| **Basis** | Brief "Files to change" item 3: "add that phase's line from rule 5, and refer to the governing skill for the rest" ([log.md](./log.md), 2026-11-15 21:14). |
+| **Alternatives** | a sentence inside the Quality Criteria bullet |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-25"></a>
+## DD-25 — Plan structure: four phases
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-16 05:22 UTC |
+| **Question** | Structure the plan as four implementation phases, one per group in the brief's "Files to change"? |
+| **Interview question** | [`04/4`](./phase-04-specification/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed: Gate test; Subagent Execution and the worker; phase skills; version and checks. |
+| **Basis** | Brief "Files to change" items 1 – 4 ([log.md](./log.md), 2026-11-15 21:14). |
+| **Alternatives** | one phase per file |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
