@@ -333,6 +333,9 @@ governed by `skills/sdd/06-close-out/SKILL.md`. This skill does not perform docu
   those files, or no repository — stop. Verify the revert instead of asking the Architect to
   confirm it. Record plan updates as delegated decisions, not ADRs, and re-enter Phase 05a.
   After two rejected iterations, stop.
+- **Verifier claims.** The implementation does what the row says: a single named test run, a
+  symbol present, a pattern absent. Never the full suite — the main session runs that itself
+  (governing skill → Gate test).
 - Write `## Delegate gate check` into `{{SUMMARY_FILE}}`. Decision basis, stop conditions and
   records: **Autonomous Execution** in the governing skill.
 

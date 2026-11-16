@@ -494,6 +494,10 @@ and replaces Steps 9 and 10 with:
   goes to the Architect in one stop round, with your proposed answer.
 - A passed gate test is the go for Phase 05. It freezes the specification and the intent seeds,
   exactly as closing Phase 04 does today. Send no Step 10 message.
+- **Verifier claims.** The plan's anchors in the existing code: every file, symbol and integration
+  point the plan changes or extends exists as described. At most one claim per plan step that
+  touches existing code. The traceability rows stay with the self-check
+  (governing skill → Gate test).
 - Decision basis, stop conditions and records: **Autonomous Execution** in the governing skill.
 
 ---
