@@ -128,3 +128,199 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Alternatives** | the brief's Acceptance list alone |
 | **Materiality** | not material |
 | **Status** | DELEGATED |
+
+<a id="dd-9"></a>
+## DD-9 — Kind of request: refactoring (confirmed)
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Confirm the kind as refactoring (H-1)? |
+| **Interview question** | [`03/1`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): refactoring, confirmed. |
+| **Basis** | Session-start Work kind "refactoring" ([log.md](./log.md), 21:10); the brief's "Files to change" lists only existing files and no config key. |
+| **Alternatives** | feature |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-10"></a>
+## DD-10 — Version bump by hand, as the brief says
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Follow the brief's item 4 and bump `plugin.json` and `marketplace.json` by hand, although CI bumps on every push to `main`? |
+| **Interview question** | [`03/2`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): bump by hand to the next `YY.MDD.N`; the CI double bump is put to the Architect in the review round. |
+| **Basis** | Brief: "Bump the version in `.claude-plugin/plugin.json` and `marketplace.json`." ([log.md](./log.md), 21:14) — ranks above the convention observed in Phase 02 (`.github/workflows/bump-version.yml`). |
+| **Alternatives** | leave the bump to CI |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-11"></a>
+## DD-11 — After-a-stop paragraph restated in claims
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Restate the after-a-stop paragraph (governing 1235 – 1238) in claims? |
+| **Interview question** | [`03/3`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): restate it: the Architect's answer sets which claims the next run re-checks; the verifier reports on every listed claim. |
+| **Basis** | Brief rule 10 and Acceptance "the `n/a` case and the later-runs rule" ([log.md](./log.md), 21:14); Phase 02 C-2. |
+| **Alternatives** | leave it in rows |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-12"></a>
+## DD-12 — Phase 07 spot-check unchanged
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Leave Phase 07's gate-row spot-check unchanged? |
+| **Interview question** | [`03/4`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): unchanged. |
+| **Basis** | Brief "Files to change" lists no Phase 07 edit ([log.md](./log.md), 21:14); 07: 134 – 136 does not describe the verifier (Phase 02 C-2). |
+| **Alternatives** | add the new `verified` values to Phase 07 |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-13"></a>
+## DD-13 — README and ARCHITECTURE unchanged
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Leave README and ARCHITECTURE unchanged? |
+| **Interview question** | [`03/5`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): unchanged. |
+| **Basis** | Brief rule 12 (the verifier stays on the session model) ([log.md](./log.md), 21:14); Phase 02 architecture table (README 269, 343; ARCHITECTURE 158). |
+| **Alternatives** | describe the narrow verifier in README |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-14"></a>
+## DD-14 — Claim list in the phase summary, under the gate table
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Record the claims in `summary.md` under `## Delegate gate check`, as a `Claims` list directly under the gate table? |
+| **Interview question** | [`03/6`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed. Split by fix attempt 1: the claim-line form moved to 03/12 (DD-20); by fix attempt 2 the result moved to 03/13 (DD-21). The answer on the place is unchanged. |
+| **Basis** | Brief rule 2 ([log.md](./log.md), 21:14); the gate table lives in `summary.md` (governing skill, Gate test). |
+| **Alternatives** | `phase.md`; a separate bundle file; claims inside the gate-table evidence cell |
+| **Materiality** | MATERIAL — unconfirmed |
+| **Status** | DELEGATED |
+
+<a id="dd-15"></a>
+## DD-15 — Self-check items unchanged; rule 1 as an ownership split
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Keep the six self-check items unchanged and state rule 1 as an ownership split, not a new item? |
+| **Interview question** | [`03/7`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed. |
+| **Basis** | Brief rules 1 and 12 ([log.md](./log.md), 21:14); standing decision `2026-11-05.self_check_interview_structure`. |
+| **Alternatives** | a new self-check item covering bundle-internal rows |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-16"></a>
+## DD-16 — Stop trigger 3 kept as written
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Keep stop trigger 3 as written, with a failed row meaning a row with a `wrong` claim? |
+| **Interview question** | [`03/8`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed. |
+| **Basis** | Brief rules 7, 11 and 12 ([log.md](./log.md), 21:14); standing decision `2026-11-11.fix_progress_by_breaches`. |
+| **Alternatives** | restate the trigger in claims |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-17"></a>
+## DD-17 — Verifier template beside the generic one
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Keep the generic work-order template and add the verifier template as a second block directly after it? |
+| **Interview question** | [`03/9`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed. |
+| **Basis** | Brief, "Files to change" item 1, which puts "the template above" under Subagent Execution → The worker and the work order ([log.md](./log.md), 21:14); precedent: the Search unit's own fields. |
+| **Alternatives** | replace the generic template; put the template in Gate test |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-18"></a>
+## DD-18 — `noticed:` answers as extra gate-table rows
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Answer each `noticed:` line as one extra row at the foot of the gate table? |
+| **Interview question** | [`03/10`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed: `noticed-<n> \| <the line> \| corrected / not relevant, because … \| <evidence> \| —`. |
+| **Basis** | Brief rule 8 "The delegate answers each one in the gate table" ([log.md](./log.md), 21:14). |
+| **Alternatives** | a separate list under the table |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-19"></a>
+## DD-19 — Done when: Acceptance plus the Phase 03 decisions
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:35 UTC |
+| **Question** | Is the request done when the brief's Acceptance holds plus 03/2, 03/3, 03/6, 03/9, 03/10, 03/12 and 03/13? |
+| **Interview question** | [`03/11`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed; Phase 04 turns it into scenarios. Fix attempt 2 named 03/12 and 03/13, which 03/6 covered before the split; the scope is unchanged (a recording repair). |
+| **Basis** | Brief, Acceptance ([log.md](./log.md), 21:14); 03/2, 03/3, 03/6, 03/9, 03/10, 03/12, 03/13. |
+| **Alternatives** | the brief's Acceptance alone |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-20"></a>
+## DD-20 — Claim-line form: brief form with `K-<n> (row <N>)` ids
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-15 20:39 UTC |
+| **Question** | Write each claim as `id · claim · how to check · expected`, with the id `K-<n> (row <N>)`? |
+| **Interview question** | [`03/12`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed. Split out of 03/6 by fix attempt 1 (a recording repair: one question per decision); fix attempt 2 moved the result placement to 03/13 (DD-21). |
+| **Basis** | Brief rules 3 and 11 ([log.md](./log.md), 21:14). |
+| **Alternatives** | `C-<n>` ids (taken by Phase 02 open items); a row column in a claims table |
+| **Materiality** | MATERIAL — unconfirmed |
+| **Status** | DELEGATED |
+
+<a id="dd-21"></a>
+## DD-21 — Claim result appended to its line
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-16 05:12 UTC |
+| **Question** | Append each claim's run result to its own line, after `→` (`confirmed (run N)`, `slip — <correct value>`, `wrong — <actual value>`)? |
+| **Interview question** | [`03/13`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): as proposed. Split out of 03/12 by fix attempt 2 (a recording repair: one question per decision). |
+| **Basis** | Brief rules 7 and 11 ([log.md](./log.md), 21:14). |
+| **Alternatives** | a result column in a claims table; results only in the gate table's `verified` cell |
+| **Materiality** | MATERIAL — unconfirmed |
+| **Status** | DELEGATED |
+

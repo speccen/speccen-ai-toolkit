@@ -4,8 +4,31 @@ type: Log
 
 # Workflow History
 
+## 2026-11-16
+
+- **06:20 — COMPLIANCE & REVIEW → SPECIFICATION** — delegate gate check passed in verifier run 4 (fix attempts 3 of 5; stop round 03/14 – 03/15 answered by the Architect; failed rows per run 3 → 2 → 3 → 0) ([summary](./phase-03-compliance-review/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
+- **06:20 — COMPLIANCE & REVIEW** — verifier run 4: rows 3, 7, 9 confirmed (scope set by 03/14) · usage: 34 829 ms, 4 tool calls, 52 679 tokens; row 16 evidence updated to name the stop round (a verifier note; no re-check)
+- **06:19 — COMPLIANCE & REVIEW subagent** — gate-check verifier (Phase 03, run 4) · model: session model → opus (Gate test: verifier runs on the session model)
+- **06:19 — COMPLIANCE & REVIEW** — fix attempt 3 of 5: run 3 failed rows 3, 7, 9 — Definition of Ready row 2 adds 03/13 to H-4 and C-3 (rows 3, 7); row 5 evidence says rounds 1 – 3 (row 7); summary says rounds 1 – 3 (row 9); run 4 re-checks rows 3, 7, 9 only (03/14)
+- **06:19 — COMPLIANCE & REVIEW** — yes *(read as: yes to 03/14 — fix the three records and re-run the checker on rows 3, 7, 9 only, attempts 3 – 5 available; and yes to 03/15 — progress counts breaches, not failed rows, for the rest of this run)*
+- **06:15 — COMPLIANCE & REVIEW** — stop (condition 5, no progress: run 3 failed 3 rows, run 2 failed 2); stop round 03/14 – 03/15 put to the Architect ([summary → Stop](./phase-03-compliance-review/summary.md#stop))
+- **06:15 — COMPLIANCE & REVIEW** — verifier run 3: rows 3, 7, 9 not confirmed (records left behind by fix attempt 2); rows 1, 2, 4 – 6, 12, 13, 15 – 17 confirmed · usage: 100 005 ms, 8 tool calls, 77 611 tokens
+- **06:12 — COMPLIANCE & REVIEW subagent** — gate-check verifier (Phase 03, run 3) · model: session model → opus (Gate test: verifier runs on the session model)
+- **06:12 — COMPLIANCE & REVIEW** — fix attempt 2 of 5: run 2 failed rows 3, 16 — Definition of Ready row 2 maps H-3 → 03/3 too and O-2 via C-5; H-2 no longer said to be settled in Phase 03; 03/12 split: result placement → 03/13 (DD-21, MATERIAL — unconfirmed); 03/11 moved to round 3 and names 03/12, 03/13 (recording repair, DD-19 scope unchanged); DD-14 states its split; material count three; summary ranges and R-1 subject aligned
+- **06:12 — COMPLIANCE & REVIEW** — verifier run 2: rows 3, 16 not confirmed; rows 1, 2, 4 – 7, 9, 12, 13, 15, 17 confirmed · usage: 84 364 tokens, 12 tool calls
+- **01:10 — COMPLIANCE & REVIEW subagent** — gate-check verifier (Phase 03, run 2) · model: session model → opus (Gate test: verifier runs on the session model)
+- **01:10 — COMPLIANCE & REVIEW** — run resumed after the usage-limit pause (no Architect prompt)
+
 ## 2026-11-15
 
+- **21:39 — COMPLIANCE & REVIEW** — run paused by the session's usage limit; resume with verifier run 2
+- **21:39 — COMPLIANCE & REVIEW** — fix attempt 1 of 5: run 1 failed rows 3, 6, 16 — Definition of Ready row 2 maps C-3, C-4 and O-1 – O-3 (row 3); ADR table row for `bundle_store_lookup_unit` says "any phase that interviews" (row 6); 03/6 split: place (03/6, DD-14) and claim-line form (03/12, DD-20, ids `K-<n>` to avoid the `C-` clash) (row 16); 03/1 and DD-9 basis cites the brief, not Phase 02; R-1 given a subject
+- **21:39 — COMPLIANCE & REVIEW** — verifier run 1: rows 3, 6, 16 not confirmed; others confirmed · usage: 152 869 ms, 17 tool calls, 95 052 tokens
+- **21:36 — COMPLIANCE & REVIEW subagent** — gate-check verifier (Phase 03, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
+- **21:36 — COMPLIANCE & REVIEW** — gate test: self-check done — 3 corrections (quotes in 03/3, 03/9 and DD-17); Definition of Ready satisfied
+- **21:35 — COMPLIANCE & REVIEW** — delegate interview: round 1 03/1 – 03/10, round 2 03/11; answered under delegation (autonomous) — 03/1 refactoring confirmed (DD-9); 03/2 bump by hand as the brief says (DD-10); 03/3 after-a-stop paragraph in claims (DD-11); 03/4 Phase 07 unchanged (DD-12); 03/5 README and ARCHITECTURE unchanged (DD-13); 03/6 claim list under the gate table (DD-14, MATERIAL — unconfirmed, `stops: proceed`); 03/7 self-check items unchanged (DD-15); 03/8 stop trigger 3 unchanged (DD-16); 03/9 verifier template beside the generic one (DD-17); 03/10 `noticed:` rows (DD-18); 03/11 done-when (DD-19)
+- **21:34 — COMPLIANCE & REVIEW** — log correction: the times of the entries from 21:16 to 21:57 were estimated by the delegate, not read from the clock, and run ahead of real time. They stay as written because the phase summaries cite them as entry labels; read them as labels and order, not clock times. Real anchors: Phase 01 commit `2d1f8e7` at 21:21:44, Phase 02 commit `354d9e3` at 21:33:27, Phase 03 start at 21:34 (clock). From this entry on, every time is read from the clock.
+- **21:34 — COMPLIANCE & REVIEW** — phase started by the autonomous transition (no Architect prompt); no bundle ADR; nine standing decisions read (`.speccen/decisions/`); prototypes: 0 (project config)
 - **21:57 — CODE ANALYSIS → COMPLIANCE & REVIEW** — delegate gate check passed in verifier run 3 (fix attempts 2 of 5; failed rows per run 5 → 1 → 0) ([summary](./phase-02-code-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
 - **21:56 — CODE ANALYSIS** — verifier run 3: rows 3, 4, 9 confirmed; rows 1, 2, 5 – 8, 10 – 12, 18 checked only as outside the changed regions (no earlier version on disk to diff) and keep `confirmed (run 2)` · usage: 67 628 ms, 8 tool calls, 64 272 tokens
 - **21:54 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 3) · model: session model → opus (Gate test: verifier runs on the session model)

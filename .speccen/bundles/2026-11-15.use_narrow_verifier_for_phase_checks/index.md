@@ -28,3 +28,10 @@ type: Index
 |---|---|---|---|
 | [phase](./phase-02-code-analysis/phase.md) | Phase | COMPLETE | The verifier rule lives in one Gate-test bullet plus the later-runs and after-a-stop paragraphs; the brief's edit list misses the after-a-stop paragraph and the Phase 07 spot-check, and its manual version bump conflicts with the CI bump |
 | [summary](./phase-02-code-analysis/summary.md) | Summary | COMPLETE | The verifier's breadth comes from one "every row" sentence and row-keyed failure and re-run rules; the change slots into existing text, with three sites outside or against the brief |
+
+### Phase 03 — Compliance & Review
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | No bundle ADR; nine standing decisions are compatible; the interview settles kind, version bump, reach, claim-list place, template place and the noticed-line answer — Definition of Ready met |
+| [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Definition of Ready met — compliant with nine standing decisions; reach, claim-list place, template place and the version bump settled in the interview |
