@@ -47,3 +47,13 @@ type: Index
 | [specification](./phase-04-specification/specification.html) | Specification | COMPLETE | Intent specification — the gate-check verifier settles a capped list of code and repository claims; slips cost no fix attempt |
 | [specification (md)](./phase-04-specification/specification.md) | Specification | COMPLETE | Reduced projection of specification.html — the narrow gate-check verifier |
 
+### Phase 05 — Implementation
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-05-implementation/phase.md) | Phase | COMPLETE | The narrow gate-check verifier written into the governing skill, the worker and Phases 01 – 05; version bumped; text checks T-1 – T-19 |
+| [summary](./phase-05-implementation/summary.md) | Summary | COMPLETE | Narrow verifier written into the governing skill, the worker and Phases 01 – 05; version 26.1116.1; T-1 – T-19 pass; two delegated deviations |
+
+## Files
+
+- [phase-05-text-checks.py](./files/phase-05-text-checks.py)

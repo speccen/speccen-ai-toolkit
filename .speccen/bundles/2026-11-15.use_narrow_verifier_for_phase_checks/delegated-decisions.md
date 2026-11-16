@@ -383,3 +383,32 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Alternatives** | one phase per file |
 | **Materiality** | not material |
 | **Status** | DELEGATED |
+
+<a id="dd-26"></a>
+## DD-26 — Two inserted lines reworded so the "every row" search finds none
+
+|     | Info |
+| --- | --- |
+| **Phase** | IMPLEMENTATION PHASE |
+| **When** | 2026-11-16 07:24 UTC (`log.md` 08:24, local time UTC+1) |
+| **Question** | T-14 fails on two lines of the planned text (Appendix A `verified` column bullet; Appendix B last cell) that say "every row" beside "verifier". Reword the lines, or narrow the check? |
+| **Decision** | Decided under delegation (autonomous): reword — "All rows then read" and "the rows without a claim". The meaning is unchanged. |
+| **Basis** | Specification R-11, scenario "A search for the old rule" (frozen Phase 04 artifact); Phase 05 Mode behaviour (a deviation that changes no acceptance scenario, contract or scope is the delegate's) |
+| **Alternatives** | Narrow T-14 to lines that tell the verifier to check every row — rejected: it changes R-11's acceptance scenario, which is a stop |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-27"></a>
+## DD-27 — The rendering step recorded as a raw-text inspection
+
+|     | Info |
+| --- | --- |
+| **Phase** | IMPLEMENTATION PHASE |
+| **When** | 2026-11-16 07:38 UTC (`log.md` 08:38, local time UTC+1) |
+| **Question** | Plan step 1.3 asks to render the Gate test section; the host has no Markdown renderer. Record the raw-text inspection as a deviation, or stop for a renderer? |
+| **Decision** | Decided under delegation (autonomous): Deviation 2 — the raw-text inspection stands for the step, which stays ticked with the deviation linked. |
+| **Basis** | The Architect's "yes" to 05/1, whose proposed answer named this route (`log.md` 2026-11-16 08:38); Phase 05 Mode behaviour (a deviation that changes no scenario, contract or scope); stop condition 3 (a renderer would be a new dependency) |
+| **Alternatives** | Install a renderer — a new dependency, a stop; the Architect renders it — offered in 05/1, not taken |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+

@@ -159,7 +159,7 @@ choices (DD-9 – DD-21). No prototype ran.
 <a id="phases"></a>
 ### Implementation Phases
 
-#### Phase 1: Gate test — the narrow verifier rules ⬜
+#### Phase 1: Gate test — the narrow verifier rules ✅
 
 **Why:** The verifier's breadth and the cost of slips come from three places in the Gate test:
 "re-open the evidence of every row", a failure rule with no slip, and a later-runs rule keyed
@@ -168,62 +168,62 @@ source: [Phase 02 #outcome](../phase-02-code-analysis/phase.md#outcome); brief r
 (log 2026-11-15 21:14)
 
 ##### 1.1 Replace the self-check, verifier and later-runs text
-- [ ] In `skills/sdd/00-governing-workflow/SKILL.md`, replace the block from `- **Self-check before the verifier.**` through `fix. Rows it does not re-check keep their last \`confirmed (run N)\`.` (lines 1197 – 1220 at `92ee62f`) with Appendix A, part 1
-- [ ] Keep the six self-check items word for word (1199 – 1208) and the `Record the self-check…` line
-- [ ] Keep the parked-question and extension bullets (1214 – 1216) in place, after the `verified` column bullet
+- [x] In `skills/sdd/00-governing-workflow/SKILL.md`, replace the block from `- **Self-check before the verifier.**` through `fix. Rows it does not re-check keep their last \`confirmed (run N)\`.` (lines 1197 – 1220 at `92ee62f`) with Appendix A, part 1
+- [x] Keep the six self-check items word for word (1199 – 1208) and the `Record the self-check…` line
+- [x] Keep the parked-question and extension bullets (1214 – 1216) in place, after the `verified` column bullet
 
 ##### 1.2 Restate the after-a-stop bullet
 **Why:** It speaks of rows and "every rule breach it finds in that row", which a claim-based run does not produce. — source: DD-11 (03/3)
-- [ ] Replace the bullet `- After a stop, the Architect's answer sets which rows…` (1235 – 1238) with Appendix A, part 2
-- [ ] Leave the stop triggers (1221 – 1226), the recording-repair paragraph (1228 – 1232) and the log-line paragraph (1234) unchanged
+- [x] Replace the bullet `- After a stop, the Architect's answer sets which rows…` (1235 – 1238) with Appendix A, part 2
+- [x] Leave the stop triggers (1221 – 1226), the recording-repair paragraph (1228 – 1232) and the log-line paragraph (1234) unchanged
 
 ##### 1.3 Build and Validate
-- [ ] Run T-1 – T-9, T-15, T-17 (`files/phase-05-text-checks.py`)
-- [ ] Render the governing skill's Gate test section and check the nesting of the new bullets
+- [x] Run T-1 – T-9, T-15, T-17 (`files/phase-05-text-checks.py`)
+- [x] Render the governing skill's Gate test section and check the nesting of the new bullets
 
-#### Phase 2: Subagent Execution and the worker ⬜
+#### Phase 2: Subagent Execution and the worker ✅
 
 **Why:** The unit registry and the work order tell the main session how to launch the verifier; the worker bullet tells the worker how to behave, because the narrow template has no `Follow:` line. It comes after Phase 1 because it points to the rules Phase 1 writes. — source: brief "Files to change" items 1 – 2; [Phase 02 #patterns](../phase-02-code-analysis/phase.md#patterns); DD-17
 
 ##### 2.1 Units row
-- [ ] Replace the row `| any \`autonomous\` phase | the gate-check verifier (Autonomous Execution → Gate test) | — | the gate decision |` (line 1390) with Appendix B
+- [x] Replace the row `| any \`autonomous\` phase | the gate-check verifier (Autonomous Execution → Gate test) | — | the gate decision |` (line 1390) with Appendix B
 
 ##### 2.2 Verifier work order
-- [ ] After the generic template's closing fence (line 1409), add Appendix C
-- [ ] Leave the generic template unchanged (DD-17)
+- [x] After the generic template's closing fence (line 1409), add Appendix C
+- [x] Leave the generic template unchanged (DD-17)
 
 ##### 2.3 Worker bullet
-- [ ] In `agents/speccen-worker.md`, under **Do:**, after the search bullet, add Appendix D
+- [x] In `agents/speccen-worker.md`, under **Do:**, after the search bullet, add Appendix D
 
 ##### 2.4 Build and Validate
-- [ ] Run T-10 – T-12, T-14
+- [x] Run T-10 – T-12, T-14
 
-#### Phase 3: Claim sources in the phase skills ⬜
+#### Phase 3: Claim sources in the phase skills ✅
 
 **Why:** Each phase names what its claims are drawn from, so the delegate knows what to list. — source: brief rule 5 and "Files to change" item 3; DD-24
 
 ##### 3.1 One bullet per phase
-- [ ] `01-feature-analysis/SKILL.md` Mode behaviour: add Appendix E (01) directly before `- Decision basis, stop conditions and records: …` (line 245)
-- [ ] `02-code-analysis/SKILL.md`: Appendix E (02) directly before the same `- Decision basis, stop conditions and records: …` line (line 440)
-- [ ] `03-compliance-review/SKILL.md`: Appendix E (03) directly before the same line (line 441)
-- [ ] `04-specification/SKILL.md`: Appendix E (04) directly before the same line (line 497)
-- [ ] `05-implementation/SKILL.md`: Appendix E (05) before the bullet `- Write \`## Delegate gate check\` into \`{{SUMMARY_FILE}}\`. Decision basis…` (line 336)
+- [x] `01-feature-analysis/SKILL.md` Mode behaviour: add Appendix E (01) directly before `- Decision basis, stop conditions and records: …` (line 245)
+- [x] `02-code-analysis/SKILL.md`: Appendix E (02) directly before the same `- Decision basis, stop conditions and records: …` line (line 440)
+- [x] `03-compliance-review/SKILL.md`: Appendix E (03) directly before the same line (line 441)
+- [x] `04-specification/SKILL.md`: Appendix E (04) directly before the same line (line 497)
+- [x] `05-implementation/SKILL.md`: Appendix E (05) before the bullet `- Write \`## Delegate gate check\` into \`{{SUMMARY_FILE}}\`. Decision basis…` (line 336)
 
 ##### 3.2 Build and Validate
-- [ ] Run T-13, T-14
+- [x] Run T-13, T-14
 
-#### Phase 4: Version and the full check ⬜
+#### Phase 4: Version and the full check ✅
 
 **Why:** The brief asks for a version bump in both manifests; the last phase runs every check over the finished text. — source: brief "Files to change" item 4; DD-10, DD-23
 
 ##### 4.1 Version
-- [ ] Compute the next version by the CI rule on the day of Phase 05 (Appendix F)
-- [ ] Set it in `.claude-plugin/plugin.json` `.version` and `.claude-plugin/marketplace.json` `.metadata.version` and `.plugins[0].version`
+- [x] Compute the next version by the CI rule on the day of Phase 05 (Appendix F)
+- [x] Set it in `.claude-plugin/plugin.json` `.version` and `.claude-plugin/marketplace.json` `.metadata.version` and `.plugins[0].version`
 
 ##### 4.2 Build and Validate
-- [ ] Run T-1 – T-19; all pass
-- [ ] `python3 -c "import json;json.load(open(...))"` on both manifests
-- [ ] `git diff --stat` touches only the files in the Proposed Changes Summary
+- [x] Run T-1 – T-19; all pass
+- [x] `python3 -c "import json;json.load(open(...))"` on both manifests
+- [x] `git diff --stat` touches only the files in the Proposed Changes Summary
 
 <a id="risks"></a>
 ### Risk Mitigation
