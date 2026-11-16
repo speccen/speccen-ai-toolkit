@@ -6,6 +6,7 @@ type: Log
 
 ## 2026-11-16
 
+- **09:05 — CLOSE-OUT** — generate commit message, commit, push, create PR, merge, and pull but wait for the version number to bump
 - **09:04 — CLOSE-OUT** — review round recorded: DD-1 – DD-27 ADOPTED; 06/1, 06/2 promoted to `.speccen/lessons/` (`2026-11-16.run_error_checks_on_planned_text`, `2026-11-16.full_phase_verifier_finds_new_detail`); 06/3 kept local; feature node `produced` and the store index and timeline updated
 - **09:03 — CLOSE-OUT** — accept *(read as: every proposed answer of the review round — 06/1 promote, 06/2 promote, 06/3 keep local, 06/4 – 06/30 adopt DD-14, DD-20, DD-21, DD-10, DD-26, DD-27, DD-11, DD-15 – DD-19, DD-12, DD-13, DD-22 – DD-25, DD-9, DD-1 – DD-8)*
 - **09:00 — CLOSE-OUT** — review round put to the Architect: 06/1 – 06/3 (graduation candidates), 06/4 – 06/30 (DD-1 – DD-27, material first)
