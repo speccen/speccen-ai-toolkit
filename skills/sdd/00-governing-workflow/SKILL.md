@@ -1194,8 +1194,29 @@ At the end of every `autonomous` phase, before the transition, run the **gate te
 - Run the phase-specific checks in the phase skill's **Mode behaviour** section.
 - Write the result into the phase's `summary.md` under the fixed heading
   `## Delegate gate check`: one row per item — `item | result | evidence | verified`.
-- **Self-check before the verifier.** Before you launch the verifier, check every row yourself
-  for the six common failures, and fix what you find:
+- **Who checks what.** The self-check owns everything inside the bundle. The verifier owns only
+  claims about the code and the repository. The verifier never reads the bundle.
+- **Claims.** When you write a gate row that rests on code or repository evidence, record that
+  row's load-bearing claims in the same step. At the gate the list already exists.
+  - Record the claims directly under the gate table, under `Claims`, one line each:
+    `K-<n> (row <N>) · claim · how to check · expected`.
+  - **How to check** is preferably a command whose output settles the claim.
+  - A `path:line` is allowed. The claim is about the content, not the line number.
+  - Each claim is settled in one or two tool calls. If it cannot be, split it or drop it.
+- **What goes on the list.**
+  - **Exhaustive claims first.** A row that claims something holds everywhere, or nowhere,
+    carries one claim that covers the whole scope: a count or a "none found" check. For
+    example: `grep -rn 'new HttpClient(' src | wc -l` = 0. Spot checks never confirm such a row
+    on their own.
+  - Other rows: at most 3 claims, the ones the row's conclusion rests on.
+  - Every count that a conclusion depends on.
+  - Verbatim quotes only of convention rules that bind the change. A rule from a technology the
+    change does not touch is cited by file and is not on the list.
+  - **Hard cap: 15 claims per run.** If more qualify, keep the 15 whose failure would change a
+    conclusion, and mark the rest `not on list — low risk`.
+  - Each phase's **Mode behaviour** names the source of its claims.
+- **Self-check.** Check every row yourself for the six common failures, and fix what you find.
+  Run it at the same time as the verifier (next bullet):
   1. **Quotes** — every quote of the Architect matches `log.md` word for word.
   2. **References** — every `path:line` and anchor still points at what the row says; re-open
      the files you edited after you wrote the row.
@@ -1207,17 +1228,40 @@ At the end of every `autonomous` phase, before the transition, run the **gate te
   6. **Subjects** — every question and item put to the Architect has a `[number | text]`
      subject; no label stands alone.
   Record the self-check in one line above the gate table: `Self-check: done — N corrections`.
-- Where the host can run subagents, have a **verifier** (`speccen-worker`, on the session model
-  — see Subagent Execution) re-open the evidence of every row and confirm whether it shows what
-  the row claims. Its answer fills the `verified` column; a row it does not confirm has failed.
-  Without subagent support, write `not run` in that column.
+- **Verifier.** Where the host can run subagents, launch the **verifier** (`speccen-worker`, on
+  the session model — see Subagent Execution) with the verifier work order. Launch it as soon as
+  the claim list is final. This is safe beside the self-check: the self-check edits only bundle
+  files, and the verifier reads only code and the repository.
+  - The verifier settles the listed claims and reads nothing beyond what settles them.
+  - It returns one result per claim. Append each result to its claim line, after `→`.
+  - **`slip`** — the content is there, but the line number, path or count is a little off, and
+    the conclusion stands.
+  - For a slip, the verifier gives the correct value, and you correct the citation.
+  - A slip is not a failed row: it uses no fix attempt and triggers no re-run.
+  - **`wrong`** — the content is not there, or the value differs in a way the conclusion depends
+    on.
+  - A `wrong` claim fails its row, and the fix loop below applies.
+  - If the verifier is unsure which kind it is, it reports `wrong`.
+  - It may add at most 2 `noticed:` lines about something adjacent that looks wrong.
+  - Answer each `noticed:` line in a row at the foot of the gate table:
+    `noticed-<n> | <the line> | corrected, or not relevant, because … | <evidence> | —`.
+  - A `noticed:` line that affects a conclusion becomes a `wrong` claim in the next run.
+- **The `verified` column.**
+  - A row is `confirmed (run N)` when every claim it has is `confirmed`, or `slip` with the
+    citation corrected.
+  - A row without claims reads `n/a — bundle-internal`.
+  - A row whose claims the cap left off the list reads `not on list — low risk`.
+  - If no row cites code or repository evidence, launch no verifier. All rows then read
+    `n/a — bundle-internal`.
+  - Without subagent support, write `not run` in that column.
 - No question of this phase that was parked with "later" is still unanswered.
 - Every active extension of this phase was applied: each applicable requirement is met or marked
   "not applicable, because …", and the Extensions table in `phase.md` is complete.
 - If any item fails, fix it and run the test again — up to the phase's effective `fixes`
-  attempts (Configuration; default `5`). Each later verifier run re-checks (a) every row that
-  failed in the run before, and (b) every row whose evidence is in a file you changed during the
-  fix. Rows it does not re-check keep their last `confirmed (run N)`.
+  attempts (Configuration; default `5`). A later verifier run re-checks only (a) the `wrong`
+  claims, (b) the claims whose file changed during the fix, and (c) any `noticed:` line promoted
+  to a claim. Slips are never re-checked. Rows it does not re-check keep their last
+  `confirmed (run N)`.
 - Stop (stop condition 5) when:
   1. the fix you would make next changes a phase conclusion, an ADR, or what a delegated
      decision decides; or
@@ -1232,10 +1276,10 @@ At the end of every `autonomous` phase, before the transition, run the **gate te
   the repair; the review round still puts every one of them to the Architect.
 
   Log each attempt as `fix attempt <n> of <fixes>: run <N> failed rows <list>`.
-- After a stop, the Architect's answer sets which rows the next verifier run re-checks, and
-  whether further fix attempts are allowed; without that, one run, and a failing row stops
-  again. Rows it does not re-check keep their last `confirmed (run N)`. A verifier that fails a
-  row lists every rule breach it finds in that row at once.
+- After a stop, the Architect's answer sets which claims the next verifier run re-checks, and
+  whether further fix attempts are allowed. Without that, one run follows, and a `wrong` claim
+  stops again. Claims it does not re-check keep their last result. The verifier reports on every
+  listed claim in one run.
 
 You review your own work, so the evidence is the point: an item without cited evidence has not
 passed.
@@ -1387,7 +1431,7 @@ context, optionally on a cheaper model. This is an accelerator — every skill w
 | 06 | the three audience documents (Steps 3–5) | yes | graduation (Step 6) and the commit |
 | 07 | the review and its report (Steps 2–5) | — | GitHub issues, state, the notice |
 | 08 | gathering and authoring (Steps 3–7) | — | scope, iteration, the store copy, state, the notice |
-| any `autonomous` phase | the gate-check verifier (Autonomous Execution → Gate test) | — | the gate decision |
+| any `autonomous` phase with a code or repository claim | the gate-check verifier — narrow: settles the listed claims only, never reads the bundle (Autonomous Execution → Gate test) | — | the gate decision; the self-check; the rows without a claim |
 
 Nothing else runs in a subagent — a search that is not launched as this unit runs inline.
 **Decision seats never do**: gates, ADR handling, the delegate's decisions, stops and
@@ -1406,6 +1450,18 @@ its prompt, passing the resolved model (see Model) when you launch it:
 - Inputs: [paths — including the phase's active extensions that bear on this unit]
 - Outputs: [paths — the only files the worker may write]
 - Return: files written · anything not done and why · anything the main session must decide
+```
+
+The gate-check verifier has its own, narrow work order:
+
+```markdown
+**speccen work order**
+- Unit: gate-check verifier (Phase NN, run N) — NARROW
+- Bundle: [{{FOLDER_NAME}}] — do not read bundle files
+- Claims: [≤15, numbered — id · claim · how to check · expected]
+- Stop: once every listed claim is settled; one or two tool calls per claim; batch independent checks
+- Outputs: none — report only
+- Return: one line per claim — `confirmed` · `slip — <correct value>` · `wrong — <actual value>`; then at most 2 `noticed:` lines
 ```
 
 The worker starts cold: the work order and the files on disk are all it has.

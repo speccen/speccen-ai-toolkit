@@ -54,6 +54,17 @@ type: Index
 | [phase](./phase-05-implementation/phase.md) | Phase | COMPLETE | The narrow gate-check verifier written into the governing skill, the worker and Phases 01 – 05; version bumped; text checks T-1 – T-19 |
 | [summary](./phase-05-implementation/summary.md) | Summary | COMPLETE | Narrow verifier written into the governing skill, the worker and Phases 01 – 05; version 26.1116.1; T-1 – T-19 pass; two delegated deviations |
 
+
+### Phase 06 — Close-out
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-06-close-out/phase.md) | Phase | COMPLETE | Three outcome seeds written; feature node and specification graduated; three lessons proposed for graduation, pending the Architect |
+| [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | Narrow gate-check verifier delivered in 26.1116.1; seeds written; feature node and specification graduated; graduation proposal pending |
+| [doc-executive](./phase-06-close-out/doc-executive.md) | Doc (executive) | COMPLETE | The autonomous gate check now confirms only a short list of code facts; the gain shows from the next bundle |
+| [doc-business](./phase-06-close-out/doc-business.md) | Doc (business) | COMPLETE | The delegate lists the code facts behind each phase, and a checker run confirms only those facts |
+| [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | The gate-check verifier settles a capped list of code and repository claims; the self-check owns the bundle; slips cost no fix attempt |
+
 ## Files
 
 - [phase-05-text-checks.py](./files/phase-05-text-checks.py)

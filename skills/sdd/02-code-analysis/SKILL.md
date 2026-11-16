@@ -437,6 +437,8 @@ signal advances it.
   `delegated-decisions.md`.
 - Write `## Delegate gate check` into `{{SUMMARY_FILE}}`, then transition (Phase Transition
   Protocol). Send no Step 8 message.
+- **Verifier claims.** Convention quotes that bind the change, counts, "none found" claims, and
+  the code facts behind each pattern or risk conclusion (governing skill → Gate test).
 - Decision basis, stop conditions and records: **Autonomous Execution** in the governing skill.
 
 ---

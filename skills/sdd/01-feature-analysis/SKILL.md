@@ -242,6 +242,8 @@ signal advances it.
 - Run the Quality Criteria below item by item with cited evidence.
 - Write `## Delegate gate check` into `{{SUMMARY_FILE}}`, then transition (Phase Transition
   Protocol). Send no Step 6 message.
+- **Verifier claims.** None: Phase 01 has no codebase access, so no verifier runs
+  (governing skill → Gate test).
 - Decision basis, stop conditions and records: **Autonomous Execution** in the governing skill.
 
 ---

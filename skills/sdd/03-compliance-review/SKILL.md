@@ -438,6 +438,8 @@ In `autonomous` mode see **Mode behaviour**.
   Architect's ADR to write.
 - **End.** Write `## Delegate gate check` into `{{SUMMARY_FILE}}`, then transition. Send no
   Step 9 message.
+- **Verifier claims.** The code facts behind an ADR's rationale or a prototype's result
+  (governing skill → Gate test).
 - Decision basis, stop conditions and records: **Autonomous Execution** in the governing skill.
 
 ---

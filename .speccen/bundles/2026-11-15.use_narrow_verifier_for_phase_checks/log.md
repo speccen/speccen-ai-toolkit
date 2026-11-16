@@ -6,6 +6,9 @@ type: Log
 
 ## 2026-11-16
 
+- **08:44 — CLOSE-OUT** — core workflow complete; graduation proposal 06/1 – 06/3 pending the Architect; STATE: Review the delegated decisions and decide the graduation proposal
+- **08:44 — CLOSE-OUT** — seeds written (executive, business, technical); feature node `features/2026-11-15.use_narrow_verifier_for_phase_checks/` with the specification (links repointed into the bundle); store index and timeline updated; no override, no discretionary entry written
+- **08:42 — CLOSE-OUT** — phase started by the autonomous transition (no Architect prompt); no extensions; all 23 checklist items ticked
 - **08:42 — IMPLEMENTATION → CLOSE-OUT** — delegate gate check passed in verifier run 4; implementation accepted under delegation (fix attempts 3: 1 in the budget before the stop, 2 after the Architect's 05/1 – 05/2 answer; failed rows per run 5 → 4 → 1 → 0; deviations 2, DD-26, DD-27) ([summary](./phase-05-implementation/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
 - **08:42 — IMPLEMENTATION** — verifier run 4: rows 6, 7, 8 confirmed; full run `python3 -I files/phase-05-text-checks.py` after fix attempt 3: T-1 – T-19 pass · usage: 54 271 ms, 14 tool calls, 62 370 tokens
 - **08:41 — IMPLEMENTATION subagent** — gate-check verifier (Phase 05, run 4) · model: session model → opus (Gate test: verifier runs on the session model)
