@@ -5,12 +5,13 @@ work-kind: refactoring
 status: active
 evidence: confirmed
 created: 2026-11-16T07:42:56Z
-updated: 2026-11-16T08:03:30Z
+updated: 2026-11-16T08:19:00Z
 date: 2026-11-16T07:42:56Z
 touches: [governing-workflow, subagent-execution, gate-test]
 produced: [2026-11-16.run_error_checks_on_planned_text, 2026-11-16.full_phase_verifier_finds_new_detail]
 builds-on: [2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label]
 specification: ./specification.html
+reference: ./reference.html
 ---
 
 # Use narrow verifier for phase checks
@@ -29,5 +30,6 @@ specification: ./specification.html
 | Related | |
 | --- | --- |
 | **Specification** | [specification.html](./specification.html) — intent |
+| **Reference** | [reference.html](./reference.html) — outcome |
 | **Builds on** | [2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label](../2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/node.md) — the six self-check items and stop condition 5 this feature keeps |
 | **Produced** | [2026-11-16.run_error_checks_on_planned_text](../../lessons/2026-11-16.run_error_checks_on_planned_text.md), [2026-11-16.full_phase_verifier_finds_new_detail](../../lessons/2026-11-16.full_phase_verifier_finds_new_detail.md) — lessons from this feature |
