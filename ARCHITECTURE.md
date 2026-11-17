@@ -4,7 +4,7 @@ This document maps how speccen is put together — the major parts,
 how they fit, and where to look for detail. It is deliberately high-level: it points into the
 skill files (`skills/*/*/SKILL.md`) and the design spec rather than restating them. For *how to
 run* the workflow, see `README.md`; for the authoritative *rules*, see
-`skills/sdd/00-governing-workflow/SKILL.md`.
+`skills/sdd/sdd-governing-workflow/SKILL.md`.
 
 ---
 
@@ -44,36 +44,36 @@ Nine skills under `skills/sdd/`. One governs; six are the core sequential phases
 passes that run only on request after the core completes.
 
 ```
-00-governing-workflow        Orchestrator + single source of truth for all conventions
+sdd-governing-workflow       Orchestrator + single source of truth for all conventions
                              (bundle layout, frontmatter, anchors, STE-style, ADR protocol,
                              the durable store, invariants). Every other skill references it.
 
 ── Core workflow (strictly sequential, each gated — by the Architect or its delegate) ──
-01-feature-analysis          Understand WHAT is requested. No code access, no solution.
-02-code-analysis             Understand the existing system deeply. Evidence-based. No code.
-03-compliance-review         Iterate against Architect ADRs until ready. Enforces standing
+sdd-feature-analysis         Understand WHAT is requested. No code access, no solution.
+sdd-code-analysis            Understand the existing system deeply. Evidence-based. No code.
+sdd-compliance-review        Iterate against Architect ADRs until ready. Enforces standing
                              (project-level) decisions. The gate that protects the specification.
                              Optionally prototypes competing approaches (throwaway worktrees).
-04-specification             Produce the Implementation Plan (each phase with its why; incl. the Test Plan), assemble
+sdd-specification            Produce the Implementation Plan (each phase with its why; incl. the Test Plan), assemble
                              the complete specification (intent + requirements/acceptance
                              scenarios), + forward-looking stakeholder seeds. No code.
-05-implementation            The only phase that modifies code. Executes the plan, then writes
+sdd-implementation           The only phase that modifies code. Executes the plan, then writes
                              the planned tests (post-implementation, not TDD); handles
                              rejection & revert.
-06-close-out                 Cleanup, outcome audience seeds, and graduation of durable
+sdd-close-out                Cleanup, outcome audience seeds, and graduation of durable
                              knowledge. Completes the CORE workflow.
 
 ── Optional post-06 passes (independent, Architect-invoked, read-only, any order or none) ──
-07-retrospective             Review the implemented code vs plan, conventions, security, and
+sdd-retrospective            Review the implemented code vs plan, conventions, security, and
                              standing ADRs. Produces a Retrospective Report; optional GitHub Issues. In an
                              autonomous bundle it also audits the delegate's decisions and gate checks.
-08-reference                 Comprehensive, self-contained technical reference, authored as
+sdd-reference                Comprehensive, self-contained technical reference, authored as
                              a depth-layered HTML page (C4 L1-L4, delta-highlighted diagrams)
                              with a reduced Markdown projection. STE. Service
                              Contracts vs Component APIs; SVG + Mermaid diagrams.
 
 ── Shared skill (used by gated phases) ──
-interview                    Works through open decisions in rounds — a numbered list, each
+sdd-interview                Works through open decisions in rounds — a numbered list, each
                              question with a proposed answer. The Architect answers in gated
                              mode; the delegate answers and records the same questions in
                              autonomous mode, so the decision tree stays traceable. Used in 01,
@@ -247,7 +247,7 @@ much as the nodes, and interlinking is captured richly during the workflow (the 
 deferred; the captured graph is not). `timeline.md` is the first, simplest rendering of the
 feature nodes.
 
-Full design rationale: the durable-store section of `skills/sdd/00-governing-workflow/SKILL.md`.
+Full design rationale: the durable-store section of `skills/sdd/sdd-governing-workflow/SKILL.md`.
 
 ---
 
@@ -303,7 +303,7 @@ deliverable with a reduced `.md` projection); `code-review` stays Markdown only.
 | To understand… | Read |
 |---|---|
 | How to install and run speccen | `README.md` |
-| The authoritative rules and all conventions | `skills/sdd/00-governing-workflow/SKILL.md` |
+| The authoritative rules and all conventions | `skills/sdd/sdd-governing-workflow/SKILL.md` |
 | A specific phase's behaviour | that phase's `skills/sdd/NN-*/SKILL.md` |
 | The bundle model and its rationale | `README.md` → "The analysis bundle" |
 | How to set the workflow mode, per bundle or per phase | `README.md` → "Configuration" |
@@ -311,6 +311,6 @@ deliverable with a reduced `.md` projection); `code-review` stays Markdown only.
 | How extensions add project rules to a phase | governing skill → "Extensions" |
 | How subagents and per-phase models work | governing skill → "Subagent Execution" |
 | The durable store's full design | governing skill → "Durable Store" |
-| Reconciling the store after concurrent team merges | `skills/sdd/reconcile/SKILL.md` |
+| Reconciling the store after concurrent team merges | `skills/sdd/sdd-reconcile/SKILL.md` |
 | The maturity audit and its trend over time | `skills/audit/00-governing-audit/SKILL.md` |
 | Code documentation and review | `skills/code/code-documentation/SKILL.md`, `skills/code/code-review/SKILL.md` |

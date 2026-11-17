@@ -1,5 +1,5 @@
 ---
-name: code-analysis
+name: sdd-code-analysis
 description: the Code Analysis Phase of speccen. Use when performing a deep analysis of an existing codebase — architecture, patterns, performance, coding style, and project conventions. No implementation.
 ---
 
@@ -7,7 +7,7 @@ description: the Code Analysis Phase of speccen. Use when performing a deep anal
 ## CODE ANALYSIS PHASE
 
 > File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/00-governing-workflow/SKILL.md`.
+> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
 > Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
 > `description` (governing skill → `index.md` → When it is regenerated).
 > Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;

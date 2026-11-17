@@ -1,5 +1,5 @@
 ---
-name: retrospective
+name: sdd-retrospective
 description: Optional post-06 pass of speccen. Use when the Architect requests a review of the implemented code against the bundle's plan, project conventions, and security standards. Produces a bundle-native Retrospective Report and, optionally, GitHub Issues. In a bundle that ran any phase autonomous, it also audits the delegate's decisions and gate checks against the code. No code is modified.
 ---
 
@@ -7,7 +7,7 @@ description: Optional post-06 pass of speccen. Use when the Architect requests a
 ## RETROSPECTIVE PHASE (optional, post-06)
 
 > File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/00-governing-workflow/SKILL.md`.
+> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
 > Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
 > `description` (governing skill → `index.md` → When it is regenerated).
 > For this phase, `{{PHASE_DIR}}` = `{{FOLDER_NAME}}/phase-07-retrospective`, so

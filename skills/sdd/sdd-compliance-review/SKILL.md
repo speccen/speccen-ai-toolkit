@@ -1,5 +1,5 @@
 ---
-name: compliance-review
+name: sdd-compliance-review
 description: the Compliance & Review Phase of speccen. Use when iterating analysis based on Software Architect ADR annotations, and optionally prototyping competing approaches. Ensures full compliance before advancing to specification.
 ---
 
@@ -7,7 +7,7 @@ description: the Compliance & Review Phase of speccen. Use when iterating analys
 ## COMPLIANCE & REVIEW PHASE
 
 > File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/00-governing-workflow/SKILL.md`.
+> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
 > Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
 > `description` (governing skill → `index.md` → When it is regenerated).
 > Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
@@ -274,7 +274,7 @@ criteria are met:
 **Handling unresolved open questions:**
 
 First put the open questions **and every undecided ADR** (`status: PENDING`) through the
-**`interview`** skill (`skills/sdd/interview/SKILL.md`). In `gated` mode the Architect
+**`sdd-interview`** skill (`skills/sdd/sdd-interview/SKILL.md`). In `gated` mode the Architect
 answers; in `autonomous` mode the delegate answers what the basis decides and puts the rest to
 the Architect as one stop round:
 

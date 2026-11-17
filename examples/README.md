@@ -5,7 +5,7 @@ Reference artifacts that set the quality bar for what the workflow produces.
 ## `pump-safety-rules-refactor.html`
 
 A worked example of a **Phase 08 Reference** — the layered,
-designed HTML page that the `reference` skill produces.
+designed HTML page that the `sdd-reference` skill produces.
 
 It documents a fictional water-pump safety-rule refactor on a generic rule engine
 (Specification + Remedy + FactBag). The subject is invented; the **structure and craft are
@@ -28,5 +28,5 @@ the point**.
 **Do not imitate its prose voice.** This example was built outside the workflow and is **not**
 written in Simplified Technical English (STE); it uses rhetorical questions and narrative
 framing that STE forbids. Everything the workflow itself produces follows STE (see the
-STE-style rules in `skills/sdd/00-governing-workflow/SKILL.md`). The example is the bar for
+STE-style rules in `skills/sdd/sdd-governing-workflow/SKILL.md`). The example is the bar for
 *layout and depth*, not for *sentences*.

@@ -1,5 +1,5 @@
 ---
-name: implementation
+name: sdd-implementation
 description: the Implementation Phase of speccen. Use when executing an approved Implementation Plan, and handling rejection and revert cycles. Close-out of the completed work is handled by the separate Close-out skill (Phase 06).
 ---
 
@@ -7,14 +7,14 @@ description: the Implementation Phase of speccen. Use when executing an approved
 ## IMPLEMENTATION PHASE
 
 > File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/00-governing-workflow/SKILL.md`.
+> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
 > Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
 > `description` (governing skill → `index.md` → When it is regenerated).
 > Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
 > `doc-*.md` and ADR files do not.
 > Phase 05 writes to `{{FOLDER_NAME}}/phase-05-implementation/` (`phase.md`, `summary.md`).
 > When the Architect or its delegate accepts the implementation, the workflow advances to the separate
-> **Close-out skill** (`skills/sdd/06-close-out/SKILL.md`).
+> **Close-out skill** (`skills/sdd/sdd-close-out/SKILL.md`).
 
 ---
 
@@ -296,7 +296,7 @@ result (what was tested, all green / waived items), and any deviations, linking 
 
 On the **acceptance** — the Architect's signal, or the delegate's passed gate test in `autonomous`
 mode — the Governing Workflow advances to Phase 06,
-governed by `skills/sdd/06-close-out/SKILL.md`. This skill does not perform documentation itself.
+governed by `skills/sdd/sdd-close-out/SKILL.md`. This skill does not perform documentation itself.
 
 ---
 

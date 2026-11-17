@@ -62,7 +62,7 @@ decision — never on all eleven:
 - flagged in `trend.md` as a level change without changed evidence in `trend-notes.md`, or
 - a critical dimension (security, testing, reliability) that sets the readiness gate.
 
-Put them as one `interview` round (`skills/sdd/interview/SKILL.md`, "Outside a bundle"; reference
+Put them as one `sdd-interview` round (`skills/sdd/sdd-interview/SKILL.md`, "Outside a bundle"; reference
 `audit-gate/<n>`), one question per dimension, with the proposed answer `keep <level>` — or
 `change to <level>` where the trend flagged it as noise. The Architect's answers are their own
 words: log them verbatim in `log.md` and record the `## Interview` table in `trend-notes.md`.
