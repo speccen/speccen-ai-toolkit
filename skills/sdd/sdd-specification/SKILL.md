@@ -1,5 +1,5 @@
 ---
-name: specification
+name: sdd-specification
 description: the Specification Phase of speccen. Use when producing a detailed, phase-structured Implementation Plan based on completed analysis, assembling the complete specification (intent + requirements/acceptance scenarios), together with forward-looking executive and business stakeholder seeds. No code is written. Requires explicit Architect go signal to advance to implementation.
 ---
 
@@ -7,7 +7,7 @@ description: the Specification Phase of speccen. Use when producing a detailed, 
 ## SPECIFICATION PHASE
 
 > File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/00-governing-workflow/SKILL.md`.
+> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
 > Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
 > `description` (governing skill → `index.md` → When it is regenerated).
 > Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
@@ -165,7 +165,7 @@ here — link to it; this subsection is the to-be view only.
 #### Strategy Evaluation (if multiple approaches exist)
 
 Settle any material choice that the analysis and the ADRs leave open with the
-**`interview`** skill (`skills/sdd/interview/SKILL.md`) before you write the plan. In
+**`sdd-interview`** skill (`skills/sdd/sdd-interview/SKILL.md`) before you write the plan. In
 `autonomous` mode the delegate answers what the basis decides and puts the rest to the Architect
 as one stop round.
 
@@ -292,7 +292,7 @@ They are **frozen** once Phase 04 closes: Phase 05 does not edit them, and Phase
 its own outcome seeds that reference these rather than overwriting them.
 
 Write both documents in **STE-style** (ASD-STE100 — see the STE-style writing convention in
-`skills/sdd/00-governing-workflow/SKILL.md`): short active sentences, plain consistent
+`skills/sdd/sdd-governing-workflow/SKILL.md`): short active sentences, plain consistent
 vocabulary, one meaning per word.
 
 **`{{PHASE_DIR}}/doc-executive.md`** — executive/sponsor, forward-looking:
@@ -378,7 +378,7 @@ the source of truth; the specification is their assembled, readable view, so it 
 truth; in speccen the spec is *earned* from gated analysis.)
 
 **Same machinery as the Phase 08 reference.** Produce it exactly as
-`skills/sdd/08-reference/SKILL.md` produces its reference: a self-contained,
+`skills/sdd/sdd-reference/SKILL.md` produces its reference: a self-contained,
 **depth-layered HTML** page (C4 progressive disclosure, delta-highlighting, argument-diagrams,
 verify every diagram renders), in **STE**, with `specification.md` extracted as a reduced
 projection. Study the same reference example (`examples/pump-safety-rules-refactor.html`) for

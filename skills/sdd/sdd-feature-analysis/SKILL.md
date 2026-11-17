@@ -1,5 +1,5 @@
 ---
-name: feature-analysis
+name: sdd-feature-analysis
 description: Phase 01 of speccen. Use when capturing and structuring a deep understanding of a request — an idea, feature, refactoring or fix — based on Architect and user input. No codebase access. No implementation.
 ---
 
@@ -7,7 +7,7 @@ description: Phase 01 of speccen. Use when capturing and structuring a deep unde
 ## FEATURE ANALYSIS PHASE
 
 > File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/00-governing-workflow/SKILL.md`.
+> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
 > Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
 > `description` (governing skill → `index.md` → When it is regenerated).
 > Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
@@ -76,7 +76,7 @@ Phase 01 is **discovery**: the Architect may not know yet where this request wil
 interview makes clear what is known, what is assumed and what is still open — it does not force
 decisions.
 
-Run the **`interview`** skill (`skills/sdd/interview/SKILL.md`) — rounds of numbered, clear
+Run the **`sdd-interview`** skill (`skills/sdd/sdd-interview/SKILL.md`) — rounds of numbered, clear
 questions, each with a proposed answer — over what Step 2 found open. In `gated` mode the
 Architect answers; in `autonomous` mode the delegate answers the same questions (see **Mode
 behaviour**).
@@ -174,7 +174,7 @@ settles it: Phase 02 (facts in the code), Phase 03 (decisions) or Phase 04 (acce
 and those marked "for Phase 02". Only a question that blocks Phase 02 may hold the phase. If
 there are none, state that explicitly.
 
-**Interview** (under the `interview` anchor) — one table per round, as the `interview`
+**Interview** (under the `interview` anchor) — one table per round, as the `sdd-interview`
 skill defines: dependencies, the proposed answer, and who answered.
 
 **Outcome** (under the `outcome` anchor) — A one-to-three sentence statement of what this

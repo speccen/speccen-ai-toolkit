@@ -1,5 +1,5 @@
 ---
-name: close-out
+name: sdd-close-out
 description: the Close-out Phase of speccen. Use after an implementation is accepted (by the Architect, or by its delegate in autonomous mode), to produce three audience-targeted documents (executive, business, technical) as expansion seeds, plus deviations, learnings, and results. No further code changes.
 ---
 
@@ -7,7 +7,7 @@ description: the Close-out Phase of speccen. Use after an implementation is acce
 ## CLOSE-OUT PHASE
 
 > File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/00-governing-workflow/SKILL.md`.
+> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
 > Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
 > `description` (governing skill → `index.md` → When it is regenerated).
 > Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
@@ -41,7 +41,7 @@ All three are produced for **every** feature (uniformity), however briefly. They
   headings** — clean input for an LLM expansion/redaction pass — not polished narrative.
 - Each carries `expandable: true` in frontmatter to mark it as seed material.
 - Each is written in **STE-style** (ASD-STE100 — see the STE-style writing convention in
-  `skills/sdd/00-governing-workflow/SKILL.md`): short active sentences, plain consistent
+  `skills/sdd/sdd-governing-workflow/SKILL.md`): short active sentences, plain consistent
   vocabulary, one meaning per word.
 
 A feature with little to say to a given audience still gets that audience's file — as a
@@ -247,7 +247,7 @@ Phase 03, and the lessons of rejected Phase 03 prototypes.
 
 2. **Discretionary — promotions.** For the remaining candidates, **propose** to the Architect
    which look genuinely project-wide (with the evidence for each), and let the Architect
-   decide. Put the choice to the Architect as an interview round (**`interview`**) —
+   decide. Put the choice to the Architect as an interview round (**`sdd-interview`**) —
    one numbered question per candidate, `promote` or `keep local`, each with your proposed answer
    and its evidence. Promote only those
    the Architect approves. Default is *stays local* — a feature-specific ADR, deviation, or
@@ -419,7 +419,7 @@ Steps 6 to 9 change:
   **Autonomous Execution** (Transitions and the end of a run). Name the optional passes; do not
   start them. If any delegated decision or gate check exists, recommend the Retrospective.
 - **Deciding the proposal later.** When the Architect resumes and decides, put the proposal
-  through the review round (`interview` → The review round), write the approved entries in the Durable
+  through the review round (`sdd-interview` → The review round), write the approved entries in the Durable
   Store entry format, update the feature node's `produced` list and the inverse `produced-by`
   edges, regenerate the store index and timeline, and set `Pending Architect Action` to `none`
   once no review is outstanding.

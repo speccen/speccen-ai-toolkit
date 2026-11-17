@@ -1,5 +1,5 @@
 ---
-name: governing-workflow
+name: sdd-governing-workflow
 description: Governs speccen for software development and refactoring. Use when starting or resuming a structured analysis session with a Software Architect. Orchestrates all other workflow skills across phases.
 argument-hint: "['<feature-name>' — optional; speccen derives the bundle location and asks for anything missing]"
 ---
@@ -135,14 +135,14 @@ codebase — like Phases 01–04, they never modify code.
 
 | Phase | Folder | Skill |
 |---|---|---|
-| FEATURE ANALYSIS PHASE | `phase-01-feature-analysis/` | `skills/sdd/01-feature-analysis/SKILL.md` |
-| CODE ANALYSIS PHASE | `phase-02-code-analysis/` | `skills/sdd/02-code-analysis/SKILL.md` |
-| COMPLIANCE & REVIEW PHASE | `phase-03-compliance-review/` | `skills/sdd/03-compliance-review/SKILL.md` |
-| SPECIFICATION PHASE | `phase-04-specification/` | `skills/sdd/04-specification/SKILL.md` |
-| IMPLEMENTATION PHASE | `phase-05-implementation/` | `skills/sdd/05-implementation/SKILL.md` |
-| CLOSE-OUT PHASE | `phase-06-close-out/` | `skills/sdd/06-close-out/SKILL.md` |
-| RETROSPECTIVE PHASE *(optional)* | `phase-07-retrospective/` | `skills/sdd/07-retrospective/SKILL.md` |
-| REFERENCE PHASE *(optional)* | `phase-08-reference/` | `skills/sdd/08-reference/SKILL.md` |
+| FEATURE ANALYSIS PHASE | `phase-01-feature-analysis/` | `skills/sdd/sdd-feature-analysis/SKILL.md` |
+| CODE ANALYSIS PHASE | `phase-02-code-analysis/` | `skills/sdd/sdd-code-analysis/SKILL.md` |
+| COMPLIANCE & REVIEW PHASE | `phase-03-compliance-review/` | `skills/sdd/sdd-compliance-review/SKILL.md` |
+| SPECIFICATION PHASE | `phase-04-specification/` | `skills/sdd/sdd-specification/SKILL.md` |
+| IMPLEMENTATION PHASE | `phase-05-implementation/` | `skills/sdd/sdd-implementation/SKILL.md` |
+| CLOSE-OUT PHASE | `phase-06-close-out/` | `skills/sdd/sdd-close-out/SKILL.md` |
+| RETROSPECTIVE PHASE *(optional)* | `phase-07-retrospective/` | `skills/sdd/sdd-retrospective/SKILL.md` |
+| REFERENCE PHASE *(optional)* | `phase-08-reference/` | `skills/sdd/sdd-reference/SKILL.md` |
 
 ### Path placeholders used by phase skills
 
@@ -393,7 +393,7 @@ The tool's real constraints (Claude Code):
   keep it, but it is the fallback, not the default.
 
 **A series of decisions** — not one pick, but several that depend on each other — is put to
-the Architect with the **`interview`** skill (`skills/sdd/interview/SKILL.md`), in rounds.
+the Architect with the **`sdd-interview`** skill (`skills/sdd/sdd-interview/SKILL.md`), in rounds.
 The interview uses its own format — a numbered list of clear questions, each with a proposed
 answer — not the `AskUserQuestion` tool.
 Phases 01, 03 and 04 use it in both modes — in `autonomous` mode the delegate answers and records
@@ -529,7 +529,7 @@ To **resume**, the Architect names the existing bundle id (or speccen lists the 
    from the skeleton (see **`index.md`** → When it is regenerated): it lists the Bundle Control
    files and the Phase 01 stubs.
 5. Read the **Feature Analysis skill**:
-   `skills/sdd/01-feature-analysis/SKILL.md`
+   `skills/sdd/sdd-feature-analysis/SKILL.md`
 6. Execute Phase 01 under the governance of that skill.
 
 ---
@@ -571,20 +571,20 @@ remains available. Never auto-start an optional pass.
 
 | Phase | Skill to Load | Gate to Advance (`gated`) |
 |---|---|---|
-| FEATURE ANALYSIS PHASE | `skills/sdd/01-feature-analysis/SKILL.md` | Architect signals: "proceed to Code Analysis" |
-| CODE ANALYSIS PHASE | `skills/sdd/02-code-analysis/SKILL.md` | Architect signals: "proceed to Compliance & Review" |
-| COMPLIANCE & REVIEW PHASE | `skills/sdd/03-compliance-review/SKILL.md` | Architect signals: "proceed to Specification" |
-| SPECIFICATION PHASE | `skills/sdd/04-specification/SKILL.md` | Architect signals: "proceed to Implementation" |
-| IMPLEMENTATION PHASE | `skills/sdd/05-implementation/SKILL.md` | Architect accepts implementation → Close-out |
-| CLOSE-OUT PHASE | `skills/sdd/06-close-out/SKILL.md` | **Core workflow complete.** Optionally: Retrospective and/or Reference |
+| FEATURE ANALYSIS PHASE | `skills/sdd/sdd-feature-analysis/SKILL.md` | Architect signals: "proceed to Code Analysis" |
+| CODE ANALYSIS PHASE | `skills/sdd/sdd-code-analysis/SKILL.md` | Architect signals: "proceed to Compliance & Review" |
+| COMPLIANCE & REVIEW PHASE | `skills/sdd/sdd-compliance-review/SKILL.md` | Architect signals: "proceed to Specification" |
+| SPECIFICATION PHASE | `skills/sdd/sdd-specification/SKILL.md` | Architect signals: "proceed to Implementation" |
+| IMPLEMENTATION PHASE | `skills/sdd/sdd-implementation/SKILL.md` | Architect accepts implementation → Close-out |
+| CLOSE-OUT PHASE | `skills/sdd/sdd-close-out/SKILL.md` | **Core workflow complete.** Optionally: Retrospective and/or Reference |
 
 **Optional post-completion passes** (after the core workflow completes at Phase 06; the
 Architect invokes either, both in either order, or neither):
 
 | Pass | Skill to Load | Entered when |
 |---|---|---|
-| RETROSPECTIVE PHASE | `skills/sdd/07-retrospective/SKILL.md` | Architect requests a review of the implemented code |
-| REFERENCE PHASE | `skills/sdd/08-reference/SKILL.md` | Architect requests a comprehensive technical reference |
+| RETROSPECTIVE PHASE | `skills/sdd/sdd-retrospective/SKILL.md` | Architect requests a review of the implemented code |
+| REFERENCE PHASE | `skills/sdd/sdd-reference/SKILL.md` | Architect requests a comprehensive technical reference |
 
 Neither optional pass gates the other: Phase 08 may run without Phase 07, and vice versa.
 Each is entered only on an explicit Architect request, and each is read-only with respect
@@ -1161,7 +1161,7 @@ Even in `autonomous` mode, only the Architect:
    ADR Protocol) (Invariants 4 and 6);
 2. decides discretionary promotions to the durable store (Phase 06, Step 6, path 2);
 3. changes the mode or the config files (Configuration);
-4. starts the optional passes (Phases 07 and 08) — and the delegate never starts `reconcile`
+4. starts the optional passes (Phases 07 and 08) — and the delegate never starts `sdd-reconcile`
    either, a repo-level step run on main by whoever owns it, or by a CI step;
 5. waives a planned test (Invariant 10);
 6. skips a core phase — the skip warning asks the Architect to take responsibility, and you
@@ -1291,7 +1291,7 @@ answer could reasonably have gone another way and it affects the work product, r
 `delegated-decisions.md`. Pure style within the conventions is not recorded.
 
 In an interview (Phases 01, 03 and 04) you work through the same numbered questions the Architect
-would get (`interview`). Every question you answer there is a delegated decision, linked
+would get (`sdd-interview`). Every question you answer there is a delegated decision, linked
 to its question reference — for example `01/7` — so a reviewer can follow your decision tree.
 
 A decision is **material** if it would change an acceptance scenario, a public contract, the data
@@ -1332,7 +1332,7 @@ A stop produces:
   (Structured questions);
 - a `log.md` entry recording the stop;
 - the **stop round**: the stopped questions as one numbered interview round, each with your
-  proposed answer (`interview` → Stop rounds).
+  proposed answer (`sdd-interview` → Stop rounds).
 
 Collect before you stop: carry on only with work that does not depend on the open questions, and
 put them to the Architect together. Then wait. The Architect's answers are logged verbatim
@@ -1391,7 +1391,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 - The status is `DELEGATED`. Only the Architect decides `ADOPTED` (optionally pointing to an ADR
   the Architect writes) or `OVERRIDDEN` (the Architect writes an ADR — it can be scribed on
   request — and the ADR Protocol re-enters Phase 03). You record the status the Architect states
-  in the review round (`interview` → The review round), and never choose one.
+  in the review round (`sdd-interview` → The review round), and never choose one.
 - A delegated decision reaches the durable store only if the Architect adopts it as an ADR and
   promotes it in Phase 06, Step 6.
 - Review surface: each phase `summary.md` shows the number of delegated decisions with a link;
@@ -1411,7 +1411,7 @@ questions): the phases run, the gate checks passed, the delegated decisions reco
 their answers, and the pending graduation proposal. When any delegated decision or gate check
 exists, the report also recommends the Retrospective (Phase 07), which audits them against the code;
 only the Architect starts it. It also lists any prototype branches left for the Architect to delete.
-Then offer the **review round** (`interview` → The review round): every delegated decision and every
+Then offer the **review round** (`sdd-interview` → The review round): every delegated decision and every
 pending graduation candidate, as one numbered interview.
 
 ---
@@ -2269,12 +2269,12 @@ degraded: stale projections (`index.md`/`timeline.md`), missing inverse edges, d
 **fragmented tags** (`rule-engine` vs `ruleengine` coined on two branches), and **contradictory
 decisions** that both landed silently. These are **merge-time** concerns, not in-flight ones.
 
-The **`reconcile`** skill performs this cleanup — a **repo-level store-maintenance
+The **`sdd-reconcile`** skill performs this cleanup — a **repo-level store-maintenance
 operation, not a phase** (no bundle, no `STATE.md`, Git-event-triggered rather than
 Architect-gated). Run it on main after a branch merges in: it regenerates the projections and
 repairs mechanical graph inconsistencies on its own, and **flags the judgment calls** (tag
 canonicalisation, contradictory decisions, inconsistent supersessions) for a human. See
-`skills/sdd/reconcile/SKILL.md`.
+`skills/sdd/sdd-reconcile/SKILL.md`.
 
 ---
 
@@ -2297,7 +2297,7 @@ These rules apply across all phases and all skills:
    worktrees outside the working tree (or as standalone code in the bundle); it is never merged
    or pushed and never becomes production code.
    The durable store (`.speccen/`) is written only at Phase 06 close-out
-   (graduation), by explicit Architect-initiated direct capture, or by `reconcile` (the
+   (graduation), by explicit Architect-initiated direct capture, or by `sdd-reconcile` (the
    repo-level maintenance operation run on main — see Concurrent team use and reconciliation) —
    never silently, never mid-workflow.
 2. The codebase is never read directly in chat — reading happens via Claude Code CLI or Copilot CLI.
@@ -2336,7 +2336,7 @@ These rules apply across all phases and all skills:
     transcribe their stated decision verbatim. It never
     decides a promotion to the durable store, sets aside an extension requirement, waives a test,
     skips a phase, changes the mode or starts an
-    optional pass or `reconcile`; it records its non-trivial decisions as delegated, never as the Architect's;
+    optional pass or `sdd-reconcile`; it records its non-trivial decisions as delegated, never as the Architect's;
     and it stops where the decision basis does not determine a material answer.
 13. A subagent (see Subagent Execution) never takes a decision seat, never writes `STATE.md`,
     `log.md` or `index.md`, and never commits: the main session is the only writer of state and the

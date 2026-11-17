@@ -33,12 +33,12 @@ You are a member of the development team, supporting the Software Architect in c
 
 - A **multiple-choice** question uses the **`AskUserQuestion` tool**, not prose and not a table.
   The tool's constraints, the empty-answer guard and the prose fallback for hosts without it are
-  those of `skills/sdd/00-governing-workflow/SKILL.md` → "Structured questions": 1–4 questions
+  those of `skills/sdd/sdd-governing-workflow/SKILL.md` → "Structured questions": 1–4 questions
   per call, 2–4 options each, never add an "Other" option, headers ≤ 12 characters. On an empty
   answer, or without the tool, fall back to one short plain-text question per field — never
   proceed on an assumed selection.
-- A **series of dependent open decisions** uses the **`interview` skill**
-  (`skills/sdd/interview/SKILL.md`, "Outside a bundle"), with a proposed answer per question.
+- A **series of dependent open decisions** uses the **`sdd-interview` skill**
+  (`skills/sdd/sdd-interview/SKILL.md`, "Outside a bundle"), with a proposed answer per question.
 - A **fact** you can find (a name, a path, a project) is never asked for — look it up, or offer
   it as an option.
 
@@ -123,8 +123,8 @@ can offer real options instead of asking for names you could find.
 3. header `Conventions` — `Read .claude/ and .github/ (Recommended)`, `Skip`
 4. header `Contracts` — `Identify Service Contracts vs Component APIs (Recommended)`, `Skip`
 
-**2b — The open decisions: one `interview` round** (format: numbered questions, each with a
-proposed answer; `skills/sdd/interview/SKILL.md`, "Outside a bundle"). Reference `code-documentation/<n>`:
+**2b — The open decisions: one `sdd-interview` round** (format: numbered questions, each with a
+proposed answer; `skills/sdd/sdd-interview/SKILL.md`, "Outside a bundle"). Reference `code-documentation/<n>`:
 - What does the feature/component do, and why does it exist? *(proposed: from an existing
   ANALYSIS document or the feature's branch name, if one is found — else "don't know yet")*
 - Which solution(s), project(s) and namespace(s)? *(proposed: from the structure-only listing)*
@@ -235,7 +235,7 @@ Only proceed when the Architect picks `Proceed to generation` in the Planning ga
 ### Step 2 — Generate DOCUMENTATION Document
 
 Author `{{FEATURE_NAME_SNAKE}}_documentation.html` — the deliverable — following the approved
-plan. Follow the **Output** rules of `skills/sdd/08-reference/SKILL.md` (one authored source, one
+plan. Follow the **Output** rules of `skills/sdd/sdd-reference/SKILL.md` (one authored source, one
 reduced projection; a single self-contained designed page, styles and diagrams inline; open the
 page and confirm every diagram renders), and study `examples/pump-safety-rules-refactor.html` for
 the form. The document structure below (sections, Service Contracts, Component API, Deviations)
@@ -263,7 +263,7 @@ Start the document with a summary of the most critical information discovered du
 
 ---
 
-**For all diagrams**, render them in the HTML (SVG or Mermaid, per `08-reference`) and, in the
+**For all diagrams**, render them in the HTML (SVG or Mermaid, per `sdd-reference`) and, in the
 Markdown projection, give BOTH formats:
 1. PlantUML/Mermaid markup (for rendering in tools that support it)
 2. ASCII art representation (for plain text viewing)

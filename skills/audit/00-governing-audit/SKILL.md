@@ -96,12 +96,12 @@ anchors the TCO narrative.
 
 - A **multiple-choice** question uses the **`AskUserQuestion` tool**, not prose and not a table.
   The tool's constraints, the empty-answer guard and the prose fallback for hosts without it are
-  those of `skills/sdd/00-governing-workflow/SKILL.md` → "Structured questions": 1–4 questions per
+  those of `skills/sdd/sdd-governing-workflow/SKILL.md` → "Structured questions": 1–4 questions per
   call, 2–4 options each, never add an "Other" option, headers ≤ 12 characters. On an empty answer,
   or without the tool, fall back to one short plain-text question per field — never proceed on an
   assumed selection.
 - A **series of dependent decisions** (the score corrections at the review gate) uses the
-  **`interview` skill** (`skills/sdd/interview/SKILL.md`, "Outside a bundle"), with a proposed
+  **`sdd-interview` skill** (`skills/sdd/sdd-interview/SKILL.md`, "Outside a bundle"), with a proposed
   answer per question.
 - A **fact** you can find is never asked for — detect it, and offer it as the recommended option.
 
