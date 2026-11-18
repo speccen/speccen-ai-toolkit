@@ -66,7 +66,7 @@ fixed in this change.
 | Place | `ARCHITECTURE.md:307` — `` | A specific phase's behaviour | that phase's `skills/sdd/NN-*/SKILL.md` | `` (at `e824b5c` and at `6c6187c`). Earlier bundle files cited it as `:304`; corrected. |
 | Target text | `` that phase's `skills/sdd/sdd-*/SKILL.md` `` — every sdd skill folder is `sdd-<role>` (`ls skills/sdd/`, 11 folders). |
 | README | 06/18: no change. No stale sdd skill path exists in `README.md` (every cited `skills/…` path resolves; the `0N-*` names are the upgrade note's intended list; `phase-0N-*` are bundle folders). |
-| Commit | 06/19: the fix is folded into `6c6187c` with the same message (fixup + autosquash rebase of the unpushed branch); "one commit" and T-11 still hold. |
+| Commit | 06/19: the fix is folded into `6c6187c` (after the rebase: `fdbc357`) with the same message (fixup + autosquash rebase of the unpushed branch); "one commit" and T-11 still hold. |
 | Effect on DD-7 / Verification 1 | none — `NN-*` is not matched by the search |
 | Phase 02 | the restatement inventory's "Adjacent" note and O-5 now read as in scope (by the ADR) |
 | Phase 04 | plan step 3.2 and checks T-8, T-10 change; a check T-14 is added (Phase 04 addendum) |

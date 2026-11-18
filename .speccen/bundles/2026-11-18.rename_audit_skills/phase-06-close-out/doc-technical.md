@@ -35,7 +35,7 @@ description: Five audit skill folders renamed to audit-<role> with git mv; nine 
 |---|---|
 | `skills/audit/00-governing-audit/`, `01-recon/`, `02-dimension-analysis/`, `03-scorecard-review/`, `04-synthesis/` | Old folders of the renames above. Git records each file as a rename. |
 
-- One code commit: `6c6187c` (19 renames, 3 modified files). The message is the brief's message. No trailer.
+- One code commit: `fdbc357` (19 renames, 3 modified files). The message is the brief's message. No trailer.
 - No version change. CI bumps the version on merge.
 
 ## Deviations from Plan

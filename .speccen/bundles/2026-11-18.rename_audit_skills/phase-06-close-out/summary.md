@@ -3,7 +3,7 @@ type: Summary
 phase: "06 — Close-out"
 status: COMPLETE
 phase_file: ./phase.md
-description: Audit skills renamed to audit-<role> in commit 6c6187c; rubric hash unchanged; graduation proposal pending
+description: Audit skills renamed to audit-<role> in commit fdbc357; rubric hash unchanged; graduation proposal pending
 ---
 
 # Phase 06 Summary — Close-out
@@ -14,7 +14,7 @@ description: Audit skills renamed to audit-<role> in commit 6c6187c; rubric hash
 
 **Work completed:** the five audit skills renamed to `audit-maturity`, `audit-recon`,
 `audit-dimension-analysis`, `audit-scorecard-review`, `audit-synthesis`, with every reference
-updated, in one commit (`6c6187c`).
+updated, in one commit (`fdbc357`).
 
 **Outcome:** 5 → 0 skill folders whose name differs from `name:`; old-name hits outside
 `.speccen/` 32 → 4 (the README upgrade note, on purpose); rubric hash `212cd4db08e1` before and after.

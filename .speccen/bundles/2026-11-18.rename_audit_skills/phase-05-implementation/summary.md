@@ -3,7 +3,7 @@ type: Summary
 phase: "05 — Implementation"
 status: COMPLETE
 phase_file: ./phase.md
-description: Commit 6c6187c renames the five audit skills; T-1 – T-13 pass; rubric hash unchanged; one deviation (UTF-8 mode for T-4)
+description: Commit fdbc357 renames the five audit skills; T-1 – T-13 pass; rubric hash unchanged; one deviation (UTF-8 mode for T-4)
 ---
 
 # Phase 05 Summary — Implementation
@@ -12,7 +12,7 @@ description: Commit 6c6187c renames the five audit skills; T-1 – T-13 pass; ru
 
 ---
 
-**Work completed:** the four plan phases, 27 checklist items, in one code commit `6c6187c`
+**Work completed:** the four plan phases, 27 checklist items, in one code commit `fdbc357`
 (19 renames, 3 modified files). The planned checks are in `files/phase-05-text-checks.py`.
 
 **Outcome:** the five audit skills carry `audit-` names equal to their folders; the rubric hash
@@ -26,7 +26,6 @@ and its mutation warns. No test waived. → [detail](./phase.md#implementation-s
 
 **Open items carried forward:** → [detail](./phase.md#open-items)
 - `[DD-7 | Tighten Verification 1 with \b after the sdd- group?]` — review round
-- `[DD-8 | ARCHITECTURE.md:307 stale skills/sdd/NN-* path]` — follow-up
 - `[DD-3 | Push and PR wait for the Architect]` — end of run
 - `[Deviation 1 | build_scorecard.py encoding defect]` — follow-up, graduation candidate
 
@@ -65,9 +64,32 @@ Claims
 - K-2 (rows 6, 12) · the DD-7 search finds only the 4 README note lines · `grep -rnE "0[0-4]-(governing-audit|recon|dimension-analysis|scorecard-review|synthesis)|app-maturity-audit|sdd-(governing-audit|recon|dimension-analysis|scorecard-review|synthesis)\b" --exclude-dir=.git --exclude-dir=.speccen . | cut -d: -f1,2` · `./README.md:132`, `:133`, `:137`, `:138` → run 1: confirmed
 - K-3 (rows 6, 13) · the rubric hash at the new paths is `212cd4db08e1` · `python -I -B -c "import sys,pathlib;sys.path.insert(0,'skills/audit/audit-scorecard-review/scripts');import compare_scorecards as c;print(c.rubric_hash(pathlib.Path('.')))"` · `212cd4db08e1` → run 1: confirmed
 - K-4 (rows 6, 13) · the script uses the new folder names at :33 – :34 · `sed -n 33,34p skills/audit/audit-scorecard-review/scripts/compare_scorecards.py` · `"audit-dimension-analysis"` and `"audit-scorecard-review"` → run 1: confirmed
-- K-5 (rows 10, 16) · 19 renames under `skills/audit/`, 13 of them `R100` · `git diff -M --name-status e824b5c 6c6187c -- skills/audit | grep -c '^R'`; `… | grep -c '^R100'` · 19 and 13 → run 1: confirmed
-- K-6 (row 11) · the governing `description:` line is unchanged · `diff <(git show e824b5c:skills/audit/00-governing-audit/SKILL.md | grep '^description:') <(git show 6c6187c:skills/audit/audit-maturity/SKILL.md | grep '^description:')` · no output; and `grep -n '^name:' skills/audit/audit-maturity/SKILL.md` · `2:name: audit-maturity` → run 1: confirmed
+- K-5 (rows 10, 16) · 19 renames under `skills/audit/`, 13 of them `R100` · `git diff -M --name-status e824b5c fdbc357 -- skills/audit | grep -c '^R'`; `… | grep -c '^R100'` · 19 and 13 → run 1: confirmed
+- K-6 (row 11) · the governing `description:` line is unchanged · `diff <(git show e824b5c:skills/audit/00-governing-audit/SKILL.md | grep '^description:') <(git show fdbc357:skills/audit/audit-maturity/SKILL.md | grep '^description:')` · no output; and `grep -n '^name:' skills/audit/audit-maturity/SKILL.md` · `2:name: audit-maturity` → run 1: confirmed
 - K-7 (row 14) · the command keeps its file and loads the new skill · `sed -n 9,10p commands/audit.md` · `` `audit-maturity` `` and `skills/audit/audit-maturity/SKILL.md` → run 1: confirmed
 - K-8 (row 15) · the README no longer says "Keep the audit folders" and the audit table names the new folders · `grep -c "Keep the audit folders" README.md`; `sed -n 53,57p README.md` · 0; rows start `audit-maturity/`, `audit-recon/`, `audit-dimension-analysis/`, `audit-scorecard-review/`, `audit-synthesis/` → run 1: confirmed
-- K-9 (row 12) · `skills/sdd`, `skills/code`, `agents` unchanged · `git diff --quiet e824b5c 6c6187c -- skills/sdd skills/code agents; echo $?` · 0 → run 1: confirmed
-- K-10 (row 17) · one code commit with no attribution · `git log --format=%h e824b5c..HEAD -- . ':(exclude).speccen'`; `git log -1 --format=%B 6c6187c | grep -ciE 'co-authored-by|generated with'` · one line `6c6187c`; 0 → run 1: confirmed
+- K-9 (row 12) · `skills/sdd`, `skills/code`, `agents` unchanged · `git diff --quiet e824b5c fdbc357 -- skills/sdd skills/code agents; echo $?` · 0 → run 1: confirmed
+- K-10 (row 17) · one code commit with no attribution · `git log --format=%h e824b5c..HEAD -- . ':(exclude).speccen'`; `git log -1 --format=%B fdbc357 | grep -ciE 'co-authored-by|generated with'` · one line `fdbc357`; 0 → run 1: confirmed
+
+<a id="delegate-gate-check-iteration-2"></a>
+### Delegate gate check — iteration 2
+
+Self-check: done — 1 correction (the hash update also rewrote the fold's target in three records; restored to `6c6187c` with the new hash beside it)
+
+| # | Item | Result | Evidence | Verified |
+|---|---|---|---|---|
+| 1 | Addendum checklist ticked | pass | [Phase 04 addendum](../phase-04-specification/phase.md#addendum-iteration-2): 4 `[x]`, 0 `[ ]` | n/a — bundle-internal |
+| 2 | R-6 new scenario: the reading guide names `sdd-*` | pass | T-14 PASS | confirmed (run 1) |
+| 3 | Still one code commit with the brief's message and no attribution | pass | T-11 PASS | confirmed (run 1) |
+| 4 | The fold changed only `ARCHITECTURE.md:307` in the code commit | pass | diff stat 41+/39− (was 40+/38−); T-8 PASS | confirmed (run 1) |
+| 5 | Rubric hash unchanged | pass | `212cd4db08e1` at `fdbc357` | confirmed (run 1) |
+| 6 | All planned checks pass; move tests fail | pass | full run ALL PASS; MUTATE T-1, T-8, T-9, T-14 each fail only their own check | n/a — main session ran the suite |
+| 7 | No deviation | pass | [phase.md](./phase.md) Iteration 2 | n/a — bundle-internal |
+
+Claims (iteration 2)
+- K-11 (row 2) · `ARCHITECTURE.md:307` names the `sdd-*` folders and no `NN-*` path remains · `sed -n 307p ARCHITECTURE.md; grep -c "NN-\*" ARCHITECTURE.md` · `` | A specific phase's behaviour | that phase's `skills/sdd/sdd-*/SKILL.md` | `` and 0 → run 1: confirmed
+- K-12 (row 3) · one code commit since `e824b5c`, `fdbc357`, with no attribution · `git log --format=%h e824b5c..HEAD -- . ':(exclude).speccen'`; `git log -1 --format=%B fdbc357 | grep -ciE 'co-authored|generated with'` · `fdbc357` only; 0 → run 1: confirmed
+- K-13 (row 4) · `ARCHITECTURE.md` differs from `e824b5c` on exactly 3 lines (278, 307, 315) · `git diff --unified=0 e824b5c fdbc357 -- ARCHITECTURE.md | grep -c '^@@'` · 3 → run 1: confirmed
+- K-14 (row 5) · the rubric hash is `212cd4db08e1` · `python -I -B -c "import sys,pathlib;sys.path.insert(0,'skills/audit/audit-scorecard-review/scripts');import compare_scorecards as c;print(c.rubric_hash(pathlib.Path('.')))"` · `212cd4db08e1` → run 1: confirmed
+
+noticed-1 (iteration 2): K-13 compares with `fdbc357`, not HEAD — not relevant, because K-12 shows `fdbc357` is the only code commit. The delegate accepts iteration 2 (decided under delegation (autonomous)).

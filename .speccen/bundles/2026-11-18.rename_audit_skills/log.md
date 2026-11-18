@@ -6,6 +6,9 @@ type: Log
 
 ## 2026-11-18
 
+- **09:22 — IMPLEMENTATION → CLOSE-OUT** — iteration 2: delegate gate check passed in verifier run 1 (K-11 – K-14 confirmed); implementation accepted under delegation ([summary](./phase-05-implementation/summary.md#delegate-gate-check-iteration-2)) · mode: autonomous (bundle config) · extensions: none
+- **09:21 — IMPLEMENTATION** — iteration 2: `ARCHITECTURE.md:307` fixed; fixup `e80b905` autosquashed into the code commit (first rebase attempt refused on uncommitted feature-node edits — nothing changed; re-run with `--autostash`); code commit now `fdbc357` (was `6c6187c`); full checks ALL PASS (T-1 – T-3, T-5 – T-14); move tests T-1, T-8, T-9, T-14 fail as they must; hash `212cd4db08e1`; bundle citations updated to `fdbc357`
+- **09:20 — IMPLEMENTATION** — iteration 2 started by the autonomous transition; plan addendum confirmed by the delegate
 - **09:19 — SPECIFICATION → IMPLEMENTATION** — iteration 2: delegate gate check passed in verifier run 1 (K-8, K-9 confirmed); addendum (plan Phase 5, T-8, T-12, T-14) approved under delegation; error-case run before the fix: T-8, T-14 fail ([summary](./phase-04-specification/summary.md#delegate-gate-check-iteration-2)) · mode: autonomous (bundle config) · extensions: none
 - **09:18 — SPECIFICATION** — iteration 2: addendum written; specification re-assembled (DD-8 override, R-6 scenario, 14 checks); check script adjusted (T-8, T-12, T-14)
 - **09:17 — COMPLIANCE & REVIEW → SPECIFICATION** — iteration 2: delegate gate check passed in verifier run 1 (K-2, K-3 confirmed) ([summary](./phase-03-compliance-review/summary.md#delegate-gate-check-iteration-2)) · mode: autonomous (bundle config) · extensions: none

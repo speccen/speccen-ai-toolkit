@@ -2,7 +2,7 @@
 type: Phase
 phase: "05 — Implementation"
 status: COMPLETE
-description: Rename implemented in one commit (6c6187c); T-1 – T-13 pass; one deviation (T-4 runs Python in UTF-8 mode on this Windows host)
+description: Rename implemented in one commit (fdbc357, incl. the iteration-2 ARCHITECTURE.md:307 fix); T-1 – T-14 pass; one deviation (T-4 runs Python in UTF-8 mode on this Windows host)
 ---
 
 <a id="phase-top"></a>
@@ -47,12 +47,12 @@ description: Rename implemented in one commit (6c6187c); T-1 – T-13 pass; one 
 | 1 — Move the five folders | ✅ | `git mv` ×5; 19 files; no `0[0-4]-*` folder; no `__pycache__` |
 | 2 — Name and paths in skills and script | ✅ | 6 files through the substitution map; T-2, T-6, T-7, T-8 pass |
 | 3 — Command and docs | ✅ | `commands/audit.md`, `ARCHITECTURE.md`, `README.md` (map + note block :130 – :136 replaced, now :130 – :138); T-1, T-3, T-8, T-9 pass |
-| 4 — Verify and commit | ✅ | T-4 by hand (below); commit `6c6187c`; `files/phase-05-text-checks.py`: ALL PASS |
+| 4 — Verify and commit | ✅ | T-4 by hand (below); commit `fdbc357`; `files/phase-05-text-checks.py`: ALL PASS |
 
 All 27 checklist items are ticked in the [Implementation Plan](../phase-04-specification/phase.md#implementation-plan).
 Each file kept its line endings (all nine are LF in this checkout).
 
-**Code commit:** `6c6187c` — `refactor: prefix the audit skills with audit- and drop the folder numbers`,
+**Code commit:** `fdbc357` — `refactor: prefix the audit skills with audit- and drop the folder numbers`,
 the brief's message byte for byte, no trailer; 22 paths (19 renames, 3 modified files).
 
 ### Planned tests
@@ -76,6 +76,7 @@ commit:
 | T-11 | PASS — 1 code commit; message equal; no attribution |
 | T-12 | PASS — `.speccen/` changes only in this bundle |
 | T-13 | PASS — `skills/sdd`, `skills/code`, `agents` unchanged |
+| T-14 | PASS (iteration 2) — `ARCHITECTURE.md:307` names `skills/sdd/sdd-*/SKILL.md` |
 
 **Move tests:** `MUTATE=T-1`, `MUTATE=T-8`, `MUTATE=T-9` each change one expected text in memory;
 each run reports `FAILED: <that check>` and no other.
@@ -95,6 +96,24 @@ each run reports `FAILED: <that check>` and no other.
   before `2026-11-18.baseline`, so `compare` took it as the first run and compared nothing; the
   mutation test exposed it. Renamed to `2026-11-19.after` and re-run as above.
 - All runs used `python -I -B -X utf8` — Deviation 1.
+
+## Implementation Iteration 2 — ADR `2026-11-18.architecture_reading_guide_sdd_path`
+
+Plan confirmed by the delegate — 2026-11-18 (addendum Phase 5).
+
+| Step | Done | Evidence |
+|---|---|---|
+| 5.1 Edit | ✅ | `ARCHITECTURE.md:307` → `` | A specific phase's behaviour | that phase's `skills/sdd/sdd-*/SKILL.md` | ``; `README.md` unchanged (06/18) |
+| 5.2 Fold | ✅ | `git commit --fixup=6c6187c` → `e80b905`; `GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash --autostash e824b5c` → exit 0. The first rebase attempt stopped on the uncommitted feature-node citation fixes (nothing changed); `--autostash` set them aside and restored them. Code commit now `fdbc357` (was `6c6187c`), message unchanged; the bundle commits after it replayed under new hashes. |
+| 5.3 Validate | ✅ | full run ALL PASS (T-1 – T-3, T-5 – T-14); move tests T-1, T-8, T-9, T-14 each fail only their own check |
+
+Before the fix, the adjusted T-8 and T-14 failed and T-12 passed (Phase 04 error-case run).
+T-4 is not re-run end to end: the fold changes only `ARCHITECTURE.md`, which is no input of the
+scripts or the hash; the rubric hash at `fdbc357` is still `212cd4db08e1`.
+Every citation of the code commit in the bundle and the feature node now reads `fdbc357`, except
+where a record names the fold's target (`6c6187c`) and the log, which keeps what was true then.
+
+No deviation in this iteration.
 
 <a id="deviations"></a>
 ## Deviations
@@ -124,7 +143,6 @@ graduation-candidate: `build_scorecard.py` writes `scorecard.md` with the platfo
 | # | Item | Settles in |
 |---|---|---|
 | O-7 | `[DD-7 \| Tighten Verification 1 with \b after the sdd- group?]` — `MATERIAL — unconfirmed` | review round |
-| O-8 | `[DD-8 \| ARCHITECTURE.md:307 stale skills/sdd/NN-* path]` — follow-up | end-of-run report |
 | O-9 | `[DD-3 \| Push and PR wait for the Architect]` | end of run |
 | O-10 | `[Deviation 1 \| build_scorecard.py fails on Windows without UTF-8 mode]` — follow-up; graduation candidate | Phase 06 |
 
@@ -133,5 +151,5 @@ graduation-candidate: `build_scorecard.py` writes `scorecard.md` with the platfo
 
 The five audit skills are `audit-maturity`, `audit-recon`, `audit-dimension-analysis`,
 `audit-scorecard-review` and `audit-synthesis`, with every path, the script, the command and the
-docs updated in commit `6c6187c`. The rubric hash stays `212cd4db08e1`, and a run after the rename
+docs updated in commit `fdbc357`. The rubric hash stays `212cd4db08e1`, and a run after the rename
 compares like-for-like with a run before it.

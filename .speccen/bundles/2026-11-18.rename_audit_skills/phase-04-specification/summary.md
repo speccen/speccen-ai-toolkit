@@ -119,7 +119,7 @@ Self-check: done — 1 correction (a scratch copy of the specification still cit
 | 5 | No invented scope | pass | the only new change is the ADR's; `README.md` unchanged per 06/18 | n/a — bundle-internal |
 
 Claims (iteration 2)
-- K-8 (row 1) · `6c6187c` is the only commit since `e824b5c` that touches paths outside `.speccen/`, so a fixup rebase replays only bundle commits after it · `git log --format=%h e824b5c..HEAD -- . ':(exclude).speccen'` · exactly `6c6187c` → run 1: confirmed
+- K-8 (row 1) · `6c6187c` (now `fdbc357`) is the only commit since `e824b5c` that touches paths outside `.speccen/`, so a fixup rebase replays only bundle commits after it · `git log --format=%h e824b5c..HEAD -- . ':(exclude).speccen'` · exactly `6c6187c` (at the time of run 1) → run 1: confirmed
 - K-9 (row 1) · the plan's anchor line exists as described · `sed -n 307p ARCHITECTURE.md` · `` | A specific phase's behaviour | that phase's `skills/sdd/NN-*/SKILL.md` | `` → run 1: confirmed
 
 Error-case run against the current code before the fix (09:19): T-8 and T-14 FAIL, T-12 PASS — the adjusted checks detect the missing fix.

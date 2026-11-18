@@ -55,6 +55,6 @@ Follow-ups outside this change (not store entries): `[DD-8 | ARCHITECTURE.md:307
 <a id="outcome"></a>
 ## Outcome
 
-The core workflow is complete. The rename is in commit `6c6187c`; the bundle, the feature node
+The core workflow is complete. The rename is in commit `fdbc357`; the bundle, the feature node
 and the graduated specification are committed with the close-out commit. The delegated decisions
 and the graduation proposal wait for the Architect's review round.

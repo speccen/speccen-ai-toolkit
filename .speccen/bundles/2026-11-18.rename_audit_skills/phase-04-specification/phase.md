@@ -317,21 +317,21 @@ delegation (autonomous); the scope comes from the ADR, not from the delegate.
 
 ### Plan changes
 
-#### Phase 5: Fix the stale sdd path and fold it into the code commit ⬜
+#### Phase 5: Fix the stale sdd path and fold it into the code commit ✅
 
 **Why:** The Architect's ADR puts the stale reading-guide path in scope, and 06/19 keeps the
 brief's "one commit". — source: [ADR 2026-11-18.architecture_reading_guide_sdd_path](../adrs/2026-11-18.architecture_reading_guide_sdd_path.md#decision); brief Delivery (log 07:58)
 
 ##### 5.1 Edit
-- [ ] `ARCHITECTURE.md:307` — replace `` `skills/sdd/NN-*/SKILL.md` `` with `` `skills/sdd/sdd-*/SKILL.md` ``; no other change; `README.md` unchanged (06/18)
+- [x] `ARCHITECTURE.md:307` — replace `` `skills/sdd/NN-*/SKILL.md` `` with `` `skills/sdd/sdd-*/SKILL.md` ``; no other change; `README.md` unchanged (06/18)
 
-##### 5.2 Fold into `6c6187c`
+##### 5.2 Fold into `6c6187c` (after the rebase: `fdbc357`)
 **Why:** 06/19 — the branch is unpushed, so a fixup rewrite is local and keeps one code commit.
-- [ ] `git commit --fixup=6c6187c -- ARCHITECTURE.md`
-- [ ] `GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash e824b5c` (no editor opens; the bundle commits replay unchanged; the code commit keeps its message)
+- [x] `git commit --fixup=6c6187c -- ARCHITECTURE.md`
+- [x] `GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash e824b5c` (no editor opens; the bundle commits replay unchanged; the code commit keeps its message)
 
 ##### 5.3 Build and Validate
-- [ ] full run of `files/phase-05-text-checks.py` with the adjusted checks: ALL PASS
+- [x] full run of `files/phase-05-text-checks.py` with the adjusted checks: ALL PASS
 
 ### Check changes
 
