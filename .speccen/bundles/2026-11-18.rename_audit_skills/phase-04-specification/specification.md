@@ -98,7 +98,7 @@ The bundle has no ADR. No standing decision in `.speccen/decisions/` governs ski
 | [DD-2](../delegated-decisions.md#dd-2), [DD-4](../delegated-decisions.md#dd-4) | One code commit with the brief's message and no trailer. Bundle commits are separate. |
 | [DD-3](../delegated-decisions.md#dd-3) | Push and pull request wait for the Architect. |
 | [DD-7](../delegated-decisions.md#dd-7) (material, unconfirmed) | The Verification 1 search gets `\b` after the `sdd-(…)` group, so `sdd-reconcile` does not match. |
-| [DD-8](../delegated-decisions.md#dd-8) | `ARCHITECTURE.md:304` keeps its stale sdd path. The path is a follow-up. |
+| [DD-8](../delegated-decisions.md#dd-8) | `ARCHITECTURE.md:307` keeps its stale sdd path. The path is a follow-up. |
 | [DD-9](../delegated-decisions.md#dd-9) | The four stage descriptions change only the governing skill name. |
 | [DD-10](../delegated-decisions.md#dd-10) | The README note says that the audit folders have new names. |
 | [DD-11](../delegated-decisions.md#dd-11), [DD-12](../delegated-decisions.md#dd-12) | The script check runs in the scratchpad. The checks live in `files/` of the bundle. |

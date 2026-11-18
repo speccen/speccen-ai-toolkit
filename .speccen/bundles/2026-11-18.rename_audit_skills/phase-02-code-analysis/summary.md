@@ -24,7 +24,7 @@ tightening → [full detail](./phase.md#outcome)
 **Open items carried forward:** → [detail](./phase.md#open-items)
 - `[O-3 | Test Plan: Verification 1 – 5 as scoped checks, with a dimensions fixture and the baseline hash 212cd4db08e1]` — Phase 04
 - `[O-4 | How is the Verification 1 search tightened so sdd-reconcile no longer matches?]` — Phase 03 (material)
-- `[O-5 | Leave or fix the stale ARCHITECTURE.md:304 skills/sdd/NN-* path?]` — Phase 03
+- `[O-5 | Leave or fix the stale ARCHITECTURE.md:307 skills/sdd/NN-* path?]` — Phase 03
 - `[O-6 | Replace app-maturity-audit in the four stage description lines?]` — Phase 03
 
 **Evolution-gap doc:** not generated — no structural evolution-blocker found; the rename slots into

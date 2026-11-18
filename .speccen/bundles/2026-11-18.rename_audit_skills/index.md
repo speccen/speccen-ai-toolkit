@@ -4,6 +4,12 @@ type: Index
 
 # rename audit skills — Analysis Bundle
 
+## Architecture Decision Records
+
+| ADR | Date | Status | Description |
+|---|---|---|---|
+| [2026-11-18.architecture_reading_guide_sdd_path](./adrs/2026-11-18.architecture_reading_guide_sdd_path.md) | 2026-11-18 | DECIDED | Fix the stale skills/sdd/NN-* path in ARCHITECTURE.md in this change, folded into the one code commit |
+
 ## Bundle Control
 
 | File | Type | Description |
@@ -33,8 +39,8 @@ type: Index
 
 | File | Type | Status | Description |
 |---|---|---|---|
-| [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | No ADR in scope; O-4 – O-6 decided under delegation (tighten Verification 1 with , leave ARCHITECTURE.md:304, rename the stage description lines); Definition of Ready met |
-| [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Definition of Ready met; no ADR in scope; O-4 – O-6 decided (DD-7 material, unconfirmed) |
+| [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | Iteration 2 — ADR 2026-11-18.architecture_reading_guide_sdd_path (overrides DD-8) processed; O-4 – O-6 decided under delegation (tighten Verification 1 with , leave ARCHITECTURE.md:307, rename the stage description lines); Definition of Ready met |
+| [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Iteration 2 — the DD-8 override ADR processed; Definition of Ready met; O-4 – O-6 decided (DD-7 material, unconfirmed) |
 
 ### Phase 04 — Specification
 

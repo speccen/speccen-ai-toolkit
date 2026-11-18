@@ -6,8 +6,8 @@ type: State
 
 | Field | Value |
 |---|---|
-| Current Phase | CLOSE-OUT PHASE |
-| Current Phase Folder | phase-06-close-out |
-| Phase Status | COMPLETE |
+| Current Phase | SPECIFICATION PHASE |
+| Current Phase Folder | phase-04-specification |
+| Phase Status | IN PROGRESS |
 | Last Updated | 2026-11-18 |
-| Pending Architect Action | Review the delegated decisions and decide the graduation proposal |
+| Pending Architect Action | none |

@@ -124,7 +124,7 @@ graduation-candidate: `build_scorecard.py` writes `scorecard.md` with the platfo
 | # | Item | Settles in |
 |---|---|---|
 | O-7 | `[DD-7 \| Tighten Verification 1 with \b after the sdd- group?]` — `MATERIAL — unconfirmed` | review round |
-| O-8 | `[DD-8 \| ARCHITECTURE.md:304 stale skills/sdd/NN-* path]` — follow-up | end-of-run report |
+| O-8 | `[DD-8 \| ARCHITECTURE.md:307 stale skills/sdd/NN-* path]` — follow-up | end-of-run report |
 | O-9 | `[DD-3 \| Push and PR wait for the Architect]` | end of run |
 | O-10 | `[Deviation 1 \| build_scorecard.py fails on Windows without UTF-8 mode]` — follow-up; graduation candidate | Phase 06 |
 

@@ -173,7 +173,7 @@ upgrade note" (O-4).
 file is tracked (`git ls-files | grep -i -E "changelog|release"` is empty), so there are no
 historic records outside `.speccen/` (O-2 closes: not applicable).
 
-Adjacent, not an audit name: `ARCHITECTURE.md:304` reads
+Adjacent, not an audit name: `ARCHITECTURE.md:307` reads
 `` | A specific phase's behaviour | that phase's `skills/sdd/NN-*/SKILL.md` | `` — a numbered sdd
 path left behind by `1c41496`. It is outside this brief's scope (O-5).
 
@@ -255,5 +255,5 @@ before it can pass (O-4).
 | O-2 | Historic records outside `.speccen/` — closed: none exist (group D). | — |
 | O-3 | Test Plan: Verification 1 – 5 as checks, run against the planned text and scoped to their place. Verification 4 needs a minimal `dimensions/` fixture for `build_scorecard.py` and compares with `212cd4db08e1`. | Phase 04 |
 | O-4 | Verification 1 matches `sdd-reconcile` (group C, 9 hits): how is the search tightened so it can give the brief's expected result? Material — it changes an acceptance check. | Phase 03 |
-| O-5 | `ARCHITECTURE.md:304` `skills/sdd/NN-*/SKILL.md` — a stale sdd path outside this brief: leave it, or fix it here? | Phase 03 |
+| O-5 | `ARCHITECTURE.md:307` `skills/sdd/NN-*/SKILL.md` — a stale sdd path outside this brief: leave it, or fix it here? | Phase 03 |
 | O-6 | The four stage `description:` lines (group B): replace `app-maturity-audit` with `audit-maturity`, wording otherwise unchanged? | Phase 03 |

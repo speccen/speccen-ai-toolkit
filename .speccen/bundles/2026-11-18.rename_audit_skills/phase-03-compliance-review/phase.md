@@ -2,7 +2,7 @@
 type: Phase
 phase: "03 — Compliance & Review"
 status: COMPLETE
-description: No ADR in scope; O-4 – O-6 decided under delegation (tighten Verification 1 with \b, leave ARCHITECTURE.md:304, rename the stage description lines); Definition of Ready met
+description: Iteration 2 — ADR 2026-11-18.architecture_reading_guide_sdd_path (overrides DD-8) processed; O-4 – O-6 decided under delegation (tighten Verification 1 with \b, leave ARCHITECTURE.md:307, rename the stage description lines); Definition of Ready met
 ---
 
 <a id="phase-top"></a>
@@ -17,9 +17,9 @@ description: No ADR in scope; O-4 – O-6 decided under delegation (tighten Veri
 
 | ADR | Tier | Status | Decision | Compliance |
 |---|---|---|---|---|
-| — | — | — | No ADRs in scope yet | — |
+| [2026-11-18.architecture_reading_guide_sdd_path](../adrs/2026-11-18.architecture_reading_guide_sdd_path.md#decision) | bundle | DECIDED | Fix the stale skills/sdd/NN-* path in ARCHITECTURE.md in this change, folded into the one code commit | compliant |
 
-The bundle's `adrs/` is empty. The nine standing decisions in `.speccen/decisions/` govern the
+The bundle holds one ADR, scribed in the review round (iteration 2). The nine standing decisions in `.speccen/decisions/` govern the
 workflow's own mechanics (search units, fix budget, self-check items, subjects, record repairs);
 none constrains skill folder names, skill paths or the audit scripts, so none is in scope and
 no override arises.
@@ -55,6 +55,24 @@ No ADR to process. The open items carried from Phases 01 and 02 were put through
 32 hits, none of them `sdd-reconcile` — the 41 of Phase 02 minus the 9 of group C. GNU grep 3.0
 on this host supports `\b` in `-E`.
 
+### Iteration 2 — ADR `2026-11-18.architecture_reading_guide_sdd_path`
+
+Entered by the ADR Protocol after the review round (log 08:46, 09:15). The ADR overrides
+[DD-8](../delegated-decisions.md#dd-8) (now `OVERRIDDEN`): the stale path in the reading guide is
+fixed in this change.
+
+| Item | Analysis update |
+|---|---|
+| Place | `ARCHITECTURE.md:307` — `` | A specific phase's behaviour | that phase's `skills/sdd/NN-*/SKILL.md` | `` (at `e824b5c` and at `6c6187c`). Earlier bundle files cited it as `:304`; corrected. |
+| Target text | `` that phase's `skills/sdd/sdd-*/SKILL.md` `` — every sdd skill folder is `sdd-<role>` (`ls skills/sdd/`, 11 folders). |
+| README | 06/18: no change. No stale sdd skill path exists in `README.md` (every cited `skills/…` path resolves; the `0N-*` names are the upgrade note's intended list; `phase-0N-*` are bundle folders). |
+| Commit | 06/19: the fix is folded into `6c6187c` with the same message (fixup + autosquash rebase of the unpushed branch); "one commit" and T-11 still hold. |
+| Effect on DD-7 / Verification 1 | none — `NN-*` is not matched by the search |
+| Phase 02 | the restatement inventory's "Adjacent" note and O-5 now read as in scope (by the ADR) |
+| Phase 04 | plan step 3.2 and checks T-8, T-10 change; a check T-14 is added (Phase 04 addendum) |
+
+Definition of Ready re-evaluated below: met.
+
 <a id="interview"></a>
 ## Interview
 
@@ -67,7 +85,7 @@ independent: one round.
 | # | Question | Depends on | Proposed | Answer |
 |---|---|---|---|---|
 | 03/1 | Verification 1 — tighten the brief's search by appending `\b` to the `sdd-(…)` group, so `sdd-reconcile` no longer matches, and keep the expected result "matches only in the README upgrade note"? Options: `\b` after the group; a trailing `/`; filtering with `grep -v sdd-reconcile`. | — | `\b` after the `sdd-(…)` group | delegate: `\b` after the group — basis: brief Verification 1 expected result and Invariant "No content changes … beyond path and name references" (log 07:58); Phase 02 group C (9 `sdd-reconcile` hits); the check above (32 hits, 0 `reconcile`) — [DD-7](../delegated-decisions.md#dd-7), `MATERIAL — unconfirmed` (changes an acceptance check; taken under `stops: proceed`) |
-| 03/2 | `ARCHITECTURE.md:304` — leave the stale `skills/sdd/NN-*/SKILL.md` path as it is, and name it in the end-of-run report as a follow-up? | — | leave; report | delegate: leave; report — basis: brief "keep this commit a pure rename" and Goal limited to `skills/audit/` (log 07:58) — [DD-8](../delegated-decisions.md#dd-8) |
+| 03/2 | `ARCHITECTURE.md:307` *(DD-8 later OVERRIDDEN by the Architect — iteration 2)* — leave the stale `skills/sdd/NN-*/SKILL.md` path as it is, and name it in the end-of-run report as a follow-up? | — | leave; report | delegate: leave; report — basis: brief "keep this commit a pure rename" and Goal limited to `skills/audit/` (log 07:58) — [DD-8](../delegated-decisions.md#dd-8) |
 | 03/3 | Stage `description:` lines — in the four stage skills, replace `app-maturity-audit` with `audit-maturity` and change no other word? | — | yes | delegate: yes — basis: brief Required change 8 and Invariant "No content changes to the skills beyond path and name references" (log 07:58); Phase 02 group B — [DD-9](../delegated-decisions.md#dd-9) |
 
 No question was answered "later"; no placeholder ADR is needed.
@@ -87,7 +105,7 @@ No question was answered "later"; no placeholder ADR is needed.
 
 | # | Criterion | Met | Evidence |
 |---|---|---|---|
-| 1 | Every ADR file has a compliance response | yes — vacuous | `adrs/` is empty |
+| 1 | Every ADR file has a compliance response | yes | [the ADR](../adrs/2026-11-18.architecture_reading_guide_sdd_path.md) — Compliance 2026-11-18 (iteration 2) |
 | 2 | All open questions from Phases 01 and 02 resolved or escalated | yes | Compliance Iterations table: O-1, O-2 resolved; O-4 – O-6 decided; O-3 carried to Phase 04 |
 | 3 | Project Conventions Confirmation complete | yes | [Phase 02 conventions](../phase-02-code-analysis/phase.md#conventions) |
 | 4 | Domain understanding sufficient for the plan | yes | Phase 02 restatement inventory lists every place to change (groups A, B) |

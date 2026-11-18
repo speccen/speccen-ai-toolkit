@@ -41,7 +41,7 @@ discretionary was written to `.speccen/`.
 | 06/3 | `[06/3 \| A rename check must not match a longer real name — end the pattern with \b]` | lesson | [DD-7](../delegated-decisions.md#dd-7); 9 `sdd-reconcile` false hits | keep local — the general rule is already in lesson `2026-11-11.text_checks_read_their_place` |
 | 06/4 | `[06/4 \| Find a README block by its first line, not by a line number]` | note | Phase 04 verifier slip (K-7, line 129 blank) | keep local — a one-off citation slip |
 
-Follow-ups outside this change (not store entries): `[DD-8 | ARCHITECTURE.md:304 stale skills/sdd/NN-* path]`; the stale counts named in the brief's Out of scope.
+Follow-ups outside this change (not store entries): `[DD-8 | ARCHITECTURE.md:307 stale skills/sdd/NN-* path]`; the stale counts named in the brief's Out of scope.
 
 <a id="open-items"></a>
 ## Open Items

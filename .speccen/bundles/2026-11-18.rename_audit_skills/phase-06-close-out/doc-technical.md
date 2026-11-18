@@ -27,7 +27,7 @@ description: Five audit skill folders renamed to audit-<role> with git mv; nine 
 | `skills/audit/audit-synthesis/SKILL.md` | The `description:` names `audit-maturity`. One path uses the new folder. |
 | `skills/audit/audit-scorecard-review/scripts/compare_scorecards.py` | Lines 33 – 34 join `"audit-dimension-analysis"` and `"audit-scorecard-review"` onto `SKILLS_ROOT`. |
 | `commands/audit.md` | Loads `audit-maturity` from `skills/audit/audit-maturity/SKILL.md`. The command name stays `audit`. |
-| `ARCHITECTURE.md` | Line 278 names `audit-maturity` … `audit-synthesis`. Line 315 uses the new path. Line 304 is not changed (DD-8). |
+| `ARCHITECTURE.md` | Line 278 names `audit-maturity` … `audit-synthesis`. Line 315 uses the new path. Line 307 is not changed (DD-8). |
 | `README.md` | The audit table names the new folders. The upgrade note lists the five old audit folders for removal and says that the audit folders have new names. |
 
 ## Files Deleted

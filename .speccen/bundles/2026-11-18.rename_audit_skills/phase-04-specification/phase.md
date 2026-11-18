@@ -210,7 +210,7 @@ Required changes 5 – 7 (log 07:58); DD-10
       `skills/audit/audit-maturity/SKILL.md`); the file keeps its name and every other line
 
 ##### 3.2 ARCHITECTURE
-- [x] `ARCHITECTURE.md` :278, :315 — apply the map; `:304` stays as it is (DD-8)
+- [x] `ARCHITECTURE.md` :278, :315 — apply the map; `:307` stays as it is (DD-8)
 
 ##### 3.3 README
 - [x] `README.md:53-57` — apply the map and the README-table map
@@ -319,5 +319,5 @@ README note as one block, verified by T-1 – T-13 and committed once with the b
 | # | Item | Settles in |
 |---|---|---|
 | O-7 | `[DD-7 \| Tighten Verification 1 with \b after the sdd- group?]` — `MATERIAL — unconfirmed` | review round |
-| O-8 | `[DD-8 \| ARCHITECTURE.md:304 stale skills/sdd/NN-* path]` — a follow-up outside this change | end-of-run report |
+| O-8 | `[DD-8 \| ARCHITECTURE.md:307 stale skills/sdd/NN-* path]` — a follow-up outside this change | end-of-run report |
 | O-9 | Push and PR wait for the Architect (DD-3) | end of run |

@@ -29,7 +29,7 @@ commit → [full detail](./phase.md#implementation-plan)
 
 **Open items carried forward:** → [detail](./phase.md#open-items)
 - `[DD-7 | Tighten Verification 1 with \b after the sdd- group?]` — `MATERIAL — unconfirmed`, review round
-- `[DD-8 | ARCHITECTURE.md:304 stale skills/sdd/NN-* path]` — follow-up, end-of-run report
+- `[DD-8 | ARCHITECTURE.md:307 stale skills/sdd/NN-* path]` — follow-up, end-of-run report
 - `[DD-3 | Push and PR wait for the Architect]` — end of run
 
 **Delegated decisions:** 3 in this phase (`DD-10` – `DD-12`, all `not material`), 12 in total → [delegated-decisions.md](../delegated-decisions.md)

@@ -6,6 +6,16 @@ type: Log
 
 ## 2026-11-18
 
+- **09:20 — COMPLIANCE & REVIEW → SPECIFICATION** — iteration 2: delegate gate check passed in verifier run 1 (K-2, K-3 confirmed) ([summary](./phase-03-compliance-review/summary.md#delegate-gate-check-iteration-2)) · mode: autonomous (bundle config) · extensions: none
+- **09:16 — COMPLIANCE & REVIEW** — review round recorded: 06/1, 06/2 promote (written at the Phase 06 revisit); 06/3, 06/4 keep local; DD-1 – DD-7, DD-9 – DD-13 ADOPTED (06/5 – 06/11, 06/13 – 06/17)
+- **09:16 — COMPLIANCE & REVIEW** — other 16 is 'yes' *(read as: every proposed answer of 06/1 – 06/11 and 06/13 – 06/17 — 06/1 promote, 06/2 promote, 06/3 keep local, 06/4 keep local, 06/5 – 06/11 and 06/13 – 06/17 adopt DD-7, DD-1 – DD-6, DD-9 – DD-13)*
+- **09:16 — COMPLIANCE & REVIEW** — ADR Protocol: ADR `2026-11-18.architecture_reading_guide_sdd_path` scribed on request (06/20) from the Architect's words (08:46, 09:15); STATE: ADR added — iteration required; Phase 03 re-entered · mode: autonomous (bundle config)
+- **09:15 — CLOSE-OUT** — proceed *(read as: yes to 06/18 — only `ARCHITECTURE.md:307`; yes to 06/19 — fold into `6c6187c`, same message; yes to 06/20 — record the ADR. 06/1 – 06/11 and 06/13 – 06/17 not answered: they stay open)*
+- **08:49 — CLOSE-OUT** — review round: 06/12 answered — DD-8 OVERRIDDEN (Architect's words above); 06/1 – 06/11, 06/13 – 06/17 still open. Citation correction: the stale sdd path is `ARCHITECTURE.md:307` (also at `e824b5c`), not `:304`; corrected in every bundle and feature-node file. README holds no stale sdd skill path (the only `0N-*` names are the upgrade note's intended list; `phase-0N-*` are bundle folders)
+- **08:46 — CLOSE-OUT** — dd-8 update both readme and architecture md's
+- **08:43 — CLOSE-OUT** — present as table
+- **08:41 — CLOSE-OUT** — review round put to the Architect: 06/1 – 06/4 (graduation candidates), 06/5 – 06/17 (DD-7 material first, then DD-1 – DD-6, DD-8 – DD-13)
+- **08:41 — CLOSE-OUT** — review round
 - **08:26 — CLOSE-OUT** — core workflow complete; graduation proposal 06/1 – 06/4 pending the Architect; STATE: Review the delegated decisions and decide the graduation proposal
 - **08:25 — CLOSE-OUT** — seeds written (executive, business, technical); feature node `features/2026-11-18.rename_audit_skills/` with the specification (links repointed into the bundle); store index and timeline updated; no override, no discretionary entry written
 - **08:22 — CLOSE-OUT** — phase started by the autonomous transition (no Architect prompt); no extensions; all 27 checklist items ticked

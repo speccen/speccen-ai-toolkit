@@ -22,7 +22,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Verification 1 (`--exclude-dir=.speccen`) and Invariant ".speccen/ history" ([log.md](./log.md), 07:58). |
 | **Alternatives** | update old audit paths in durable store entries |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-2"></a>
 ## DD-2 — "One commit" means one code commit
@@ -37,7 +37,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Delivery ([log.md](./log.md), 07:58); governing skill, Phase Transition Protocol step 6. |
 | **Alternatives** | squash the bundle into the code commit; keep the bundle on another branch |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-3"></a>
 ## DD-3 — Push and PR wait for the Architect's go
@@ -52,7 +52,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Governing skill, stop condition 7 (external side effects); brief, Delivery ([log.md](./log.md), 07:58) names the PR but not when. |
 | **Alternatives** | push and open the PR at the end of Phase 05 |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-4"></a>
 ## DD-4 — Commit message verbatim, no attribution
@@ -67,7 +67,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Delivery ([log.md](./log.md), 07:58); governing skill, Invariant 6. |
 | **Alternatives** | a message written in the run |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-5"></a>
 ## DD-5 — Reach: every restatement of an old name (working hypothesis)
@@ -82,7 +82,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Required change 8 ([log.md](./log.md), 07:58); lesson `2026-11-05.readme_restates_config_template`. |
 | **Alternatives** | only the places the brief lists |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-6"></a>
 ## DD-6 — Hash baseline at `e824b5c` (working hypothesis)
@@ -97,7 +97,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Verification 4 ([log.md](./log.md), 07:58). |
 | **Alternatives** | a hash computed on the branch before Phase 05 |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-7"></a>
 ## DD-7 — Verification 1: append `\b` to the `sdd-(…)` group
@@ -112,22 +112,22 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Verification 1 expected result ([log.md](./log.md), 07:58); Phase 02 restatement inventory group C (9 `sdd-reconcile` hits); the HEAD check in [phase-03 Compliance Iterations](./phase-03-compliance-review/phase.md#compliance). |
 | **Alternatives** | a trailing `/` after the group (misses a bare `sdd-recon` without a slash); `\| grep -v sdd-reconcile` (hides any line that holds both) |
 | **Materiality** | MATERIAL — unconfirmed (changes an acceptance check; taken under `stops: proceed`) |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-8"></a>
-## DD-8 — Leave the stale `ARCHITECTURE.md:304` sdd path
+## DD-8 — Leave the stale `ARCHITECTURE.md:307` sdd path
 
 |     | Info |
 | --- | --- |
 | **Phase** | COMPLIANCE & REVIEW PHASE |
 | **When** | 2026-11-18 07:07 UTC |
-| **Question** | Leave `ARCHITECTURE.md:304` (`skills/sdd/NN-*/SKILL.md`) as it is and name it in the end-of-run report as a follow-up? |
+| **Question** | Leave `ARCHITECTURE.md:307` (`skills/sdd/NN-*/SKILL.md`) as it is and name it in the end-of-run report as a follow-up? |
 | **Interview question** | [`03/2`](./phase-03-compliance-review/phase.md#interview) |
 | **Decision** | Decided under delegation (autonomous): leave it; report it as a follow-up. |
 | **Basis** | Brief, "keep this commit a pure rename" and Goal limited to `skills/audit/` ([log.md](./log.md), 07:58). |
 | **Alternatives** | fix it in this commit |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | OVERRIDDEN — the Architect, review round 06/12 (log 2026-11-18 08:46): "dd-8 update both readme and architecture md's". Override ADR and Phase 03 re-entry pending (ADR Protocol). |
 
 <a id="dd-9"></a>
 ## DD-9 — Stage `description:` lines: name only
@@ -142,7 +142,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Required change 8 and Invariant "No content changes to the skills beyond path and name references" ([log.md](./log.md), 07:58); Phase 02 restatement inventory group B. |
 | **Alternatives** | leave the descriptions (Verification 1 would then fail) |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-10"></a>
 ## DD-10 — README upgrade note names the audit rename
@@ -157,7 +157,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Goal "Use `1c41496` as the model for scope and style" ([log.md](./log.md), 07:58); the `1c41496` note names the renamed folders. |
 | **Alternatives** | only the two named edits, leaving "from before the `sdd-` prefix" as the note's opening |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-11"></a>
 ## DD-11 — Verification 4 on a synthetic run in the scratchpad
@@ -172,7 +172,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Verification 4 ([log.md](./log.md), 07:58); Phase 02 baseline `212cd4db08e1`. |
 | **Alternatives** | a run under `.speccen/audits/` of this repository |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-12"></a>
 ## DD-12 — Checks in `files/phase-05-text-checks.py`
@@ -187,7 +187,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | DD-2; earlier bundles keep their checks in `files/`. |
 | **Alternatives** | run the checks inline only, with no script kept |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |
 
 <a id="dd-13"></a>
 ## DD-13 — Deviation 1: run T-4 in Python UTF-8 mode
@@ -202,4 +202,4 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Basis** | Brief, Invariant "Do **not** edit … `build_scorecard.py` (not even its docstring)" ([log.md](./log.md), 07:58); T-6 (the scorer is byte-identical to `e824b5c`). |
 | **Alternatives** | fix `build_scorecard.py` here (breaks the hash invariant); stop and ask |
 | **Materiality** | not material |
-| **Status** | DELEGATED |
+| **Status** | ADOPTED — the Architect, review round (log 2026-11-18 09:16, "other 16 is 'yes'") |

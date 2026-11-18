@@ -26,7 +26,7 @@ and its mutation warns. No test waived. → [detail](./phase.md#implementation-s
 
 **Open items carried forward:** → [detail](./phase.md#open-items)
 - `[DD-7 | Tighten Verification 1 with \b after the sdd- group?]` — review round
-- `[DD-8 | ARCHITECTURE.md:304 stale skills/sdd/NN-* path]` — follow-up
+- `[DD-8 | ARCHITECTURE.md:307 stale skills/sdd/NN-* path]` — follow-up
 - `[DD-3 | Push and PR wait for the Architect]` — end of run
 - `[Deviation 1 | build_scorecard.py encoding defect]` — follow-up, graduation candidate
 
