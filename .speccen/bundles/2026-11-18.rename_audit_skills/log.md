@@ -1,0 +1,150 @@
+---
+type: Log
+---
+
+# Workflow History
+
+## 2026-11-18
+
+- **08:02 — FEATURE ANALYSIS → CODE ANALYSIS** — delegate gate check passed ([summary](./phase-01-feature-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
+- **08:00 — FEATURE ANALYSIS** — interview round 1 (01/1 – 01/6) answered by the delegate from the brief: DD-1 – DD-4 decided, 01/5 – 01/6 recorded as working hypotheses H-3, H-4 (DD-5, DD-6); all `not material`
+- **07:59 — FEATURE ANALYSIS** — bundle created at `.speccen/bundles/2026-11-18.rename_audit_skills/` on branch `refactor/audit-prefixed-skill-names` (created from `main` at `e824b5c`, as the brief's Delivery names); project config is current (version 3, no keys added); no extensions (`.speccen/extensions/` does not exist) · mode: autonomous (bundle config); stops: proceed (project config)
+- **07:58 — FEATURE ANALYSIS** — specifications (brief, pasted in chat — recorded verbatim):
+
+  ````markdown
+  # Refactor: prefix the audit skills with `audit-` and drop the folder numbers
+
+  ## Context
+
+  Commit `1c41496` ("refactor: prefix the sdd skills with sdd- and drop the folder numbers")
+  renamed the eleven skills in `skills/sdd/` so that each folder name equals its frontmatter
+  `name:` and carries the `sdd-` prefix. `skills/code/` already follows that rule
+  (`code-documentation`, `code-review`). `skills/audit/` was out of scope and is now the only
+  group that breaks it:
+
+  | Folder (now) | Frontmatter `name:` (now) |
+  |---|---|
+  | `skills/audit/00-governing-audit/` | `app-maturity-audit` |
+  | `skills/audit/01-recon/` | `audit-recon` |
+  | `skills/audit/02-dimension-analysis/` | `audit-dimension-analysis` |
+  | `skills/audit/03-scorecard-review/` | `audit-scorecard-review` |
+  | `skills/audit/04-synthesis/` | `audit-synthesis` |
+
+  `app-maturity-audit` is a leftover of the verbatim import from the standalone plugin
+  (`6e9f5ad`). The rename in `1c41496` also wrongly rewrote the audit table in `README.md:53-57`
+  to `sdd-governing-audit/`, `sdd-recon/` … — folders that do not exist.
+
+  ## Goal
+
+  Apply the `1c41496` convention to `skills/audit/`: **folder name = frontmatter `name:` =
+  `audit-<role>`**, no numeric prefixes. Use `1c41496` as the model for scope and style.
+
+  ## Target names
+
+  | From | To (folder and `name:`) |
+  |---|---|
+  | `00-governing-audit/` · `app-maturity-audit` | `audit-maturity/` · `audit-maturity` |
+  | `01-recon/` · `audit-recon` | `audit-recon/` · `audit-recon` |
+  | `02-dimension-analysis/` · `audit-dimension-analysis` | `audit-dimension-analysis/` · `audit-dimension-analysis` |
+  | `03-scorecard-review/` · `audit-scorecard-review` | `audit-scorecard-review/` · `audit-scorecard-review` |
+  | `04-synthesis/` · `audit-synthesis` | `audit-synthesis/` · `audit-synthesis` |
+
+  Only the governing skill changes its `name:`; the four stage skills already carry the target
+  name and only their folder moves.
+
+  ## Required changes
+
+  1. **Move the folders with `git mv`** (keep history; `references/` and `scripts/` move with
+     their skill).
+  2. **Frontmatter:** `skills/audit/audit-maturity/SKILL.md` → `name: audit-maturity`. Keep its
+     `description` unchanged — it carries the trigger phrases.
+  3. **Skill path references** — replace every `skills/audit/0N-*` path:
+     - `audit-maturity/SKILL.md` — the dimension rubric path (:53), the stage → skill map
+       (:90-93), the new-audit step (:129)
+     - `audit-recon/SKILL.md` — :9, :23, :66
+     - `audit-dimension-analysis/SKILL.md` — :9, :68
+     - `audit-scorecard-review/SKILL.md` — :14, :33, :85
+     - `audit-synthesis/SKILL.md` — :12
+  4. **Script (runtime-critical):** `audit-scorecard-review/scripts/compare_scorecards.py:33-34`
+     builds paths from `SKILLS_ROOT / "02-dimension-analysis"` and `"03-scorecard-review"`.
+     Update both. A missed edit here makes `stamp`/`compare` silently hash no rubrics — a text
+     search over `SKILL.md` files will not catch it.
+  5. **Command:** `commands/audit.md:9-10` — skill name `app-maturity-audit` → `audit-maturity`,
+     path → `skills/audit/audit-maturity/SKILL.md`.
+  6. **Architecture:** `ARCHITECTURE.md:278` (`00-governing-audit` … `04-synthesis` →
+     `audit-maturity` … `audit-synthesis`) and `:315` (governing skill path).
+  7. **README:**
+     - `README.md:53-57` — fix the audit table to the real new folders; the Skill column for the
+       governing skill shows `audit-maturity`.
+     - `README.md:117-136` — the install/upgrade note: add the five old audit folders
+       (`00-governing-audit/`, `01-recon/`, `02-dimension-analysis/`, `03-scorecard-review/`,
+       `04-synthesis/`) to the "remove before you copy" list, and drop the sentence "Keep the
+       audit folders (…)".
+  8. **Any other reference** to `app-maturity-audit` or to an old audit folder outside
+     `.speccen/` (re-grep; see Verification).
+
+  ## Invariants — must not change
+
+  - **Rubric hash comparability.** `rubric_hash()` hashes file *names* and *contents* only, not
+    directories. Do **not** edit any file under `audit-dimension-analysis/references/` or
+    `build_scorecard.py` (not even its docstring) — that would change the hash and flag every
+    later run "not like-for-like" against earlier ones.
+  - **Audit run layout and ids.** `.speccen/audits/<id>/`, `YYYY-MM-DD.baseline`, the bundle
+    conventions, stage names (`RECON`, `SCORING`, …), `STATE.md` values, and the dimension keys.
+  - **`.speccen/` history.** Do not rewrite old paths in `.speccen/bundles/**` (e.g.
+    `2026-11-13.*/phase-02-code-analysis/phase.md`) — they are records, as in `1c41496`.
+  - **The `/speccen:audit` command name** and its behaviour. `commands/audit.md` already exists
+    and stays as is (not renamed to `start-audit`); only its target skill changes to
+    `audit-maturity` (step 5).
+  - **No content changes** to the skills beyond path and name references.
+
+  ## Out of scope (separate change)
+
+  The stale counts found in the same review — "ten dimensions" (eleven), "three signals" (four:
+  the TCO signature), the scorecard-review description of the legacy cluster without
+  adaptability, and the governing skill's reference to a non-existent "Weight column". Do not
+  fix these here; keep this commit a pure rename.
+
+  ## Verification
+
+  1. No old names remain outside `.speccen/` and `.git/`:
+     ```bash
+     grep -rnE "0[0-4]-(governing-audit|recon|dimension-analysis|scorecard-review|synthesis)|app-maturity-audit|sdd-(governing-audit|recon|dimension-analysis|scorecard-review|synthesis)" \
+       --exclude-dir=.git --exclude-dir=.speccen .
+     ```
+     → matches only in the README upgrade note, which lists the old folders on purpose.
+  2. Every skill folder name equals its frontmatter name:
+     ```bash
+     for f in skills/*/*/SKILL.md; do d=$(basename "$(dirname "$f")"); n=$(sed -n 's/^name: //p' "$f"); [ "$d" = "$n" ] || echo "MISMATCH $f: $n"; done
+     ```
+     → no output.
+  3. Every `skills/audit/...` path cited in a markdown file exists on disk.
+  4. Scripts run end to end on a throwaway run (in a temp dir, not committed):
+     `compare_scorecards.py stamp`, `build_scorecard.py`, `compare_scorecards.py compare`.
+     The `rubric_hash` in `run.json` equals the hash computed on `main` before the rename.
+  5. `git diff -M --stat` shows the five folders as renames (R100 for unchanged files).
+
+  ## Delivery
+
+  - Branch `refactor/audit-prefixed-skill-names` from `main`; one commit; PR to `main`.
+  - Commit message, mirroring `1c41496`:
+
+    ```
+    refactor: prefix the audit skills with audit- and drop the folder numbers
+
+    Rename the five skills in skills/audit/ so the folder and the frontmatter
+    name are the same and carry the audit- prefix (00-governing-audit ->
+    audit-maturity, 01-recon -> audit-recon, ... 04-synthesis ->
+    audit-synthesis). The governing skill's name changes from
+    app-maturity-audit to audit-maturity. Update every skill path, the
+    compare_scorecards.py rubric paths, the /speccen:audit command and the
+    README audit table (which the sdd rename had pointed at non-existent
+    sdd-* folders). Rubric contents, the rubric hash, audit run layout and
+    the .speccen/ history are unchanged.
+    ```
+  - Do not bump the version by hand (CI does it).
+  ````
+
+- **07:57 — FEATURE ANALYSIS** — refactor name: rename audit skills
+- **07:56 — SESSION START** — session-start answers: "Which prefix should the bundle id use?"="2026-11-18 (Recommended)", "What is the name of the feature, refactoring, fix or idea? To resume an existing bundle, type its name."="I'll type it", "What kind of work is this (first guess — Phase 01 settles it)?"="refactoring", "Which workflow mode should this bundle run in?"="autonomous (Recommended)"
+- **07:55 — SESSION START** — /speccen:start
