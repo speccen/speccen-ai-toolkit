@@ -6,12 +6,9 @@ description: the Specification Phase of speccen. Use when producing a detailed, 
 # speccen — Specification Skill
 ## SPECIFICATION PHASE
 
-> File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
-> Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
-> `description` (governing skill → `index.md` → When it is regenerated).
-> Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
-> `doc-*.md` and ADR files do not. For this phase,
+> Paths, frontmatter, anchors, the navigation bar and `index.md` regeneration follow the governing
+> skill (`skills/sdd/sdd-governing-workflow/SKILL.md` → **Bundle & File Naming Conventions**, **`index.md`**).
+> For this phase,
 > `{{PHASE_DIR}}` = `{{FOLDER_NAME}}/phase-04-specification`, so
 > `{{PHASE_FILE}}` = `{{PHASE_DIR}}/phase.md` and `{{SUMMARY_FILE}}` = `{{PHASE_DIR}}/summary.md`.
 
@@ -419,7 +416,7 @@ to paper over.
 
 The specification is **cleanly linked**: it carries the `[Index]` nav bar, internal anchors,
 and bundle-relative links, the same as every bundle document. At close-out it graduates to the
-feature node and cross-links with the reference (see Phase 06 and the Graph model).
+feature node and cross-links with the reference (see Phase 06 and `skills/sdd/sdd-governing-workflow/references/durable-store-entries.md` → Graph model).
 
 ### Step 8 — Write the summary file
 
@@ -478,27 +475,8 @@ Update `{{FOLDER_NAME}}/STATE.md`:
 **`gated`** — Steps 9 and 10 apply as written: the Architect reviews the plan and the
 specification and signals go for Phase 05.
 
-**`autonomous`** — Steps 1–8 are unchanged. The delegate approves the Implementation Plan and
-the Test Plan as part of the gate test (a recorded decision; waiving a test is never delegated)
-and replaces Steps 9 and 10 with:
-
-- Run the Quality Criteria below item by item with cited evidence.
-- **Traceability check.** Write a table under `## Delegate gate check`: every requirement stated
-  in the Architect's prompts (`log.md`) and every ADR, the acceptance scenario(s) that cover it,
-  and the Test Plan entries that test those scenarios. A requirement or ADR with no scenario
-  fails. A scenario with no test fails. A specification item with no source — Phase 01 intent,
-  a Phase 03 decision or an ADR — is invented scope and fails. Each implementation phase's
-  **Why** must cite such a source too, or the phase fails.
-- **Material choices.** Work through them with the interview. A contract, data-model,
-  persistence, security, dependency or plan-structure choice that the basis does not determine
-  goes to the Architect in one stop round, with your proposed answer.
-- A passed gate test is the go for Phase 05. It freezes the specification and the intent seeds,
-  exactly as closing Phase 04 does today. Send no Step 10 message.
-- **Verifier claims.** The plan's anchors in the existing code: every file, symbol and integration
-  point the plan changes or extends exists as described. At most one claim per plan step that
-  touches existing code. The traceability rows stay with the self-check
-  (governing skill → Gate test).
-- Decision basis, stop conditions and records: **Autonomous Execution** in the governing skill.
+**`autonomous`** — before the phase starts, read [`references/autonomous.md`](references/autonomous.md)
+(`skills/sdd/sdd-specification/references/autonomous.md`) and follow it. It holds every change this phase makes in `autonomous` mode. In `gated` mode, do not read it.
 
 ---
 

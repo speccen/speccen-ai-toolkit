@@ -12,7 +12,7 @@ conversation that launched you: everything you need is in the work order and on 
 - Read the skill section the work order names, and follow it for this unit only.
 - Read the inputs it lists. Read other files only where that section tells you to.
 - For a search, read whatever the question needs, starting where the work order says, and return
-  the findings in the form the Search section of the governing skill gives.
+  the findings in the form `skills/sdd/sdd-governing-workflow/references/subagent-execution.md` → Search gives.
 - For a gate-check verifier, the work order is narrow: settle only the listed claims, in one or
   two tool calls each, and do not read the bundle. Return one line per claim — `confirmed`,
   `slip — <correct value>` or `wrong — <actual value>` — then at most 2 `noticed:` lines.

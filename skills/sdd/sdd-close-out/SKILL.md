@@ -6,12 +6,9 @@ description: the Close-out Phase of speccen. Use after an implementation is acce
 # speccen — Close-out Skill
 ## CLOSE-OUT PHASE
 
-> File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
-> Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
-> `description` (governing skill → `index.md` → When it is regenerated).
-> Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
-> `doc-*.md` and ADR files do not. For this phase,
+> Paths, frontmatter, anchors, the navigation bar and `index.md` regeneration follow the governing
+> skill (`skills/sdd/sdd-governing-workflow/SKILL.md` → **Bundle & File Naming Conventions**, **`index.md`**).
+> For this phase,
 > `{{PHASE_DIR}}` = `{{FOLDER_NAME}}/phase-06-close-out`, so
 > `{{PHASE_FILE}}` = `{{PHASE_DIR}}/phase.md` and `{{SUMMARY_FILE}}` = `{{PHASE_DIR}}/summary.md`.
 
@@ -85,7 +82,7 @@ Append the Phase 06 initiating prompt to `log.md`, verbatim.
 Verify every checklist item in the Implementation Plan is correctly ticked.
 Any item that was not executed must be explicitly noted as `[SKIPPED — reason]`.
 
-*Steps 3–5 may run as three subagent units in parallel (governing skill → Subagent Execution).
+*Steps 3–5 may run as three subagent units in parallel (`skills/sdd/sdd-governing-workflow/references/subagent-execution.md`).
 Step 6 onwards stays in the main session.*
 
 ### Step 3 — Generate the technical document (`doc-technical.md`)
@@ -228,7 +225,8 @@ promise-vs-outcome comparison explicit for each audience.
 ### Step 6 — Graduate durable knowledge to the project store
 
 Close-out is the single point where bundle knowledge graduates to the durable store
-`.speccen/` (see the Durable Store section of the governing skill). By now
+`.speccen/`. **Before this step, read** `skills/sdd/sdd-governing-workflow/references/durable-store.md` and
+`skills/sdd/sdd-governing-workflow/references/durable-store-entries.md`. By now
 every relevant fact is final — decisions, ADRs, what was implemented, deviations, lessons —
 so this is the honest moment to decide what persists beyond the bundle.
 
@@ -256,7 +254,7 @@ Phase 03, and the lessons of rejected Phase 03 prototypes.
 
 *In `autonomous` mode path 2 is not put to anyone — see **Mode behaviour**.*
 
-**Write graduated entries** following the Durable Store entry format exactly: correct `kind`
+**Write graduated entries** following the entry format (`skills/sdd/sdd-governing-workflow/references/durable-store-entries.md` → Entry format) exactly: correct `kind`
 (decision / lesson / note), `evidence`, `weight`, UTC `created`/`updated`, `origin:
 <this-bundle-ref>, graduated <UTC>`, the `[Index]` nav bar, and relationship links. Preserve
 the originating id where one exists. Obey all six entry rules — above all, never invent a
@@ -264,7 +262,7 @@ rationale, and never file anything the Architect has not approved (overrides exc
 are necessity not discretion, but still Architect-sanctioned in Phase 03).
 
 **Write the feature node** for this work as `features/<id>/node.md` (a feature is a *folder* —
-see the Graph model in the governing skill). Fill the **lightweight spine** — `work-kind`
+see `skills/sdd/sdd-governing-workflow/references/durable-store-entries.md` → Graph model). Fill the **lightweight spine** — `work-kind`
 (feature | refactoring), `date` (close-out UTC), `touches` (component tags; reuse the exact
 spelling of tags already in the store), and `produced` (the ids of the entries just graduated —
 this list is already in hand from the step above, so the edge is free). **Omit** the
@@ -385,12 +383,9 @@ or neither:
   Completed via speccen
   See the analysis bundle for full analysis and implementation details
   ```
-- **No AI attribution in the commit — ever.** The message is only the lines above: no
-  `Co-Authored-By:` trailer, no "Generated with"/"Co-authored" line, no mention of the AI, the
-  model, or Anthropic. The Architect is the sole author (governing skill, Invariant 6). Commit
-  with the message passed literally and add no trailer. If anything would append an AI
-  co-author or attribution line, **remove it before the commit is finalised**. A commit with AI
-  attribution must never be created.
+- **No AI attribution in the commit — ever.** The message is only the lines above. The rule and
+  its enforcement are those of the governing skill → Phase Transition Protocol, step 6
+  (Invariant 6).
 - If any check fails, notify the Architect:
   > "Implementation complete but not committed. Please commit manually or enable git."
 - This creates the final snapshot of this implementation's changes, ready for review, PR, or
@@ -402,27 +397,9 @@ or neither:
 
 **`gated`** — Steps 1–10 apply as written.
 
-**`autonomous`** (Close-out runs under the bundle `mode`) — Steps 1–5 and 10 apply as written.
-Steps 6 to 9 change:
-
-- **Step 6.** Path 1 (overrides), the feature node, the graduated specification and the
-  regenerated store index and timeline are mechanical and run as written. Path 2 (discretionary
-  promotions) is the Architect's, so do not ask. Write the candidates with their evidence under
-  `<a id="graduation-proposal"></a> ## Graduation Proposal` in `{{PHASE_FILE}}` and leave it
-  pending. Write nothing discretionary to `.speccen/`.
-- **Step 7.** Add to the summary: `**Delegated decisions:** [count] →
-  [delegated-decisions.md](../delegated-decisions.md)` and `**Graduation proposal:** pending →
-  [detail](./phase.md#graduation-proposal)`.
-- **Step 8.** `Pending Architect Action` → `Review the delegated decisions and decide the
-  graduation proposal`.
-- **Step 9.** Replace the closing message with the end-of-run report described in
-  **Autonomous Execution** (Transitions and the end of a run). Name the optional passes; do not
-  start them. If any delegated decision or gate check exists, recommend the Retrospective.
-- **Deciding the proposal later.** When the Architect resumes and decides, put the proposal
-  through the review round (`sdd-interview` → The review round), write the approved entries in the Durable
-  Store entry format, update the feature node's `produced` list and the inverse `produced-by`
-  edges, regenerate the store index and timeline, and set `Pending Architect Action` to `none`
-  once no review is outstanding.
+**`autonomous`** — before the phase starts, read [`references/autonomous.md`](references/autonomous.md)
+(`skills/sdd/sdd-close-out/references/autonomous.md`) and follow it. It holds every change this phase makes in `autonomous` mode. Also read it when the Architect resumes to decide a
+pending graduation proposal (Deciding the proposal later). Otherwise, in `gated` mode, do not read it.
 
 ---
 

@@ -6,10 +6,8 @@ description: Optional post-06 pass of speccen. Use when the Architect requests a
 # speccen — Reference Skill
 ## REFERENCE PHASE (optional, post-06)
 
-> File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
-> Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
-> `description` (governing skill → `index.md` → When it is regenerated).
+> Paths, frontmatter, anchors, the navigation bar and `index.md` regeneration follow the governing
+> skill (`skills/sdd/sdd-governing-workflow/SKILL.md` → **Bundle & File Naming Conventions**, **`index.md`**).
 > For this phase, `{{PHASE_DIR}}` = `{{FOLDER_NAME}}/phase-08-reference`,
 > so `{{PHASE_FILE}}` = `{{PHASE_DIR}}/phase.md`, `{{SUMMARY_FILE}}` = `{{PHASE_DIR}}/summary.md`.
 > The deliverable is `{{PHASE_DIR}}/reference.html` (the authored source), with
@@ -162,8 +160,7 @@ not merely link to them — it **brings the key reasoning onto the page**, in ST
 
 ## REFERENCE PHASE Execution
 
-*Where the host supports it, Steps 3–7 run as a subagent unit (governing skill → Subagent
-Execution). Steps 1–2 and 8–12 stay in the main session.*
+*Where the host supports it, Steps 3–7 run as a subagent unit (`skills/sdd/sdd-governing-workflow/references/subagent-execution.md`). Steps 1–2 and 8–12 stay in the main session.*
 
 Initialise `{{PHASE_FILE}}` with frontmatter (`type: Phase`, `phase: "08 — Reference"`, `status: IN PROGRESS`, one-line `description`) and the navigation bar under
 the H1. `phase.md` holds only thin working notes; the deliverable is `reference.html`.

@@ -6,10 +6,8 @@ description: Optional post-06 pass of speccen. Use when the Architect requests a
 # speccen — Retrospective Skill
 ## RETROSPECTIVE PHASE (optional, post-06)
 
-> File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
-> Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
-> `description` (governing skill → `index.md` → When it is regenerated).
+> Paths, frontmatter, anchors, the navigation bar and `index.md` regeneration follow the governing
+> skill (`skills/sdd/sdd-governing-workflow/SKILL.md` → **Bundle & File Naming Conventions**, **`index.md`**).
 > For this phase, `{{PHASE_DIR}}` = `{{FOLDER_NAME}}/phase-07-retrospective`, so
 > `{{PHASE_FILE}}` = `{{PHASE_DIR}}/phase.md`, `{{SUMMARY_FILE}}` = `{{PHASE_DIR}}/summary.md`,
 > and the Retrospective Report is `{{PHASE_DIR}}/retrospective.md`.
@@ -28,7 +26,7 @@ decisions in `delegated-decisions.md` and the `## Delegate gate check` tables ar
 the actual code. This is the independent pass over choices the delegate approved itself.
 
 Where the host supports it, Steps 2–5 run as a subagent unit — a fresh context that did not make
-the decisions it reviews (governing skill → Subagent Execution). Steps 1 and 6–8 stay in the main
+the decisions it reviews (`skills/sdd/sdd-governing-workflow/references/subagent-execution.md`). Steps 1 and 6–8 stay in the main
 session.
 
 It is read-only with respect to the codebase: it reports, it never fixes.
@@ -51,7 +49,7 @@ The review draws on the whole bundle as its blueprint:
 - Project conventions in `.claude/` and `.github/` (as scanned in Phase 02)
 - `delegated-decisions.md` and each phase's `## Delegate gate check` (in its `summary.md`), if
   the bundle ran any phase `autonomous` — the delegate's own choices and self-checks (see
-  **Autonomous Execution** in the governing skill)
+  **Autonomous Execution** (`skills/sdd/sdd-governing-workflow/references/autonomous-execution.md`))
 - The current codebase, via Claude Code CLI or Copilot CLI
 - Git history, to identify the change delta since implementation, where available
 

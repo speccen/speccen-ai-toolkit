@@ -47,6 +47,9 @@ passes that run only on request after the core completes.
 sdd-governing-workflow       Orchestrator + single source of truth for all conventions
                              (bundle layout, frontmatter, anchors, STE-style, ADR protocol,
                              the durable store, invariants). Every other skill references it.
+                             Conditional parts live in its references/ folder and are read
+                             only when needed: autonomous execution, subagent execution,
+                             durable-store layout and entries, project-config upgrade.
 
 ── Core workflow (strictly sequential, each gated — by the Architect or its delegate) ──
 sdd-feature-analysis         Understand WHAT is requested. No code access, no solution.
@@ -247,7 +250,8 @@ much as the nodes, and interlinking is captured richly during the workflow (the 
 deferred; the captured graph is not). `timeline.md` is the first, simplest rendering of the
 feature nodes.
 
-Full design rationale: the durable-store section of `skills/sdd/sdd-governing-workflow/SKILL.md`.
+Full design rationale: the durable-store section of `skills/sdd/sdd-governing-workflow/SKILL.md`,
+with the detail in `skills/sdd/sdd-governing-workflow/references/durable-store.md` and `skills/sdd/sdd-governing-workflow/references/durable-store-entries.md`.
 
 ---
 
@@ -307,9 +311,9 @@ deliverable with a reduced `.md` projection); `code-review` stays Markdown only.
 | A specific phase's behaviour | that phase's `skills/sdd/sdd-*/SKILL.md` |
 | The bundle model and its rationale | `README.md` → "The analysis bundle" |
 | How to set the workflow mode, per bundle or per phase | `README.md` → "Configuration" |
-| How autonomous mode works | governing skill → "Autonomous Execution" |
+| How autonomous mode works | `skills/sdd/sdd-governing-workflow/references/autonomous-execution.md` |
 | How extensions add project rules to a phase | governing skill → "Extensions" |
-| How subagents and per-phase models work | governing skill → "Subagent Execution" |
+| How subagents and per-phase models work | `skills/sdd/sdd-governing-workflow/references/subagent-execution.md` |
 | The durable store's full design | governing skill → "Durable Store" |
 | Reconciling the store after concurrent team merges | `skills/sdd/sdd-reconcile/SKILL.md` |
 | The maturity audit and its trend over time | `skills/audit/audit-maturity/SKILL.md` |

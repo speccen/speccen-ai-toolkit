@@ -6,12 +6,9 @@ description: Phase 01 of speccen. Use when capturing and structuring a deep unde
 # speccen — Feature Analysis Skill
 ## FEATURE ANALYSIS PHASE
 
-> File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
-> Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
-> `description` (governing skill → `index.md` → When it is regenerated).
-> Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
-> `doc-*.md` and ADR files do not. For this phase,
+> Paths, frontmatter, anchors, the navigation bar and `index.md` regeneration follow the governing
+> skill (`skills/sdd/sdd-governing-workflow/SKILL.md` → **Bundle & File Naming Conventions**, **`index.md`**).
+> For this phase,
 > `{{PHASE_DIR}}` = `{{FOLDER_NAME}}/phase-01-feature-analysis`, so
 > `{{PHASE_FILE}}` = `{{PHASE_DIR}}/phase.md` and `{{SUMMARY_FILE}}` = `{{PHASE_DIR}}/summary.md`.
 
@@ -232,19 +229,8 @@ in chat — direct the Architect to read the summary. State clearly what action 
 **`gated`** — Steps 5 and 6 apply as written: the phase ends with a stop, and the Architect's
 signal advances it.
 
-**`autonomous`** — the delegate ends the phase with its gate test, in place of Steps 5 and 6:
-
-- Run the interview yourself (Step 2a): the same numbered questions, answered from the decision
-  basis and recorded with who answered. Phase 01 is discovery: an open question that Phase 02 can
-  investigate becomes a **working hypothesis** with its target phase — not a stop. Only an open
-  question that **blocks Phase 02** (for example, which system or area), and that the basis cannot
-  answer, is a stop. A non-material choice is decided and recorded in `delegated-decisions.md`.
-- Run the Quality Criteria below item by item with cited evidence.
-- Write `## Delegate gate check` into `{{SUMMARY_FILE}}`, then transition (Phase Transition
-  Protocol). Send no Step 6 message.
-- **Verifier claims.** None: Phase 01 has no codebase access, so no verifier runs
-  (governing skill → Gate test).
-- Decision basis, stop conditions and records: **Autonomous Execution** in the governing skill.
+**`autonomous`** — before the phase starts, read [`references/autonomous.md`](references/autonomous.md)
+(`skills/sdd/sdd-feature-analysis/references/autonomous.md`) and follow it. It holds every change this phase makes in `autonomous` mode. In `gated` mode, do not read it.
 
 ---
 
