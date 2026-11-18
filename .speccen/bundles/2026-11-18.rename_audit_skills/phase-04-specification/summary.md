@@ -3,7 +3,7 @@ type: Summary
 phase: "04 — Specification"
 status: COMPLETE
 phase_file: ./phase.md
-description: Four-phase plan, 8 requirements, 13 checks (T-1 – T-3 run against the planned text); plan and Test Plan approved under delegation
+description: Four-phase plan plus an iteration-2 addendum (ADR: fix ARCHITECTURE.md:307), 8 requirements, 13 checks (T-1 – T-3 run against the planned text); plan and Test Plan approved under delegation
 ---
 
 # Phase 04 Summary — Specification
@@ -104,3 +104,22 @@ Claims
 - K-5 (row 6) · in `commands/audit.md` the old names are only on lines 9 and 10 · the same pattern over `commands/` · `commands/audit.md:9`, `:10` → run 1: confirmed
 - K-6 (row 6) · in `ARCHITECTURE.md` the old audit names are only on lines 278 and 315 · the pattern with `\b` after the `sdd-(…)` group over `ARCHITECTURE.md` · lines 278 and 315 → run 1: confirmed
 - K-7 (row 6) · `README.md` holds the old names on 53 – 57 and 136 only, and the upgrade note is lines 130 – 136 · the `\b` pattern over `README.md`; `sed -n '130p;136p' README.md` · lines 53, 54, 55, 56, 57, 136; line 130 starts `> Upgrading a local copy from before the`, line 136 is `` > (`00-governing-audit/` … `04-synthesis/`). `` → run 1: slip — the note starts on line 130 (line 129 is blank); citations corrected in Phase 02 and Phase 04 files and the specification
+
+<a id="delegate-gate-check-iteration-2"></a>
+### Delegate gate check — iteration 2 (addendum)
+
+Self-check: done — 1 correction (a scratch copy of the specification still cited `:304`; fixed and re-assembled)
+
+| # | Item | Result | Evidence | Verified |
+|---|---|---|---|---|
+| 1 | The ADR is reflected in the plan | pass | [phase.md#addendum-iteration-2](./phase.md#addendum-iteration-2) Phase 5 (5.1 – 5.3) | confirmed (run 1) |
+| 2 | The phase states a Why with a source | pass | Phase 5 Why cites the ADR and the brief's Delivery; 5.2 Why cites 06/19 | n/a — bundle-internal |
+| 3 | Checks adjusted and traced | pass | Check changes: T-8, T-12, T-14 (new); R-6 scenario added; the ADR is the source | n/a — bundle-internal |
+| 4 | Specification re-assembled | pass | `specification.html` (2 SVGs parse), `specification.md`; DD-8 row shows the override; Checks: 14 | n/a — bundle-internal |
+| 5 | No invented scope | pass | the only new change is the ADR's; `README.md` unchanged per 06/18 | n/a — bundle-internal |
+
+Claims (iteration 2)
+- K-8 (row 1) · `6c6187c` is the only commit since `e824b5c` that touches paths outside `.speccen/`, so a fixup rebase replays only bundle commits after it · `git log --format=%h e824b5c..HEAD -- . ':(exclude).speccen'` · exactly `6c6187c` → run 1: confirmed
+- K-9 (row 1) · the plan's anchor line exists as described · `sed -n 307p ARCHITECTURE.md` · `` | A specific phase's behaviour | that phase's `skills/sdd/NN-*/SKILL.md` | `` → run 1: confirmed
+
+Error-case run against the current code before the fix (09:19): T-8 and T-14 FAIL, T-12 PASS — the adjusted checks detect the missing fix.

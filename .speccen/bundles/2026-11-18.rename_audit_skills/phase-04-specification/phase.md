@@ -2,7 +2,7 @@
 type: Phase
 phase: "04 — Specification"
 status: COMPLETE
-description: Four-phase plan — move the five folders, rename the paths and the name, update command and docs, verify with 13 checks and make one commit
+description: Four-phase plan plus an iteration-2 addendum (fix ARCHITECTURE.md:307, folded into the code commit) — move the five folders, rename the paths and the name, update command and docs, verify with 13 checks and make one commit
 ---
 
 <a id="phase-top"></a>
@@ -306,6 +306,48 @@ recorded run.
 In `autonomous` mode, a deviation within implementation detail is decided and recorded by the
 delegate; one that changes an acceptance scenario, the scope or a phase's Why is a stop
 (governing skill, stop condition 4).
+
+<a id="addendum-iteration-2"></a>
+## Addendum — iteration 2 (ADR `2026-11-18.architecture_reading_guide_sdd_path`)
+
+Re-entered after the review round: the Architect overrode DD-8 and decided 06/18 – 06/20
+([ADR](../adrs/2026-11-18.architecture_reading_guide_sdd_path.md#decision)). The plan above stays
+as executed; this addendum adds one change and adjusts the checks. Approved by the delegate under
+delegation (autonomous); the scope comes from the ADR, not from the delegate.
+
+### Plan changes
+
+#### Phase 5: Fix the stale sdd path and fold it into the code commit ⬜
+
+**Why:** The Architect's ADR puts the stale reading-guide path in scope, and 06/19 keeps the
+brief's "one commit". — source: [ADR 2026-11-18.architecture_reading_guide_sdd_path](../adrs/2026-11-18.architecture_reading_guide_sdd_path.md#decision); brief Delivery (log 07:58)
+
+##### 5.1 Edit
+- [ ] `ARCHITECTURE.md:307` — replace `` `skills/sdd/NN-*/SKILL.md` `` with `` `skills/sdd/sdd-*/SKILL.md` ``; no other change; `README.md` unchanged (06/18)
+
+##### 5.2 Fold into `6c6187c`
+**Why:** 06/19 — the branch is unpushed, so a fixup rewrite is local and keeps one code commit.
+- [ ] `git commit --fixup=6c6187c -- ARCHITECTURE.md`
+- [ ] `GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash e824b5c` (no editor opens; the bundle commits replay unchanged; the code commit keeps its message)
+
+##### 5.3 Build and Validate
+- [ ] full run of `files/phase-05-text-checks.py` with the adjusted checks: ALL PASS
+
+### Check changes
+
+| # | Change |
+|---|---|
+| T-8 | `ARCHITECTURE.md` expected = the substitution map applied to its `e824b5c` text, plus the one replacement `` `skills/sdd/NN-*/SKILL.md` `` → `` `skills/sdd/sdd-*/SKILL.md` `` |
+| T-10 | unchanged — `ARCHITECTURE.md` is already a modified file |
+| T-11 | unchanged — still exactly one code commit with the brief's message |
+| T-12 | `.speccen/` may change in this bundle and in its Phase 06 graduation: `features/2026-11-18.rename_audit_skills/`, `index.md`, `timeline.md` and the two lessons the Architect promoted (06/1, 06/2) — DD-1 |
+| T-14 (new) | `ARCHITECTURE.md` holds no `NN-*` path, and line 307 reads `` | A specific phase's behaviour | that phase's `skills/sdd/sdd-*/SKILL.md` | `` |
+
+### Requirement change
+
+R-6 (the docs) gains a scenario: WHEN the `ARCHITECTURE.md` reading guide names where a phase's
+skill lives, THEN it names `skills/sdd/sdd-*/SKILL.md` (T-14). Source: the ADR. The specification
+is re-assembled with this scenario and DD-8 shown as overridden.
 
 <a id="outcome"></a>
 ## Outcome

@@ -18,7 +18,7 @@ Intent specification. The five audit skills get folder names equal to their skil
 - Mode: autonomous
 - Base: `e824b5c` (26.1116.3)
 - Requirements: 8
-- Checks: 13
+- Checks: 14
 - Baseline rubric hash: `212cd4db08e1`
 
 - [What the change builds](#what)
@@ -59,7 +59,7 @@ The plugin manifest names the group `./skills/audit/`, not single folders. The m
 | `03-scorecard-review/` → `audit-scorecard-review/` | `audit-scorecard-review` | 3 | description name; 3 paths; 2 folder names in `compare_scorecards.py`. `build_scorecard.py` unchanged |
 | `04-synthesis/` → `audit-synthesis/` | `audit-synthesis` | 1 | description name; 1 path |
 | `commands/audit.md` | 1 | skill name and path. The command name stays `audit` |
-| `ARCHITECTURE.md` | 1 | folder range (:278); path (:315) |
+| `ARCHITECTURE.md` | 1 | folder range (:278); path (:315); sdd path (:307, ADR) |
 | `README.md` | 1 | audit table (:53 – :57); upgrade note (:130 – :136) |
 
 **The substitution map**
@@ -90,7 +90,7 @@ The audit scripts stamp each run with a hash of the rubrics and the scorer. Two 
 <a id="decisions"></a>
 ## Decisions
 
-The bundle has no ADR. No standing decision in `.speccen/decisions/` governs skill names. The delegate took these decisions from the brief ([delegated decisions](../delegated-decisions.md)):
+The bundle has one ADR, from the review round. No standing decision in `.speccen/decisions/` governs skill names. The delegate took these decisions from the brief ([delegated decisions](../delegated-decisions.md)):
 
 | Decision | Effect |
 |---|---|
@@ -98,7 +98,7 @@ The bundle has no ADR. No standing decision in `.speccen/decisions/` governs ski
 | [DD-2](../delegated-decisions.md#dd-2), [DD-4](../delegated-decisions.md#dd-4) | One code commit with the brief's message and no trailer. Bundle commits are separate. |
 | [DD-3](../delegated-decisions.md#dd-3) | Push and pull request wait for the Architect. |
 | [DD-7](../delegated-decisions.md#dd-7) (material, unconfirmed) | The Verification 1 search gets `\b` after the `sdd-(…)` group, so `sdd-reconcile` does not match. |
-| [DD-8](../delegated-decisions.md#dd-8) | `ARCHITECTURE.md:307` keeps its stale sdd path. The path is a follow-up. |
+| [DD-8](../delegated-decisions.md#dd-8) (overridden) → [ADR](../adrs/2026-11-18.architecture_reading_guide_sdd_path.md#decision) | The Architect overrode DD-8. `ARCHITECTURE.md:307` now names `skills/sdd/sdd-*/SKILL.md`. The fix is part of the one code commit. |
 | [DD-9](../delegated-decisions.md#dd-9) | The four stage descriptions change only the governing skill name. |
 | [DD-10](../delegated-decisions.md#dd-10) | The README note says that the audit folders have new names. |
 | [DD-11](../delegated-decisions.md#dd-11), [DD-12](../delegated-decisions.md#dd-12) | The script check runs in the scratchpad. The checks live in `files/` of the bundle. |
@@ -112,7 +112,7 @@ The bundle has no ADR. No standing decision in `.speccen/decisions/` governs ski
 
 - **Update the command and the docs**: `commands/audit.md`, `ARCHITECTURE.md`, `README.md`.
 
-- **Verify and commit**: run the 13 checks, run the scripts end to end, make one commit.
+- **Verify and commit**: run the 14 checks, run the scripts end to end, make one commit.
 
 Each step and its reason: [Implementation Plan](./phase.md#implementation-plan).
 
@@ -177,7 +177,10 @@ The audit scripts SHALL find the rubrics and the scorer at the new folders, and 
 - THEN the note equals the planned text and no longer says "Keep the audit folders" (T-9)
 
 - WHEN the rest of the README and `ARCHITECTURE.md` are compared with `e824b5c`
-- THEN they differ only by the substitution map (T-8)
+- THEN they differ only by the substitution map, and in `ARCHITECTURE.md` by the one sdd path fix (T-8)
+
+- WHEN the `ARCHITECTURE.md` reading guide names where a phase skill lives
+- THEN it names `skills/sdd/sdd-*/SKILL.md` (T-14)
 
 ### Requirement R-7: a pure rename
 
@@ -199,4 +202,4 @@ The change SHALL be one commit on `refactor/audit-prefixed-skill-names` with the
 <a id="checks"></a>
 ## Checks
 
-The 13 checks T-1 – T-13 are in the [Test Plan](./phase.md#implementation-plan). T-1 – T-3 ran against the planned text in Phase 04 and passed. A broken plan failed T-2.
+The 14 checks T-1 – T-14 are in the [Test Plan](./phase.md#implementation-plan). T-1 – T-3 ran against the planned text in Phase 04 and passed. A broken plan failed T-2.

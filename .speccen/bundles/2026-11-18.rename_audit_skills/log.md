@@ -6,7 +6,9 @@ type: Log
 
 ## 2026-11-18
 
-- **09:20 — COMPLIANCE & REVIEW → SPECIFICATION** — iteration 2: delegate gate check passed in verifier run 1 (K-2, K-3 confirmed) ([summary](./phase-03-compliance-review/summary.md#delegate-gate-check-iteration-2)) · mode: autonomous (bundle config) · extensions: none
+- **09:19 — SPECIFICATION → IMPLEMENTATION** — iteration 2: delegate gate check passed in verifier run 1 (K-8, K-9 confirmed); addendum (plan Phase 5, T-8, T-12, T-14) approved under delegation; error-case run before the fix: T-8, T-14 fail ([summary](./phase-04-specification/summary.md#delegate-gate-check-iteration-2)) · mode: autonomous (bundle config) · extensions: none
+- **09:18 — SPECIFICATION** — iteration 2: addendum written; specification re-assembled (DD-8 override, R-6 scenario, 14 checks); check script adjusted (T-8, T-12, T-14)
+- **09:17 — COMPLIANCE & REVIEW → SPECIFICATION** — iteration 2: delegate gate check passed in verifier run 1 (K-2, K-3 confirmed) ([summary](./phase-03-compliance-review/summary.md#delegate-gate-check-iteration-2)) · mode: autonomous (bundle config) · extensions: none
 - **09:16 — COMPLIANCE & REVIEW** — review round recorded: 06/1, 06/2 promote (written at the Phase 06 revisit); 06/3, 06/4 keep local; DD-1 – DD-7, DD-9 – DD-13 ADOPTED (06/5 – 06/11, 06/13 – 06/17)
 - **09:16 — COMPLIANCE & REVIEW** — other 16 is 'yes' *(read as: every proposed answer of 06/1 – 06/11 and 06/13 – 06/17 — 06/1 promote, 06/2 promote, 06/3 keep local, 06/4 keep local, 06/5 – 06/11 and 06/13 – 06/17 adopt DD-7, DD-1 – DD-6, DD-9 – DD-13)*
 - **09:16 — COMPLIANCE & REVIEW** — ADR Protocol: ADR `2026-11-18.architecture_reading_guide_sdd_path` scribed on request (06/20) from the Architect's words (08:46, 09:15); STATE: ADR added — iteration required; Phase 03 re-entered · mode: autonomous (bundle config)

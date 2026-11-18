@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Phase 05 checks for the bundle 2026-11-18.rename_audit_skills (Test Plan T-1 – T-13, T-4 apart).
+"""Phase 05 checks for the bundle 2026-11-18.rename_audit_skills (Test Plan T-1 – T-14, T-4 apart;
+T-8, T-12 and T-14 as adjusted by the Phase 04 iteration-2 addendum, from the ADR
+2026-11-18.architecture_reading_guide_sdd_path).
 
 Every expected value comes from the Phase 04 Test Plan and the brief, never from the new code:
 the substitution map, the planned README upgrade note, the brief's commit message and the base
 commit e824b5c. Texts are read from git objects (`git show REV:path`), so line endings do not
 matter. Run from the repository root:  python -I -B <bundle>/files/phase-05-text-checks.py
-Move test: set MUTATE=T-1, T-8 or T-9 to change one expected text in memory; that check must fail.
+Move test: set MUTATE=T-1, T-8, T-9 or T-14 to change one expected text in memory; that check must fail.
 """
 import os, re, subprocess, sys
 
@@ -163,6 +165,8 @@ check("T-7", d_old == d_new, "description line equal" if d_old == d_new else "de
 bad8 = []
 for o, n in EDITED.items():
     exp = apply(show(BASE, o), MAP)
+    if o == "ARCHITECTURE.md":  # ADR 2026-11-18.architecture_reading_guide_sdd_path
+        exp = exp.replace("`skills/sdd/NN-*/SKILL.md`", "`skills/sdd/sdd-*/SKILL.md`")
     if MUTATE == "T-8" and o == "commands/audit.md":
         exp = exp.replace("audit-maturity", "audit-maturity-x", 1)
     if exp != texts[n]:
@@ -195,13 +199,25 @@ msg = git("log", "-1", "--format=%B", code[0]).strip() if len(code) == 1 else ""
 attrib = re.search(r"Co-Authored-By|Generated with", msg, re.I)
 check("T-11", len(code) == 1 and msg == BRIEF_MESSAGE and not attrib, f"{len(code)} code commit(s); message {'equal' if msg == BRIEF_MESSAGE else 'differs'}")
 
-# T-12 — .speccen/ changes only inside this bundle
-sp = [p for p in git("diff", "--name-only", BASE, HEAD, "--", ".speccen").split("\n") if p and not p.startswith(BUNDLE)]
-check("T-12", not sp, f"outside the bundle: {sp}")
+# T-12 — .speccen/ changes only inside this bundle and its Phase 06 graduation (DD-1; 06/1, 06/2)
+GRADUATION = (".speccen/features/2026-11-18.rename_audit_skills/", ".speccen/index.md", ".speccen/timeline.md",
+              ".speccen/lessons/2026-11-18.audit_scorer_needs_utf8_and_fix_changes_hash.md",
+              ".speccen/lessons/2026-11-18.same_day_audit_runs_sort_by_id.md")
+sp = [p for p in git("diff", "--name-only", BASE, HEAD, "--", ".speccen").split("\n")
+      if p and not p.startswith(BUNDLE) and not p.startswith(GRADUATION)]
+check("T-12", not sp, f"outside the bundle and its graduation: {sp}")
 
 # T-13 — other skill groups and agents unchanged
 rc = git("diff", "--quiet", BASE, HEAD, "--", "skills/sdd", "skills/code", "agents", ok=True)
 check("T-13", rc == 0, "skills/sdd, skills/code, agents unchanged" if rc == 0 else "changed")
+
+# T-14 — the ARCHITECTURE reading guide names the sdd- folders (ADR)
+arch = texts["ARCHITECTURE.md"].split("\n")
+row = "| A specific phase's behaviour | that phase's `skills/sdd/sdd-*/SKILL.md` |"
+if MUTATE == "T-14":
+    row = row.replace("sdd-*", "NN-*")
+ok14 = "NN-*" not in texts["ARCHITECTURE.md"] and len(arch) >= 307 and arch[306] == row
+check("T-14", ok14, "line 307 names skills/sdd/sdd-*/SKILL.md" if ok14 else f"line 307: {arch[306] if len(arch) >= 307 else None}")
 
 failed = [t for t, ok in results if not ok]
 print("ALL PASS" if not failed else f"FAILED: {', '.join(failed)}")
