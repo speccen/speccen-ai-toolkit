@@ -6,6 +6,15 @@ type: Log
 
 ## 2026-11-18
 
+- **08:24 — CODE ANALYSIS → COMPLIANCE & REVIEW** — delegate gate check passed in verifier run 2 (fix attempts 1; failed rows per run 1 → 0) ([summary](./phase-02-code-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
+- **08:23 — CODE ANALYSIS** — verifier run 2: K-7 confirmed; noticed-2 not relevant · usage: 7 145 ms, 1 tool call, 41 388 tokens
+- **08:22 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 2) · model: session model → opus (Gate test: verifier runs on the session model)
+- **08:21 — CODE ANALYSIS** — fix attempt 1 of 5: run 1 failed rows 11 — Known Issues now records the 3 TODO/FIXME/HACK hits as rubric text
+- **08:20 — CODE ANALYSIS** — verifier run 1: K-7 wrong (3 hits, not 0); K-1 – K-6, K-8 – K-11 confirmed; noticed-1 not relevant (own uncommitted writes) · usage: 19 098 ms, 2 tool calls, 44 478 tokens
+- **08:16 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
+- **08:15 — CODE ANALYSIS** — gate test: self-check done — 3 corrections (group counts 28 / 4 / 9; row 18 claim re-pointed, row 19 added); summary and Delegate gate check written; evolution-gap doc not generated (no indicator)
+- **08:12 — CODE ANALYSIS** — analysis written: 41 hits of the Verification 1 search (A 28 listed, B 4 stage `description:` lines, C 9 `sdd-reconcile` false positives); rubric hash name-only, baseline `212cd4db08e1` (scratchpad stamp at skills = `e824b5c`); O-2 closed (no historic records); new open items O-4 – O-6 for Phase 03
+- **08:03 — CODE ANALYSIS** — phase started by the autonomous transition (no Architect prompt); no extensions
 - **08:02 — FEATURE ANALYSIS → CODE ANALYSIS** — delegate gate check passed ([summary](./phase-01-feature-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
 - **08:00 — FEATURE ANALYSIS** — interview round 1 (01/1 – 01/6) answered by the delegate from the brief: DD-1 – DD-4 decided, 01/5 – 01/6 recorded as working hypotheses H-3, H-4 (DD-5, DD-6); all `not material`
 - **07:59 — FEATURE ANALYSIS** — bundle created at `.speccen/bundles/2026-11-18.rename_audit_skills/` on branch `refactor/audit-prefixed-skill-names` (created from `main` at `e824b5c`, as the brief's Delivery names); project config is current (version 3, no keys added); no extensions (`.speccen/extensions/` does not exist) · mode: autonomous (bundle config); stops: proceed (project config)
