@@ -28,3 +28,10 @@ type: Index
 |---|---|---|---|
 | [phase](./phase-02-code-analysis/phase.md) | Phase | COMPLETE | Every cited place matches HEAD; four more name references found; rubric hash is name-only (baseline 212cd4db08e1); Verification 1 regex also matches sdd-reconcile (9 hits) |
 | [summary](./phase-02-code-analysis/summary.md) | Summary | COMPLETE | Cited places confirmed, 4 extra name references, rubric hash name-only (baseline 212cd4db08e1), Verification 1 regex needs tightening |
+
+### Phase 03 — Compliance & Review
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | No ADR in scope; O-4 – O-6 decided under delegation (tighten Verification 1 with , leave ARCHITECTURE.md:304, rename the stage description lines); Definition of Ready met |
+| [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Definition of Ready met; no ADR in scope; O-4 – O-6 decided (DD-7 material, unconfirmed) |

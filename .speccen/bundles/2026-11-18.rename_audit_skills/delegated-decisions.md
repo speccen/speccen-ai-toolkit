@@ -98,3 +98,48 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Alternatives** | a hash computed on the branch before Phase 05 |
 | **Materiality** | not material |
 | **Status** | DELEGATED |
+
+<a id="dd-7"></a>
+## DD-7 — Verification 1: append `\b` to the `sdd-(…)` group
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-18 07:27 UTC |
+| **Question** | Tighten the brief's Verification 1 search so `sdd-reconcile` no longer matches, and keep its expected result "matches only in the README upgrade note"? |
+| **Interview question** | [`03/1`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): append `\b` to the `sdd-(governing-audit\|recon\|dimension-analysis\|scorecard-review\|synthesis)` group; the rest of the search is unchanged. At HEAD it gives 32 hits, none `sdd-reconcile`. |
+| **Basis** | Brief, Verification 1 expected result ([log.md](./log.md), 07:58); Phase 02 restatement inventory group C (9 `sdd-reconcile` hits); the HEAD check in [phase-03 Compliance Iterations](./phase-03-compliance-review/phase.md#compliance). |
+| **Alternatives** | a trailing `/` after the group (misses a bare `sdd-recon` without a slash); `\| grep -v sdd-reconcile` (hides any line that holds both) |
+| **Materiality** | MATERIAL — unconfirmed (changes an acceptance check; taken under `stops: proceed`) |
+| **Status** | DELEGATED |
+
+<a id="dd-8"></a>
+## DD-8 — Leave the stale `ARCHITECTURE.md:304` sdd path
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-18 07:27 UTC |
+| **Question** | Leave `ARCHITECTURE.md:304` (`skills/sdd/NN-*/SKILL.md`) as it is and name it in the end-of-run report as a follow-up? |
+| **Interview question** | [`03/2`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): leave it; report it as a follow-up. |
+| **Basis** | Brief, "keep this commit a pure rename" and Goal limited to `skills/audit/` ([log.md](./log.md), 07:58). |
+| **Alternatives** | fix it in this commit |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-9"></a>
+## DD-9 — Stage `description:` lines: name only
+
+|     | Info |
+| --- | --- |
+| **Phase** | COMPLIANCE & REVIEW PHASE |
+| **When** | 2026-11-18 07:27 UTC |
+| **Question** | In the four stage skills, replace `app-maturity-audit` with `audit-maturity` in `description:` and change no other word? |
+| **Interview question** | [`03/3`](./phase-03-compliance-review/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | Brief, Required change 8 and Invariant "No content changes to the skills beyond path and name references" ([log.md](./log.md), 07:58); Phase 02 restatement inventory group B. |
+| **Alternatives** | leave the descriptions (Verification 1 would then fail) |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
