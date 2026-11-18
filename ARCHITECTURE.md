@@ -275,7 +275,7 @@ across many disposable feature runs.
 
 ## The maturity audit — a second workflow on the same store
 
-Five more skills under `skills/audit/` (`00-governing-audit` … `04-synthesis`, started with `/speccen:audit`) audit a
+Five more skills under `skills/audit/` (`audit-maturity` … `audit-synthesis`, started with `/speccen:audit`) audit a
 codebase's production maturity rather than build a feature. Their output is not a bundle but an
 **audit run** at `.speccen/audits/<id>/`, and unlike bundles, runs are kept: they are the time
 series. The first run of a codebase is `<date>.baseline`. Each run is stamped (`run.json`:
@@ -304,7 +304,7 @@ deliverable with a reduced `.md` projection); `code-review` stays Markdown only.
 |---|---|
 | How to install and run speccen | `README.md` |
 | The authoritative rules and all conventions | `skills/sdd/sdd-governing-workflow/SKILL.md` |
-| A specific phase's behaviour | that phase's `skills/sdd/NN-*/SKILL.md` |
+| A specific phase's behaviour | that phase's `skills/sdd/sdd-*/SKILL.md` |
 | The bundle model and its rationale | `README.md` → "The analysis bundle" |
 | How to set the workflow mode, per bundle or per phase | `README.md` → "Configuration" |
 | How autonomous mode works | governing skill → "Autonomous Execution" |
@@ -312,5 +312,5 @@ deliverable with a reduced `.md` projection); `code-review` stays Markdown only.
 | How subagents and per-phase models work | governing skill → "Subagent Execution" |
 | The durable store's full design | governing skill → "Durable Store" |
 | Reconciling the store after concurrent team merges | `skills/sdd/sdd-reconcile/SKILL.md` |
-| The maturity audit and its trend over time | `skills/audit/00-governing-audit/SKILL.md` |
+| The maturity audit and its trend over time | `skills/audit/audit-maturity/SKILL.md` |
 | Code documentation and review | `skills/code/code-documentation/SKILL.md`, `skills/code/code-review/SKILL.md` |

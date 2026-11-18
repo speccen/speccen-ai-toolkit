@@ -1,5 +1,5 @@
 ---
-name: app-maturity-audit
+name: audit-maturity
 description: Governs the Application Maturity Audit — a gated workflow that assesses a codebase's production maturity and modernization needs, then emits a sliced analysis bundle (a folder of markdown files, not one document). Orchestrates the recon, dimension-analysis, scorecard-review, and synthesis stage skills, enforces a human review gate on the scores, and manages bundle state. Use when starting or resuming an audit — including "maturity audit", "production readiness review", "application health check", "tech debt assessment", "legacy modernization assessment", "is this repo slow / insecure / hard to maintain", or "is this ready to ship or scale" — even if the exact words "maturity audit" are not used.
 ---
 
@@ -50,7 +50,7 @@ higher-level criteria become findings and recommendations. No fractional per-dim
 ## Dimensions
 
 Eleven dimensions. Their rubrics live with the dimension-analysis skill
-(`skills/audit/02-dimension-analysis/references/`).
+(`skills/audit/audit-dimension-analysis/references/`).
 
 | Dimension | Critical | Cluster |
 |-----------|:---:|:---:|
@@ -87,10 +87,10 @@ anchors the TCO narrative.
 
 | Stage | Skill to load | Advances when |
 |---|---|---|
-| RECON | `skills/audit/01-recon/SKILL.md` | recon.md written; bundle scaffolded |
-| SCORING | `skills/audit/02-dimension-analysis/SKILL.md` | all applicable dimensions scored (3 files each) |
-| AGGREGATE & REVIEW | `skills/audit/03-scorecard-review/SKILL.md` | **Architect gives explicit go-signal** |
-| SYNTHESIS | `skills/audit/04-synthesis/SKILL.md` | three audience docs written; bundle COMPLETE |
+| RECON | `skills/audit/audit-recon/SKILL.md` | recon.md written; bundle scaffolded |
+| SCORING | `skills/audit/audit-dimension-analysis/SKILL.md` | all applicable dimensions scored (3 files each) |
+| AGGREGATE & REVIEW | `skills/audit/audit-scorecard-review/SKILL.md` | **Architect gives explicit go-signal** |
+| SYNTHESIS | `skills/audit/audit-synthesis/SKILL.md` | three audience docs written; bundle COMPLETE |
 
 ## Asking the Architect
 
@@ -126,7 +126,7 @@ Architect never names a path. The `<id>` follows the one id format used in `.spe
 
 ### Step 2 — New vs resume
 Check whether `{{AUDIT_FOLDER}}/STATE.md` exists.
-- **Absent → New audit.** Load `skills/audit/01-recon/SKILL.md` and begin the RECON stage.
+- **Absent → New audit.** Load `skills/audit/audit-recon/SKILL.md` and begin the RECON stage.
 - **Present → Resume.** Read `STATE.md` (live state), skim recent `log.md`, read the current
   stage's context. Give the Architect a concise status (stage, what's done, what's pending),
   then load the skill for the current stage and resume.

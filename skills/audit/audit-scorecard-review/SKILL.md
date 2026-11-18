@@ -1,6 +1,6 @@
 ---
 name: audit-scorecard-review
-description: AGGREGATE & REVIEW stage of the Application Maturity Audit. Loaded by the app-maturity-audit governing skill to compute the scorecard from the scored dimensions, regenerate the index, and enforce the human review gate before any audience document is written. Not a standalone entry point.
+description: AGGREGATE & REVIEW stage of the Application Maturity Audit. Loaded by the audit-maturity governing skill to compute the scorecard from the scored dimensions, regenerate the index, and enforce the human review gate before any audience document is written. Not a standalone entry point.
 ---
 
 # Audit — AGGREGATE & REVIEW Stage
@@ -11,7 +11,7 @@ Turn the scored dimensions into the three headline signals, then hold the gate.
 
 Run the scorer:
 ```bash
-python skills/audit/03-scorecard-review/scripts/build_scorecard.py {{AUDIT_FOLDER}}/dimensions --out {{AUDIT_FOLDER}}
+python skills/audit/audit-scorecard-review/scripts/build_scorecard.py {{AUDIT_FOLDER}}/dimensions --out {{AUDIT_FOLDER}}
 ```
 Custom weights are not a prompt: they exist only if the Architect put a `weights.json` in
 `{{AUDIT_FOLDER}}` — then add `--weights {{AUDIT_FOLDER}}/weights.json`. The trend script hashes
@@ -30,7 +30,7 @@ script's numbers verbatim; never hand-edit `scorecard.md`.
 
 Run the trend script:
 ```bash
-python skills/audit/03-scorecard-review/scripts/compare_scorecards.py compare {{AUDIT_FOLDER}}
+python skills/audit/audit-scorecard-review/scripts/compare_scorecards.py compare {{AUDIT_FOLDER}}
 ```
 It writes `trend.md` (movement vs the previous run and vs the baseline; for the baseline run
 itself, a "baseline established" note) and regenerates `.speccen/audits/history.md` and
@@ -82,4 +82,4 @@ Architect answers `Proceed to synthesis` (or says it in words).
 
 On an explicit go-signal (`Proceed to synthesis`, or "generate the documents" / "proceed to synthesis"), set Stage to
 `SYNTHESIS`, log the signal, and return control to the governing skill, which loads
-`skills/audit/04-synthesis/SKILL.md`. Never advance without the signal.
+`skills/audit/audit-synthesis/SKILL.md`. Never advance without the signal.
