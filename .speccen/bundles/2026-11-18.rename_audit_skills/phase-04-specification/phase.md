@@ -158,24 +158,24 @@ alternative is in contention; the choices of form are 04/1 – 04/3, the accepta
 
 ### Implementation Phases
 
-#### Phase 1: Move the five folders ⬜
+#### Phase 1: Move the five folders ✅
 
 **Why:** The folders move first with `git mv`, so git records each file as a rename and keeps its
 history; the text edits then apply to the files at their new paths. — source: brief Required
 change 1 (log 07:58); [Phase 02 Architecture Overview](../phase-02-code-analysis/phase.md#code-analysis)
 
 ##### 1.1 Move
-- [ ] `git mv skills/audit/00-governing-audit skills/audit/audit-maturity`
-- [ ] `git mv skills/audit/01-recon skills/audit/audit-recon`
-- [ ] `git mv skills/audit/02-dimension-analysis skills/audit/audit-dimension-analysis`
-- [ ] `git mv skills/audit/03-scorecard-review skills/audit/audit-scorecard-review`
-- [ ] `git mv skills/audit/04-synthesis skills/audit/audit-synthesis`
+- [x] `git mv skills/audit/00-governing-audit skills/audit/audit-maturity`
+- [x] `git mv skills/audit/01-recon skills/audit/audit-recon`
+- [x] `git mv skills/audit/02-dimension-analysis skills/audit/audit-dimension-analysis`
+- [x] `git mv skills/audit/03-scorecard-review skills/audit/audit-scorecard-review`
+- [x] `git mv skills/audit/04-synthesis skills/audit/audit-synthesis`
 
 ##### 1.2 Build and Validate
-- [ ] `find skills/audit -type f | wc -l` = 19; no `0[0-4]-*` folder remains under `skills/audit/`
-- [ ] no `__pycache__` under `skills/audit/` (run Python with `-B` throughout)
+- [x] `find skills/audit -type f | wc -l` = 19; no `0[0-4]-*` folder remains under `skills/audit/`
+- [x] no `__pycache__` under `skills/audit/` (run Python with `-B` throughout)
 
-#### Phase 2: Rename the name and the paths in the skills and the script ⬜
+#### Phase 2: Rename the name and the paths in the skills and the script ✅
 
 **Why:** The skills and the script are what a host loads and runs; after Phase 1 their paths
 point at folders that no longer exist, so they are fixed before the docs. — source: brief
@@ -183,64 +183,64 @@ Required changes 2 – 4 and 8 (log 07:58); [Phase 02 restatement inventory](../
 
 ##### 2.1 Governing skill
 **Why:** the `description:` stays byte-identical — it carries the trigger phrases. — source: brief Required change 2
-- [ ] `audit-maturity/SKILL.md:2` → `name: audit-maturity`
-- [ ] `audit-maturity/SKILL.md` :53, :90 – :93, :129 — apply the substitution map
+- [x] `audit-maturity/SKILL.md:2` → `name: audit-maturity`
+- [x] `audit-maturity/SKILL.md` :53, :90 – :93, :129 — apply the substitution map
 
 ##### 2.2 Stage skills
-- [ ] `audit-recon/SKILL.md` :3, :9, :23, :66 — apply the map
-- [ ] `audit-dimension-analysis/SKILL.md` :3, :9, :68 — apply the map
-- [ ] `audit-scorecard-review/SKILL.md` :3, :14, :33, :85 — apply the map
-- [ ] `audit-synthesis/SKILL.md` :3, :12 — apply the map
+- [x] `audit-recon/SKILL.md` :3, :9, :23, :66 — apply the map
+- [x] `audit-dimension-analysis/SKILL.md` :3, :9, :68 — apply the map
+- [x] `audit-scorecard-review/SKILL.md` :3, :14, :33, :85 — apply the map
+- [x] `audit-synthesis/SKILL.md` :3, :12 — apply the map
 
 ##### 2.3 Script
 **Why:** a missed name at :33 silently drops the rubrics from the hash. — source: [Phase 02 Behavioural Analysis](../phase-02-code-analysis/phase.md#code-analysis)
-- [ ] `compare_scorecards.py:33` → `"audit-dimension-analysis"`; `:34` → `"audit-scorecard-review"`; no other line
+- [x] `compare_scorecards.py:33` → `"audit-dimension-analysis"`; `:34` → `"audit-scorecard-review"`; no other line
 
 ##### 2.4 Build and Validate
-- [ ] T-2, T-6, T-7 pass; T-8 passes for the six files of this phase
+- [x] T-2, T-6, T-7 pass; T-8 passes for the six files of this phase
 
-#### Phase 3: Update the command and the docs ⬜
+#### Phase 3: Update the command and the docs ✅
 
 **Why:** The command is the user's entry to the audit, and the docs tell a reader where the
 skills are and what to remove on upgrade; they follow once the skills are final. — source: brief
 Required changes 5 – 7 (log 07:58); DD-10
 
 ##### 3.1 Command
-- [ ] `commands/audit.md` :9 – :10 — apply the map (`` `audit-maturity` ``,
+- [x] `commands/audit.md` :9 – :10 — apply the map (`` `audit-maturity` ``,
       `skills/audit/audit-maturity/SKILL.md`); the file keeps its name and every other line
 
 ##### 3.2 ARCHITECTURE
-- [ ] `ARCHITECTURE.md` :278, :315 — apply the map; `:304` stays as it is (DD-8)
+- [x] `ARCHITECTURE.md` :278, :315 — apply the map; `:304` stays as it is (DD-8)
 
 ##### 3.3 README
-- [ ] `README.md:53-57` — apply the map and the README-table map
-- [ ] `README.md:130-136` — replace with the planned upgrade note, as one block
+- [x] `README.md:53-57` — apply the map and the README-table map
+- [x] `README.md:130-136` — replace with the planned upgrade note, as one block
 
 ##### 3.4 Build and Validate
-- [ ] T-1, T-3, T-8, T-9 pass
+- [x] T-1, T-3, T-8, T-9 pass
 
-#### Phase 4: Verify and commit ⬜
+#### Phase 4: Verify and commit ✅
 
 **Why:** The brief defines done as Verification 1 – 5 and one commit with its message; the
 scripts must be run end to end because a text search cannot see a wrong script path. — source:
 brief Verification and Delivery (log 07:58); DD-2, DD-4, DD-11, DD-12
 
 ##### 4.1 Check script
-- [ ] Write `files/phase-05-text-checks.py` (T-1 – T-3, T-5 – T-13; T-4 runs by hand per its row)
-- [ ] Move test: for T-1, T-8, T-9, mutate one expected text in memory and confirm the check fails
+- [x] Write `files/phase-05-text-checks.py` (T-1 – T-3, T-5 – T-13; T-4 runs by hand per its row)
+- [x] Move test: for T-1, T-8, T-9, mutate one expected text in memory and confirm the check fails
 
 ##### 4.2 Scripts end to end (T-4)
-- [ ] In the scratchpad: write the 11-dimension fixture; `build_scorecard.py` it into the
+- [x] In the scratchpad: write the 11-dimension fixture; `build_scorecard.py` it into the
       baseline run stamped at `e824b5c`; then a second run: `stamp`, `build_scorecard.py`, `compare`
 
 ##### 4.3 Commit
 **Why:** stage only code paths, so the bundle never enters the code commit. — source: DD-2
-- [ ] `git add -A skills/audit commands/audit.md ARCHITECTURE.md README.md`
-- [ ] `git commit` with the brief's message verbatim (DD-4) — no trailer
-- [ ] T-5, T-10, T-11, T-12, T-13 pass on the commit
+- [x] `git add -A skills/audit commands/audit.md ARCHITECTURE.md README.md`
+- [x] `git commit` with the brief's message verbatim (DD-4) — no trailer
+- [x] T-5, T-10, T-11, T-12, T-13 pass on the commit
 
 ##### 4.4 Build and Validate
-- [ ] full run of `files/phase-05-text-checks.py`: all checks pass
+- [x] full run of `files/phase-05-text-checks.py`: all checks pass
 
 ### Risk Mitigation
 

@@ -6,6 +6,17 @@ type: Log
 
 ## 2026-11-18
 
+- **09:44 — IMPLEMENTATION → CLOSE-OUT** — delegate gate check passed in verifier run 1; implementation accepted under delegation (fix attempts 0; deviations 1, DD-13) ([summary](./phase-05-implementation/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
+- **09:43 — IMPLEMENTATION** — verifier run 1: K-1 – K-10 confirmed; noticed-1 not relevant (installed plugin cache) · usage: 21 232 ms, 1 tool call, 43 825 tokens
+- **09:40 — IMPLEMENTATION subagent** — gate-check verifier (Phase 05, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
+- **09:38 — IMPLEMENTATION** — gate test: self-check done — 0 corrections; summary and Delegate gate check written
+- **09:36 — IMPLEMENTATION** — Phase 4 done: `files/phase-05-text-checks.py` ALL PASS (T-1 – T-3, T-5 – T-13); move tests T-1, T-8, T-9 fail as they must; brief's literal Verification 1 also shows the 9 `sdd-reconcile` lines (DD-7)
+- **09:34 — IMPLEMENTATION** — code commit `6c6187c` (22 paths; brief's message; no trailer)
+- **09:32 — IMPLEMENTATION** — T-4 PASS: run `2026-11-19.after` hash `212cd4db08e1`, compared with `2026-11-18.baseline`, no "Not like-for-like"; mutation (`weights.json`) warns. Fixture correction: the first run name `2026-11-18.after` sorted before the baseline, so nothing was compared — found by the mutation test
+- **09:27 — IMPLEMENTATION** — Deviation 1: `build_scorecard.py:391` `UnicodeEncodeError` (cp1252) on this host; T-4 runs with `-X utf8`; APPROVED (delegated) — DD-13; graduation candidate
+- **09:24 — IMPLEMENTATION** — Phases 2 – 3 done: substitution map on 8 files, README map + note block (:130 – :136) replaced; all LF
+- **09:22 — IMPLEMENTATION** — Phase 1 done: `git mv` ×5; 19 files; no `__pycache__`
+- **09:21 — IMPLEMENTATION** — phase started by the autonomous transition (no Architect prompt); no extensions; plan confirmed by the delegate
 - **09:06 — SPECIFICATION → IMPLEMENTATION** — delegate gate check passed in verifier run 1 (1 slip, corrected; no fix attempt); Implementation Plan and Test Plan approved under delegation; specification and intent seeds frozen ([summary](./phase-04-specification/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
 - **09:05 — SPECIFICATION** — verifier run 1: K-1 – K-6 confirmed; K-7 slip (the README note starts on line 130; line 129 is blank) — citations corrected in Phase 02, Phase 04 and the specification · usage: 17 443 ms, 2 tool calls, 43 505 tokens
 - **08:58 — SPECIFICATION subagent** — gate-check verifier (Phase 04, run 1) · model: session model → opus (Gate test: verifier runs on the session model)

@@ -188,3 +188,18 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Alternatives** | run the checks inline only, with no script kept |
 | **Materiality** | not material |
 | **Status** | DELEGATED |
+
+<a id="dd-13"></a>
+## DD-13 — Deviation 1: run T-4 in Python UTF-8 mode
+
+|     | Info |
+| --- | --- |
+| **Phase** | IMPLEMENTATION PHASE |
+| **When** | 2026-11-18 08:22 UTC |
+| **Question** | `build_scorecard.py` fails on this Windows host with a cp1252 `UnicodeEncodeError`; run the T-4 commands with `-X utf8` and leave the unchanged scorer as it is? |
+| **Interview question** | — (Phase 05 deviation, [Deviation 1](./phase-05-implementation/phase.md#deviations)) |
+| **Decision** | Decided under delegation (autonomous): APPROVED — T-4 runs with `-X utf8`; the encoding defect is a follow-up outside this change. |
+| **Basis** | Brief, Invariant "Do **not** edit … `build_scorecard.py` (not even its docstring)" ([log.md](./log.md), 07:58); T-6 (the scorer is byte-identical to `e824b5c`). |
+| **Alternatives** | fix `build_scorecard.py` here (breaks the hash invariant); stop and ask |
+| **Materiality** | not material |
+| **Status** | DELEGATED |

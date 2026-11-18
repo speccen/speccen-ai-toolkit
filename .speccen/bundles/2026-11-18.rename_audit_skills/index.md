@@ -45,3 +45,16 @@ type: Index
 | [doc-executive](./phase-04-specification/doc-executive.md) | Doc (executive) | COMPLETE | All speccen skill groups will use one naming rule; the audit keeps its results comparable |
 | [doc-business](./phase-04-specification/doc-business.md) | Doc (business) | COMPLETE | The audit runs as before under /speccen:audit; only skill names and folders change |
 | [specification](./phase-04-specification/specification.html) | Specification | COMPLETE | Intent specification — the five audit skills get audit- folder names equal to their skill names; the rubric hash stays 212cd4db08e1 ([md](./phase-04-specification/specification.md)) |
+
+### Phase 05 — Implementation
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-05-implementation/phase.md) | Phase | COMPLETE | Rename implemented in one commit (6c6187c); T-1 – T-13 pass; one deviation (T-4 runs Python in UTF-8 mode on this Windows host) |
+| [summary](./phase-05-implementation/summary.md) | Summary | COMPLETE | Commit 6c6187c renames the five audit skills; T-1 – T-13 pass; rubric hash unchanged; one deviation (UTF-8 mode for T-4) |
+
+## Files
+
+| File | Description |
+|---|---|
+| [phase-05-text-checks.py](./files/phase-05-text-checks.py) | Phase 05 checks T-1 – T-3, T-5 – T-13 |
