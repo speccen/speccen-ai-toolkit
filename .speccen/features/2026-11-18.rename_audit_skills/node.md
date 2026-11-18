@@ -5,11 +5,12 @@ work-kind: refactoring
 status: active
 evidence: confirmed
 created: 2026-11-18T07:24:00Z
-updated: 2026-11-18T08:22:17Z
+updated: 2026-11-18T09:16:13Z
 date: 2026-11-18T07:24:00Z
 touches: [maturity-audit, readme]
 produced: [2026-11-18.audit_scorer_needs_utf8_and_fix_changes_hash, 2026-11-18.same_day_audit_runs_sort_by_id]
 specification: ./specification.html
+reference: ./reference.html
 ---
 
 # Rename audit skills
@@ -28,4 +29,5 @@ specification: ./specification.html
 | Related | |
 | --- | --- |
 | **Specification** | [specification.html](./specification.html) — intent |
+| **Reference** | [reference.html](./reference.html) — outcome |
 | **Produced** | [2026-11-18.audit_scorer_needs_utf8_and_fix_changes_hash](../../lessons/2026-11-18.audit_scorer_needs_utf8_and_fix_changes_hash.md), [2026-11-18.same_day_audit_runs_sort_by_id](../../lessons/2026-11-18.same_day_audit_runs_sort_by_id.md) — lessons from this feature |

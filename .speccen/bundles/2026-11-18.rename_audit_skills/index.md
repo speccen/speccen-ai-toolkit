@@ -69,6 +69,14 @@ type: Index
 | [doc-business](./phase-06-close-out/doc-business.md) | Doc (business) | COMPLETE | The audit runs as before under /speccen:audit; the five audit skills now have audit- names |
 | [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | Five audit skill folders renamed to audit-<role> with git mv; nine files updated by a fixed substitution map; rubric hash unchanged |
 
+### Phase 08 — Reference
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-08-reference/phase.md) | Phase | COMPLETE | Reference written by a worker unit, checked in the main session, approved by the Architect |
+| [summary](./phase-08-reference/summary.md) | Summary | COMPLETE | Layered technical reference for the audit-skill rename — approved by the Architect |
+| [reference](./phase-08-reference/reference.html) | Reference | COMPLETE | Layered technical reference for the audit-skill rename (commit fdbc357, PR #35) ([md](./phase-08-reference/reference.md)) |
+
 ## Files
 
 | File | Description |
