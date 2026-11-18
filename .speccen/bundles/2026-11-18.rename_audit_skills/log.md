@@ -6,6 +6,7 @@ type: Log
 
 ## 2026-11-18
 
+- **10:20 — REFERENCE** — release done: PR #36 merged (`2eb2c11`, merge commit); CI bumped to `26.1118.2` (`10e725b`, tag `v26.1118.2`); `main` pulled. This entry is uncommitted on `main` — it rides with the next speccen commit
 - **10:18 — REFERENCE** — accept, push and create PR, merge and pull after version bump *(read as: the release steps for the reference branch)*
 - **10:16 — REFERENCE** — Phase 08 complete: summary written; reference copied to the feature node (links repointed), `reference` edge set, specification ↔ reference cross-linked, timeline updated; STATE: REFERENCE PHASE / COMPLETE
 - **10:16 — REFERENCE** — accept *(read as: approval of the reference)*
