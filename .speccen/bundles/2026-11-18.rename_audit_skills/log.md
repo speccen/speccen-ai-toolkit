@@ -6,6 +6,7 @@ type: Log
 
 ## 2026-11-18
 
+- **09:23 — CLOSE-OUT** — revisit complete: seeds updated (ARCHITECTURE sdd path fixed, 14 checks); lessons `2026-11-18.audit_scorer_needs_utf8_and_fix_changes_hash` and `2026-11-18.same_day_audit_runs_sort_by_id` written (06/1, 06/2); feature node `produced` and the inverse edges set; store index and timeline regenerated; specification graduated again; STATE: COMPLETE — pending: go for push and PR
 - **09:22 — IMPLEMENTATION → CLOSE-OUT** — iteration 2: delegate gate check passed in verifier run 1 (K-11 – K-14 confirmed); implementation accepted under delegation ([summary](./phase-05-implementation/summary.md#delegate-gate-check-iteration-2)) · mode: autonomous (bundle config) · extensions: none
 - **09:21 — IMPLEMENTATION** — iteration 2: `ARCHITECTURE.md:307` fixed; fixup `e80b905` autosquashed into the code commit (first rebase attempt refused on uncommitted feature-node edits — nothing changed; re-run with `--autostash`); code commit now `fdbc357` (was `6c6187c`); full checks ALL PASS (T-1 – T-3, T-5 – T-14); move tests T-1, T-8, T-9, T-14 fail as they must; hash `212cd4db08e1`; bundle citations updated to `fdbc357`
 - **09:20 — IMPLEMENTATION** — iteration 2 started by the autonomous transition; plan addendum confirmed by the delegate

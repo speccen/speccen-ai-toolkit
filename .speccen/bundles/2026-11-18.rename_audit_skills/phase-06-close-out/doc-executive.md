@@ -13,6 +13,7 @@ description: All speccen skill groups now use one naming rule; audit results sta
 
 ## Risk Delta
 - Risk closed: the README pointed to audit folders that did not exist. It now points to the real folders.
+- Risk closed: the architecture guide named numbered sdd folders that no longer exist. It now names the real folders.
 - Risk closed: one skill had two names (`app-maturity-audit`, `00-governing-audit`). It now has one name.
 - Risk accepted: users with a local copy must remove the old folders. The README tells them how.
 - Risk found, not closed: the audit scorer fails on Windows unless Python runs in UTF-8 mode. A fix needs its own decision, because a fix changes the rubric hash.

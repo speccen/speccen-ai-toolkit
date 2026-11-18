@@ -27,7 +27,7 @@ description: Five audit skill folders renamed to audit-<role> with git mv; nine 
 | `skills/audit/audit-synthesis/SKILL.md` | The `description:` names `audit-maturity`. One path uses the new folder. |
 | `skills/audit/audit-scorecard-review/scripts/compare_scorecards.py` | Lines 33 – 34 join `"audit-dimension-analysis"` and `"audit-scorecard-review"` onto `SKILLS_ROOT`. |
 | `commands/audit.md` | Loads `audit-maturity` from `skills/audit/audit-maturity/SKILL.md`. The command name stays `audit`. |
-| `ARCHITECTURE.md` | Line 278 names `audit-maturity` … `audit-synthesis`. Line 315 uses the new path. Line 307 is not changed (DD-8). |
+| `ARCHITECTURE.md` | Line 278 names `audit-maturity` … `audit-synthesis`. Line 315 uses the new path. Line 307 names `skills/sdd/sdd-*/SKILL.md` (the Architect's ADR `2026-11-18.architecture_reading_guide_sdd_path`, which overrides DD-8). |
 | `README.md` | The audit table names the new folders. The upgrade note lists the five old audit folders for removal and says that the audit folders have new names. |
 
 ## Files Deleted
@@ -35,7 +35,7 @@ description: Five audit skill folders renamed to audit-<role> with git mv; nine 
 |---|---|
 | `skills/audit/00-governing-audit/`, `01-recon/`, `02-dimension-analysis/`, `03-scorecard-review/`, `04-synthesis/` | Old folders of the renames above. Git records each file as a rename. |
 
-- One code commit: `fdbc357` (19 renames, 3 modified files). The message is the brief's message. No trailer.
+- One code commit: `fdbc357` (19 renames, 3 modified files). The line-307 fix was folded into it with a fixup rebase (it was `6c6187c` before). The message is the brief's message. No trailer.
 - No version change. CI bumps the version on merge.
 
 ## Deviations from Plan
@@ -53,4 +53,5 @@ description: Five audit skill folders renamed to audit-<role> with git mv; nine 
 | Skill folders whose name differs from `name:` | 5 (all of `skills/audit/`) | 0 | −5 |
 | Hits of the old names outside `.speccen/` (DD-7 search) | 32 | 4 (the README upgrade note, on purpose) | −28 |
 | Rubric hash | `212cd4db08e1` | `212cd4db08e1` | unchanged |
-| Planned checks | — | 13 of 13 pass | — |
+| Planned checks | — | 14 of 14 pass | — |
+| Stale sdd paths in `ARCHITECTURE.md` | 1 (`:307`) | 0 | −1 |

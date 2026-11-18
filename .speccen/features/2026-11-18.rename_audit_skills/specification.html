@@ -60,7 +60,7 @@ summary{cursor:pointer;font-weight:600}
 <p class="nav"><a href="../../bundles/2026-11-18.rename_audit_skills/index.md">Index</a> · <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/summary.md">Phase 04 summary</a> · <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/phase.md#implementation-plan">Implementation Plan</a></p>
 <h1>Audit skills with <code>audit-</code> names</h1>
 <p class="lede">Intent specification. The five audit skills get folder names equal to their skill names, with the <code>audit-</code> prefix. Nothing else changes.</p>
-<ul class="facts"><li>Kind: refactoring</li><li>Mode: autonomous</li><li>Base: <code>e824b5c</code> (26.1116.3)</li><li>Requirements: 8</li><li>Checks: 13</li><li>Baseline rubric hash: <code>212cd4db08e1</code></li></ul>
+<ul class="facts"><li>Kind: refactoring</li><li>Mode: autonomous</li><li>Base: <code>e824b5c</code> (26.1116.3)</li><li>Requirements: 8</li><li>Checks: 14</li><li>Baseline rubric hash: <code>212cd4db08e1</code></li></ul>
 <ul class="toc"><li><a href="#what">What the change builds</a></li><li><a href="#context">Where the skills live (L1)</a></li><li><a href="#parts">The files that change (L2)</a></li><li><a href="#runtime">The one runtime path (L3)</a></li><li><a href="#decisions">Decisions</a></li><li><a href="#plan">How it is built</a></li><li><a href="#requirements">Requirements &amp; acceptance scenarios</a></li><li><a href="#checks">Checks</a></li></ul>
 
 <h2 id="what">What the change builds</h2>
@@ -93,7 +93,7 @@ summary{cursor:pointer;font-weight:600}
 <tr class="chg"><td><code>03-scorecard-review/</code> → <code>audit-scorecard-review/</code></td><td><code>audit-scorecard-review</code></td><td>3</td><td>description name; 3 paths; 2 folder names in <code>compare_scorecards.py</code>. <code>build_scorecard.py</code> unchanged</td></tr>
 <tr class="chg"><td><code>04-synthesis/</code> → <code>audit-synthesis/</code></td><td><code>audit-synthesis</code></td><td>1</td><td>description name; 1 path</td></tr>
 <tr class="chg"><td colspan="2"><code>commands/audit.md</code></td><td>1</td><td>skill name and path. The command name stays <code>audit</code></td></tr>
-<tr class="chg"><td colspan="2"><code>ARCHITECTURE.md</code></td><td>1</td><td>folder range (:278); path (:315)</td></tr>
+<tr class="chg"><td colspan="2"><code>ARCHITECTURE.md</code></td><td>1</td><td>folder range (:278); path (:315); sdd path (:307, ADR)</td></tr>
 <tr class="chg"><td colspan="2"><code>README.md</code></td><td>1</td><td>audit table (:53 – :57); upgrade note (:130 – :136)</td></tr>
 </table></div>
 <details><summary>The substitution map</summary>
@@ -122,13 +122,13 @@ summary{cursor:pointer;font-weight:600}
 </svg><figcaption>Only the two folder names change. A wrong name at line 33 drops the rubrics with no error. A wrong name at line 34 stops the script with an error (<a href="../../bundles/2026-11-18.rename_audit_skills/phase-02-code-analysis/phase.md#code-analysis">Phase 02</a>).</figcaption></figure>
 
 <h2 id="decisions">Decisions</h2>
-<p>The bundle has no ADR. No standing decision in <code>.speccen/decisions/</code> governs skill names. The delegate took these decisions from the brief (<a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md">delegated decisions</a>):</p>
+<p>The bundle has one ADR, from the review round. No standing decision in <code>.speccen/decisions/</code> governs skill names. The delegate took these decisions from the brief (<a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md">delegated decisions</a>):</p>
 <div class="tablewrap"><table><tr><th>Decision</th><th>Effect</th></tr>
 <tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-1">DD-1</a></td><td>No file in <code>.speccen/</code> outside this bundle changes.</td></tr>
 <tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-2">DD-2</a>, <a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-4">DD-4</a></td><td>One code commit with the brief's message and no trailer. Bundle commits are separate.</td></tr>
 <tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-3">DD-3</a></td><td>Push and pull request wait for the Architect.</td></tr>
 <tr class="chg"><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-7">DD-7</a> (material, unconfirmed)</td><td>The Verification 1 search gets <code>\b</code> after the <code>sdd-(…)</code> group, so <code>sdd-reconcile</code> does not match.</td></tr>
-<tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-8">DD-8</a></td><td><code>ARCHITECTURE.md:304</code> keeps its stale sdd path. The path is a follow-up.</td></tr>
+<tr class="chg"><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-8">DD-8</a> (overridden) → <a href="../../bundles/2026-11-18.rename_audit_skills/adrs/2026-11-18.architecture_reading_guide_sdd_path.md#decision">ADR</a></td><td>The Architect overrode DD-8. <code>ARCHITECTURE.md:307</code> now names <code>skills/sdd/sdd-*/SKILL.md</code>. The fix is part of the one code commit.</td></tr>
 <tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-9">DD-9</a></td><td>The four stage descriptions change only the governing skill name.</td></tr>
 <tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-10">DD-10</a></td><td>The README note says that the audit folders have new names.</td></tr>
 <tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-11">DD-11</a>, <a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-12">DD-12</a></td><td>The script check runs in the scratchpad. The checks live in <code>files/</code> of the bundle.</td></tr>
@@ -139,7 +139,7 @@ summary{cursor:pointer;font-weight:600}
 <li><strong>Move the five folders</strong> with <code>git mv</code>. Git then records each file as a rename.</li>
 <li><strong>Rename the name and the paths</strong> in the five skills and in <code>compare_scorecards.py</code>. The host loads and runs these files, so they come first.</li>
 <li><strong>Update the command and the docs</strong>: <code>commands/audit.md</code>, <code>ARCHITECTURE.md</code>, <code>README.md</code>.</li>
-<li><strong>Verify and commit</strong>: run the 13 checks, run the scripts end to end, make one commit.</li>
+<li><strong>Verify and commit</strong>: run the 14 checks, run the scripts end to end, make one commit.</li>
 </ol>
 <p>Each step and its reason: <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/phase.md#implementation-plan">Implementation Plan</a>.</p>
 
@@ -161,7 +161,8 @@ summary{cursor:pointer;font-weight:600}
 <ul><li>WHEN <code>commands/audit.md</code> is compared with <code>e824b5c</code></li><li>THEN the file has the same name, and its text differs only by the substitution map (T-8, T-10)</li></ul></div>
 <div class="req"><h3>Requirement R-6: the docs</h3><p><code>README.md</code> and <code>ARCHITECTURE.md</code> SHALL name the new folders. The README upgrade note SHALL list the five old audit folders for removal.</p>
 <ul><li>WHEN the README upgrade note is read</li><li>THEN the note equals the planned text and no longer says "Keep the audit folders" (T-9)</li></ul>
-<ul><li>WHEN the rest of the README and <code>ARCHITECTURE.md</code> are compared with <code>e824b5c</code></li><li>THEN they differ only by the substitution map (T-8)</li></ul></div>
+<ul><li>WHEN the rest of the README and <code>ARCHITECTURE.md</code> are compared with <code>e824b5c</code></li><li>THEN they differ only by the substitution map, and in <code>ARCHITECTURE.md</code> by the one sdd path fix (T-8)</li></ul>
+<ul><li>WHEN the <code>ARCHITECTURE.md</code> reading guide names where a phase skill lives</li><li>THEN it names <code>skills/sdd/sdd-*/SKILL.md</code> (T-14)</li></ul></div>
 <div class="req"><h3>Requirement R-7: a pure rename</h3><p>The change SHALL alter only names and paths.</p>
 <ul><li>WHEN each modified file is compared with the substitution map applied to its <code>e824b5c</code> text</li><li>THEN the texts are equal (T-8)</li></ul>
 <ul><li>WHEN the change set is listed</li><li>THEN the set holds 19 renames and 3 modified files, with nothing in <code>.claude-plugin/</code> and no <code>__pycache__</code> (T-10), and no file in <code>.speccen/</code> outside this bundle (T-12)</li></ul></div>
@@ -169,7 +170,7 @@ summary{cursor:pointer;font-weight:600}
 <ul><li>WHEN the branch commits are listed</li><li>THEN one commit touches paths outside <code>.speccen/</code>, and its message equals the brief's message (T-11)</li></ul></div>
 
 <h2 id="checks">Checks</h2>
-<p>The 13 checks T-1 – T-13 are in the <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/phase.md#implementation-plan">Test Plan</a>. T-1 – T-3 ran against the planned text in Phase 04 and passed. A broken plan failed T-2.</p>
+<p>The 14 checks T-1 – T-14 are in the <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/phase.md#implementation-plan">Test Plan</a>. T-1 – T-3 ran against the planned text in Phase 04 and passed. A broken plan failed T-2.</p>
 </main>
 </body>
 </html>

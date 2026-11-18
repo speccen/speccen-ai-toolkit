@@ -36,5 +36,7 @@ type: Index
 - [A gate stop question proposes the fix budget that follows the answer](./lessons/2026-11-15.stop_question_proposes_fix_budget.md) — active
 - [Run a plan's error-case text checks on the planned text before Phase 04 closes](./lessons/2026-11-16.run_error_checks_on_planned_text.md) — active
 - [A verifier that re-reads the whole phase finds new detail on every run](./lessons/2026-11-16.full_phase_verifier_finds_new_detail.md) — active
+- [The audit scorer fails on Windows without UTF-8 mode, and a fix changes the rubric hash](./lessons/2026-11-18.audit_scorer_needs_utf8_and_fix_changes_hash.md) — active
+- [Audit runs on the same day sort by id, so a run named before "baseline" is taken as the earlier run](./lessons/2026-11-18.same_day_audit_runs_sort_by_id.md) — active
 
 ## Notes

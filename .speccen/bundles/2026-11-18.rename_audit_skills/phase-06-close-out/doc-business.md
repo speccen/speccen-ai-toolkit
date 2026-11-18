@@ -21,6 +21,7 @@ description: The audit runs as before under /speccen:audit; the five audit skill
 ## Where It Surfaces (UI/UX)
 - The skill list of the host shows the five `audit-` names after the next plugin release.
 - `README.md` shows the new folders in the audit table and in the upgrade note.
+- `ARCHITECTURE.md` names the real `sdd-*` folders in its reading guide.
 - No screen or API changes.
 
 ## What Changes for the User
@@ -32,4 +33,3 @@ description: The audit runs as before under /speccen:audit; the five audit skill
 - No fix of the stale counts in the audit text ("ten dimensions", "three signals").
 - No change to the `/speccen:audit` command name.
 - No change to the rubrics or to how the audit scores.
-- No fix of the stale sdd path in `ARCHITECTURE.md:307`. This is a follow-up.
