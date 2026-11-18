@@ -1,12 +1,12 @@
 ---
 name: audit-recon
-description: RECON stage of the Application Maturity Audit. Loaded by the app-maturity-audit governing skill at the start of a new audit to scaffold the analysis bundle and orient on the codebase. Not a standalone entry point — the governing skill invokes it.
+description: RECON stage of the Application Maturity Audit. Loaded by the audit-maturity governing skill at the start of a new audit to scaffold the analysis bundle and orient on the codebase. Not a standalone entry point — the governing skill invokes it.
 ---
 
 # Audit — RECON Stage
 
 Scaffold the bundle and build the shared orientation that every dimension pass will use.
-Read `skills/audit/00-governing-audit/references/bundle-conventions.md` first — it defines the
+Read `skills/audit/audit-maturity/references/bundle-conventions.md` first — it defines the
 folder layout and frontmatter for every file created here.
 
 ## Procedure
@@ -20,7 +20,7 @@ Create the skeleton in `{{AUDIT_FOLDER}}` per bundle-conventions:
 - empty `dimensions/`, `docs/`, `adrs/`
 - `run.json` — the run stamp that makes runs comparable over time. Write it with:
   ```bash
-  python skills/audit/03-scorecard-review/scripts/compare_scorecards.py stamp {{AUDIT_FOLDER}} --app "{{APP_NAME}}"
+  python skills/audit/audit-scorecard-review/scripts/compare_scorecards.py stamp {{AUDIT_FOLDER}} --app "{{APP_NAME}}"
   ```
 
 ### Step 2 — Orient
@@ -63,4 +63,4 @@ Note whether the decomposition looks aligned to **axes of change (volatility)** 
 
 ### Step 3 — Hand back
 Set `STATE.md` Stage to `SCORING`. Append the transition to `log.md`. Regenerate `index.md`.
-Return control to the governing skill, which loads `skills/audit/02-dimension-analysis/SKILL.md`.
+Return control to the governing skill, which loads `skills/audit/audit-dimension-analysis/SKILL.md`.

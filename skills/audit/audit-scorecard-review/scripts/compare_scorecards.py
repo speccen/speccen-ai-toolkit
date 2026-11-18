@@ -30,8 +30,8 @@ def rubric_hash(run: pathlib.Path) -> str:
     """Hash of everything that decides a score: the rubrics, the scorer, its default weights and
     the run's own weights.json override, if any."""
     h = hashlib.sha256()
-    files = sorted((SKILLS_ROOT / "02-dimension-analysis" / "references").glob("*.md"))
-    files.append(SKILLS_ROOT / "03-scorecard-review" / "scripts" / "build_scorecard.py")
+    files = sorted((SKILLS_ROOT / "audit-dimension-analysis" / "references").glob("*.md"))
+    files.append(SKILLS_ROOT / "audit-scorecard-review" / "scripts" / "build_scorecard.py")
     if (run / "weights.json").exists():
         files.append(run / "weights.json")
     for f in files:

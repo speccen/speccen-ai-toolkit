@@ -1,12 +1,12 @@
 ---
 name: audit-dimension-analysis
-description: SCORING stage of the Application Maturity Audit. Loaded by the app-maturity-audit governing skill to score each engineering dimension against its rubric and emit that dimension's result.json, detail.md, and summary.md into the bundle. Not a standalone entry point — the governing skill invokes it, once per dimension.
+description: SCORING stage of the Application Maturity Audit. Loaded by the audit-maturity governing skill to score each engineering dimension against its rubric and emit that dimension's result.json, detail.md, and summary.md into the bundle. Not a standalone entry point — the governing skill invokes it, once per dimension.
 ---
 
 # Audit — SCORING Stage (per dimension)
 
 Score one dimension against its rubric, on evidence, and write its three bundle files.
-Read `skills/audit/00-governing-audit/references/bundle-conventions.md` for the templates and
+Read `skills/audit/audit-maturity/references/bundle-conventions.md` for the templates and
 frontmatter of `detail.md` and `summary.md`.
 
 ## Fan-out
@@ -65,4 +65,4 @@ three files.
 `severity`: high/medium/low · `priority`: quick-win/next/strategic · `confidence`: high/medium/low.
 
 When every applicable dimension has its three files, return control to the governing skill,
-which loads `skills/audit/03-scorecard-review/SKILL.md`.
+which loads `skills/audit/audit-scorecard-review/SKILL.md`.

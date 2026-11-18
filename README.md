@@ -50,11 +50,11 @@ run and the baseline (`trend.md`), with a scoreboard of all runs in `.speccen/au
 
 | Folder | Skill | Stage |
 |---|---|---|
-| `sdd-governing-audit/` | Governing Audit (`app-maturity-audit`) | All stages — orchestrator |
-| `sdd-recon/` | Recon | RECON — scaffold the run, orient on the codebase |
-| `sdd-dimension-analysis/` | Dimension Analysis | SCORING — score each dimension against its rubric |
-| `sdd-scorecard-review/` | Scorecard & Review | AGGREGATE, TREND & REVIEW — compute signals, compare runs, hold the gate |
-| `sdd-synthesis/` | Synthesis | SYNTHESIS — write the audience documents |
+| `audit-maturity/` | Governing Audit (`audit-maturity`) | All stages — orchestrator |
+| `audit-recon/` | Recon | RECON — scaffold the run, orient on the codebase |
+| `audit-dimension-analysis/` | Dimension Analysis | SCORING — score each dimension against its rubric |
+| `audit-scorecard-review/` | Scorecard & Review | AGGREGATE, TREND & REVIEW — compute signals, compare runs, hold the gate |
+| `audit-synthesis/` | Synthesis | SYNTHESIS — write the audience documents |
 
 ### Code documentation and review (`skills/code/`)
 
@@ -127,13 +127,15 @@ mkdir -p ~/.claude/skills && cp -r skills/sdd/* skills/audit/* skills/code/* ~/.
 cp -r agents/ ~/.claude/agents/
 ```
 
-> Upgrading a local copy from before the `sdd-` prefix: the workflow skill folders were renamed
-> (`00-governing-workflow/` → `sdd-governing-workflow/`, … `interview/` → `sdd-interview/`).
-> Remove the old folders from your skills directory before you copy the new ones, or both sets
-> load: `00-governing-workflow/`, `01-feature-analysis/`, `02-code-analysis/`,
-> `03-compliance-review/`, `04-specification/`, `05-implementation/`, `06-close-out/`,
-> `07-retrospective/`, `08-reference/`, `interview/` and `reconcile/`. Keep the audit folders
-> (`00-governing-audit/` … `04-synthesis/`).
+> Upgrading a local copy from before the `sdd-` and `audit-` prefixes: the workflow skill folders
+> were renamed (`00-governing-workflow/` → `sdd-governing-workflow/`, … `interview/` →
+> `sdd-interview/`), and so were the audit skill folders (`00-governing-audit/` →
+> `audit-maturity/`, … `04-synthesis/` → `audit-synthesis/`). Remove the old folders from your
+> skills directory before you copy the new ones, or both sets load: `00-governing-workflow/`,
+> `01-feature-analysis/`, `02-code-analysis/`, `03-compliance-review/`, `04-specification/`,
+> `05-implementation/`, `06-close-out/`, `07-retrospective/`, `08-reference/`, `interview/`,
+> `reconcile/`, `00-governing-audit/`, `01-recon/`, `02-dimension-analysis/`,
+> `03-scorecard-review/` and `04-synthesis/`.
 
 ### Auto-install for your team
 

@@ -1,6 +1,6 @@
 ---
 name: audit-synthesis
-description: SYNTHESIS stage of the Application Maturity Audit, run only after the review gate is cleared. Loaded by the app-maturity-audit governing skill to write the executive, business, and technical audience documents from the reviewed scores and dimension findings. Not a standalone entry point.
+description: SYNTHESIS stage of the Application Maturity Audit, run only after the review gate is cleared. Loaded by the audit-maturity governing skill to write the executive, business, and technical audience documents from the reviewed scores and dimension findings. Not a standalone entry point.
 ---
 
 # Audit — SYNTHESIS Stage
@@ -9,7 +9,7 @@ Write the three audience seeds from the reviewed scores. **Precondition:** `STAT
 `SYNTHESIS` (the review gate has been cleared). If it is not, stop and return to the
 scorecard-review skill.
 
-Read `skills/audit/00-governing-audit/references/bundle-conventions.md` for the three templates, the
+Read `skills/audit/audit-maturity/references/bundle-conventions.md` for the three templates, the
 STE writing rules, and the evolution-gap discipline. All three docs go in
 `{{AUDIT_FOLDER}}/docs/`, are `type: Doc` with `expandable: true`, and are STE-styled.
 
