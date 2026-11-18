@@ -6,12 +6,8 @@ description: the Implementation Phase of speccen. Use when executing an approved
 # speccen — Implementation Skill
 ## IMPLEMENTATION PHASE
 
-> File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
-> Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
-> `description` (governing skill → `index.md` → When it is regenerated).
-> Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
-> `doc-*.md` and ADR files do not.
+> Paths, frontmatter, anchors, the navigation bar and `index.md` regeneration follow the governing
+> skill (`skills/sdd/sdd-governing-workflow/SKILL.md` → **Bundle & File Naming Conventions**, **`index.md`**).
 > Phase 05 writes to `{{FOLDER_NAME}}/phase-05-implementation/` (`phase.md`, `summary.md`).
 > When the Architect or its delegate accepts the implementation, the workflow advances to the separate
 > **Close-out skill** (`skills/sdd/sdd-close-out/SKILL.md`).
@@ -174,8 +170,7 @@ For each checklist item:
 3. Tick it in the Implementation Plan: `- [x]`
 4. Proceed immediately to the next item
 
-*A question that comes up during a checklist item may run as a search unit (governing skill →
-Subagent Execution → Search). The analysis itself stays in the main session.*
+*A question that comes up during a checklist item may run as a search unit (`skills/sdd/sdd-governing-workflow/references/subagent-execution.md` → Search). The analysis itself stays in the main session.*
 
 At the end of each phase, report progress to the Architect and continue to the
 next phase without waiting for acknowledgement, unless a gate condition above is met.
@@ -304,40 +299,8 @@ governed by `skills/sdd/sdd-close-out/SKILL.md`. This skill does not perform doc
 
 **`gated`** — Phase 05a and Phase 05b apply as written.
 
-**`autonomous`** — the delegate takes the Architect's decisions in this phase:
-
-- **Step 2.** Write the Project Conventions Re-Confirmation as usual. Confirm the Implementation
-  Plan yourself: record "Plan confirmed by the delegate" with the date in `{{PHASE_FILE}}`, and do
-  not wait.
-- **Step 3.** Execute as written. The report after each plan phase (Step 6) is a progress report
-  and does not stop the run. A new dependency, a build error you cannot resolve and a
-  null-safety risk the plan does not address are stops.
-- **Step 5 (deviation).** Stop implementing and document the deviation (steps 1–2). Then, if it
-  changes no acceptance scenario, no contract and no scope, and the phase's **Why** still holds,
-  decide it: set `Decision` to
-  `APPROVED (delegated) — [rationale]` or `REJECTED (delegated) — [rationale]`, record it in
-  `delegated-decisions.md`, and continue. If it changes any of them, or defeats the phase's **Why**, stop. Never waive a planned
-  test.
-- **Step 7 (accept).** Instead of notifying and waiting, run the gate test: the Phase 05a
-  criteria below; every acceptance scenario of the specification has a passing planned test
-  (cite the test); no waiver; every deviation has a decision; the delivered behaviour matches the
-  scenarios (cite files and tests). If it passes, the delegate accepts and the workflow advances
-  to Phase 06. If it fails, fix and test again, up to the phase's effective `fixes` attempts,
-  with the gate test's guards (governing skill → Autonomous Execution → Gate test). If the next
-  fix would change a phase conclusion, an ADR, or what a delegated decision decides, stop; a fix
-  that only repairs how a decision is recorded is not such a change (governing skill → Gate
-  test). If it still fails
-  when the budget is used up, or a run makes no progress, the delegate rejects: run Phase 05b.
-- **Phase 05b.** The rejection reason is the failed check, recorded verbatim. Revert only the
-  files this iteration changed; if that cannot be established — unrelated uncommitted changes in
-  those files, or no repository — stop. Verify the revert instead of asking the Architect to
-  confirm it. Record plan updates as delegated decisions, not ADRs, and re-enter Phase 05a.
-  After two rejected iterations, stop.
-- **Verifier claims.** The implementation does what the row says: a single named test run, a
-  symbol present, a pattern absent. Never the full suite — the main session runs that itself
-  (governing skill → Gate test).
-- Write `## Delegate gate check` into `{{SUMMARY_FILE}}`. Decision basis, stop conditions and
-  records: **Autonomous Execution** in the governing skill.
+**`autonomous`** — before the phase starts, read [`references/autonomous.md`](references/autonomous.md)
+(`skills/sdd/sdd-implementation/references/autonomous.md`) and follow it. It holds every change this phase makes in `autonomous` mode. In `gated` mode, do not read it.
 
 ---
 

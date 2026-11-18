@@ -11,8 +11,8 @@ description: Reconcile the speccen durable store after branch worktrees merge in
 > it operates on the shared durable store at the **repo level**, across many completed runs,
 > triggered by a **Git event** (a branch merging into main), not by an Architect gate. It has
 > no bundle, no `STATE.md`, no phase sequence. The durable store's graph model, entry rules,
-> and conventions are defined in `skills/sdd/sdd-governing-workflow/SKILL.md`; this skill performs
-> maintenance against that model.
+> and conventions are defined in `skills/sdd/sdd-governing-workflow/references/durable-store.md` and
+> `skills/sdd/sdd-governing-workflow/references/durable-store-entries.md`; this skill performs maintenance against that model.
 
 ---
 
@@ -56,11 +56,11 @@ These are deterministic repairs against the graph model — the AI makes them di
 
 1. **Regenerate the derived projections.** Rebuild `index.md` (grouped by kind, in the fixed
    order Timeline / Features / Decisions / Lessons learned / Notes / Documentation /
-   Reconciliation records — governing skill → Navigation) and `timeline.md` (feature nodes,
+   Reconciliation records — `skills/sdd/sdd-governing-workflow/references/durable-store.md` → Navigation) and `timeline.md` (feature nodes,
    oldest-first) from the current node frontmatter. These are projections, never hand-merged —
    a merge conflict or staleness in them is resolved by regeneration, not by hand. The
    **Documentation** section is rebuilt from the folders in `.speccen/documentation/` (one line
-   per folder, as the governing skill → Navigation defines it): documentation is long-lived
+   per folder, as the `skills/sdd/sdd-governing-workflow/references/durable-store.md` → Navigation defines it): documentation is long-lived
    output, not a graph node, so it has no edges and no timeline entry. `code-documentation` upserts
    its own line as it works; reconcile rebuilds the whole section, so a missed or stale line
    self-heals.
@@ -114,6 +114,7 @@ them; a human resolves them. (This matches speccen's "AI proposes, human dispose
 
 ### Step 1 — Read the merged store
 
+First read `skills/sdd/sdd-governing-workflow/references/durable-store.md` and `skills/sdd/sdd-governing-workflow/references/durable-store-entries.md`.
 Read the whole `.speccen/` on main: all `decisions/`, `lessons/`, `notes/`,
 `features/*/node.md`, the folder list and the `*_documentation.md` headings in `documentation/`,
 and the current `index.md` / `timeline.md`. Build the in-memory graph

@@ -61,7 +61,7 @@ question, the questions it depends on.
 **Facts are yours; decisions are the Architect's.** Never ask the Architect for something you can
 find out.
 - A fact in the bundle or the durable store (an ADR, a standing decision, an earlier feature):
-  look it up — inline, or as a search unit (governing skill → Subagent Execution → Search).
+  look it up — inline, or as a search unit (`skills/sdd/sdd-governing-workflow/references/subagent-execution.md` → Search).
 - A fact in the code: Phase 01 does not read code, so mark the question "for Phase 02" and leave
   it out of the interview. Phases 03 and 04 may look it up in the code — inline, or as a search
   unit.
@@ -101,8 +101,7 @@ Every round follows the same five steps — no step is skipped and no step is me
 3. **Answer.**
    - `gated`: wait for the Architect. Never answer for them and never continue on an assumed
      answer.
-   - `autonomous`: answer each question yourself from the decision basis (governing skill →
-     Autonomous Execution). A question the basis decides, or a non-material one it leaves open,
+   - `autonomous`: answer each question yourself from the decision basis (`skills/sdd/sdd-governing-workflow/references/autonomous-execution.md`). A question the basis decides, or a non-material one it leaves open,
      you answer — it is a delegated decision. A material question the basis does not decide goes
      into a **stop round**. In Phase 01, a question Phase 02 can investigate becomes a working
      hypothesis.

@@ -6,12 +6,9 @@ description: the Compliance & Review Phase of speccen. Use when iterating analys
 # speccen — Compliance & Review Skill
 ## COMPLIANCE & REVIEW PHASE
 
-> File paths, frontmatter, anchors, and the navigation bar in this skill follow the
-> **Bundle & File Naming Conventions** defined in `skills/sdd/sdd-governing-workflow/SKILL.md`.
-> Regenerate `index.md` in the step that creates a bundle file or changes its `status` or
-> `description` (governing skill → `index.md` → When it is regenerated).
-> Every `phase.md` and `summary.md` carries the navigation bar directly under its H1 title;
-> `doc-*.md` and ADR files do not. For this phase,
+> Paths, frontmatter, anchors, the navigation bar and `index.md` regeneration follow the governing
+> skill (`skills/sdd/sdd-governing-workflow/SKILL.md` → **Bundle & File Naming Conventions**, **`index.md`**).
+> For this phase,
 > `{{PHASE_DIR}}` = `{{FOLDER_NAME}}/phase-03-compliance-review`, so
 > `{{PHASE_FILE}}` = `{{PHASE_DIR}}/phase.md` and `{{SUMMARY_FILE}}` = `{{PHASE_DIR}}/summary.md`.
 > ADRs live as one file each under `{{FOLDER_NAME}}/adrs/` (see the ADR Protocol in the governing skill).
@@ -34,7 +31,7 @@ Phase 03 is the gate that protects Phase 04 and Phase 05 from being entered prem
 
 - The completed Phase 01 and Phase 02 output
 - **Bundle ADRs** (Tier-1, feature-local) under `{{FOLDER_NAME}}/adrs/` added by the Architect (may be present at Phase 03 entry, or added during iteration)
-- **Project-level ADRs** (Tier-2, standing) in the durable store `.speccen/decisions/`, if it exists — see the Durable Store section of the governing skill
+- **Project-level ADRs** (Tier-2, standing) in the durable store `.speccen/decisions/`, if it exists — see `skills/sdd/sdd-governing-workflow/references/durable-store.md`
 - Any additional prompts or clarifications provided by the Architect
 
 ---
@@ -52,27 +49,8 @@ Append the Phase 03 initiating prompt (or iteration prompt) to `log.md`, verbati
 ### Step 2 — Read all ADRs
 
 Scan `{{FOLDER_NAME}}/adrs/` and any ADR annotations in phase files. Each ADR file
-follows the format defined in the governing skill's ADR Protocol:
-
-```markdown
----
-type: ADR
-status: DECIDED
-date: YYYY-MM-DD
-description: <one-line summary>
----
-
-# ADR YYYY-MM-DD — [Subject]
-
-<a id="decision"></a>
-
-|     | Info |
-| --- | --- |
-| **Subject** | [topic] |
-| **Status** | DECIDED / PENDING |
-| **Context** | [background and considerations] |
-| **Decision** | [what was decided] |
-```
+follows the format in the governing skill → **ADR Protocol** (frontmatter, `#decision` table,
+consequences, and the appended `## Compliance` block).
 
 For each ADR without a corresponding Compliance response (appended in the same ADR file):
 - Record it in your working understanding as an **authoritative constraint**
@@ -93,7 +71,8 @@ a bundle ADR contradicts a Tier-2 ADR:
   differently — record it as a scoped override on the bundle ADR, using the governing skill's
   relationship fields: `Overrides: <tier-2 id> — scope: <this feature> — parent still valid
   elsewhere`. This override is **graduation-bound by necessity** (it will graduate to the
-  durable store at Phase 06 close-out, per the Two Tiers section). Flag it for the Architect's
+  durable store at Phase 06 close-out, per
+  `skills/sdd/sdd-governing-workflow/references/durable-store.md` → Two tiers and graduation). Flag it for the Architect's
   confirmation; it is a decision, not an AI call.
 - **If the divergence is unsanctioned** — the analysis silently contradicts a Tier-2 ADR with
   no recorded override — this is a **compliance failure**. Flag it explicitly and resolve it:
@@ -147,16 +126,8 @@ For open questions carried forward from Phase 01 or Phase 02:
 
 Update the affected phase files to reflect full compliance with each ADR. Record what
 changed in `{{PHASE_FILE}}` under `<a id="compliance"></a> ## Compliance Iterations`,
-and append the compliance response **inside the ADR's own file**, below its decision:
-
-```markdown
-## Compliance YYYY-MM-DD
-
-|     | Info |
-| --- | --- |
-| **Analysis Updates** | [How the analysis was updated in response] |
-| **Sections Affected** | [Which files/sections were changed] |
-```
+and append the compliance response **inside the ADR's own file**, below its decision, as the
+`## Compliance YYYY-MM-DD` block of the governing skill → **ADR Protocol**.
 
 The ADR decision itself is never modified. The compliance response documents what changed
 and why, so the reasoning chain is fully traceable — and because it lives in the ADR file,
@@ -181,7 +152,7 @@ Do not speculate beyond what the evidence and ADRs support.
 ### Step 5a — Prototype iteration (optional)
 
 Run this step only when the analysis shows **two or more viable approaches to a material
-choice** (*material* as defined under Autonomous Execution in the governing skill) and evidence
+choice** (*material* as defined in the governing skill → Gate Enforcement → Material decisions) and evidence
 from a working spike would decide it better than reasoning. Most bundles skip it.
 
 **Who starts it.**
@@ -189,8 +160,7 @@ from a working spike would decide it better than reasoning. Most bundles skip it
   wait. The Architect starts them, or picks an approach directly.
 - `autonomous`: see **Mode behaviour** (`phases.compliance-review.prototypes`).
 
-**Subagents.** Each prototype may run as a subagent unit, in parallel (governing skill → Subagent
-Execution). The worker creates and uses the prototype's worktree as below and writes its record;
+**Subagents.** Each prototype may run as a subagent unit, in parallel (`skills/sdd/sdd-governing-workflow/references/subagent-execution.md`). The worker creates and uses the prototype's worktree as below and writes its record;
 the comparison and the choice stay in the main session.
 
 **Where prototype code lives — never in the working tree.** For prototype `<N>` of this bundle:
@@ -413,34 +383,8 @@ In `autonomous` mode see **Mode behaviour**.
 
 **`gated`** — Steps 6, 8 and 9 and the Iteration Loop apply as written.
 
-**`autonomous`** — the delegate takes the Architect's decisions in this phase:
-
-- **Iteration.** Process every ADR in `adrs/` — those are the Architect's; you decide none. Run
-  at most **two** iterations. If the Definition of Ready is still not met after the second, stop.
-- **Prototypes.** If `phases.compliance-review.prototypes` is `n > 0` and a material choice has two
-  or more viable approaches that the basis does not decide, build up to `n` prototypes (Step 5a),
-  then stop with the comparison table — the choice is the Architect's. With `0`, the default,
-  stop at the choice as before. Prototypes do not count against the two-iteration limit.
-- **Definition of Ready.** Evaluate every criterion with cited evidence. The last criterion
-  ("the Architect or its delegate has signalled readiness") is met by your recorded readiness
-  decision and its basis. Also check that no `status: PENDING` placeholder ADR remains: a
-  placeholder blocks the transition, exactly as Step 6 says.
-- **Open questions and undecided ADRs.** Work through them with the interview (Step 6, Handling
-  unresolved open questions): answer what the basis decides, and record each answer as a
-  delegated decision linked to its question. Material ones the basis does not decide go to the
-  Architect as one stop round. One still undecided after that — answered "later" — becomes the
-  placeholder ADR described in Step 6 (`status: PENDING`, which blocks exactly as it does today). When the Architect
-  answers, they either edit the placeholder to `DECIDED` or ask you to record it — and then only
-  per **Scribing a stated decision**. An answer that states no decision leaves the placeholder
-  `PENDING` and the stop stands.
-- **Conflicts.** An ADR that conflicts with another ADR or with the brief is a stop. So is an
-  analysis that would require overriding a standing (Tier-2) ADR — that override is the
-  Architect's ADR to write.
-- **End.** Write `## Delegate gate check` into `{{SUMMARY_FILE}}`, then transition. Send no
-  Step 9 message.
-- **Verifier claims.** The code facts behind an ADR's rationale or a prototype's result
-  (governing skill → Gate test).
-- Decision basis, stop conditions and records: **Autonomous Execution** in the governing skill.
+**`autonomous`** — before the phase starts, read [`references/autonomous.md`](references/autonomous.md)
+(`skills/sdd/sdd-compliance-review/references/autonomous.md`) and follow it. It holds every change this phase makes in `autonomous` mode. In `gated` mode, do not read it.
 
 ---
 
