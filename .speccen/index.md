@@ -12,6 +12,7 @@ type: Index
 - [Set allowed budget for autonomous phases](./features/2026-11-12.set_allowed_budget_for_autonomous_phases/node.md) — active
 - [Questions to the Architect: [number | text] subjects, never a bare label](./features/2026-11-13.questions_to_the_architect_number_text_subjects_never_a_bare_label/node.md) — active
 - [Use narrow verifier for phase checks](./features/2026-11-15.use_narrow_verifier_for_phase_checks/node.md) — active
+- [Rename audit skills](./features/2026-11-18.rename_audit_skills/node.md) — active
 
 ## Decisions
 - [Searches share the phase's `model` tier — no separate search key](./decisions/2026-11-05.code_search_tier.md) — active

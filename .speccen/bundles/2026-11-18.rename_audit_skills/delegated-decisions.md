@@ -105,7 +105,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 |     | Info |
 | --- | --- |
 | **Phase** | COMPLIANCE & REVIEW PHASE |
-| **When** | 2026-11-18 07:27 UTC |
+| **When** | 2026-11-18 07:07 UTC |
 | **Question** | Tighten the brief's Verification 1 search so `sdd-reconcile` no longer matches, and keep its expected result "matches only in the README upgrade note"? |
 | **Interview question** | [`03/1`](./phase-03-compliance-review/phase.md#interview) |
 | **Decision** | Decided under delegation (autonomous): append `\b` to the `sdd-(governing-audit\|recon\|dimension-analysis\|scorecard-review\|synthesis)` group; the rest of the search is unchanged. At HEAD it gives 32 hits, none `sdd-reconcile`. |
@@ -120,7 +120,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 |     | Info |
 | --- | --- |
 | **Phase** | COMPLIANCE & REVIEW PHASE |
-| **When** | 2026-11-18 07:27 UTC |
+| **When** | 2026-11-18 07:07 UTC |
 | **Question** | Leave `ARCHITECTURE.md:304` (`skills/sdd/NN-*/SKILL.md`) as it is and name it in the end-of-run report as a follow-up? |
 | **Interview question** | [`03/2`](./phase-03-compliance-review/phase.md#interview) |
 | **Decision** | Decided under delegation (autonomous): leave it; report it as a follow-up. |
@@ -135,7 +135,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 |     | Info |
 | --- | --- |
 | **Phase** | COMPLIANCE & REVIEW PHASE |
-| **When** | 2026-11-18 07:27 UTC |
+| **When** | 2026-11-18 07:07 UTC |
 | **Question** | In the four stage skills, replace `app-maturity-audit` with `audit-maturity` in `description:` and change no other word? |
 | **Interview question** | [`03/3`](./phase-03-compliance-review/phase.md#interview) |
 | **Decision** | Decided under delegation (autonomous): yes. |
@@ -150,7 +150,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 |     | Info |
 | --- | --- |
 | **Phase** | SPECIFICATION PHASE |
-| **When** | 2026-11-18 07:45 UTC |
+| **When** | 2026-11-18 07:10 UTC |
 | **Question** | Besides the two README edits the brief names, also say in the note's first sentence that the audit folders were renamed? |
 | **Interview question** | [`04/1`](./phase-04-specification/phase.md#interview) |
 | **Decision** | Decided under delegation (autonomous): yes — the planned note in [phase-04 Proposed Changes Summary](./phase-04-specification/phase.md#implementation-plan). |
@@ -165,7 +165,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 |     | Info |
 | --- | --- |
 | **Phase** | SPECIFICATION PHASE |
-| **When** | 2026-11-18 07:45 UTC |
+| **When** | 2026-11-18 07:10 UTC |
 | **Question** | Run the scripts on a synthetic 11-dimension run in the session scratchpad, beside a baseline stamped at `e824b5c`, and commit nothing? |
 | **Interview question** | [`04/2`](./phase-04-specification/phase.md#interview) |
 | **Decision** | Decided under delegation (autonomous): yes (T-4). |
@@ -180,7 +180,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 |     | Info |
 | --- | --- |
 | **Phase** | SPECIFICATION PHASE |
-| **When** | 2026-11-18 07:45 UTC |
+| **When** | 2026-11-18 07:10 UTC |
 | **Question** | Keep the checks as `files/phase-05-text-checks.py` in this bundle, outside the code commit? |
 | **Interview question** | [`04/3`](./phase-04-specification/phase.md#interview) |
 | **Decision** | Decided under delegation (autonomous): yes. |
@@ -195,7 +195,7 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 |     | Info |
 | --- | --- |
 | **Phase** | IMPLEMENTATION PHASE |
-| **When** | 2026-11-18 08:22 UTC |
+| **When** | 2026-11-18 07:17 UTC |
 | **Question** | `build_scorecard.py` fails on this Windows host with a cp1252 `UnicodeEncodeError`; run the T-4 commands with `-X utf8` and leave the unchanged scorer as it is? |
 | **Interview question** | — (Phase 05 deviation, [Deviation 1](./phase-05-implementation/phase.md#deviations)) |
 | **Decision** | Decided under delegation (autonomous): APPROVED — T-4 runs with `-X utf8`; the encoding defect is a follow-up outside this change. |

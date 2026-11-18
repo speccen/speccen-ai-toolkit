@@ -53,6 +53,16 @@ type: Index
 | [phase](./phase-05-implementation/phase.md) | Phase | COMPLETE | Rename implemented in one commit (6c6187c); T-1 – T-13 pass; one deviation (T-4 runs Python in UTF-8 mode on this Windows host) |
 | [summary](./phase-05-implementation/summary.md) | Summary | COMPLETE | Commit 6c6187c renames the five audit skills; T-1 – T-13 pass; rubric hash unchanged; one deviation (UTF-8 mode for T-4) |
 
+### Phase 06 — Close-out
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-06-close-out/phase.md) | Phase | COMPLETE | Three outcome seeds written; feature node and specification graduated; graduation proposal (06/1 – 06/4) pending the Architect |
+| [summary](./phase-06-close-out/summary.md) | Summary | COMPLETE | Audit skills renamed to audit-<role> in commit 6c6187c; rubric hash unchanged; graduation proposal pending |
+| [doc-executive](./phase-06-close-out/doc-executive.md) | Doc (executive) | COMPLETE | All speccen skill groups now use one naming rule; audit results stay comparable |
+| [doc-business](./phase-06-close-out/doc-business.md) | Doc (business) | COMPLETE | The audit runs as before under /speccen:audit; the five audit skills now have audit- names |
+| [doc-technical](./phase-06-close-out/doc-technical.md) | Doc (technical) | COMPLETE | Five audit skill folders renamed to audit-<role> with git mv; nine files updated by a fixed substitution map; rubric hash unchanged |
+
 ## Files
 
 | File | Description |

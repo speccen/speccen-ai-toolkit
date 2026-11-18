@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit Skill Rename</title>
+<!--
+type: Specification
+phase: "04 — Specification"
+status: COMPLETE
+description: Intent specification — the five audit skills get audit- folder names equal to their skill names; the rubric hash stays 212cd4db08e1
+-->
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#5f5e58;--line:#d9d6cc;--card:#ffffff;--accent:#2f5d8a;--new:#e6f2e6;--newline:#3f8a4a;--chg:#fff3d6;--chgline:#b7861e;--code:#f2f0ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161615;--fg:#ecebe6;--muted:#a8a69d;--line:#3a3935;--card:#1f1f1d;--accent:#8db6e0;--new:#1d2e1f;--newline:#6fbf7a;--chg:#33290f;--chgline:#d9a940;--code:#262624}}
+:root[data-theme="dark"]{--bg:#161615;--fg:#ecebe6;--muted:#a8a69d;--line:#3a3935;--card:#1f1f1d;--accent:#8db6e0;--new:#1d2e1f;--newline:#6fbf7a;--chg:#33290f;--chgline:#d9a940;--code:#262624}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:920px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .3em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.4em 0 .4em}
+p,li{max-width:72ch}
+.lede{color:var(--muted);font-size:1.05rem}
+.nav{font-size:.9rem;margin:.4em 0 1em}
+.nav a{color:var(--accent)}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px;padding:0;list-style:none}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:.85rem}
+.toc{font-size:.9rem;columns:2;column-gap:24px;padding-left:18px}
+@media (max-width:600px){.toc{columns:1}}
+a{color:var(--accent)}
+code{background:var(--code);padding:1px 4px;border-radius:3px;font-size:.88em}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:.6em 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--card)}
+tr.new td{background:var(--new)}
+tr.chg td{background:var(--chg)}
+.legend{font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-block;padding:0 6px;border-radius:3px;margin-right:6px}
+.req{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:10px 14px;margin:10px 0}
+.req h3{margin:.1em 0 .3em}
+.req ul{margin:.3em 0;padding-left:20px}
+figure{margin:1em 0;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
+svg text{fill:var(--fg);font:13px system-ui,sans-serif}
+svg .box{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+svg .boxnew{fill:var(--new);stroke:var(--newline);stroke-width:1.5}
+svg .boxchg{fill:var(--chg);stroke:var(--chgline);stroke-width:1.5}
+svg .arrow{stroke:var(--muted);stroke-width:1.5;fill:none;marker-end:url(#ah)}
+svg .arrownew{stroke:var(--newline);stroke-width:2;fill:none;marker-end:url(#ahn)}
+svg .small{font-size:11px;fill:var(--muted)}
+details{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+.verdict{font-weight:600}
+</style>
+</head>
+<body>
+<main>
+<p class="nav"><a href="../../bundles/2026-11-18.rename_audit_skills/index.md">Index</a> · <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/summary.md">Phase 04 summary</a> · <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/phase.md#implementation-plan">Implementation Plan</a></p>
+<h1>Audit skills with <code>audit-</code> names</h1>
+<p class="lede">Intent specification. The five audit skills get folder names equal to their skill names, with the <code>audit-</code> prefix. Nothing else changes.</p>
+<ul class="facts"><li>Kind: refactoring</li><li>Mode: autonomous</li><li>Base: <code>e824b5c</code> (26.1116.3)</li><li>Requirements: 8</li><li>Checks: 13</li><li>Baseline rubric hash: <code>212cd4db08e1</code></li></ul>
+<ul class="toc"><li><a href="#what">What the change builds</a></li><li><a href="#context">Where the skills live (L1)</a></li><li><a href="#parts">The files that change (L2)</a></li><li><a href="#runtime">The one runtime path (L3)</a></li><li><a href="#decisions">Decisions</a></li><li><a href="#plan">How it is built</a></li><li><a href="#requirements">Requirements &amp; acceptance scenarios</a></li><li><a href="#checks">Checks</a></li></ul>
+
+<h2 id="what">What the change builds</h2>
+<p>speccen groups its skills in three folders: <code>skills/sdd/</code>, <code>skills/code/</code> and <code>skills/audit/</code>. Commit <code>1c41496</code> gave every sdd skill a folder name equal to its skill name, with the <code>sdd-</code> prefix. The code skills follow the same rule. The audit skills do not.</p>
+<p>The change moves the five audit folders to <code>audit-&lt;role&gt;</code> names. The governing audit skill changes its name from <code>app-maturity-audit</code> to <code>audit-maturity</code>. Every path to the old folders changes with them. The rubric hash, the audit run layout and the <code>.speccen/</code> history stay the same.</p>
+<p>The change also repairs the README audit table. The sdd rename pointed that table at <code>sdd-*</code> folders that do not exist.</p>
+<p>Source: the Architect's brief (<a href="../../bundles/2026-11-18.rename_audit_skills/log.md">log</a>, 2026-11-18 07:58); <a href="../../bundles/2026-11-18.rename_audit_skills/phase-01-feature-analysis/phase.md#feature-description">Phase 01</a>.</p>
+
+<h2 id="context">Where the skills live (L1)</h2>
+<figure><svg viewBox="0 0 760 230" width="100%" role="img" aria-label="Context: the command and the docs point to the governing audit skill; the governing skill loads four stage skills.">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect class="boxchg" x="20" y="20" width="200" height="60" rx="6"/><text x="120" y="45" text-anchor="middle">/speccen:audit</text><text class="small" x="120" y="64" text-anchor="middle">commands/audit.md</text>
+<rect class="boxchg" x="280" y="20" width="200" height="60" rx="6"/><text x="380" y="45" text-anchor="middle">audit-maturity</text><text class="small" x="380" y="64" text-anchor="middle">was 00-governing-audit</text>
+<rect class="boxchg" x="540" y="20" width="200" height="60" rx="6"/><text x="640" y="45" text-anchor="middle">README · ARCHITECTURE</text><text class="small" x="640" y="64" text-anchor="middle">table, note, paths</text>
+<rect class="boxchg" x="20" y="150" width="160" height="60" rx="6"/><text x="100" y="175" text-anchor="middle">audit-recon</text><text class="small" x="100" y="194" text-anchor="middle">stamp</text>
+<rect class="boxchg" x="200" y="150" width="170" height="60" rx="6"/><text x="285" y="175" text-anchor="middle">audit-dimension-</text><text x="285" y="192" text-anchor="middle">analysis</text>
+<rect class="boxchg" x="390" y="150" width="170" height="60" rx="6"/><text x="475" y="175" text-anchor="middle">audit-scorecard-</text><text x="475" y="192" text-anchor="middle">review</text>
+<rect class="boxchg" x="580" y="150" width="160" height="60" rx="6"/><text x="660" y="175" text-anchor="middle">audit-synthesis</text><text class="small" x="660" y="194" text-anchor="middle">audience docs</text>
+<path class="arrow" d="M220,50 L280,50"/><path class="arrow" d="M540,50 L480,50"/><path class="arrow" d="M330,80 L110,150"/><path class="arrow" d="M370,80 L290,150"/><path class="arrow" d="M400,80 L470,150"/><path class="arrow" d="M430,80 L650,150"/>
+</svg><figcaption>Every box changes its folder name. Only <code>audit-maturity</code> also changes its skill name. Highlighted: changed.</figcaption></figure>
+<p>The plugin manifest names the group <code>./skills/audit/</code>, not single folders. The manifest does not change (<a href="../../bundles/2026-11-18.rename_audit_skills/phase-02-code-analysis/phase.md#code-analysis">Phase 02</a>).</p>
+
+<h2 id="parts">The files that change (L2)</h2>
+<p class="legend"><span style="background:var(--chg)">changed</span></p>
+<div class="tablewrap"><table>
+<tr><th>Folder (now → after)</th><th>Skill name</th><th>Files</th><th>Text change</th></tr>
+<tr class="chg"><td><code>00-governing-audit/</code> → <code>audit-maturity/</code></td><td><code>app-maturity-audit</code> → <code>audit-maturity</code></td><td>2</td><td><code>name:</code>; 5 paths. <code>description:</code> unchanged</td></tr>
+<tr class="chg"><td><code>01-recon/</code> → <code>audit-recon/</code></td><td><code>audit-recon</code></td><td>1</td><td>description name; 3 paths</td></tr>
+<tr class="chg"><td><code>02-dimension-analysis/</code> → <code>audit-dimension-analysis/</code></td><td><code>audit-dimension-analysis</code></td><td>12</td><td>description name; 2 paths. 11 rubrics unchanged</td></tr>
+<tr class="chg"><td><code>03-scorecard-review/</code> → <code>audit-scorecard-review/</code></td><td><code>audit-scorecard-review</code></td><td>3</td><td>description name; 3 paths; 2 folder names in <code>compare_scorecards.py</code>. <code>build_scorecard.py</code> unchanged</td></tr>
+<tr class="chg"><td><code>04-synthesis/</code> → <code>audit-synthesis/</code></td><td><code>audit-synthesis</code></td><td>1</td><td>description name; 1 path</td></tr>
+<tr class="chg"><td colspan="2"><code>commands/audit.md</code></td><td>1</td><td>skill name and path. The command name stays <code>audit</code></td></tr>
+<tr class="chg"><td colspan="2"><code>ARCHITECTURE.md</code></td><td>1</td><td>folder range (:278); path (:315)</td></tr>
+<tr class="chg"><td colspan="2"><code>README.md</code></td><td>1</td><td>audit table (:53 – :57); upgrade note (:130 – :136)</td></tr>
+</table></div>
+<details><summary>The substitution map</summary>
+<p>Every text change, except the README upgrade note, is one of these replacements:</p>
+<div class="tablewrap"><table><tr><th>Old</th><th>New</th></tr>
+<tr><td><code>00-governing-audit</code></td><td><code>audit-maturity</code></td></tr>
+<tr><td><code>01-recon</code></td><td><code>audit-recon</code></td></tr>
+<tr><td><code>02-dimension-analysis</code></td><td><code>audit-dimension-analysis</code></td></tr>
+<tr><td><code>03-scorecard-review</code></td><td><code>audit-scorecard-review</code></td></tr>
+<tr><td><code>04-synthesis</code></td><td><code>audit-synthesis</code></td></tr>
+<tr><td><code>app-maturity-audit</code></td><td><code>audit-maturity</code></td></tr>
+<tr><td><code>sdd-governing-audit/</code> … <code>sdd-synthesis/</code> (README table only)</td><td><code>audit-maturity/</code> … <code>audit-synthesis/</code></td></tr>
+</table></div></details>
+<details><summary>The new README upgrade note</summary>
+<p>The note tells a user with a local copy which old folders to remove. The note now lists the five old audit folders and says that the audit folders have new names (<a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-10">DD-10</a>). The full text is in the <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/phase.md#implementation-plan">plan</a>.</p></details>
+
+<h2 id="runtime">The one runtime path (L3)</h2>
+<p>The audit scripts stamp each run with a hash of the rubrics and the scorer. Two runs compare like-for-like only when their hashes are equal. <code>compare_scorecards.py</code> finds the rubrics through two folder names. These names change. The file names and the bytes do not change, so the hash stays <code>212cd4db08e1</code>.</p>
+<figure><svg viewBox="0 0 760 250" width="100%" role="img" aria-label="rubric_hash reads the rubrics and the scorer through two folder names, hashes base names and bytes, and returns the same hash.">
+<defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect class="box" x="280" y="10" width="200" height="40" rx="6"/><text x="380" y="35" text-anchor="middle">rubric_hash(run)</text>
+<rect class="boxchg" x="20" y="80" width="330" height="56" rx="6"/><text x="185" y="104" text-anchor="middle">audit-dimension-analysis/references/*.md</text><text class="small" x="185" y="124" text-anchor="middle">line 33 · 11 rubrics</text>
+<rect class="boxchg" x="410" y="80" width="330" height="56" rx="6"/><text x="575" y="104" text-anchor="middle">audit-scorecard-review/scripts/build_scorecard.py</text><text class="small" x="575" y="124" text-anchor="middle">line 34 · the scorer</text>
+<rect class="box" x="230" y="170" width="300" height="56" rx="6"/><text x="380" y="194" text-anchor="middle">hash base names + bytes</text><text class="small" x="380" y="214" text-anchor="middle">same input → 212cd4db08e1</text>
+<path class="arrow" d="M330,50 L200,80" style="marker-end:url(#ah2)"/><path class="arrow" d="M430,50 L560,80" style="marker-end:url(#ah2)"/><path class="arrow" d="M185,136 L320,170" style="marker-end:url(#ah2)"/><path class="arrow" d="M575,136 L440,170" style="marker-end:url(#ah2)"/>
+</svg><figcaption>Only the two folder names change. A wrong name at line 33 drops the rubrics with no error. A wrong name at line 34 stops the script with an error (<a href="../../bundles/2026-11-18.rename_audit_skills/phase-02-code-analysis/phase.md#code-analysis">Phase 02</a>).</figcaption></figure>
+
+<h2 id="decisions">Decisions</h2>
+<p>The bundle has no ADR. No standing decision in <code>.speccen/decisions/</code> governs skill names. The delegate took these decisions from the brief (<a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md">delegated decisions</a>):</p>
+<div class="tablewrap"><table><tr><th>Decision</th><th>Effect</th></tr>
+<tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-1">DD-1</a></td><td>No file in <code>.speccen/</code> outside this bundle changes.</td></tr>
+<tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-2">DD-2</a>, <a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-4">DD-4</a></td><td>One code commit with the brief's message and no trailer. Bundle commits are separate.</td></tr>
+<tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-3">DD-3</a></td><td>Push and pull request wait for the Architect.</td></tr>
+<tr class="chg"><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-7">DD-7</a> (material, unconfirmed)</td><td>The Verification 1 search gets <code>\b</code> after the <code>sdd-(…)</code> group, so <code>sdd-reconcile</code> does not match.</td></tr>
+<tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-8">DD-8</a></td><td><code>ARCHITECTURE.md:304</code> keeps its stale sdd path. The path is a follow-up.</td></tr>
+<tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-9">DD-9</a></td><td>The four stage descriptions change only the governing skill name.</td></tr>
+<tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-10">DD-10</a></td><td>The README note says that the audit folders have new names.</td></tr>
+<tr><td><a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-11">DD-11</a>, <a href="../../bundles/2026-11-18.rename_audit_skills/delegated-decisions.md#dd-12">DD-12</a></td><td>The script check runs in the scratchpad. The checks live in <code>files/</code> of the bundle.</td></tr>
+</table></div>
+
+<h2 id="plan">How it is built</h2>
+<ol>
+<li><strong>Move the five folders</strong> with <code>git mv</code>. Git then records each file as a rename.</li>
+<li><strong>Rename the name and the paths</strong> in the five skills and in <code>compare_scorecards.py</code>. The host loads and runs these files, so they come first.</li>
+<li><strong>Update the command and the docs</strong>: <code>commands/audit.md</code>, <code>ARCHITECTURE.md</code>, <code>README.md</code>.</li>
+<li><strong>Verify and commit</strong>: run the 13 checks, run the scripts end to end, make one commit.</li>
+</ol>
+<p>Each step and its reason: <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/phase.md#implementation-plan">Implementation Plan</a>.</p>
+
+<h2 id="requirements">Requirements &amp; acceptance scenarios</h2>
+<div class="req"><h3>Requirement R-1: folder equals name</h3><p>Each audit skill SHALL live in a folder whose name equals its frontmatter <code>name:</code>, with the <code>audit-</code> prefix and no number.</p>
+<ul><li>WHEN the folder names under <code>skills/*/</code> are compared with their <code>name:</code> values</li><li>THEN no skill shows a difference (T-2)</li></ul>
+<ul><li>WHEN the change is compared with <code>main</code></li><li>THEN git shows the five folders as renames, and the 13 files without edits as <code>R100</code> (T-5)</li></ul></div>
+<div class="req"><h3>Requirement R-2: governing skill name</h3><p>The governing audit skill SHALL have the name <code>audit-maturity</code> and SHALL keep its <code>description:</code> unchanged.</p>
+<ul><li>WHEN <code>audit-maturity/SKILL.md</code> is read</li><li>THEN its <code>name:</code> is <code>audit-maturity</code> (T-2), and its <code>description:</code> line equals the line at <code>e824b5c</code> (T-7)</li></ul></div>
+<div class="req"><h3>Requirement R-3: no old name remains</h3><p>No tracked file outside <code>.speccen/</code> SHALL name an old audit folder or <code>app-maturity-audit</code>, except the README upgrade note.</p>
+<ul><li>WHEN the Verification 1 search with <code>\b</code> runs</li><li>THEN every hit is a line of the README upgrade note (T-1)</li></ul>
+<ul><li>WHEN a file names <code>sdd-reconcile</code></li><li>THEN the search does not report the file (DD-7), and <code>skills/sdd/</code> is unchanged (T-13)</li></ul>
+<ul><li>WHEN a markdown file cites a <code>skills/audit/…</code> path</li><li>THEN the path exists (T-3)</li></ul></div>
+<div class="req"><h3>Requirement R-4: the rubric hash stays comparable</h3><p>The audit scripts SHALL find the rubrics and the scorer at the new folders, and SHALL compute the same rubric hash as before the change.</p>
+<ul><li>WHEN <code>stamp</code> runs on a new run</li><li>THEN <code>run.json</code> holds <code>"rubric_hash": "212cd4db08e1"</code> (T-4)</li></ul>
+<ul><li>WHEN <code>build_scorecard.py</code> and <code>compare</code> run after <code>stamp</code></li><li>THEN both exit with code 0, and <code>trend.md</code> has no "rubric hash differs" warning against a baseline stamped before the change (T-4)</li></ul>
+<ul><li>WHEN the rubrics and <code>build_scorecard.py</code> are compared with <code>e824b5c</code></li><li>THEN each file has the same blob id (T-6)</li></ul></div>
+<div class="req"><h3>Requirement R-5: the command</h3><p><code>/speccen:audit</code> SHALL keep its name and SHALL load <code>audit-maturity</code> from <code>skills/audit/audit-maturity/SKILL.md</code>.</p>
+<ul><li>WHEN <code>commands/audit.md</code> is compared with <code>e824b5c</code></li><li>THEN the file has the same name, and its text differs only by the substitution map (T-8, T-10)</li></ul></div>
+<div class="req"><h3>Requirement R-6: the docs</h3><p><code>README.md</code> and <code>ARCHITECTURE.md</code> SHALL name the new folders. The README upgrade note SHALL list the five old audit folders for removal.</p>
+<ul><li>WHEN the README upgrade note is read</li><li>THEN the note equals the planned text and no longer says "Keep the audit folders" (T-9)</li></ul>
+<ul><li>WHEN the rest of the README and <code>ARCHITECTURE.md</code> are compared with <code>e824b5c</code></li><li>THEN they differ only by the substitution map (T-8)</li></ul></div>
+<div class="req"><h3>Requirement R-7: a pure rename</h3><p>The change SHALL alter only names and paths.</p>
+<ul><li>WHEN each modified file is compared with the substitution map applied to its <code>e824b5c</code> text</li><li>THEN the texts are equal (T-8)</li></ul>
+<ul><li>WHEN the change set is listed</li><li>THEN the set holds 19 renames and 3 modified files, with nothing in <code>.claude-plugin/</code> and no <code>__pycache__</code> (T-10), and no file in <code>.speccen/</code> outside this bundle (T-12)</li></ul></div>
+<div class="req"><h3>Requirement R-8: delivery</h3><p>The change SHALL be one commit on <code>refactor/audit-prefixed-skill-names</code> with the brief's message and no attribution line.</p>
+<ul><li>WHEN the branch commits are listed</li><li>THEN one commit touches paths outside <code>.speccen/</code>, and its message equals the brief's message (T-11)</li></ul></div>
+
+<h2 id="checks">Checks</h2>
+<p>The 13 checks T-1 – T-13 are in the <a href="../../bundles/2026-11-18.rename_audit_skills/phase-04-specification/phase.md#implementation-plan">Test Plan</a>. T-1 – T-3 ran against the planned text in Phase 04 and passed. A broken plan failed T-2.</p>
+</main>
+</body>
+</html>

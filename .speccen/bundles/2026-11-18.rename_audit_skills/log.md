@@ -6,36 +6,40 @@ type: Log
 
 ## 2026-11-18
 
-- **09:44 — IMPLEMENTATION → CLOSE-OUT** — delegate gate check passed in verifier run 1; implementation accepted under delegation (fix attempts 0; deviations 1, DD-13) ([summary](./phase-05-implementation/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
-- **09:43 — IMPLEMENTATION** — verifier run 1: K-1 – K-10 confirmed; noticed-1 not relevant (installed plugin cache) · usage: 21 232 ms, 1 tool call, 43 825 tokens
-- **09:40 — IMPLEMENTATION subagent** — gate-check verifier (Phase 05, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
-- **09:38 — IMPLEMENTATION** — gate test: self-check done — 0 corrections; summary and Delegate gate check written
-- **09:36 — IMPLEMENTATION** — Phase 4 done: `files/phase-05-text-checks.py` ALL PASS (T-1 – T-3, T-5 – T-13); move tests T-1, T-8, T-9 fail as they must; brief's literal Verification 1 also shows the 9 `sdd-reconcile` lines (DD-7)
-- **09:34 — IMPLEMENTATION** — code commit `6c6187c` (22 paths; brief's message; no trailer)
-- **09:32 — IMPLEMENTATION** — T-4 PASS: run `2026-11-19.after` hash `212cd4db08e1`, compared with `2026-11-18.baseline`, no "Not like-for-like"; mutation (`weights.json`) warns. Fixture correction: the first run name `2026-11-18.after` sorted before the baseline, so nothing was compared — found by the mutation test
-- **09:27 — IMPLEMENTATION** — Deviation 1: `build_scorecard.py:391` `UnicodeEncodeError` (cp1252) on this host; T-4 runs with `-X utf8`; APPROVED (delegated) — DD-13; graduation candidate
-- **09:24 — IMPLEMENTATION** — Phases 2 – 3 done: substitution map on 8 files, README map + note block (:130 – :136) replaced; all LF
-- **09:22 — IMPLEMENTATION** — Phase 1 done: `git mv` ×5; 19 files; no `__pycache__`
-- **09:21 — IMPLEMENTATION** — phase started by the autonomous transition (no Architect prompt); no extensions; plan confirmed by the delegate
-- **09:06 — SPECIFICATION → IMPLEMENTATION** — delegate gate check passed in verifier run 1 (1 slip, corrected; no fix attempt); Implementation Plan and Test Plan approved under delegation; specification and intent seeds frozen ([summary](./phase-04-specification/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
-- **09:05 — SPECIFICATION** — verifier run 1: K-1 – K-6 confirmed; K-7 slip (the README note starts on line 130; line 129 is blank) — citations corrected in Phase 02, Phase 04 and the specification · usage: 17 443 ms, 2 tool calls, 43 505 tokens
-- **08:58 — SPECIFICATION subagent** — gate-check verifier (Phase 04, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
-- **08:57 — SPECIFICATION** — plan, Test Plan (T-1 – T-13), intent seeds and specification (2 SVGs parse) written; T-1 – T-3 run against the planned text in an in-memory simulation (scratchpad): PASS; a mutated plan fails T-2
-- **08:45 — SPECIFICATION** — interview round 1 (04/1 – 04/3) answered by the delegate: DD-10 – DD-12, all `not material`
-- **08:37 — SPECIFICATION** — phase started by the autonomous transition (no Architect prompt); no extensions
-- **08:36 — COMPLIANCE & REVIEW → SPECIFICATION** — delegate gate check passed in verifier run 1 ([summary](./phase-03-compliance-review/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
-- **08:35 — COMPLIANCE & REVIEW** — verifier run 1: K-1 confirmed; noticed-1, noticed-2 not relevant · usage: 10 374 ms, 1 tool call, 41 465 tokens
-- **08:31 — COMPLIANCE & REVIEW subagent** — gate-check verifier (Phase 03, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
-- **08:30 — COMPLIANCE & REVIEW** — iteration 1: no ADR in scope; interview round 1 (03/1 – 03/3) answered by the delegate: DD-7 (`MATERIAL — unconfirmed`, `stops: proceed`), DD-8, DD-9; Definition of Ready met
-- **08:25 — COMPLIANCE & REVIEW** — phase started by the autonomous transition (no Architect prompt); no extensions
-- **08:24 — CODE ANALYSIS → COMPLIANCE & REVIEW** — delegate gate check passed in verifier run 2 (fix attempts 1; failed rows per run 1 → 0) ([summary](./phase-02-code-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
-- **08:23 — CODE ANALYSIS** — verifier run 2: K-7 confirmed; noticed-2 not relevant · usage: 7 145 ms, 1 tool call, 41 388 tokens
-- **08:22 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 2) · model: session model → opus (Gate test: verifier runs on the session model)
-- **08:21 — CODE ANALYSIS** — fix attempt 1 of 5: run 1 failed rows 11 — Known Issues now records the 3 TODO/FIXME/HACK hits as rubric text
-- **08:20 — CODE ANALYSIS** — verifier run 1: K-7 wrong (3 hits, not 0); K-1 – K-6, K-8 – K-11 confirmed; noticed-1 not relevant (own uncommitted writes) · usage: 19 098 ms, 2 tool calls, 44 478 tokens
-- **08:16 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
-- **08:15 — CODE ANALYSIS** — gate test: self-check done — 3 corrections (group counts 28 / 4 / 9; row 18 claim re-pointed, row 19 added); summary and Delegate gate check written; evolution-gap doc not generated (no indicator)
-- **08:12 — CODE ANALYSIS** — analysis written: 41 hits of the Verification 1 search (A 28 listed, B 4 stage `description:` lines, C 9 `sdd-reconcile` false positives); rubric hash name-only, baseline `212cd4db08e1` (scratchpad stamp at skills = `e824b5c`); O-2 closed (no historic records); new open items O-4 – O-6 for Phase 03
+- **08:26 — CLOSE-OUT** — core workflow complete; graduation proposal 06/1 – 06/4 pending the Architect; STATE: Review the delegated decisions and decide the graduation proposal
+- **08:25 — CLOSE-OUT** — seeds written (executive, business, technical); feature node `features/2026-11-18.rename_audit_skills/` with the specification (links repointed into the bundle); store index and timeline updated; no override, no discretionary entry written
+- **08:22 — CLOSE-OUT** — phase started by the autonomous transition (no Architect prompt); no extensions; all 27 checklist items ticked
+- **08:23 — CLOSE-OUT** — log correction: the entries from 08:04 to 08:21 had been written with estimated times ahead of the clock (09:xx); corrected to the real times from the commit times and file times; order unchanged
+- **08:21 — IMPLEMENTATION → CLOSE-OUT** — delegate gate check passed in verifier run 1; implementation accepted under delegation (fix attempts 0; deviations 1, DD-13) ([summary](./phase-05-implementation/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
+- **08:21 — IMPLEMENTATION** — verifier run 1: K-1 – K-10 confirmed; noticed-1 not relevant (installed plugin cache) · usage: 21 232 ms, 1 tool call, 43 825 tokens
+- **08:20 — IMPLEMENTATION subagent** — gate-check verifier (Phase 05, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
+- **08:19 — IMPLEMENTATION** — gate test: self-check done — 0 corrections; summary and Delegate gate check written
+- **08:18 — IMPLEMENTATION** — Phase 4 done: `files/phase-05-text-checks.py` ALL PASS (T-1 – T-3, T-5 – T-13); move tests T-1, T-8, T-9 fail as they must; brief's literal Verification 1 also shows the 9 `sdd-reconcile` lines (DD-7)
+- **08:18 — IMPLEMENTATION** — code commit `6c6187c` (22 paths; brief's message; no trailer)
+- **08:18 — IMPLEMENTATION** — T-4 PASS: run `2026-11-19.after` hash `212cd4db08e1`, compared with `2026-11-18.baseline`, no "Not like-for-like"; mutation (`weights.json`) warns. Fixture correction: the first run name `2026-11-18.after` sorted before the baseline, so nothing was compared — found by the mutation test
+- **08:17 — IMPLEMENTATION** — Deviation 1: `build_scorecard.py:391` `UnicodeEncodeError` (cp1252) on this host; T-4 runs with `-X utf8`; APPROVED (delegated) — DD-13; graduation candidate
+- **08:17 — IMPLEMENTATION** — Phases 2 – 3 done: substitution map on 8 files, README map + note block (:130 – :136) replaced; all LF
+- **08:17 — IMPLEMENTATION** — Phase 1 done: `git mv` ×5; 19 files; no `__pycache__`
+- **08:17 — IMPLEMENTATION** — phase started by the autonomous transition (no Architect prompt); no extensions; plan confirmed by the delegate
+- **08:17 — SPECIFICATION → IMPLEMENTATION** — delegate gate check passed in verifier run 1 (1 slip, corrected; no fix attempt); Implementation Plan and Test Plan approved under delegation; specification and intent seeds frozen ([summary](./phase-04-specification/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
+- **08:16 — SPECIFICATION** — verifier run 1: K-1 – K-6 confirmed; K-7 slip (the README note starts on line 130; line 129 is blank) — citations corrected in Phase 02, Phase 04 and the specification · usage: 17 443 ms, 2 tool calls, 43 505 tokens
+- **08:14 — SPECIFICATION subagent** — gate-check verifier (Phase 04, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
+- **08:13 — SPECIFICATION** — plan, Test Plan (T-1 – T-13), intent seeds and specification (2 SVGs parse) written; T-1 – T-3 run against the planned text in an in-memory simulation (scratchpad): PASS; a mutated plan fails T-2
+- **08:10 — SPECIFICATION** — interview round 1 (04/1 – 04/3) answered by the delegate: DD-10 – DD-12, all `not material`
+- **08:08 — SPECIFICATION** — phase started by the autonomous transition (no Architect prompt); no extensions
+- **08:08 — COMPLIANCE & REVIEW → SPECIFICATION** — delegate gate check passed in verifier run 1 ([summary](./phase-03-compliance-review/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
+- **08:08 — COMPLIANCE & REVIEW** — verifier run 1: K-1 confirmed; noticed-1, noticed-2 not relevant · usage: 10 374 ms, 1 tool call, 41 465 tokens
+- **08:07 — COMPLIANCE & REVIEW subagent** — gate-check verifier (Phase 03, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
+- **08:07 — COMPLIANCE & REVIEW** — iteration 1: no ADR in scope; interview round 1 (03/1 – 03/3) answered by the delegate: DD-7 (`MATERIAL — unconfirmed`, `stops: proceed`), DD-8, DD-9; Definition of Ready met
+- **08:06 — COMPLIANCE & REVIEW** — phase started by the autonomous transition (no Architect prompt); no extensions
+- **08:06 — CODE ANALYSIS → COMPLIANCE & REVIEW** — delegate gate check passed in verifier run 2 (fix attempts 1; failed rows per run 1 → 0) ([summary](./phase-02-code-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
+- **08:05 — CODE ANALYSIS** — verifier run 2: K-7 confirmed; noticed-2 not relevant · usage: 7 145 ms, 1 tool call, 41 388 tokens
+- **08:05 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 2) · model: session model → opus (Gate test: verifier runs on the session model)
+- **08:05 — CODE ANALYSIS** — fix attempt 1 of 5: run 1 failed rows 11 — Known Issues now records the 3 TODO/FIXME/HACK hits as rubric text
+- **08:05 — CODE ANALYSIS** — verifier run 1: K-7 wrong (3 hits, not 0); K-1 – K-6, K-8 – K-11 confirmed; noticed-1 not relevant (own uncommitted writes) · usage: 19 098 ms, 2 tool calls, 44 478 tokens
+- **08:04 — CODE ANALYSIS subagent** — gate-check verifier (Phase 02, run 1) · model: session model → opus (Gate test: verifier runs on the session model)
+- **08:04 — CODE ANALYSIS** — gate test: self-check done — 3 corrections (group counts 28 / 4 / 9; row 18 claim re-pointed, row 19 added); summary and Delegate gate check written; evolution-gap doc not generated (no indicator)
+- **08:04 — CODE ANALYSIS** — analysis written: 41 hits of the Verification 1 search (A 28 listed, B 4 stage `description:` lines, C 9 `sdd-reconcile` false positives); rubric hash name-only, baseline `212cd4db08e1` (scratchpad stamp at skills = `e824b5c`); O-2 closed (no historic records); new open items O-4 – O-6 for Phase 03
 - **08:03 — CODE ANALYSIS** — phase started by the autonomous transition (no Architect prompt); no extensions
 - **08:02 — FEATURE ANALYSIS → CODE ANALYSIS** — delegate gate check passed ([summary](./phase-01-feature-analysis/summary.md#delegate-gate-check)) · mode: autonomous (bundle config) · extensions: none
 - **08:00 — FEATURE ANALYSIS** — interview round 1 (01/1 – 01/6) answered by the delegate from the brief: DD-1 – DD-4 decided, 01/5 – 01/6 recorded as working hypotheses H-3, H-4 (DD-5, DD-6); all `not material`
