@@ -56,7 +56,7 @@ Entry points and dependents:
 - Recon :23 and scorecard review :14, :33 run the two scripts by repository-relative path.
 - `compare_scorecards.py` reaches the rubrics and `build_scorecard.py` through `SKILLS_ROOT`
   (below).
-- Docs: `ARCHITECTURE.md:278`, `:315`; `README.md:53-57`, `:129-136`.
+- Docs: `ARCHITECTURE.md:278`, `:315`; `README.md:53-57`, `:130-136`.
 
 ### Behavioural Analysis
 
@@ -154,7 +154,7 @@ The brief's Verification 1 search, run at HEAD, gives 41 hits. They split into f
 | `README.md` | :53, :54, :55, :56, :57, :136 | audit table `sdd-governing-audit/` … `sdd-synthesis/`, `` (`app-maturity-audit`) ``; upgrade note `` (`00-governing-audit/` … `04-synthesis/`). `` |
 
 The brief cites the upgrade note as `README.md:117-136`; the install section starts at :117, and
-the note itself is :129-136.
+the note itself is :130-136 (:129 is blank).
 
 **B — old governing name in places the brief does not list (4 hits), in scope under Required
 change 8 (H-3 holds):** the `description:` on line 3 of each stage skill —

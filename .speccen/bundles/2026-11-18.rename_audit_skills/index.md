@@ -35,3 +35,13 @@ type: Index
 |---|---|---|---|
 | [phase](./phase-03-compliance-review/phase.md) | Phase | COMPLETE | No ADR in scope; O-4 – O-6 decided under delegation (tighten Verification 1 with , leave ARCHITECTURE.md:304, rename the stage description lines); Definition of Ready met |
 | [summary](./phase-03-compliance-review/summary.md) | Summary | COMPLETE | Definition of Ready met; no ADR in scope; O-4 – O-6 decided (DD-7 material, unconfirmed) |
+
+### Phase 04 — Specification
+
+| File | Type | Status | Description |
+|---|---|---|---|
+| [phase](./phase-04-specification/phase.md) | Phase | COMPLETE | Four-phase plan — move the five folders, rename the paths and the name, update command and docs, verify with 13 checks and make one commit |
+| [summary](./phase-04-specification/summary.md) | Summary | COMPLETE | Four-phase plan, 8 requirements, 13 checks (T-1 – T-3 run against the planned text); plan and Test Plan approved under delegation |
+| [doc-executive](./phase-04-specification/doc-executive.md) | Doc (executive) | COMPLETE | All speccen skill groups will use one naming rule; the audit keeps its results comparable |
+| [doc-business](./phase-04-specification/doc-business.md) | Doc (business) | COMPLETE | The audit runs as before under /speccen:audit; only skill names and folders change |
+| [specification](./phase-04-specification/specification.html) | Specification | COMPLETE | Intent specification — the five audit skills get audit- folder names equal to their skill names; the rubric hash stays 212cd4db08e1 ([md](./phase-04-specification/specification.md)) |

@@ -143,3 +143,48 @@ description: Decisions taken under delegation in autonomous mode — review, ado
 | **Alternatives** | leave the descriptions (Verification 1 would then fail) |
 | **Materiality** | not material |
 | **Status** | DELEGATED |
+
+<a id="dd-10"></a>
+## DD-10 — README upgrade note names the audit rename
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-18 07:45 UTC |
+| **Question** | Besides the two README edits the brief names, also say in the note's first sentence that the audit folders were renamed? |
+| **Interview question** | [`04/1`](./phase-04-specification/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes — the planned note in [phase-04 Proposed Changes Summary](./phase-04-specification/phase.md#implementation-plan). |
+| **Basis** | Brief, Goal "Use `1c41496` as the model for scope and style" ([log.md](./log.md), 07:58); the `1c41496` note names the renamed folders. |
+| **Alternatives** | only the two named edits, leaving "from before the `sdd-` prefix" as the note's opening |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-11"></a>
+## DD-11 — Verification 4 on a synthetic run in the scratchpad
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-18 07:45 UTC |
+| **Question** | Run the scripts on a synthetic 11-dimension run in the session scratchpad, beside a baseline stamped at `e824b5c`, and commit nothing? |
+| **Interview question** | [`04/2`](./phase-04-specification/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes (T-4). |
+| **Basis** | Brief, Verification 4 ([log.md](./log.md), 07:58); Phase 02 baseline `212cd4db08e1`. |
+| **Alternatives** | a run under `.speccen/audits/` of this repository |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
+
+<a id="dd-12"></a>
+## DD-12 — Checks in `files/phase-05-text-checks.py`
+
+|     | Info |
+| --- | --- |
+| **Phase** | SPECIFICATION PHASE |
+| **When** | 2026-11-18 07:45 UTC |
+| **Question** | Keep the checks as `files/phase-05-text-checks.py` in this bundle, outside the code commit? |
+| **Interview question** | [`04/3`](./phase-04-specification/phase.md#interview) |
+| **Decision** | Decided under delegation (autonomous): yes. |
+| **Basis** | DD-2; earlier bundles keep their checks in `files/`. |
+| **Alternatives** | run the checks inline only, with no script kept |
+| **Materiality** | not material |
+| **Status** | DELEGATED |
