@@ -6,6 +6,7 @@ type: Log
 
 ## 2026-11-18
 
+- **10:18 — REFERENCE** — accept, push and create PR, merge and pull after version bump *(read as: the release steps for the reference branch)*
 - **10:16 — REFERENCE** — Phase 08 complete: summary written; reference copied to the feature node (links repointed), `reference` edge set, specification ↔ reference cross-linked, timeline updated; STATE: REFERENCE PHASE / COMPLETE
 - **10:16 — REFERENCE** — accept *(read as: approval of the reference)*
 - **10:13 — REFERENCE** — worker returned: `reference.html` (5 inline SVGs, each parsed; rendered in Edge dark mode by the worker) and `reference.md`; checked in the main session: metadata block, SVG parse, no external assets, links (only `./summary.md` missing until Step 9), fact strip against git. Finding confirmed: `rubric_hash()` on this CRLF working tree (`core.autocrlf=true`) is `6c10c0ec3ace`; the LF bytes (git blobs) give `212cd4db08e1` — the hash depends on the checkout's line endings, independent of the rename · usage: 459 122 ms, 33 tool calls, 158 929 tokens
