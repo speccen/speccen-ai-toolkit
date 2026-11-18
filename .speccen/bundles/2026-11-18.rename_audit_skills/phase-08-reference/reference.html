@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit Skill Rename — Reference</title>
+<!--
+type: Reference
+phase: "08 — Reference"
+status: COMPLETE
+description: Layered technical reference for the audit-skill rename (commit fdbc357, PR #35) — five audit skill folders renamed to audit-<role>, rubric hash 212cd4db08e1 unchanged, decisions, deviation and checks
+-->
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#5f5e58;--line:#d9d6cc;--card:#ffffff;--accent:#2f5d8a;--new:#e6f2e6;--newline:#3f8a4a;--chg:#fff3d6;--chgline:#b7861e;--code:#f2f0ea;--bad:#f8e1df;--badline:#b3423a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161615;--fg:#ecebe6;--muted:#a8a69d;--line:#3a3935;--card:#1f1f1d;--accent:#8db6e0;--new:#1d2e1f;--newline:#6fbf7a;--chg:#33290f;--chgline:#d9a940;--code:#262624;--bad:#3a1f1d;--badline:#e07a70}}
+:root[data-theme="dark"]{--bg:#161615;--fg:#ecebe6;--muted:#a8a69d;--line:#3a3935;--card:#1f1f1d;--accent:#8db6e0;--new:#1d2e1f;--newline:#6fbf7a;--chg:#33290f;--chgline:#d9a940;--code:#262624;--bad:#3a1f1d;--badline:#e07a70}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:940px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.7rem;line-height:1.25;margin:.2em 0 .3em}
+h2{font-size:1.25rem;margin:2.2em 0 .5em;padding-top:.6em;border-top:1px solid var(--line)}
+h3{font-size:1.05rem;margin:1.4em 0 .4em}
+p,li{max-width:74ch}
+.lede{color:var(--muted);font-size:1.05rem}
+.nav{font-size:.9rem;margin:.4em 0 1em}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px;padding:0;list-style:none}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:.85rem}
+.toc{font-size:.9rem;columns:2;column-gap:24px;padding-left:18px}
+@media (max-width:600px){.toc{columns:1}}
+a{color:var(--accent)}
+code{background:var(--code);padding:1px 4px;border-radius:3px;font-size:.88em;word-break:break-word}
+pre{background:var(--code);padding:10px 12px;border-radius:6px;overflow-x:auto;font-size:.85rem}
+pre code{padding:0;background:none}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:.6em 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--card)}
+tr.chg td{background:var(--chg)}
+tr.mute td{color:var(--muted)}
+.legend{font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-block;padding:0 6px;border-radius:3px;margin-right:6px}
+.lg-chg{background:var(--chg);border:1px solid var(--chgline)}
+.lg-mute{background:var(--card);border:1px dashed var(--muted)}
+.lg-acc{background:var(--card);border:1px solid var(--accent)}
+figure{margin:1em 0;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
+figure svg{min-width:640px;display:block}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}
+svg text{fill:var(--fg);font:13px system-ui,sans-serif}
+svg .small{font-size:11px;fill:var(--muted)}
+svg .strong{font-weight:700}
+svg .box{fill:var(--card);stroke:var(--muted);stroke-width:1.2;stroke-dasharray:4 3}
+svg .boxchg{fill:var(--chg);stroke:var(--chgline);stroke-width:2.2}
+svg .boxacc{fill:var(--card);stroke:var(--accent);stroke-width:2}
+svg .boxbad{fill:var(--bad);stroke:var(--badline);stroke-width:1.8}
+svg .frame{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:6 4}
+svg .arrow{stroke:var(--muted);stroke-width:1.4;fill:none}
+svg .arrowdash{stroke:var(--muted);stroke-width:1.3;fill:none;stroke-dasharray:5 4}
+svg .arrowacc{stroke:var(--accent);stroke-width:2.2;fill:none}
+svg .mk{fill:var(--muted)}
+svg .mka{fill:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:10px 14px;margin:10px 0}
+.card p{margin:.3em 0}
+.verdict{font-weight:600}
+</style>
+</head>
+<body>
+<main>
+<p class="nav"><a href="../index.md">Index</a> · <a href="./summary.md">Phase 08 summary</a> · <a href="../phase-04-specification/specification.html">Specification (intent)</a></p>
+<h1>Audit Skill Rename — Technical Reference</h1>
+<p class="lede">The five maturity-audit skills get folder names that equal their skill names (<code>audit-maturity</code> … <code>audit-synthesis</code>). No rubric byte changes, so the rubric hash stays <code>212cd4db08e1</code>.</p>
+
+<ul class="facts">
+<li>Code commit <code>fdbc357</code></li>
+<li>19 renames (13 <code>R100</code>) + 3 modified files · 41 insertions, 39 deletions</li>
+<li>PR #35 merged as <code>0f6c6b2</code></li>
+<li>CI version <code>26.1118.1</code> (<code>a119ddf</code>, tag <code>v26.1118.1</code>)</li>
+<li>Rubric hash <code>212cd4db08e1</code> before and after</li>
+<li>14 of 14 planned checks pass</li>
+<li>Decisions: DD-1 – DD-7 and DD-9 – DD-13 ADOPTED; DD-8 OVERRIDDEN</li>
+<li>1 deviation (APPROVED, delegated)</li>
+</ul>
+
+<ol class="toc">
+<li><a href="#l1">L1 — Context</a></li>
+<li><a href="#l2">L2 — The changed files</a></li>
+<li><a href="#l3">L3 — The rubric-hash path</a></li>
+<li><a href="#contracts">Contracts</a></li>
+<li><a href="#args">Two argument-diagrams</a></li>
+<li><a href="#why">What changed, and why</a></li>
+<li><a href="#deviations">Deviations</a></li>
+<li><a href="#checks">Checks</a></li>
+<li><a href="#limits">Known limitations and follow-ups</a></li>
+<li><a href="#refs">References</a></li>
+</ol>
+
+<p class="legend"><span class="lg-chg">amber, heavy border</span>changed in <code>fdbc357</code> &nbsp; <span class="lg-mute">dashed, muted</span>unchanged &nbsp; <span class="lg-acc">blue line</span>the call path</p>
+
+<p><strong>Scope.</strong> This reference covers the changed files only: the five <code>skills/audit/</code> folders, <code>compare_scorecards.py</code>, <code>commands/audit.md</code>, <code>ARCHITECTURE.md</code> and <code>README.md</code>. It reads the code on <code>main</code> at <code>a119ddf</code>. The branch of this reference adds only bundle files. Read down to the layer you need. Each layer is a true picture at its own level.</p>
+
+<h2 id="l1">L1 — Context</h2>
+<p>The maturity audit is a second workflow in the plugin. A developer starts it with the command <code>/speccen:audit</code>. The command loads the governing skill. The governing skill loads four stage skills in turn. The stages write an audit run to <code>.speccen/audits/&lt;run&gt;/</code>.</p>
+<p>Before the change, the folder names (<code>00-governing-audit</code> … <code>04-synthesis</code>) did not equal the skill names. The governing skill was named <code>app-maturity-audit</code>. After the change, every folder name equals its <code>name:</code> value.</p>
+
+<figure>
+<svg viewBox="0 0 760 265" width="100%" role="img" aria-label="Context: the developer starts the audit command, which loads the governing skill audit-maturity, which loads four stage skills and manages the audit run folder. The command, the governing skill and the stage skills are changed.">
+<defs>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk" d="M0,0L10,5L0,10z"/></marker>
+<marker id="b1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mka" d="M0,0L10,5L0,10z"/></marker>
+</defs>
+<rect class="box" x="10" y="105" width="120" height="50" rx="6"/>
+<text x="70" y="127" text-anchor="middle"><tspan>Developer</tspan><tspan class="small" x="70" dy="16">starts an audit</tspan></text>
+<rect class="boxchg" x="165" y="105" width="150" height="50" rx="6"/>
+<text x="240" y="127" text-anchor="middle"><tspan class="strong">/speccen:audit</tspan><tspan class="small" x="240" dy="16">commands/audit.md</tspan></text>
+<rect class="boxchg" x="350" y="105" width="150" height="50" rx="6"/>
+<text x="425" y="127" text-anchor="middle"><tspan class="strong">audit-maturity</tspan><tspan class="small" x="425" dy="16">was 00-governing-audit</tspan></text>
+<rect class="boxchg" x="560" y="10" width="190" height="36" rx="6"/>
+<text x="655" y="33" text-anchor="middle"><tspan>audit-recon</tspan></text>
+<rect class="boxchg" x="560" y="60" width="190" height="36" rx="6"/>
+<text x="655" y="83" text-anchor="middle"><tspan>audit-dimension-analysis</tspan></text>
+<rect class="boxchg" x="560" y="112" width="190" height="36" rx="6"/>
+<text x="655" y="135" text-anchor="middle"><tspan>audit-scorecard-review</tspan></text>
+<rect class="boxchg" x="560" y="164" width="190" height="36" rx="6"/>
+<text x="655" y="187" text-anchor="middle"><tspan>audit-synthesis</tspan></text>
+<rect class="box" x="350" y="205" width="150" height="44" rx="6"/>
+<text x="425" y="224" text-anchor="middle"><tspan>.speccen/audits/&lt;run&gt;/</tspan><tspan class="small" x="425" dy="15">run data, unchanged</tspan></text>
+<line class="arrow" x1="130" y1="130" x2="163" y2="130" marker-end="url(#a1)"/>
+<line class="arrowacc" x1="315" y1="130" x2="348" y2="130" marker-end="url(#b1)"/>
+<line class="arrowacc" x1="500" y1="130" x2="558" y2="28" marker-end="url(#b1)"/>
+<line class="arrowacc" x1="500" y1="130" x2="558" y2="78" marker-end="url(#b1)"/>
+<line class="arrowacc" x1="500" y1="130" x2="558" y2="130" marker-end="url(#b1)"/>
+<line class="arrowacc" x1="500" y1="130" x2="558" y2="182" marker-end="url(#b1)"/>
+<line class="arrowdash" x1="425" y1="155" x2="425" y2="203" marker-end="url(#a1)"/>
+<text class="small" x="432" y="182">manages state</text>
+<text class="small" x="10" y="258">Amber = renamed or edited in fdbc357. Dashed = unchanged.</text>
+</svg>
+<figcaption>L1 — the command, the governing skill and the four stage skills. All six names or paths changed. The run data and the run layout did not change.</figcaption>
+</figure>
+
+<h2 id="l2">L2 — The changed files</h2>
+<p>Commit <code>fdbc357</code> touches 22 paths. It renames 19 files with <code>git mv</code> and edits 3 files in place. Six of the 19 renamed files also change content. The other 13 are byte-identical (<code>R100</code>): 11 rubrics, <code>build_scorecard.py</code> and <code>bundle-conventions.md</code>.</p>
+
+<figure>
+<svg viewBox="0 0 760 320" width="100%" role="img" aria-label="Containers: three documents (command, README, ARCHITECTURE) point at the five renamed audit skill folders. The sdd skills, code skills, agents and plugin manifest are unchanged.">
+<defs>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk" d="M0,0L10,5L0,10z"/></marker>
+<marker id="b2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mka" d="M0,0L10,5L0,10z"/></marker>
+</defs>
+<rect class="boxchg" x="20" y="10" width="220" height="50" rx="6"/>
+<text x="130" y="31" text-anchor="middle"><tspan class="strong">commands/audit.md</tspan><tspan class="small" x="130" dy="16">skill name and load path</tspan></text>
+<rect class="boxchg" x="270" y="10" width="220" height="50" rx="6"/>
+<text x="380" y="31" text-anchor="middle"><tspan class="strong">README.md</tspan><tspan class="small" x="380" dy="16">audit table, upgrade note</tspan></text>
+<rect class="boxchg" x="520" y="10" width="220" height="50" rx="6"/>
+<text x="630" y="31" text-anchor="middle"><tspan class="strong">ARCHITECTURE.md</tspan><tspan class="small" x="630" dy="16">lines 278, 307, 315</tspan></text>
+<rect class="frame" x="10" y="90" width="740" height="130" rx="8"/>
+<text class="small" x="22" y="106">skills/audit/</text>
+<rect class="boxchg" x="20" y="118" width="136" height="90" rx="6"/>
+<text x="88" y="140" text-anchor="middle"><tspan class="strong">audit-maturity</tspan><tspan class="small" x="88" dy="20">2 files</tspan><tspan class="small" x="88" dy="14">1 edited, 1 R100</tspan></text>
+<rect class="boxchg" x="166" y="118" width="136" height="90" rx="6"/>
+<text x="234" y="140" text-anchor="middle"><tspan class="strong">audit-recon</tspan><tspan class="small" x="234" dy="20">1 file</tspan><tspan class="small" x="234" dy="14">1 edited</tspan></text>
+<rect class="boxchg" x="312" y="118" width="136" height="90" rx="6"/>
+<text x="380" y="140" text-anchor="middle"><tspan class="strong">audit-dimension-</tspan><tspan class="strong" x="380" dy="15">analysis</tspan><tspan class="small" x="380" dy="17">12 files</tspan><tspan class="small" x="380" dy="14">1 edited, 11 R100</tspan></text>
+<rect class="boxchg" x="458" y="118" width="136" height="90" rx="6"/>
+<text x="526" y="140" text-anchor="middle"><tspan class="strong">audit-scorecard-</tspan><tspan class="strong" x="526" dy="15">review</tspan><tspan class="small" x="526" dy="17">3 files</tspan><tspan class="small" x="526" dy="14">2 edited, 1 R100</tspan></text>
+<rect class="boxchg" x="604" y="118" width="136" height="90" rx="6"/>
+<text x="672" y="140" text-anchor="middle"><tspan class="strong">audit-synthesis</tspan><tspan class="small" x="672" dy="20">1 file</tspan><tspan class="small" x="672" dy="14">1 edited</tspan></text>
+<line class="arrowacc" x1="110" y1="60" x2="95" y2="116" marker-end="url(#b2)"/>
+<line class="arrowdash" x1="380" y1="60" x2="380" y2="88" marker-end="url(#a2)"/>
+<line class="arrowdash" x1="630" y1="60" x2="630" y2="88" marker-end="url(#a2)"/>
+<rect class="box" x="20" y="245" width="170" height="40" rx="6"/>
+<text x="105" y="262" text-anchor="middle"><tspan>skills/sdd/</tspan><tspan class="small" x="105" dy="14">unchanged (T-13)</tspan></text>
+<rect class="box" x="210" y="245" width="170" height="40" rx="6"/>
+<text x="295" y="262" text-anchor="middle"><tspan>skills/code/</tspan><tspan class="small" x="295" dy="14">unchanged (T-13)</tspan></text>
+<rect class="box" x="400" y="245" width="170" height="40" rx="6"/>
+<text x="485" y="262" text-anchor="middle"><tspan>agents/</tspan><tspan class="small" x="485" dy="14">unchanged (T-13)</tspan></text>
+<rect class="box" x="590" y="245" width="150" height="40" rx="6"/>
+<text x="665" y="262" text-anchor="middle"><tspan>.claude-plugin/</tspan><tspan class="small" x="665" dy="14">unchanged (T-10)</tspan></text>
+<text class="small" x="10" y="308">"edited" = a renamed file whose text also changed. R100 = renamed, bytes equal.</text>
+</svg>
+<figcaption>L2 — one zoom in from L1. Five folders change name. Three documents change text. Four other groups stay untouched.</figcaption>
+</figure>
+
+<h3>Rename map</h3>
+<div class="tablewrap"><table>
+<tr><th>Old folder (<code>e824b5c</code>)</th><th>New folder</th><th><code>name:</code> value</th><th>Files</th></tr>
+<tr class="chg"><td><code>00-governing-audit/</code></td><td><code>audit-maturity/</code></td><td><code>app-maturity-audit</code> → <code>audit-maturity</code></td><td>2: <code>SKILL.md</code> (R094), <code>references/bundle-conventions.md</code> (R100)</td></tr>
+<tr class="chg"><td><code>01-recon/</code></td><td><code>audit-recon/</code></td><td><code>audit-recon</code> (equal)</td><td>1: <code>SKILL.md</code> (R088)</td></tr>
+<tr class="chg"><td><code>02-dimension-analysis/</code></td><td><code>audit-dimension-analysis/</code></td><td><code>audit-dimension-analysis</code> (equal)</td><td>12: <code>SKILL.md</code> (R087), 11 rubrics under <code>references/</code> (R100)</td></tr>
+<tr class="chg"><td><code>03-scorecard-review/</code></td><td><code>audit-scorecard-review/</code></td><td><code>audit-scorecard-review</code> (equal)</td><td>3: <code>SKILL.md</code> (R088), <code>scripts/compare_scorecards.py</code> (R098), <code>scripts/build_scorecard.py</code> (R100)</td></tr>
+<tr class="chg"><td><code>04-synthesis/</code></td><td><code>audit-synthesis/</code></td><td><code>audit-synthesis</code> (equal)</td><td>1: <code>SKILL.md</code> (R088)</td></tr>
+</table></div>
+
+<h3>Text edits by file</h3>
+<div class="tablewrap"><table>
+<tr><th>File</th><th>Edit</th></tr>
+<tr class="chg"><td><code>audit-maturity/SKILL.md</code></td><td><code>name:</code> becomes <code>audit-maturity</code>. Five paths use the new folders. The <code>description:</code> line does not change.</td></tr>
+<tr class="chg"><td>The four stage <code>SKILL.md</code> files</td><td>The <code>description:</code> names <code>audit-maturity</code> instead of <code>app-maturity-audit</code>. Each path to a sibling folder uses the new name (recon 3, dimension-analysis 2, scorecard-review 3, synthesis 1).</td></tr>
+<tr class="chg"><td><code>compare_scorecards.py</code></td><td>Lines 33 and 34 join <code>"audit-dimension-analysis"</code> and <code>"audit-scorecard-review"</code> onto <code>SKILLS_ROOT</code>. No other line changes.</td></tr>
+<tr class="chg"><td><code>commands/audit.md</code></td><td>The command loads <code>audit-maturity</code> from <code>skills/audit/audit-maturity/SKILL.md</code>. The command name stays <code>audit</code>.</td></tr>
+<tr class="chg"><td><code>ARCHITECTURE.md</code></td><td>Three lines change. Line 278 names <code>audit-maturity</code> … <code>audit-synthesis</code>. Line 307 names <code>skills/sdd/sdd-*/SKILL.md</code> (by ADR). Line 315 uses the new path.</td></tr>
+<tr class="chg"><td><code>README.md</code></td><td>The audit table names the five new folders (it named non-existent <code>sdd-*</code> folders). The upgrade note lists the five old audit folders for removal and no longer says "Keep the audit folders".</td></tr>
+</table></div>
+
+<h2 id="l3">L3 — The rubric-hash path</h2>
+<p>One component holds the folder names at run time: <code>compare_scorecards.py</code>. Its function <code>rubric_hash()</code> (lines 29 – 41) hashes everything that decides a score. The script finds the rubrics through <code>SKILLS_ROOT</code> (line 23). <code>SKILLS_ROOT</code> is <code>parents[2]</code> of the script. The script keeps its depth, so <code>SKILLS_ROOT</code> and <code>PLUGIN_JSON</code> still resolve.</p>
+
+<figure>
+<svg viewBox="0 0 760 335" width="100%" role="img" aria-label="Components of compare_scorecards.py: stamp and compare call rubric_hash, which uses SKILLS_ROOT and reads the rubrics, build_scorecard.py and an optional weights.json. The two folder names in rubric_hash are changed. The files it reads moved but have the same bytes.">
+<defs>
+<marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk" d="M0,0L10,5L0,10z"/></marker>
+<marker id="b3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mka" d="M0,0L10,5L0,10z"/></marker>
+</defs>
+<rect class="frame" x="10" y="8" width="740" height="206" rx="8"/>
+<text class="small" x="22" y="24">compare_scorecards.py (one script, standard library only)</text>
+<rect class="box" x="30" y="40" width="190" height="46" rx="6"/>
+<text x="125" y="60" text-anchor="middle"><tspan>stamp(run, app)</tspan><tspan class="small" x="125" dy="15">line 51 · writes run.json</tspan></text>
+<rect class="box" x="250" y="40" width="190" height="46" rx="6"/>
+<text x="345" y="60" text-anchor="middle"><tspan>main() · compare</tspan><tspan class="small" x="345" dy="15">line 243 · refreshes the hash</tspan></text>
+<rect class="box" x="540" y="40" width="190" height="46" rx="6"/>
+<text x="635" y="60" text-anchor="middle"><tspan>comparability()</tspan><tspan class="small" x="635" dy="15">line 148 · warns on hash change</tspan></text>
+<rect class="boxchg" x="130" y="125" width="220" height="62" rx="6"/>
+<text x="240" y="147" text-anchor="middle"><tspan class="strong">rubric_hash(run)</tspan><tspan class="small" x="240" dy="16">lines 29 – 41</tspan><tspan class="small" x="240" dy="14">lines 33 – 34: folder names changed</tspan></text>
+<rect class="box" x="540" y="125" width="190" height="62" rx="6"/>
+<text x="635" y="147" text-anchor="middle"><tspan>SKILLS_ROOT</tspan><tspan class="small" x="635" dy="16">line 23 · parents[2]</tspan><tspan class="small" x="635" dy="14">unchanged</tspan></text>
+<line class="arrowacc" x1="150" y1="86" x2="190" y2="123" marker-end="url(#b3)"/>
+<line class="arrowacc" x1="330" y1="86" x2="290" y2="123" marker-end="url(#b3)"/>
+<line class="arrow" x1="440" y1="63" x2="538" y2="63" marker-end="url(#a3)"/>
+<line class="arrowdash" x1="350" y1="156" x2="538" y2="156" marker-end="url(#a3)"/>
+<text class="small" x="360" y="150">paths start here</text>
+<text class="small" x="30" y="204">returns sha256[:12]: 212cd4db08e1</text>
+<rect class="boxchg" x="20" y="250" width="235" height="62" rx="6"/>
+<text x="137" y="270" text-anchor="middle"><tspan class="strong">audit-dimension-analysis/</tspan><tspan class="strong" x="137" dy="15">references/*.md</tspan><tspan class="small" x="137" dy="15">11 files · moved, bytes equal</tspan></text>
+<rect class="boxchg" x="265" y="250" width="235" height="62" rx="6"/>
+<text x="382" y="270" text-anchor="middle"><tspan class="strong">audit-scorecard-review/</tspan><tspan class="strong" x="382" dy="15">scripts/build_scorecard.py</tspan><tspan class="small" x="382" dy="15">moved, bytes equal</tspan></text>
+<rect class="box" x="510" y="250" width="235" height="62" rx="6"/>
+<text x="627" y="270" text-anchor="middle"><tspan>&lt;run&gt;/weights.json</tspan><tspan class="small" x="627" dy="16">optional override</tspan><tspan class="small" x="627" dy="14">hashed if present</tspan></text>
+<line class="arrowacc" x1="200" y1="187" x2="137" y2="248" marker-end="url(#b3)"/>
+<line class="arrowacc" x1="240" y1="187" x2="382" y2="248" marker-end="url(#b3)"/>
+<line class="arrowdash" x1="290" y1="187" x2="590" y2="248" marker-end="url(#a3)"/>
+<text class="small" x="10" y="328">Blue = the path of one hash. The rename changes the two names at lines 33 and 34 and the place of the files, not their bytes.</text>
+</svg>
+<figcaption>L3 — the components on the hash path. The two string literals at lines 33 and 34 are the only run-time code that names a folder.</figcaption>
+</figure>
+
+<pre><code>def rubric_hash(run):
+    h = hashlib.sha256()
+    files = sorted((SKILLS_ROOT / "audit-dimension-analysis" / "references").glob("*.md"))   # line 33
+    files.append(SKILLS_ROOT / "audit-scorecard-review" / "scripts" / "build_scorecard.py")  # line 34
+    if (run / "weights.json").exists():
+        files.append(run / "weights.json")
+    for f in files:
+        h.update(f.name.encode())      # base name only
+        h.update(f.read_bytes())       # bytes
+    return h.hexdigest()[:12]</code></pre>
+<p>Line 243 recomputes the hash for the current run when a <code>compare</code> starts. Function <code>comparability()</code> (line 148) writes the warning "Not like-for-like" when two runs carry different hashes.</p>
+
+<h2 id="contracts">Contracts</h2>
+<p><strong>Service Contracts.</strong> This change has no business service contract. The plugin has no DI container, no controller and no external service boundary.</p>
+<p><strong>Boundary the host sees.</strong> A host loads a skill by its folder name and reads <code>name:</code> from the frontmatter. After the change, the two are equal for all 18 skills under <code>skills/*/*/</code> (check T-2). The command <code>/speccen:audit</code> keeps its name and its file.</p>
+<p><strong>Component API.</strong> The script <code>compare_scorecards.py</code> offers two commands and one function:</p>
+<div class="tablewrap"><table>
+<tr><th>Item</th><th>Behaviour</th><th>Changed?</th></tr>
+<tr><td><code>stamp &lt;run_dir&gt; [--app NAME]</code></td><td>Writes <code>run.json</code> with id, date, app, commit, toolkit version and rubric hash.</td><td>No</td></tr>
+<tr><td><code>compare &lt;run_dir&gt;</code></td><td>Writes <code>trend.md</code>, and regenerates <code>history.md</code> and <code>history.json</code>.</td><td>No</td></tr>
+<tr class="chg"><td><code>rubric_hash(run) -&gt; str</code></td><td>Returns 12 hex digits. Input: base names and bytes of 11 rubrics, <code>build_scorecard.py</code> and an optional <code>weights.json</code>.</td><td>Two folder names inside. Same signature, same result.</td></tr>
+</table></div>
+
+<h2 id="args">Two argument-diagrams</h2>
+<h3>1. The hash input is base names and bytes, not directories</h3>
+<p>A folder move changes the path of every hashed file. The hash still stays <code>212cd4db08e1</code>, because the hash never reads the folder part. This is the reason the folder move is safe.</p>
+<figure>
+<svg viewBox="0 0 760 300" width="100%" role="img" aria-label="Two different paths, the old numbered folder and the new audit folder, give the same base name and bytes, so both give the hash 212cd4db08e1.">
+<defs>
+<marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk" d="M0,0L10,5L0,10z"/></marker>
+<marker id="b4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mka" d="M0,0L10,5L0,10z"/></marker>
+</defs>
+<text class="small" x="10" y="20">Before (e824b5c)</text>
+<text class="small" x="500" y="20">After (fdbc357)</text>
+<rect class="box" x="10" y="35" width="250" height="52" rx="6"/>
+<text x="135" y="55" text-anchor="middle"><tspan class="small">02-dimension-analysis/references/</tspan><tspan x="135" dy="18">security.md</tspan></text>
+<rect class="boxchg" x="500" y="35" width="250" height="52" rx="6"/>
+<text x="625" y="55" text-anchor="middle"><tspan class="small">audit-dimension-analysis/references/</tspan><tspan x="625" dy="18">security.md</tspan></text>
+<rect class="boxacc" x="300" y="35" width="160" height="52" rx="6"/>
+<text x="380" y="55" text-anchor="middle"><tspan class="strong">security.md</tspan><tspan class="small" x="380" dy="15">+ the same bytes</tspan></text>
+<line class="arrowdash" x1="260" y1="61" x2="298" y2="61" marker-end="url(#a4)"/>
+<line class="arrowacc" x1="500" y1="61" x2="462" y2="61" marker-end="url(#b4)"/>
+<rect class="box" x="10" y="105" width="250" height="52" rx="6"/>
+<text x="135" y="125" text-anchor="middle"><tspan class="small">03-scorecard-review/scripts/</tspan><tspan x="135" dy="18">build_scorecard.py</tspan></text>
+<rect class="boxchg" x="500" y="105" width="250" height="52" rx="6"/>
+<text x="625" y="125" text-anchor="middle"><tspan class="small">audit-scorecard-review/scripts/</tspan><tspan x="625" dy="18">build_scorecard.py</tspan></text>
+<rect class="boxacc" x="300" y="105" width="160" height="52" rx="6"/>
+<text x="380" y="125" text-anchor="middle"><tspan class="strong">build_scorecard.py</tspan><tspan class="small" x="380" dy="15">+ the same bytes</tspan></text>
+<line class="arrowdash" x1="260" y1="131" x2="298" y2="131" marker-end="url(#a4)"/>
+<line class="arrowacc" x1="500" y1="131" x2="462" y2="131" marker-end="url(#b4)"/>
+<line class="arrowacc" x1="380" y1="87" x2="380" y2="103" marker-end="url(#b4)"/>
+<line class="arrowacc" x1="380" y1="157" x2="380" y2="196" marker-end="url(#b4)"/>
+<rect class="boxacc" x="230" y="198" width="300" height="56" rx="6"/>
+<text x="380" y="220" text-anchor="middle"><tspan class="strong">sha256, first 12 hex digits</tspan><tspan x="380" dy="20">212cd4db08e1 before = after</tspan></text>
+<text class="small" x="10" y="282">The folder part of each path never enters h.update(). Only f.name and f.read_bytes() do. 12 files: 11 rubrics + the scorer.</text>
+</svg>
+<figcaption>Argument-diagram 1 — two different paths, one input to the hash. Shown for two of the 12 files; the other 10 follow the same rule (T-6 checks that all 12 keep their blob ids).</figcaption>
+</figure>
+<p>The same fact makes a stale folder name dangerous. A stale name at line 33 does not stop the script: the glob returns an empty list, the hash covers only the scorer, and the hash silently differs. A stale name at line 34 stops the script with <code>FileNotFoundError</code>. Checks T-4 and T-8 guard both.</p>
+
+<h3>2. Same-day run ids sort as text</h3>
+<p>The function <code>load_all()</code> orders runs by <code>(date, id)</code>. The T-4 fixture first used the id <code>2026-11-18.after</code> for the run after the rename. The id sorts before <code>2026-11-18.baseline</code>. The script then took the new run as the first run and compared nothing. It gave no warning. The first T-4 result looked clean for that reason.</p>
+<figure>
+<svg viewBox="0 0 760 225" width="100%" role="img" aria-label="Two orderings of the same two runs. In the first, the id 2026-11-18.after sorts before 2026-11-18.baseline and nothing is compared. In the second, the id 2026-11-19.after sorts after the baseline and the two runs are compared.">
+<defs>
+<marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk" d="M0,0L10,5L0,10z"/></marker>
+</defs>
+<text x="10" y="62"><tspan class="strong">Wrong order</tspan></text>
+<rect class="boxbad" x="150" y="35" width="190" height="44" rx="6"/>
+<text x="245" y="62" text-anchor="middle"><tspan>2026-11-18.after</tspan></text>
+<rect class="box" x="380" y="35" width="190" height="44" rx="6"/>
+<text x="475" y="62" text-anchor="middle"><tspan>2026-11-18.baseline</tspan></text>
+<line class="arrow" x1="340" y1="57" x2="378" y2="57" marker-end="url(#a5)"/>
+<text class="small" x="590" y="52">sort key (date, id)</text>
+<text class="small" x="590" y="66">1st, then 2nd</text>
+<text class="small" x="150" y="100">compare takes ".after" as the first run. It compares nothing and warns about nothing.</text>
+<text x="10" y="157"><tspan class="strong">Right order</tspan></text>
+<rect class="box" x="150" y="130" width="190" height="44" rx="6"/>
+<text x="245" y="157" text-anchor="middle"><tspan>2026-11-18.baseline</tspan></text>
+<rect class="boxchg" x="380" y="130" width="190" height="44" rx="6"/>
+<text x="475" y="157" text-anchor="middle"><tspan>2026-11-19.after</tspan></text>
+<line class="arrow" x1="340" y1="152" x2="378" y2="152" marker-end="url(#a5)"/>
+<text class="small" x="150" y="195">compare takes ".after" against the baseline. trend.md holds 0 "Not like-for-like" lines.</text>
+<text class="small" x="10" y="217">Amber = the fixture id after the fix. Red = the id that sorts first.</text>
+</svg>
+<figcaption>Argument-diagram 2 — one id decides whether the comparison runs. A mutation test (a changed hash that must warn) exposed the empty comparison.</figcaption>
+</figure>
+
+<h2 id="why">What changed, and why</h2>
+<p>The change is a pure rename. The brief set these limits: no content change beyond paths and names, no edit to a rubric or to <code>build_scorecard.py</code>, one commit with a fixed message, and no edit to <code>.speccen/</code> history. The rest of this section shows the decisions that shaped the result.</p>
+
+<h3>Verdict on each part of the change</h3>
+<div class="tablewrap"><table>
+<tr><th>Part</th><th>Verdict</th><th>Reason</th></tr>
+<tr><td>Five folder renames with <code>git mv</code></td><td class="verdict">Required</td><td>Folder equals <code>name:</code>. Git records 19 renames, so history follows the files.</td></tr>
+<tr><td><code>name: audit-maturity</code> in the governing skill</td><td class="verdict">Required</td><td>The folder name and the skill name must be equal. The <code>description:</code> line stays as it was (T-7).</td></tr>
+<tr><td>Lines 33 – 34 of <code>compare_scorecards.py</code></td><td class="verdict">Required for correctness</td><td>A stale name at line 33 changes the hash silently. A stale name at line 34 stops the script.</td></tr>
+<tr><td><code>commands/audit.md</code></td><td class="verdict">Required</td><td>The command loads the governing skill by name and path. The command name stays <code>audit</code>.</td></tr>
+<tr><td>Stage <code>description:</code> lines (DD-9)</td><td class="verdict">Required by the acceptance search</td><td>The old name in those four lines would fail Verification 1. Only the name changes.</td></tr>
+<tr><td>README audit table</td><td class="verdict">Required for correctness</td><td>The table named <code>sdd-*</code> folders that do not exist.</td></tr>
+<tr><td>README upgrade note (DD-10)</td><td class="verdict">Placement choice</td><td>The note could keep its old opening. The Architect-approved text names the audit rename, as the model commit <code>1c41496</code> does.</td></tr>
+<tr><td><code>ARCHITECTURE.md</code> lines 278 and 315</td><td class="verdict">Required</td><td>Both lines restate a folder name or a path.</td></tr>
+<tr><td><code>ARCHITECTURE.md</code> line 307</td><td class="verdict">Placement choice, set by ADR</td><td>The fix could have waited as a follow-up (DD-8). The Architect decided to include it. See below.</td></tr>
+</table></div>
+
+<h3>Decisions, with status as recorded</h3>
+<p>The bundle ran in autonomous mode. The delegate took 13 decisions. The Architect reviewed all of them. This table shows each status as recorded in <code>delegated-decisions.md</code>. This reference does not set any status.</p>
+<div class="tablewrap"><table>
+<tr><th>Id</th><th>Decision</th><th>Status as recorded</th></tr>
+<tr><td>DD-1</td><td>The whole <code>.speccen/</code> stays unchanged, apart from this bundle and its graduation.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr><td>DD-2</td><td>"One commit" means one code commit. Bundle phase commits are separate.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr><td>DD-3</td><td>Push and PR wait for the Architect's go.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr><td>DD-4</td><td>The commit message is the brief's message, with no attribution trailer.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr><td>DD-5</td><td>Reach: every restatement of an old name, not only the places the brief lists.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr><td>DD-6</td><td>The hash baseline is the hash computed on <code>main</code> at <code>e824b5c</code>.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr class="chg"><td>DD-7</td><td>Append <code>\b</code> to the <code>sdd-(…)</code> group of Verification 1. Recorded materiality: MATERIAL — unconfirmed.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr class="chg"><td>DD-8</td><td>Leave <code>ARCHITECTURE.md:307</code> and report it as a follow-up.</td><td>OVERRIDDEN — the Architect, review round: "dd-8 update both readme and architecture md's". ADR: <code>2026-11-18.architecture_reading_guide_sdd_path</code></td></tr>
+<tr><td>DD-9</td><td>The four stage <code>description:</code> lines change the name only.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr><td>DD-10</td><td>The README upgrade note also names the audit rename.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr><td>DD-11</td><td>T-4 runs on a synthetic run in the scratchpad. Nothing is committed.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr><td>DD-12</td><td>The checks live in <code>files/phase-05-text-checks.py</code>, outside the code commit.</td><td>ADOPTED — the Architect, review round</td></tr>
+<tr class="chg"><td>DD-13</td><td>Deviation 1: run T-4 in Python UTF-8 mode.</td><td>ADOPTED — the Architect, review round</td></tr>
+</table></div>
+
+<h3>DD-7 — tighten the acceptance search</h3>
+<p>The brief's Verification 1 search must find the old names only in the README upgrade note. The brief's regex also matches <code>sdd-reconcile</code>: 9 false hits (Phase 02, group C). The delegate appended <code>\b</code> after the <code>sdd-(governing-audit|recon|dimension-analysis|scorecard-review|synthesis)</code> group. At the start the search gives 32 hits, none of them <code>sdd-reconcile</code>. After the change it gives 4 hits, all in the README note (lines 132, 133, 137, 138).</p>
+<div class="tablewrap"><table>
+<tr><th>Option</th><th>Taken?</th><th>Reason</th></tr>
+<tr class="chg"><td><code>\b</code> after the group</td><td class="verdict">Taken</td><td>It removes the 9 false hits. It keeps the rest of the search as the brief wrote it.</td></tr>
+<tr><td>A trailing <code>/</code> after the group</td><td>Rejected</td><td>It misses a bare <code>sdd-recon</code> that has no slash.</td></tr>
+<tr><td><code>| grep -v sdd-reconcile</code></td><td>Rejected</td><td>It hides any line that holds both <code>sdd-reconcile</code> and a real old name.</td></tr>
+</table></div>
+
+<h3>DD-8 — the Architect overrides the delegate</h3>
+<p>The delegate chose to leave <code>ARCHITECTURE.md:307</code> (<code>skills/sdd/NN-*/SKILL.md</code>, a stale path from an earlier rename) because the brief says "keep this commit a pure rename". The Architect overrode that choice in the review round. The ADR records the decision and its scope.</p>
+<div class="tablewrap"><table>
+<tr><th>Option</th><th>Outcome</th><th>Reason</th></tr>
+<tr><td>Leave line 307 and report a follow-up (DD-8)</td><td class="verdict">OVERRIDDEN</td><td>The Architect asked to update both documents.</td></tr>
+<tr class="chg"><td>Fix line 307 in this change, folded into the one code commit with its message unchanged</td><td class="verdict">Taken (ADR)</td><td>The Architect accepted: only <code>ARCHITECTURE.md:307</code>, fold into the code commit, keep the message (interview 06/18 – 06/20).</td></tr>
+<tr><td>Change a README line too</td><td>Not needed</td><td>A search of <code>README.md</code> found no stale <code>sdd</code> skill path. The README does not change for this ADR.</td></tr>
+</table></div>
+<p>Effect: the fix was folded with a fixup rebase. The code commit changed from <code>6c6187c</code> to <code>fdbc357</code>. The diff grew from 40 to 41 insertions and from 38 to 39 deletions. Check T-14 was added. The ADR records no consequences (the Architect stated none).</p>
+
+<h3>DD-13 and the other test-method decisions</h3>
+<div class="tablewrap"><table>
+<tr><th>Decision</th><th>Option</th><th>Taken?</th><th>Reason</th></tr>
+<tr class="chg"><td rowspan="3">DD-13 — the scorer fails on this Windows host</td><td>Run T-4 with <code>-X utf8</code></td><td class="verdict">Taken</td><td>It changes how the check runs, not the code. The scorer stays byte-identical (T-6).</td></tr>
+<tr><td>Fix <code>build_scorecard.py</code> in this change</td><td>Rejected</td><td>It changes the rubric hash and breaks the brief's invariant.</td></tr>
+<tr><td>Stop and ask</td><td>Rejected</td><td>No scope change was needed.</td></tr>
+<tr><td rowspan="2">DD-11 — where T-4 runs</td><td>A synthetic run in the session scratchpad</td><td class="verdict">Taken</td><td>It commits nothing and leaves <code>.speccen/audits/</code> clean.</td></tr>
+<tr><td>A run under <code>.speccen/audits/</code> of this repository</td><td>Rejected</td><td>It adds run data to the repository history.</td></tr>
+<tr><td rowspan="2">DD-9 — stage descriptions</td><td>Replace the name only</td><td class="verdict">Taken</td><td>It follows the brief's invariant on content.</td></tr>
+<tr><td>Leave the descriptions</td><td>Rejected</td><td>Verification 1 would then fail.</td></tr>
+</table></div>
+<p>No Phase 03 prototype ran (<code>prototypes: 0</code>): no material choice had competing approaches to build.</p>
+
+<h2 id="deviations">Deviations</h2>
+<div class="card">
+<p><strong>Deviation 1 — T-4 needs Python UTF-8 mode on Windows.</strong> Decision: APPROVED (delegated), <a href="../delegated-decisions.md#dd-13">DD-13</a>. Purpose preserved: yes. Detail: <a href="../phase-05-implementation/phase.md#deviations">phase 05, Deviations</a>.</p>
+<p><strong>Planned.</strong> Run <code>stamp</code>, <code>build_scorecard.py</code> and <code>compare</code> end to end.</p>
+<p><strong>Actual.</strong> <code>build_scorecard.py</code> stops with <code>UnicodeEncodeError: 'charmap' codec can't encode character</code> for the star symbol. The failing call is <code>(out_dir / "scorecard.md").write_text(...)</code> at line 391. The call has no <code>encoding</code> argument, so Python on Windows writes cp1252, and cp1252 has no star. With <code>-X utf8</code> all three scripts exit 0.</p>
+<p><strong>Why not fix it.</strong> The file is byte-identical to <code>e824b5c</code>, so the error predates the rename. The brief forbids any edit to the file. An edit would change the rubric hash and mark every later run "not like-for-like" against earlier runs.</p>
+<p><strong>Resolution.</strong> The durable store holds the lesson <code>2026-11-18.audit_scorer_needs_utf8_and_fix_changes_hash</code>. A fix needs its own decision on the hash break. Until then, run the audit scripts with <code>python -X utf8</code> on Windows.</p>
+</div>
+<p>A second finding came from the T-4 fixture, not from the code: the run-id sort order (argument-diagram 2). It is not a deviation. The durable store holds it as the lesson <code>2026-11-18.same_day_audit_runs_sort_by_id</code>. The fixture id changed from <code>2026-11-18.after</code> to <code>2026-11-19.after</code> with no change to the plan.</p>
+
+<h2 id="checks">Checks</h2>
+<p>The plan has 14 checks. The script <code>files/phase-05-text-checks.py</code> runs 13 of them (T-1 – T-3, T-5 – T-14). T-4 runs by hand because it needs a synthetic run. Every expected value comes from the plan and the brief, not from the code. The script reads texts from git objects. Result: 14 of 14 pass.</p>
+<div class="tablewrap"><table>
+<tr><th>Check</th><th>What it proves</th><th>Result</th></tr>
+<tr><td>T-1</td><td>Old names appear only in the README upgrade note (DD-7 search).</td><td>PASS — 4 hits (lines 132, 133, 137, 138)</td></tr>
+<tr><td>T-2</td><td>Folder equals <code>name:</code> for every <code>skills/*/*/SKILL.md</code>.</td><td>PASS — 18 skills, no mismatch</td></tr>
+<tr><td>T-3</td><td>Every cited <code>skills/audit/…</code> path exists.</td><td>PASS — 24 cited, 0 missing</td></tr>
+<tr class="chg"><td>T-4</td><td><code>stamp</code>, <code>build_scorecard.py</code> and <code>compare</code> run end to end at the new paths. The new hash equals the baseline. A changed hash warns.</td><td>PASS — by hand, see below</td></tr>
+<tr><td>T-5</td><td>19 renames under <code>skills/audit/</code>, 13 <code>R100</code>.</td><td>PASS</td></tr>
+<tr><td>T-6</td><td>All 12 hash inputs keep their blob ids.</td><td>PASS — 12 inputs, same ids</td></tr>
+<tr><td>T-7</td><td>The governing <code>description:</code> line is equal to the old one.</td><td>PASS</td></tr>
+<tr><td>T-8</td><td>Nine text files equal the substitution map applied to the <code>e824b5c</code> text.</td><td>PASS — 9 files</td></tr>
+<tr><td>T-9</td><td>The README upgrade note equals the planned text.</td><td>PASS</td></tr>
+<tr><td>T-10</td><td>Change set: 19 renames plus <code>ARCHITECTURE.md</code>, <code>README.md</code>, <code>commands/audit.md</code>, and nothing else.</td><td>PASS</td></tr>
+<tr><td>T-11</td><td>One code commit, the brief's message, no attribution.</td><td>PASS</td></tr>
+<tr><td>T-12</td><td><code>.speccen/</code> changes only in this bundle and its graduation.</td><td>PASS</td></tr>
+<tr><td>T-13</td><td><code>skills/sdd</code>, <code>skills/code</code> and <code>agents</code> are unchanged.</td><td>PASS</td></tr>
+<tr class="chg"><td>T-14</td><td><code>ARCHITECTURE.md</code> has no <code>NN-*</code> path, and line 307 names <code>skills/sdd/sdd-*/SKILL.md</code> (added for the ADR).</td><td>PASS</td></tr>
+</table></div>
+<h3>The T-4 run</h3>
+<ol>
+<li>A synthetic run of 11 <code>dimensions/&lt;dim&gt;/result.json</code> files sits in the session scratchpad. Nothing is committed (DD-11).</li>
+<li>The baseline run <code>2026-11-18.baseline</code> was stamped in Phase 02 with the skills as at <code>e824b5c</code>. Its <code>rubric_hash</code> is <code>212cd4db08e1</code>.</li>
+<li>The new run <code>2026-11-19.after</code> runs on the renamed tree. <code>stamp</code> writes <code>rubric_hash</code> <code>212cd4db08e1</code>. <code>build_scorecard.py</code> and <code>compare</code> exit 0.</li>
+<li><code>trend.md</code> compares against <code>2026-11-18.baseline</code> and holds 0 "Not like-for-like" lines.</li>
+<li>Mutation: the same run with a <code>weights.json</code> gives the warning "Not like-for-like: rubrics/scorer changed between these runs (rubric hash differs)". The check detects a change.</li>
+<li>All commands ran with <code>python -I -B -X utf8</code> (Deviation 1).</li>
+</ol>
+<p><strong>Move tests.</strong> The mutations of T-1, T-8, T-9 and T-14 each change one expected text in memory. Each run then reports a failure for that check only. After the ADR fold, T-4 was not run again end to end: the fold changes only <code>ARCHITECTURE.md</code>, which is no input of the scripts or of the hash. The hash at <code>fdbc357</code> is still <code>212cd4db08e1</code>.</p>
+<p><strong>Release.</strong> PR #35 merged as <code>0f6c6b2</code>. CI then bumped the version to <code>26.1118.1</code> (<code>a119ddf</code>, tag <code>v26.1118.1</code>). The code commit does not touch the version (T-10).</p>
+
+<h2 id="limits">Known limitations and follow-ups</h2>
+<ul>
+<li><strong>The scorer fails on Windows without UTF-8 mode.</strong> <code>build_scorecard.py:391</code> writes <code>scorecard.md</code> with the platform encoding. A fix changes the rubric hash, so it needs its own decision. Follow-up: decide the hash break, then fix the file.</li>
+<li><strong>Same-day run ids sort as text.</strong> A later run needs an id that sorts after its baseline. Otherwise <code>compare</code> compares nothing and does not warn. Test each "no warning" check with a mutation that must warn.</li>
+<li><strong>The hash reads bytes, so line endings count.</strong> The value <code>212cd4db08e1</code> is the hash of the git blobs (LF) at <code>a119ddf</code>. A working tree with CRLF endings gives another value. The Phase 04 risk table names this risk. Observed while this reference was written: on the Windows checkout of the docs branch (<code>core.autocrlf=true</code>, working-tree files CRLF, index LF), <code>rubric_hash()</code> returns <code>6c10c0ec3ace</code>. The bundle does not record this value as a finding. Compare hashes only between runs made on the same line endings.</li>
+<li><strong>The README upgrade note keeps the old names on purpose.</strong> It lists the five old audit folders for removal. Those 4 lines are the only hits of the DD-7 search.</li>
+<li><strong>Old paths remain in <code>.speccen/</code> history.</strong> DD-1 leaves the durable store and earlier bundles unchanged.</li>
+<li><strong>Installed copies update after a release.</strong> A host session that loaded the plugin before the release still lists the old audit skill names until the plugin cache updates.</li>
+</ul>
+
+<h2 id="refs">References</h2>
+<h3>Source map</h3>
+<div class="tablewrap"><table>
+<tr><th>Item</th><th>Where</th></tr>
+<tr><td>Code commit</td><td><code>fdbc357</code> — <code>refactor: prefix the audit skills with audit- and drop the folder numbers</code></td></tr>
+<tr><td>Hash path</td><td><code>skills/audit/audit-scorecard-review/scripts/compare_scorecards.py</code>, lines 23, 29 – 41, 148, 243</td></tr>
+<tr><td>Rename map and commit range</td><td><code>git diff -M --name-status e824b5c fdbc357 -- skills/audit</code> · <code>git log --oneline e824b5c..a119ddf</code></td></tr>
+<tr><td>Scorer defect</td><td><code>skills/audit/audit-scorecard-review/scripts/build_scorecard.py:391</code></td></tr>
+<tr><td>Checks</td><td><code>files/phase-05-text-checks.py</code> (in the bundle)</td></tr>
+</table></div>
+<h3>Bundle basis</h3>
+<ul>
+<li>Phase 01 — <a href="../phase-01-feature-analysis/summary.md">feature analysis</a>: the brief, DD-1 – DD-6.</li>
+<li>Phase 02 — <a href="../phase-02-code-analysis/summary.md">code analysis</a>: the hash path, the restatement inventory, the baseline <code>212cd4db08e1</code>.</li>
+<li>Phase 03 — <a href="../phase-03-compliance-review/summary.md">compliance and review</a>: DD-7 – DD-9, the ADR iteration.</li>
+<li>Phase 04 — <a href="../phase-04-specification/specification.html">specification</a> (intent) and its <a href="../phase-04-specification/phase.md#implementation-plan">implementation plan and test plan</a>.</li>
+<li>Phase 05 — <a href="../phase-05-implementation/summary.md">implementation</a>: <a href="../phase-05-implementation/phase.md#deviations">Deviation 1</a>.</li>
+<li>Phase 06 — <a href="../phase-06-close-out/doc-technical.md">technical close-out seed</a>, <a href="../phase-06-close-out/doc-business.md">business</a> and <a href="../phase-06-close-out/doc-executive.md">executive</a> seeds.</li>
+<li>Decisions — <a href="../delegated-decisions.md">delegated-decisions.md</a> (DD-1 – DD-13) and the ADR <a href="../adrs/2026-11-18.architecture_reading_guide_sdd_path.md">2026-11-18.architecture_reading_guide_sdd_path</a>.</li>
+<li>Durable store — the feature node <code>2026-11-18.rename_audit_skills</code> and the two lessons named above.</li>
+</ul>
+</main>
+</body>
+</html>

@@ -6,6 +6,14 @@ type: Log
 
 ## 2026-11-18
 
+- **10:16 — REFERENCE** — Phase 08 complete: summary written; reference copied to the feature node (links repointed), `reference` edge set, specification ↔ reference cross-linked, timeline updated; STATE: REFERENCE PHASE / COMPLETE
+- **10:16 — REFERENCE** — accept *(read as: approval of the reference)*
+- **10:13 — REFERENCE** — worker returned: `reference.html` (5 inline SVGs, each parsed; rendered in Edge dark mode by the worker) and `reference.md`; checked in the main session: metadata block, SVG parse, no external assets, links (only `./summary.md` missing until Step 9), fact strip against git. Finding confirmed: `rubric_hash()` on this CRLF working tree (`core.autocrlf=true`) is `6c10c0ec3ace`; the LF bytes (git blobs) give `212cd4db08e1` — the hash depends on the checkout's line endings, independent of the rename · usage: 459 122 ms, 33 tool calls, 158 929 tokens
+- **10:04 — REFERENCE subagent** — reference gathering and authoring (Steps 3 – 7) · model: balanced → sonnet (project config)
+- **10:04 — REFERENCE** — scope answers: "Which code should the reference for the audit-skill rename cover?"="Changed files only (Recommended)", "Which content areas should the reference include?"="Feature-sized set (Recommended)", "Should the codebase be read directly, or is the bundle enough?"="Read the code (Recommended)"
+- **09:31 — REFERENCE** — start reference phase
+- **09:30 — CLOSE-OUT** — release done: branch pushed; PR #35 merged (`0f6c6b2`, merge commit); CI bumped to `26.1118.1` (`a119ddf`, tag `v26.1118.1`); `main` pulled. Phase 08 runs on branch `docs/reference-rename-audit-skills`
+- **09:28 — CLOSE-OUT** — done, logged in
 - **09:25 — CLOSE-OUT** — accept, push and create PR, merge and pull after version bump *(read as: the go for DD-3 — push, PR to `main`, merge, wait for the CI version bump, pull `main`)*
 - **09:24 — CLOSE-OUT** — review round, as table
 - **09:23 — CLOSE-OUT** — revisit complete: seeds updated (ARCHITECTURE sdd path fixed, 14 checks); lessons `2026-11-18.audit_scorer_needs_utf8_and_fix_changes_hash` and `2026-11-18.same_day_audit_runs_sort_by_id` written (06/1, 06/2); feature node `produced` and the inverse edges set; store index and timeline regenerated; specification graduated again; STATE: COMPLETE — pending: go for push and PR

@@ -8,7 +8,7 @@ description: Reduced Markdown projection of specification.html
 
 # Audit skills with `audit-` names
 
-[Index](../../bundles/2026-11-18.rename_audit_skills/index.md) · [State](../../bundles/2026-11-18.rename_audit_skills/STATE.md) · [Log](../../bundles/2026-11-18.rename_audit_skills/log.md) · [HTML](./specification.html)
+[Index](../../bundles/2026-11-18.rename_audit_skills/index.md) · [State](../../bundles/2026-11-18.rename_audit_skills/STATE.md) · [Log](../../bundles/2026-11-18.rename_audit_skills/log.md) · [HTML](./specification.html) · [Reference](./reference.html) (what was actually built)
 
 ---
 
