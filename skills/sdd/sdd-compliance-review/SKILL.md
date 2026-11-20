@@ -255,7 +255,7 @@ the Architect as one stop round:
 - **Dependencies decide the order**: an ADR that constrains others comes in an earlier round;
   independent ones come together, so one "yes" can settle a round.
 - **Close with "Record these decisions into their ADRs? — yes / not yet".** That "yes" is the
-  explicit request the governing skill's **Scribing a stated decision** needs: write each
+  explicit request the governing skill's **Scribing a stated decision** (`skills/sdd/sdd-governing-workflow/references/adr-scribing.md`) needs: write each
   decided ADR, process it like any new ADR (Steps 2–4), and update the ADR table.
 - "Later" leaves an ADR `PENDING`; it still blocks the Definition of Ready.
 
@@ -298,7 +298,7 @@ description: <one-line summary of the open question>
 These placeholder ADRs become **blocking** — the workflow cannot advance to Phase 04
 until the Architect replaces the placeholder content with an actual decision (setting
 `status: DECIDED`), or deletes the placeholder if it's no longer relevant. The Architect may also ask you to record
-their stated decision — follow **Scribing a stated decision** in the governing skill's ADR
+their stated decision — follow **Scribing a stated decision** (`skills/sdd/sdd-governing-workflow/references/adr-scribing.md`) in the governing skill's ADR
 Protocol.
 
 **If ANY criterion is not met**, document what is missing under the `open-items` anchor in

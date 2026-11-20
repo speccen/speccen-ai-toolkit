@@ -47,9 +47,12 @@ passes that run only on request after the core completes.
 sdd-governing-workflow       Orchestrator + single source of truth for all conventions
                              (bundle layout, frontmatter, anchors, STE-style, ADR protocol,
                              the durable store, invariants). Every other skill references it.
-                             Conditional parts live in its references/ folder and are read
-                             only when needed: autonomous execution, subagent execution,
-                             durable-store layout and entries, project-config upgrade.
+                             Every rule stays resident in SKILL.md; procedures needed only at
+                             a specific moment live in its references/ folder and are read at
+                             a named trigger: bundle creation, configuration keys and
+                             templates, config upgrade, extensions, ADR scribing, STE style,
+                             autonomous execution, subagent execution, durable-store layout
+                             and entries.
 
 ── Core workflow (strictly sequential, each gated — by the Architect or its delegate) ──
 sdd-feature-analysis         Understand WHAT is requested. No code access, no solution.
@@ -318,3 +321,30 @@ deliverable with a reduced `.md` projection); `code-review` stays Markdown only.
 | Reconciling the store after concurrent team merges | `skills/sdd/sdd-reconcile/SKILL.md` |
 | The maturity audit and its trend over time | `skills/audit/audit-maturity/SKILL.md` |
 | Code documentation and review | `skills/code/code-documentation/SKILL.md`, `skills/code/code-review/SKILL.md` |
+
+---
+
+## Design notes behind the governing skill
+
+These reasons were moved out of `sdd-governing-workflow/SKILL.md` so the always-loaded skill holds
+instructions only. They explain the conventions; they do not change them.
+
+- **Not strictly OKF.** The bundle layout is inspired by the Open Knowledge Format — markdown
+  files with YAML frontmatter, cross-linked with relative links, plus an `index.md` — but it is
+  single-feature workflow state, not a cross-org knowledge base, so it adds its own keys freely.
+- **Navigation bar at the top.** Bundle files sit two folders deep and `phase.md` can grow long;
+  a footer at the bottom of a long analysis is useless for getting back out.
+- **Explicit anchors.** Auto-slugged headings break on reword and collide on duplicates.
+- **ADRs first in `index.md`.** Phase files capture how an understanding was reached and lose
+  value once the feature ships; a decision and its rationale outlive the bundle and often the code.
+- **Naming the `AskUserQuestion` tool.** A skill steers only with words, and "present it as a
+  form where the host can" is read as optional and drifts to prose; naming the tool and the call
+  shape removes the choice.
+- **STE only for reader documents.** Analytical writing needs the nuance and hedging STE removes,
+  and the log is recorded verbatim. The example `examples/pump-safety-rules-refactor.html` was
+  built outside speccen and is not STE; it models structure and diagram craft, not prose voice.
+- **Phase-boundary commits** create an automatic checkpoint at each phase boundary for the audit trail.
+- **Rules resident, procedures on demand.** The governing skill is in context for a whole run.
+  A rule (never / only / always) stays in `SKILL.md`, so a missed reference read can only leave a
+  procedure missing, never loosen a guardrail. `scripts/check_guardrails.py` enforces this.
+

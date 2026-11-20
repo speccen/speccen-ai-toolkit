@@ -24,7 +24,7 @@
   Architect as one stop round. One still undecided after that — answered "later" — becomes the
   placeholder ADR described in Step 6 (`status: PENDING`, which blocks exactly as it does today). When the Architect
   answers, they either edit the placeholder to `DECIDED` or ask you to record it — and then only
-  per **Scribing a stated decision**. An answer that states no decision leaves the placeholder
+  per **Scribing a stated decision** (`skills/sdd/sdd-governing-workflow/references/adr-scribing.md`). An answer that states no decision leaves the placeholder
   `PENDING` and the stop stands.
 - **Conflicts.** An ADR that conflicts with another ADR or with the brief is a stop. So is an
   analysis that would require overriding a standing (Tier-2) ADR — that override is the

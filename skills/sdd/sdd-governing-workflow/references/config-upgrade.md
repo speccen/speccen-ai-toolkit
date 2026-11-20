@@ -10,7 +10,7 @@
 
 The project file is the one place a team sees every setting speccen offers, so it must keep up
 with the template as speccen gains keys. At every session start (Step 0) the AI compares it with
-the template above, key by key — every top-level key, every phase entry, every key a phase takes,
+the project-file template in [`configuration.md`](configuration.md) → Templates (read it now), key by key — every top-level key, every phase entry, every key a phase takes,
 every tier under `models`. The file is current when its `version` matches the template's and no
 key is missing. If it is not current:
 
