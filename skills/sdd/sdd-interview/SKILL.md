@@ -164,7 +164,7 @@ the Architect:
 
 Record what the Architect states: set `ADOPTED` or `OVERRIDDEN` on the decision, and promote the
 candidates they approve (Phase 06, Step 6 write rules). An override still needs the Architect's
-ADR, which can be scribed on request (governing skill → Scribing a stated decision). "Later"
+ADR, which can be scribed on request (governing skill → Scribing a stated decision, `skills/sdd/sdd-governing-workflow/references/adr-scribing.md`). "Later"
 leaves a decision `DELEGATED` and a candidate pending. You record; you never choose a status or a
 promotion.
 
@@ -179,7 +179,7 @@ through and nothing rests on an assumption. In `gated` mode, then:
    - Phase 01: **"Is this where we stand? — yes / not yet"**.
    - Phase 03, with undecided ADRs: **"Record these decisions into their ADRs? — yes / not
      yet"**. That "yes" is the explicit request the governing skill's **Scribing a stated
-     decision** needs.
+     decision** (`skills/sdd/sdd-governing-workflow/references/adr-scribing.md`) needs.
    - Otherwise: **"Is this our shared understanding? — yes / not yet"**.
 3. On "not yet", ask what is wrong and run another round. On "yes", hand back to the calling
    phase, which writes its output.

@@ -37,8 +37,8 @@ All three are produced for **every** feature (uniformity), however briefly. They
 - Because of that, each seed is written as **terse, scannable bullets under fixed
   headings** — clean input for an LLM expansion/redaction pass — not polished narrative.
 - Each carries `expandable: true` in frontmatter to mark it as seed material.
-- Each is written in **STE-style** (ASD-STE100 — see the STE-style writing convention in
-  `skills/sdd/sdd-governing-workflow/SKILL.md`): short active sentences, plain consistent
+- Each is written in **STE-style** (ASD-STE100 — read
+  `skills/sdd/sdd-governing-workflow/references/ste-style.md` before writing): short active sentences, plain consistent
   vocabulary, one meaning per word.
 
 A feature with little to say to a given audience still gets that audience's file — as a

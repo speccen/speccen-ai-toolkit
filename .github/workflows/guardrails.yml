@@ -1,0 +1,20 @@
+name: Guardrails
+
+on:
+  pull_request:
+    paths:
+      - 'skills/sdd/sdd-governing-workflow/**'
+      - 'scripts/check_guardrails.py'
+      - 'scripts/guardrails.lock'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Guardrail inventory and reference wiring
+        run: python scripts/check_guardrails.py

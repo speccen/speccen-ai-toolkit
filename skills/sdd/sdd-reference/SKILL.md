@@ -54,7 +54,7 @@ consumes the whole bundle; it is bound to none of it.
 ### Register — STE
 
 The reference is written in **Simplified Technical English (STE)**, like every document speccen
-produces (see the STE-style rules in the governing skill). Short, active, declarative
+produces (read the STE-style rules in `skills/sdd/sdd-governing-workflow/references/ste-style.md` before writing). Short, active, declarative
 sentences; one idea each; plain consistent vocabulary; no rhetorical questions. The depth and
 precision come from the **structure and the diagrams**, not from narrative prose.
 
@@ -238,7 +238,8 @@ structure and craft.
 - **References** — source map, ADRs, the whole-bundle basis.
 
 Follow the governing skill's page conventions (self-contained, light/dark aware, responsive,
-`type: Reference` frontmatter or an equivalent metadata block, the `[Index]` navigation back
+`type: Reference` frontmatter or an equivalent metadata block — `type: Reference`, `phase: "08 — Reference"`,
+`status: IN PROGRESS | COMPLETE`, one-line `description` — the `[Index]` navigation back
 to the bundle).
 
 ### Step 6 — Draw and verify the diagrams

@@ -324,7 +324,7 @@ the Architect can make an informed override.
 - It is **provisional**: written before solution decisions (ADRs, Phase 03). It says so on
   its face.
 
-**Template** (`{{PHASE_DIR}}/doc-evolution-gap.md`), STE-style (see governing skill):
+**Template** (`{{PHASE_DIR}}/doc-evolution-gap.md`), STE-style (read `skills/sdd/sdd-governing-workflow/references/ste-style.md` before writing):
 
 ```markdown
 ---

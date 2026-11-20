@@ -288,8 +288,8 @@ The difference is tense — these describe **intent before the build**, not outc
 They are **frozen** once Phase 04 closes: Phase 05 does not edit them, and Phase 06 writes
 its own outcome seeds that reference these rather than overwriting them.
 
-Write both documents in **STE-style** (ASD-STE100 — see the STE-style writing convention in
-`skills/sdd/sdd-governing-workflow/SKILL.md`): short active sentences, plain consistent
+Write both documents in **STE-style** (ASD-STE100 — read
+`skills/sdd/sdd-governing-workflow/references/ste-style.md` before writing): short active sentences, plain consistent
 vocabulary, one meaning per word.
 
 **`{{PHASE_DIR}}/doc-executive.md`** — executive/sponsor, forward-looking:

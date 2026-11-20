@@ -30,8 +30,8 @@ Even in `autonomous` mode, only the Architect:
 1. authors ADRs — the one exception is the `status: PENDING` placeholder ADR that Phase 03
    creates for an unresolved open question. A placeholder records the question and holds no
    decision. Only the Architect decides it: by replacing it with a decision, by deleting it, or by
-   asking you to transcribe their stated decision verbatim (**Scribing a stated decision**, in the
-   ADR Protocol) (Invariants 4 and 6);
+   asking you to transcribe their stated decision verbatim (**Scribing a stated decision**,
+   [`adr-scribing.md`](adr-scribing.md)) (Invariants 4 and 6);
 2. decides discretionary promotions to the durable store (Phase 06, Step 6, path 2);
 3. changes the mode or the config files (Configuration);
 4. starts the optional passes (Phases 07 and 08) — and the delegate never starts `sdd-reconcile`
